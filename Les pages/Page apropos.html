@@ -1,0 +1,627 @@
+<!-- Import de la police Inter (sécurité si non présent dans le parent) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* --- ISOLATION TOTALE DU CSS A PROPOS POUR WORDPRESS --- */
+  .wm-about-section {
+    --primary-orange: #E05300;
+    --primary-orange-light: #FF7A33;
+    --primary-green: #0FAC71;
+    --primary-green-light: #33db88;
+    --bg: linear-gradient(180deg, #fdfbf7 0%, #faf6ee 100%);
+    --card-bg: #ffffff;
+    --card-border: rgba(15, 15, 17, 0.08);
+    --text: #0f0f11;
+    --text-dim: #5c5c64;
+
+    /* Variables isolées pour le CTA (design identique à cta.html) */
+    --wms-cta-bg: linear-gradient(135deg, #faf5eb 0%, #fefcf9 50%, #faf5eb 100%);
+    --wms-cta-text-primary: #0f0f11;
+    --wms-cta-text-secondary: #5c5c64;
+    --wms-cta-orange: #E05300;
+    --wms-cta-orange-light: #FF7A33;
+    --wms-cta-black: #0c0c0e;
+    --wms-cta-border: rgba(15, 15, 17, 0.06);
+    --wms-cta-transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    background: var(--bg);
+    color: var(--text);
+    padding: 80px 24px;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-top: 1px solid var(--card-border) !important;
+    border-bottom: 1px solid var(--card-border) !important;
+  }
+
+  /* Force la police Inter + reset isolation WordPress */
+  .wm-about-section *,
+  .wm-about-section *::before,
+  .wm-about-section *::after {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Lueur d'ambiance orange (haut droite) */
+  .wm-about-section::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(224, 83, 0, 0.04) 0%, transparent 65%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Lueur d'ambiance verte (bas gauche) */
+  .wm-about-section::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(15, 172, 113, 0.03) 0%, transparent 65%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── CONTENEUR PRINCIPAL ── */
+  .wm-about-container {
+    max-width: 1140px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .wm-about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+
+  @media (min-width: 992px) {
+    .wm-about-grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 72px;
+    }
+  }
+
+  /* ── COLONNE PHOTO (GAUCHE) ── */
+  .wm-about-image-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Par défaut sur mobile */
+  .wm-about-photo-desktop {
+    display: none !important;
+  }
+
+  .wm-about-photo-mobile {
+    display: flex !important;
+    margin: 24px auto 32px;
+  }
+
+  /* Sur desktop (min-width: 992px) */
+  @media (min-width: 992px) {
+    .wm-about-photo-desktop {
+      display: flex !important;
+    }
+
+    .wm-about-photo-mobile {
+      display: none !important;
+    }
+  }
+
+  .wm-about-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 28px;
+    background: #ffffff;
+    padding: 12px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 20px 40px rgba(15, 15, 17, 0.04);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .wm-about-image-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(224, 83, 0, 0.15) 0%, transparent 50%, rgba(15, 172, 113, 0.1) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .wm-about-image-wrapper:hover {
+    transform: translateY(-4px) rotate(1deg);
+  }
+
+  .wm-about-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    filter: grayscale(10%) contrast(102%);
+    border: 1px solid rgba(15, 15, 17, 0.05);
+  }
+
+  .wm-about-image-deco {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(var(--primary-orange) 2px, transparent 2px);
+    background-size: 12px 12px;
+    opacity: 0.25;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* ── COLONNE HISTOIRE (DROITE) ── */
+  .wm-about-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wm-about-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(15, 15, 17, 0.04);
+    width: max-content;
+  }
+
+  .wm-about-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--primary-green);
+    animation: wmPulseDot 2s infinite;
+  }
+
+  .wm-about-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: var(--text) !important;
+    margin: 0 0 20px;
+  }
+
+  .wm-about-section .fancy-underline {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .wm-about-section .fancy-underline::after {
+    content: '';
+    position: absolute;
+    left: -4%;
+    bottom: -8px;
+    width: 108%;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M1,4 C30,1 60,1 99,4 M3,8 C33,5 63,5 97,8' fill='none' stroke='%23E05300' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .wm-about-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 16px 0;
+    letter-spacing: -0.2px;
+  }
+
+  .wm-about-lastname {
+    color: var(--primary-orange);
+  }
+
+  .wm-about-title-role {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 2px solid var(--primary-orange);
+    padding-bottom: 2px;
+    display: inline-block;
+  }
+
+  .wm-about-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-dim);
+    margin: 0 0 24px;
+  }
+
+  .wm-about-quote {
+    border-left: 3px solid var(--primary-orange);
+    padding-left: 20px;
+    margin: 28px 0;
+    font-style: italic;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  /* ── SECTION VALEURS ── */
+  .wm-about-values {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  @media (min-width: 576px) {
+    .wm-about-values {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .wm-about-value-item {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(15, 15, 17, 0.02);
+    transition: border-color 0.3s ease;
+  }
+
+  .wm-about-value-item:hover {
+    border-color: rgba(224, 83, 0, 0.2);
+  }
+
+  .wm-about-value-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .wm-about-value-icon {
+    color: var(--primary-green);
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .wm-about-value-desc {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  /* ── STYLE REPRIS DE CTA.HTML POUR UN RENDU COHÉRENT ── */
+  .wms-cta-wrapper {
+    max-width: 1400px;
+    width: 100%;
+    margin: 32px auto 0;
+    background: var(--wms-cta-bg);
+    border: 1px solid var(--wms-cta-border);
+    border-radius: 32px;
+    padding: 72px 48px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 15px 35px rgba(15, 15, 17, 0.03), 0 1px 3px rgba(15, 15, 17, 0.01);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wms-cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--wms-cta-text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    max-width: 800px;
+    margin: 0 auto 16px auto;
+  }
+
+  .wms-cta-highlight {
+    color: var(--wms-cta-orange) !important;
+  }
+
+  .wms-cta-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    line-height: 1.6;
+    color: var(--wms-cta-text-secondary);
+    max-width: 600px;
+    margin: 0 auto 36px auto;
+    font-weight: 500;
+  }
+
+  .wms-cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .wms-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 24px 10px 10px;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all var(--wms-cta-transition);
+  }
+
+  .wms-cta-btn-primary {
+    background-color: var(--wms-cta-black) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--wms-cta-black) !important;
+    box-shadow: 0 4px 12px rgba(12, 12, 14, 0.08) !important;
+  }
+
+  .wms-cta-btn-primary:hover {
+    background-color: #1a1a24 !important;
+    border-color: #1a1a24 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(12, 12, 14, 0.15) !important;
+  }
+
+  .wms-cta-icon-badge-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 10px !important;
+    background-color: var(--wms-cta-orange) !important;
+    color: #ffffff !important;
+    transition: transform var(--wms-cta-transition) !important;
+  }
+
+  .wms-cta-btn-primary:hover .wms-cta-icon-badge-primary {
+    transform: translateX(2px) !important;
+  }
+
+  .wms-cta-btn-secondary {
+    background-color: #ffffff !important;
+    color: var(--wms-cta-text-primary) !important;
+    border: 1.5px solid rgba(15, 15, 17, 0.12) !important;
+    box-shadow: 0 2px 4px rgba(15, 15, 17, 0.02) !important;
+  }
+
+  .wms-cta-btn-secondary:hover {
+    background-color: #fafafa !important;
+    border-color: rgba(15, 15, 17, 0.2) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(15, 15, 17, 0.05) !important;
+  }
+
+  .wms-cta-icon-badge-secondary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 10px !important;
+    background-color: var(--wms-cta-orange) !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-sizing: border-box !important;
+    transition: transform var(--wms-cta-transition) !important;
+  }
+
+  .wms-cta-btn-secondary:hover .wms-cta-icon-badge-secondary {
+    transform: scale(1.08) !important;
+  }
+
+  /* Animations */
+  @keyframes wmPulseDot {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.7);
+    }
+
+    70% {
+      box-shadow: 0 0 0 6px rgba(0, 210, 106, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(0, 210, 106, 0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wms-cta-wrapper {
+      padding: 50px 24px;
+      border-radius: 24px;
+    }
+
+    .wms-cta-actions {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .wms-cta-btn {
+      width: auto;
+      min-width: auto;
+      justify-content: center;
+      padding: 10px 24px 10px 10px;
+    }
+  }
+</style>
+
+<section class="wm-about-section" id="a-propos">
+  <div class="wm-about-container">
+
+    <div class="wm-about-grid">
+
+      <!-- Colonne Photo de Gauche (Desktop uniquement) -->
+      <div class="wm-about-image-column wm-about-photo-desktop">
+        <div class="wm-about-image-wrapper">
+          <!-- PHOTO DU FONDATEUR -->
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&h=750&q=80"
+            alt="Jean-Prosper MONE" class="wm-about-img">
+          <div class="wm-about-image-deco"></div>
+        </div>
+      </div>
+
+      <!-- Colonne Histoire de Droite -->
+      <div class="wm-about-content">
+        <div class="wm-about-badge">
+          <span class="wm-about-badge-dot"></span> Qui suis-je ?
+        </div>
+
+        <h2 class="wm-about-title">Créateur d'expériences digitales <span class="fancy-underline">sur-mesure.</span>
+        </h2>
+
+        <p class="wm-about-name">
+          Jean-Prosper <span class="wm-about-lastname">MONE</span> &bull; <span class="wm-about-title-role">Fondateur de
+            WebModernSEO</span>
+        </p>
+
+        <p class="wm-about-text">
+          Ingénieur en gestion des risques de formation, j'ai choisi de mettre ma rigueur méthodologique, mon sens de
+          l'analyse et ma vision stratégique au service de ma passion de toujours : le développement web, le
+          référencement naturel (SEO) et l'automatisation de processus.
+        </p>
+
+        <!-- Colonne Photo Mobile (Visible uniquement sur mobile après le premier paragraphe) -->
+        <div class="wm-about-image-column wm-about-photo-mobile">
+          <div class="wm-about-image-wrapper">
+            <!-- PHOTO DU FONDATEUR -->
+            <img
+              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&h=750&q=80"
+              alt="Jean-Prosper MONE" class="wm-about-img">
+            <div class="wm-about-image-deco"></div>
+          </div>
+        </div>
+
+        <div class="wm-about-quote">
+          « Mon bagage d'ingénieur m'apporte une approche unique : là où d'autres se contentent d'un design, j'analyse
+          les flux de conversion, je préviens les risques de lenteur technique et je structure chaque projet pour qu'il
+          soit fiable, rapide et rentable. »
+        </div>
+
+        <p class="wm-about-text">
+          Fort de 3 ans d'expérience dans la création d'interfaces modernes, j'accompagne les professionnels à franchir
+          un cap digital. Qu'il s'agisse de concevoir un site WordPress robuste, de propulser votre trafic sur Google ou
+          d'automatiser vos tunnels de vente (CRM, Zapier), je traduis vos objectifs commerciaux en outils performants.
+        </p>
+
+        <!-- Les valeurs de l'agence -->
+        <div class="wm-about-values">
+          <div class="wm-about-value-item">
+            <h3 class="wm-about-value-title">
+              <span class="wm-about-value-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </span>
+              Rigueur d'Ingénieur
+            </h3>
+            <p class="wm-about-value-desc">Une approche méthodique pour analyser les risques de conversion et assurer
+              des structures de code impeccables.</p>
+          </div>
+
+          <div class="wm-about-value-item">
+            <h3 class="wm-about-value-title">
+              <span class="wm-about-value-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </span>
+              Performance SEO native
+            </h3>
+            <p class="wm-about-value-desc">Tous les sites sont développés dès le premier jour avec une structure
+              optimisée pour plaire à Google et charger instantanément.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Section CTA en bas (Design identique à cta.html) -->
+    <div class="wms-cta-wrapper">
+      <!-- Titre Principal -->
+      <h3 class="wms-cta-title">
+        Prêt à attirer de <span class="wms-cta-highlight">nouveaux clients</span> ?
+      </h3>
+
+      <!-- Sous-titre explicatif -->
+      <p class="wms-cta-subtitle">
+        Propulsez votre visibilité sur Google et convertissez vos visiteurs en prospects qualifiés dès ce mois-ci.
+      </p>
+
+      <!-- Boutons d'Action (CTA) -->
+      <div class="wms-cta-actions">
+        <!-- Bouton Principal (redirige vers formulaire) -->
+        <a href="https://webmodernseo.co/formulaire/" class="wms-cta-btn wms-cta-btn-primary">
+          <span class="wms-cta-icon-badge-primary">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.5 3L9.5 8L4.5 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M8.5 3L13.5 8L8.5 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+          Prendre RDV offert
+        </a>
+
+        <!-- Bouton Secondaire (redirige vers services) -->
+        <a href="https://webmodernseo.co/#services" class="wms-cta-btn wms-cta-btn-secondary">
+          <span class="wms-cta-icon-badge-secondary">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.5 2.5L9.5 6L3.5 9.5V2.5Z" />
+            </svg>
+          </span>
+          Découvrir mes services
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

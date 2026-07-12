@@ -1,0 +1,310 @@
+<!-- Import de la police Inter (sécurité si non présent dans le parent) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* --- ISOLATION TOTALE DU CSS FAQ POUR WORDPRESS --- */
+  .wms-faq-section {
+    --primary-orange:       #E05300;
+    --primary-orange-light: #FF7A33;
+    --primary-green:        #0FAC71;
+    --bg:                   linear-gradient(180deg, #fdfbf7 0%, #faf6ee 100%);
+    --card-bg:              #faf6ee; /* Couleur crème claire pour éléments pliés */
+    --card-bg-active:       #ffffff; /* Blanc pur pour l'élément déplié */
+    --text:                 #0f0f11;
+    --text-dim:             #5c5c64;
+    --border-active:        #0f0f11; /* Bordure noire affirmée */
+    --card-border:          rgba(15, 15, 17, 0.05);
+
+    background: var(--bg);
+    color: var(--text);
+    padding: 80px 24px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(15, 15, 17, 0.08) !important;
+    border-bottom: 1px solid rgba(15, 15, 17, 0.08) !important;
+  }
+
+  /* Force la police Inter + reset isolation WordPress */
+  .wms-faq-section *,
+  .wms-faq-section *::before,
+  .wms-faq-section *::after {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* ── CONTENEUR GENERAL ── */
+  .wms-faq-container {
+    max-width: 800px; /* Largeur maximale resserrée pour la FAQ */
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── ENTÊTE ── */
+  .wms-faq-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .wms-faq-title {
+    font-size: clamp(32px, 5.5vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    color: var(--text) !important;
+    margin: 0;
+  }
+
+  /* ── ACCORDÉON FAQ ── */
+  .wms-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .wms-faq-item {
+    background: var(--card-bg);
+    border: 1.5px solid transparent;
+    border-radius: 24px;
+    padding: 24px 32px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(15, 15, 17, 0.01);
+  }
+
+  @media (max-width: 768px) {
+    .wms-faq-item {
+      padding: 20px 24px;
+      border-radius: 20px;
+    }
+  }
+
+  /* État déplié / Actif */
+  .wms-faq-item.active {
+    background: var(--card-bg-active);
+    border-color: var(--border-active);
+    box-shadow: 0 12px 28px rgba(15, 15, 17, 0.04);
+  }
+
+  /* Bouton Question */
+  .wms-faq-question-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    gap: 24px;
+  }
+
+  .wms-faq-question-text {
+    font-size: clamp(16px, 2.2vw, 18px);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  /* Icône d'état animée (+ / —) */
+  .wms-faq-icon-wrapper {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .wms-faq-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .wms-faq-icon::before,
+  .wms-faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--primary-orange);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Ligne horizontale */
+  .wms-faq-icon::before {
+    top: 7px;
+    left: 0;
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+  }
+
+  /* Ligne verticale */
+  .wms-faq-icon::after {
+    top: 0;
+    left: 7px;
+    width: 2px;
+    height: 16px;
+    border-radius: 2px;
+  }
+
+  /* Animation au format "—" */
+  .wms-faq-item.active .wms-faq-icon::after {
+    transform: rotate(90deg) scaleY(0);
+    opacity: 0;
+  }
+
+  .wms-faq-item.active .wms-faq-icon::before {
+    transform: rotate(180deg);
+  }
+
+  /* ── CONTENU DE LA REPONSE (ANIMATION CSS GRID AUTO HEIGHT) ── */
+  .wms-faq-answer-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .wms-faq-item.active .wms-faq-answer-wrapper {
+    grid-template-rows: 1fr;
+  }
+
+  .wms-faq-answer-content {
+    overflow: hidden;
+  }
+
+  .wms-faq-answer {
+    padding-top: 16px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin: 0;
+  }
+</style>
+
+<section class="wms-faq-section" id="faq-section">
+  <div class="wms-faq-container">
+    
+    <!-- Entête de la FAQ -->
+    <div class="wms-faq-header">
+      <h2 class="wms-faq-title">Got questions?<br>We've the answers</h2>
+    </div>
+
+    <!-- Liste des questions/réponses -->
+    <div class="wms-faq-list">
+      
+      <!-- Question 1 -->
+      <div class="wms-faq-item active">
+        <button class="wms-faq-question-btn" aria-expanded="true">
+          <span class="wms-faq-question-text">Quels types de projets web réalisez-vous ?</span>
+          <div class="wms-faq-icon-wrapper">
+            <div class="wms-faq-icon"></div>
+          </div>
+        </button>
+        <div class="wms-faq-answer-wrapper">
+          <div class="wms-faq-answer-content">
+            <p class="wms-faq-answer">Nous créons des sites WordPress sur-mesure de haute performance, des landing pages de conversion ultra-rapides, et des applications web SaaS. Tous nos designs sont exclusifs, modernes et optimisés pour le mobile.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="wms-faq-item">
+        <button class="wms-faq-question-btn" aria-expanded="false">
+          <span class="wms-faq-question-text">Comment fonctionne l'optimisation SEO native ?</span>
+          <div class="wms-faq-icon-wrapper">
+            <div class="wms-faq-icon"></div>
+          </div>
+        </button>
+        <div class="wms-faq-answer-wrapper">
+          <div class="wms-faq-answer-content">
+            <p class="wms-faq-answer">Dès la première ligne de code, nous structurons votre site pour les moteurs de recherche (sémantique HTML5, balisage propre, vitesse de chargement PageSpeed maximale, et version mobile optimisée). C'est le moyen le plus sûr de monter rapidement dans Google.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="wms-faq-item">
+        <button class="wms-faq-question-btn" aria-expanded="false">
+          <span class="wms-faq-question-text">Qu'est-ce que l'automatisation de processus (Zapier, CRM...) ?</span>
+          <div class="wms-faq-icon-wrapper">
+            <div class="wms-faq-icon"></div>
+          </div>
+        </button>
+        <div class="wms-faq-answer-wrapper">
+          <div class="wms-faq-answer-content">
+            <p class="wms-faq-answer">Nous connectons votre site internet à vos outils quotidiens (Zapier, Make, Hubspot, Notion, Google Sheets). Ainsi, vos formulaires de contact envoient automatiquement des alertes, créent des fiches clients ou planifient des rendez-vous sans aucune action manuelle de votre part.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="wms-faq-item">
+        <button class="wms-faq-question-btn" aria-expanded="false">
+          <span class="wms-faq-question-text">Quels sont vos délais moyens de livraison ?</span>
+          <div class="wms-faq-icon-wrapper">
+            <div class="wms-faq-icon"></div>
+          </div>
+        </button>
+        <div class="wms-faq-answer-wrapper">
+          <div class="wms-faq-answer-content">
+            <p class="wms-faq-answer">Une landing page de vente prend généralement entre 7 à 10 jours. Pour un site WordPress complet ou une refonte sur-mesure, comptez entre 3 à 5 semaines de développement selon la complexité et le nombre d'automatisations demandées.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="wms-faq-item">
+        <button class="wms-faq-question-btn" aria-expanded="false">
+          <span class="wms-faq-question-text">Proposez-vous un service de maintenance après livraison ?</span>
+          <div class="wms-faq-icon-wrapper">
+            <div class="wms-faq-icon"></div>
+          </div>
+        </button>
+        <div class="wms-faq-answer-wrapper">
+          <div class="wms-faq-answer-content">
+            <p class="wms-faq-answer">Oui, nous proposons des forfaits mensuels de maintenance technique pour gérer les sauvegardes quotidiennes, surveiller la sécurité contre les piratages, mettre à jour vos extensions, et réaliser des ajustements mineurs à votre demande.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function() {
+    const faqItems = document.querySelectorAll('.wms-faq-item');
+    
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.wms-faq-question-btn');
+      
+      btn.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Ferme tous les autres éléments de la FAQ
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.wms-faq-question-btn').setAttribute('aria-expanded', 'false');
+        });
+        
+        // Si l'élément cliqué n'était pas actif, on l'ouvre
+        if (!isActive) {
+          item.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+</script>
