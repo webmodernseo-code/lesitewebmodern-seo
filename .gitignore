@@ -1,11 +1,37 @@
 # Fichiers à ignorer par Git dans le projet principal
 
-# Dossiers de configuration et de backup
-Dashboard/.git-backup/
-Dashboard/.next/
-Dashboard/node_modules/
-Dashboard/.env.local
+# Dépendances
+/node_modules
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Fichiers d'environnement locaux (secrets)
+.env*.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Scripts et fichiers de travail jetables
+/scratch/
+
+# Logs de debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Couverture de tests
+/coverage
 
 # Fichiers temporaires ou IDE
 .DS_Store
 Thumbs.db
+*.pem
