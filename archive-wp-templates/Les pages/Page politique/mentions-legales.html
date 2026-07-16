@@ -1,0 +1,239 @@
+<!-- Import de la police Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- ISOLATION CSS WORDPRESS --- */
+
+        .wms-policy-section {
+          --bg-color: #faf6ee;
+          --bg-surface: #ffffff;
+          --text-primary: #000000;
+          --text-secondary: #5c5c64;
+          --accent-color: #ff4d00;
+          --accent-glow: rgba(224, 83, 0, 0.15);
+          --border-light: rgba(15, 15, 17, 0.08);
+        }
+
+        .wms-policy-section *,
+        .wms-policy-section h1,
+        .wms-policy-section h2,
+        .wms-policy-section h3,
+        .wms-policy-section h4,
+        .wms-policy-section h5,
+        .wms-policy-section h6,
+        .wms-policy-section p,
+        .wms-policy-section li,
+        .wms-policy-section a,
+        .wms-policy-section span,
+        .wms-policy-section strong {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: 'Inter', sans-serif !important;
+        }
+
+        .wms-policy-section {
+          font-family: 'Inter', sans-serif !important;
+          background-color: var(--bg-color);
+          color: var(--text-secondary);
+          line-height: 1.7;
+          padding: 20px;
+          -webkit-font-smoothing: antialiased;
+          background-image: linear-gradient(180deg, #fdfbf7 0%, #faf6ee 100%);
+          background-attachment: fixed;
+        }
+
+        .wms-policy-section .container {
+          max-width: 840px;
+          margin: 0 auto;
+          padding: 40px 0 80px 0;
+          animation: wmsFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes wmsFadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .wms-policy-section .page-header {
+          position: relative;
+          padding: 50px 30px;
+          border-radius: 20px;
+          background: var(--bg-surface);
+          border: 1px solid var(--border-light);
+          box-shadow: 0 10px 30px -10px rgba(15, 15, 17, 0.06), 0 1px 3px rgba(15, 15, 17, 0.02);
+          margin-bottom: 60px;
+          overflow: hidden;
+          text-align: center;
+        }
+
+        .wms-policy-section .page-header::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; height: 3px;
+          background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+          opacity: 0.8;
+        }
+
+        .wms-policy-section .page-title {
+          font-size: clamp(32px, 5vw, 48px);
+          font-weight: 800;
+          letter-spacing: -1px;
+          margin-bottom: 12px;
+          background: linear-gradient(135deg, #000000 0%, #3a3a40 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .wms-policy-section .page-title.no-badge {
+          margin-bottom: 0;
+        }
+
+        .wms-policy-section .last-updated {
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--accent-color);
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          padding: 6px 16px;
+          border: 1px solid rgba(224, 83, 0, 0.2);
+          border-radius: 999px;
+          background: rgba(224, 83, 0, 0.05);
+        }
+
+        .wms-policy-section .content-section {
+          font-size: 16px;
+          padding: 0 10px;
+        }
+
+        .wms-policy-section .content-section h2 {
+          color: var(--text-primary);
+          font-size: 26px;
+          font-weight: 700;
+          margin-top: 56px;
+          margin-bottom: 24px;
+          letter-spacing: -0.5px;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+
+        .wms-policy-section .content-section h2::before {
+          content: '';
+          display: inline-block;
+          width: 6px;
+          height: 24px;
+          background-color: var(--accent-color);
+          border-radius: 4px;
+        }
+
+        .wms-policy-section .content-section h3 {
+          color: var(--text-primary);
+          font-size: 19px;
+          font-weight: 600;
+          margin-top: 36px;
+          margin-bottom: 16px;
+          padding-left: 20px;
+          border-left: 2px solid var(--accent-color);
+        }
+
+        .wms-policy-section .content-section p {
+          margin-bottom: 20px;
+        }
+
+        .wms-policy-section .content-section strong {
+          color: var(--text-primary);
+          font-weight: 600;
+        }
+
+        .wms-policy-section .content-section ul {
+          margin-bottom: 24px;
+          margin-top: 10px;
+          padding-left: 10px;
+        }
+
+        .wms-policy-section .content-section li {
+          position: relative;
+          padding-left: 32px;
+          margin-bottom: 12px;
+          list-style: none;
+        }
+
+        .wms-policy-section .content-section li::before {
+          content: '';
+          position: absolute;
+          left: 6px;
+          top: 10px;
+          width: 6px;
+          height: 6px;
+          background-color: var(--accent-color);
+          border-radius: 50%;
+        }
+
+        .wms-policy-section .content-section p, 
+        .wms-policy-section .content-section ul {
+          transition: color 0.3s ease;
+        }
+
+        .wms-policy-section .content-section p:hover, 
+        .wms-policy-section .content-section ul:hover {
+          color: var(--text-primary);
+        }
+
+        .wms-policy-section .content-section a {
+          color: var(--accent-color);
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.2s ease;
+        }
+
+        .wms-policy-section .content-section a:hover {
+          color: var(--text-primary);
+          text-decoration: underline;
+        }
+
+        @media (min-width: 768px) {
+          .wms-policy-section .page-header {
+            padding: 60px 50px;
+          }
+          .wms-policy-section {
+            padding: 40px;
+          }
+          .wms-policy-section .content-section {
+            padding: 0;
+          }
+        }
+    </style>
+
+<div class="wms-policy-section">
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title no-badge">Mentions légales</h1>
+    </div>
+    
+    <div class="content-section">
+      <p>Conformément aux dispositions des Articles 6-III et 19 de la <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000801130/" target="_blank" rel="noopener">Loi n°2004-575 du 21 juin 2004</a> pour la Confiance dans l'économie numérique, dite L.C.E.N., il est porté à la connaissance des utilisateurs du site <a href="https://webmodernseo.co/">Webmodernseo</a> les présentes mentions légales.</p>
+      
+      <h2>1. L'Éditeur du site</h2>
+      <p>L'édition et la direction de la publication du site Webmodernseo sont assurées par :</p>
+      <ul>
+        <li><strong>Nom de l'entreprise :</strong> Webmodernseo</li>
+        <li><strong>Statut professionnel :</strong> Freelance / Micro-entrepreneur</li>
+        <li><strong>Adresse e-mail :</strong> <a href="mailto:contact@webmodernseo.co">contact@webmodernseo.co</a></li>
+        <li><strong>Numéro SIRET :</strong> [Disponible sur simple demande]</li>
+      </ul>
+      
+      <h2>2. L'Hébergeur</h2>
+      <p>Le site Webmodernseo est hébergé par la société <a href="https://www.hostinger.fr/" target="_blank" rel="noopener">Hostinger International Ltd.</a>, dont le siège social est situé à Chypre (61 Lordou Vironos Street, 6023 Larnaca) et joignable directement via leur site web officiel de contact.</p>
+      
+      <h2>3. Accès au site</h2>
+      <p>Le site est accessible en tout endroit, 7j/7, 24h/24 sauf cas de force majeure, interruption programmée ou non et pouvant découler d'une nécessité de maintenance technique. En cas de modification, interruption ou suspension des services, le site Webmodernseo ne saurait être tenu pour responsable.</p>
+      
+      <h2>4. Propriété intellectuelle</h2>
+      <p>Toute utilisation, reproduction, diffusion, commercialisation, modification de toute ou partie du site Webmodernseo, sans l'autorisation expresse écrite de l'Éditeur est prohibée et pourra entraîner des actions et poursuites judiciaires telles que notamment prévues par le Code de la propriété intellectuelle et le Code civil. Le contenu global (textes, visuels, code source) reste la propriété exclusive de Webmodernseo sauf mention contraire.</p>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,189 @@
+<!-- Import de la police Inter (sécurité si non présent dans le parent) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* --- ISOLATION TOTALE DU CSS RESERVATION POUR WORDPRESS --- */
+  .wm-booking-section {
+    --primary-orange:       #ff4d00;
+    --primary-orange-light: #ff7e47;
+    --primary-green:        #0FAC71;
+    --primary-green-light:  #33db88;
+    --bg:                   linear-gradient(180deg, #fdfbf7 0%, #faf6ee 100%);
+    --card-bg:              #ffffff;
+    --card-border:          rgba(15, 15, 17, 0.08);
+    --text:                 #000000;
+    --text-dim:             #5c5c64;
+
+    background: var(--bg);
+    color: var(--text);
+    padding: 40px 16px;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-top: 1px solid var(--card-border) !important;
+    border-bottom: 1px solid var(--card-border) !important;
+  }
+
+  /* Force Inter + reset isolation WordPress */
+  .wm-booking-section *,
+  .wm-booking-section *::before,
+  .wm-booking-section *::after {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  /* Lueur d'ambiance orange en haut à droite */
+  .wm-booking-section::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(224, 83, 0, 0.04) 0%, transparent 65%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Lueur d'ambiance verte en bas à gauche */
+  .wm-booking-section::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(15, 172, 113, 0.03) 0%, transparent 65%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── WRAPPER CALENDLY ── */
+  .wm-booking-widget-wrapper {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(15, 15, 17, 0.04), 0 1px 3px rgba(15, 15, 17, 0.01);
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px; /* Centre et limite la largeur pour un rendu optimal */
+    margin: 0 auto;
+    position: relative;
+    height: 700px; /* Hauteur fixe pour éviter le décalage de mise en page (CLS) */
+    z-index: 2;
+  }
+
+  .wm-calendly-placeholder {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: opacity 0.5s ease;
+    gap: 16px;
+  }
+
+  .wm-booking-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(224, 83, 0, 0.1);
+    border-top: 3px solid var(--primary-orange);
+    border-radius: 50%;
+    animation: wmSpin 1s linear infinite;
+  }
+
+  .wm-calendly-placeholder p {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 500;
+    margin: 0;
+    animation: wmPulseText 1.5s ease-in-out infinite;
+  }
+
+  @keyframes wmSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes wmPulseText {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .wm-booking-section {
+      padding: 20px 12px;
+    }
+    .wm-booking-widget-wrapper {
+      border-radius: 16px;
+    }
+  }
+</style>
+
+<section class="wm-booking-section" id="reservation-calendly">
+  <!-- Colonne de droite (Widget Calendly) -->
+  <div class="wm-booking-widget-wrapper">
+    <!-- Placeholder de chargement premium -->
+    <div class="wm-calendly-placeholder" id="calendly-placeholder">
+      <div class="wm-booking-spinner"></div>
+      <p>Chargement sécurisé de l'agenda...</p>
+    </div>
+    <!-- Début de widget en ligne Calendly -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/webmodernseo/30min" style="min-width:320px;height:700px;"></div>
+    <!-- Fin de widget en ligne Calendly -->
+  </div>
+</section>
+
+<script>
+  (function() {
+    const placeholder = document.getElementById('calendly-placeholder');
+    const widgetContainer = document.querySelector('.calendly-inline-widget');
+    if (!placeholder || !widgetContainer) return;
+
+    function hidePlaceholder() {
+      placeholder.style.opacity = '0';
+      setTimeout(() => {
+        placeholder.style.display = 'none';
+      }, 500);
+    }
+
+    // MutationObserver pour détecter quand l'iframe Calendly est insérée
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length > 0) {
+          mutation.addedNodes.forEach((node) => {
+            if (node.tagName === 'IFRAME') {
+              node.addEventListener('load', hidePlaceholder);
+              // Sécurité : masquer de toute façon au bout de 4 secondes
+              setTimeout(hidePlaceholder, 4000);
+              observer.disconnect();
+            }
+          });
+        }
+      });
+    });
+
+    observer.observe(widgetContainer, { childList: true });
+
+    // Chargement différé (Lazy-loading) du script après 800ms
+    setTimeout(() => {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }, 800);
+  })();
+</script>

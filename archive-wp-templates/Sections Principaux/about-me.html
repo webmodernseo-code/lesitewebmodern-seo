@@ -1,0 +1,734 @@
+<!-- Import de la police Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    /* --- ISOLATION TOTALE DU CSS DE PRESENTATION POUR WORDPRESS --- */
+    .wm-presentation {
+        --primary-orange: #e85500;
+        --primary-orange-light: #ff7315;
+        --primary-green: #00a855;
+        --bg-color: #ffffff;
+        --text-main: #0f172a;
+        --text-dim: #475569;
+        --border-subtle: rgba(0, 0, 0, 0.08);
+
+        /* === DESIGN SYSTEM : BKGRND 2.0 LIGHT === */
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+            var(--bg-color);
+        background-size: 40px 40px, 40px 40px;
+        color: var(--text-main);
+        -webkit-font-smoothing: antialiased;
+        padding: clamp(25px, 4vw, 50px) 24px;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Force la police Inter sur tous les enfants (anti-WordPress) */
+    .wm-presentation *,
+    .wm-presentation *::before,
+    .wm-presentation *::after {
+        box-sizing: inherit;
+        margin: 0;
+        padding: 0;
+    }
+
+    .wm-presentation,
+    .wm-presentation h2,
+    .wm-presentation h3,
+    .wm-presentation p,
+    .wm-presentation a,
+    .wm-presentation span,
+    .wm-presentation strong,
+    .wm-presentation small,
+    .wm-presentation div {
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    .wm-presentation a {
+        text-decoration: none;
+    }
+
+    /* === CONTENEUR GLOBAL === */
+    .presentation-container {
+        max-width: 1140px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 56px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* === COLONNE GAUCHE (TEXTE) === */
+    .presentation-left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Badge pill */
+    .presentation-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        background: rgba(0, 0, 0, 0.04);
+        border: 1px solid var(--border-subtle);
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-dim);
+        margin-bottom: 24px;
+    }
+
+    .presentation-badge-dot {
+        width: 6px;
+        height: 6px;
+        background-color: var(--primary-green);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--primary-green);
+        animation: pulseDot 2s infinite;
+    }
+
+    /* Titre colossal avec surbrillance en forme de capsule */
+    .presentation-title {
+        font-size: clamp(28px, 4.2vw, 48px);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -1.5px;
+        color: var(--text-main);
+        margin-bottom: 24px;
+    }
+
+    .presentation-title .highlight-pill {
+        background: var(--primary-green);
+        color: #ffffff;
+        padding: 3px 18px;
+        border-radius: 14px;
+        display: inline-block;
+        transform: rotate(-1.5deg);
+        transform-origin: center;
+        box-shadow: 0 6px 20px rgba(255, 107, 0, 0.25);
+        margin: 0 4px;
+    }
+
+    /* Pitch intro */
+    .presentation-subtitle {
+        font-size: clamp(15px, 1.8vw, 17px);
+        font-weight: 400;
+        line-height: 1.65;
+        color: var(--text-dim);
+        margin-bottom: 36px;
+        max-width: 620px;
+    }
+
+    /* Grille des fonctionnalités / points clés */
+    .presentation-features {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+
+    @media (min-width: 576px) {
+        .presentation-features {
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+    }
+
+    .presentation-feature-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .presentation-feature-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid var(--border-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-orange);
+    }
+
+    .presentation-feature-card:nth-child(2) .presentation-feature-icon {
+        color: var(--primary-green);
+        border-color: rgba(0, 210, 106, 0.15);
+    }
+
+    .presentation-feature-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .presentation-feature-card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-main);
+    }
+
+    .presentation-feature-card p {
+        font-size: 13.5px;
+        font-weight: 400;
+        line-height: 1.55;
+        color: var(--text-dim);
+    }
+
+    /* --- ACTIONS --- */
+    .presentation-actions {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-top: 12px;
+        flex-wrap: wrap;
+    }
+
+    /* Bouton principal (Noir Carbone) */
+    .presentation-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 1px solid #000000 !important;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 10px 24px 10px 10px;
+        border-radius: 14px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(12, 12, 14, 0.08) !important;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .presentation-btn-primary:hover {
+        background-color: #1a1a24 !important;
+        border-color: #1a1a24 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 18px rgba(12, 12, 14, 0.15) !important;
+        color: #ffffff !important;
+    }
+
+    .presentation-btn-primary:active {
+        transform: translateY(1px);
+    }
+
+    /* Badge d'icône orange */
+    .presentation-btn-icon {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 10px !important;
+        background-color: var(--primary-orange) !important;
+        color: #ffffff !important;
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .presentation-btn-primary:hover .presentation-btn-icon {
+        transform: translateX(2px) !important;
+    }
+
+    /* Lien secondaire "En savoir plus" */
+    .presentation-link-secondary {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-main) !important;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.25s ease;
+    }
+
+    .presentation-link-secondary:hover {
+        color: var(--primary-orange) !important;
+    }
+
+    .presentation-link-secondary .link-arrow {
+        transition: transform 0.25s ease;
+    }
+
+    .presentation-link-secondary:hover .link-arrow {
+        transform: translateX(4px);
+    }
+
+
+    /* === COLONNE DROITE (PORTRAIT ANIMÉ & TOASTS DE CONFIANCE) === */
+    .presentation-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        perspective: 1200px;
+        /* Effet 3D premium pour l'interaction */
+    }
+
+    .presentation-img-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1.1;
+        border-radius: 100px 16px 100px 16px;
+        /* Coupe asymétrique inspirée de l'image */
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid var(--border-subtle);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1;
+    }
+
+    /* Lueur orange et reflet de balayage */
+    .presentation-img-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.08),
+                transparent);
+        transform: skewX(-25deg);
+        transition: 0.75s;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .presentation-img-wrapper::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(26, 11, 2, 0.4) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .presentation-portrait {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Interactions sur l'image au survol de la colonne */
+    .presentation-right:hover .presentation-img-wrapper {
+        transform: rotateY(-4deg) rotateX(2deg) translateY(-6px);
+        border-color: rgba(255, 107, 0, 0.25);
+        box-shadow:
+            0 30px 60px rgba(0, 0, 0, 0.6),
+            0 10px 30px rgba(255, 107, 0, 0.1);
+    }
+
+    .presentation-right:hover .presentation-img-wrapper::before {
+        left: 150%;
+    }
+
+    .presentation-right:hover .presentation-portrait {
+        transform: scale(1.05);
+    }
+
+    .floating-toast {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 12px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        z-index: 3;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Toast en haut à droite */
+    .toast-top {
+        top: 8%;
+        right: -8%;
+        animation: floatTop 7s ease-in-out infinite;
+    }
+
+    .toast-icon-container {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: rgba(34, 197, 94, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #22c55e;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    /* Cercle radar pulsant pour l'icône de succès */
+    .toast-icon-container::before {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 2px solid rgba(34, 197, 94, 0.4);
+        animation: pulseRadar 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .toast-icon-container svg {
+        width: 12px;
+        height: 12px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .toast-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toast-label {
+        font-size: 9px;
+        font-weight: 700;
+        color: var(--text-dim);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .toast-value {
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--text-main);
+        margin-top: 1px;
+    }
+
+    .toast-bottom {
+        bottom: 8%;
+        left: -8%;
+        animation: floatBottom 8s ease-in-out infinite;
+    }
+
+    /* Stack d'avatars interactif */
+    .toast-bottom .avatar-stack {
+        display: flex;
+        align-items: center;
+    }
+
+    .toast-bottom .avatar-stack .avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ffffff;
+        margin-left: -10px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-bottom .avatar-stack .avatar:first-child {
+        margin-left: 0;
+    }
+
+    /* Effet d'écartement au survol du toast */
+    .toast-bottom:hover {
+        transform: scale(1.05) translateY(-4px) rotate(1deg) !important;
+        border-color: rgba(0, 168, 85, 0.25);
+        box-shadow: 0 15px 30px rgba(0, 168, 85, 0.08), 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .toast-bottom:hover .avatar {
+        margin-left: 2px;
+        transform: scale(1.1);
+    }
+
+    .toast-top:hover {
+        transform: scale(1.05) translateY(-4px) rotate(-1deg) !important;
+        border-color: rgba(232, 85, 0, 0.25);
+        box-shadow: 0 15px 30px rgba(232, 85, 0, 0.08), 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .toast-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toast-info-title {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--text-main);
+    }
+
+    .toast-info-desc {
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--text-dim);
+    }
+
+    /* === ANIMATIONS KEYFRAMES === */
+
+    /* Flottaison douce asymétrique et rotative */
+    @keyframes floatTop {
+        0% {
+            transform: translateY(0) rotate(1deg);
+        }
+
+        50% {
+            transform: translateY(-12px) rotate(-1deg) translateX(3px);
+        }
+
+        100% {
+            transform: translateY(0) rotate(1deg);
+        }
+    }
+
+    @keyframes floatBottom {
+        0% {
+            transform: translateY(0) rotate(-1.5deg);
+        }
+
+        50% {
+            transform: translateY(12px) rotate(1.5deg) translateX(-3px);
+        }
+
+        100% {
+            transform: translateY(0) rotate(-1.5deg);
+        }
+    }
+
+    /* Pulse radar circulaire pour le bouton de succès */
+    @keyframes pulseRadar {
+        0% {
+            transform: scale(0.8);
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: scale(1.6);
+            opacity: 0;
+        }
+    }
+
+    /* Pulse d'activité pour le badge */
+    @keyframes pulseDot {
+        0% {
+            box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.7);
+        }
+
+        70% {
+            box-shadow: 0 0 0 6px rgba(0, 210, 106, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(0, 210, 106, 0);
+        }
+    }
+
+    /* === GRID & ALIGNEMENT SUR PC === */
+    @media (min-width: 992px) {
+        .presentation-container {
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 72px;
+        }
+
+        .presentation-left {
+            text-align: left;
+        }
+
+        .presentation-right {
+            max-width: 100%;
+        }
+    }
+
+    /* Ajustements tablettes & mobiles */
+    @media (max-width: 991px) {
+        .wm-presentation {
+            padding: 80px 24px;
+        }
+
+        .toast-top {
+            right: -2%;
+        }
+
+        .toast-bottom {
+            left: -2%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .wm-presentation {
+            padding: 60px 16px;
+        }
+
+        .toast-top {
+            right: 0;
+            top: 4%;
+        }
+
+        .toast-bottom {
+            left: 0;
+            bottom: 4%;
+        }
+
+        .floating-toast {
+            padding: 8px 12px;
+            border-radius: 12px;
+        }
+
+        .toast-value {
+            font-size: 12px;
+        }
+    }
+</style>
+
+<section class="wm-presentation" id="a-propos-section" aria-label="Présentation de Jean-Prosper">
+
+    <div class="presentation-container">
+
+        <!-- Colonne Gauche : Écriture et points clés -->
+        <div class="presentation-left">
+
+            <!-- Badge discret -->
+            <div class="presentation-badge">
+                <span class="presentation-badge-dot"></span>
+                <span>À propos de moi</span>
+            </div>
+
+            <!-- Titre principal avec la capsule animée -->
+            <h2 class="presentation-title">
+                Créateur de sites conçus pour la <span class="highlight-pill">conversion.</span>
+            </h2>
+
+            <!-- Pitch introductif personnalisé -->
+            <p class="presentation-subtitle">
+                Je suis <strong>Jean-Prosper</strong>, développeur web freelance et consultant SEO. Je ne conçois pas de
+                simples
+                pages vitrines : je bâtis des plateformes d'acquisition rapides, visibles et automatisées pour
+                transformer vos
+                visiteurs en clients qualifiés.
+            </p>
+
+            <!-- Grille des fonctionnalités de confiance -->
+            <div class="presentation-features">
+
+                <div class="presentation-feature-card">
+                    <div class="presentation-feature-icon">
+                        <!-- Icône éclair / vitesse -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg>
+                    </div>
+                    <h3>Vitesse Éclair</h3>
+                    <p>Des structures de code épurées et légères pour un temps de chargement instantané, essentiel au
+                        SEO et à
+                        l'expérience utilisateur.</p>
+                </div>
+
+                <div class="presentation-feature-card">
+                    <div class="presentation-feature-icon">
+                        <!-- Icône bouclier / confiance -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            <path d="m9 11 2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h3>Confiance Totale</h3>
+                    <p>Un développement sécurisé et conforme, allié à un suivi régulier pour garantir la pérennité et la
+                        stabilité
+                        de votre site.</p>
+                </div>
+
+            </div>
+
+            <!-- Actions (Boutons de contact et en savoir plus) -->
+            <div class="presentation-actions">
+                <a href="https://webmodernseo.co/formulaire/" class="presentation-btn-primary" id="presentation-contact-btn">
+                    <span class="presentation-btn-icon">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.5 3L9.5 8L4.5 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M8.5 3L13.5 8L8.5 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    Discuter de mon projet
+                </a>
+                <a href="https://webmodernseo.co/a-propos/" class="presentation-link-secondary">
+                    En savoir plus <span class="link-arrow">→</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Colonne Droite : Portrait & Toasts de réussite -->
+        <div class="presentation-right">
+
+            <!-- Wrapper image asymétrique -->
+            <div class="presentation-img-wrapper">
+                <img class="presentation-portrait"
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&h=700&q=80"
+                    alt="Jean-Prosper - Développeur Web & SEO Freelance" loading="lazy">
+            </div>
+
+            <!-- Toast Flottant 1 (Haut Droite) : Réactivité -->
+            <div class="floating-toast toast-top" aria-hidden="true">
+                <div class="toast-icon-container">
+                    <!-- Icône coche de validation -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </div>
+                <div class="toast-content">
+                    <span class="toast-label">RÉACTIVITÉ</span>
+                    <span class="toast-value">Répond en 24h</span>
+                </div>
+            </div>
+
+            <!-- Toast Flottant 2 (Bas Gauche) : Preuve Sociale / Clients -->
+            <div class="floating-toast toast-bottom" aria-hidden="true">
+                <div class="avatar-stack">
+                    <img class="avatar"
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64&q=80"
+                        alt="Portrait Client A">
+                    <img class="avatar"
+                        src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=64&h=64&q=80"
+                        alt="Portrait Client B">
+                    <img class="avatar"
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=64&h=64&q=80"
+                        alt="Portrait Client C">
+                </div>
+                <div class="toast-info">
+                    <span class="toast-info-title"><strong
+                            style="color: var(--primary-green); font-weight: 800;">100%</strong>
+                        des clients</span>
+                    <span class="toast-info-desc">Nous font confiance</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

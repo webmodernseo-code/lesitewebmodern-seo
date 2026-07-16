@@ -7,12 +7,13 @@ Ce document définit la charte graphique et la structure technique pour le site 
 ## 🎨 1. Palette de Couleurs & Identité Visuelle
 Le design s'appuie sur une esthétique minimaliste technologique et chaleureuse, caractérisée par :
 - **Arrière-plan principal** : Dégradé crème/sable très doux (`#fdfbf7` vers `#faf6ee`) offrant un rendu organique et haut de gamme.
-- **Cartes et Conteneurs** : Blanc pur (`#ffffff`) avec des bordures très fines (`rgba(15, 15, 17, 0.08)`) et des ombres légères et diffuses pour créer du relief.
-- **Texte principal (Headers)** : Anthracite foncé presque noir (`#0f0f11`) pour une lisibilité maximale et un aspect moderne.
+- **Cartes et Conteneurs** : Blanc pur (`#ffffff`) avec des bordures très fines (`rgba(0, 0, 0, 0.08)`) et des ombres légères et diffuses pour créer du relief.
+- **Texte principal (Headers)** : Noir pur (`#000000`) pour une lisibilité maximale et un aspect moderne.
 - **Texte secondaire (Body & Muted)** : Gris ardoise doux (`#5c5c64`) pour le contenu informatif.
-- **Couleur de Marque (Accent)** : Orange foncé premium (`#E05300`) avec sa version lumineuse (`#FF7A33`) pour les éléments clés et les boutons d'action.
-- **Couleur d'Action (CTAs principaux)** : Noir carbone (`#0c0c0e`) pour contraster avec le fond clair.
-- **Effets Spéciaux** : Flou d'arrière-plan (Glassmorphism) sur le header fixe (`backdrop-filter: blur(16px)` avec translucidité claire `rgba(5, 5, 5, 0.75)`).
+- **Couleur de Marque (Accent)** : Orange vif premium (`#ff4d00`) pour les éléments clés et les boutons d'action.
+- **Couleur d'Action (CTAs principaux)** : Noir pur (`#000000`) pour contraster avec le fond clair.
+- **Liens des Articles** : Orange de transition (`#ff7e47`) pour assurer une bonne lisibilité des liens dans le contenu éditorial.
+- **Effets Spéciaux** : Flou d'arrière-plan (Glassmorphism) sur le header fixe (`backdrop-filter: blur(16px)` avec translucidité claire `rgba(255, 255, 255, 0.75)`).
 
 ---
 

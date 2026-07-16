@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* Style pour les liens internes dans les articles du blog */
+.article-content a,
+.prose a,
+article a {
+  color: #ff7e47 !important;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+.article-content a:hover,
+.prose a:hover,
+article a:hover {
+  color: #ff4d00 !important;
+}

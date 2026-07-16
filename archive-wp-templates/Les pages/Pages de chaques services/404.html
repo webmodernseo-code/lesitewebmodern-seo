@@ -1,0 +1,213 @@
+<!-- Import de la police Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  /* --- ISOLATION CSS WORDPRESS --- */
+  .wm-isolated-section {
+    --primary-orange: #ff4d00;
+    --primary-black: #000000;
+
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Force la police Inter sur le composant et tous ses enfants */
+  .wm-isolated-section,
+  .wm-isolated-section * {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  .error-container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* --- VISUEL 404 SVG --- */
+  .wm-visual-404 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .wm-svg-404 {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  .wm-digit-4 {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 260px;
+    font-weight: 900;
+    fill: var(--primary-black);
+    letter-spacing: -0.05em;
+  }
+
+  .wm-zero-outer {
+    fill: var(--primary-black);
+  }
+
+  .wm-zero-inner {
+    fill: var(--primary-orange);
+  }
+
+  /* --- TEXTE ET CURSEUR --- */
+  .error-title {
+    font-family: 'Inter', sans-serif !important;
+    font-size: clamp(24px, 4.2vw, 36px);
+    font-weight: 800;
+    color: var(--primary-black);
+    margin: 0;
+    letter-spacing: -0.02em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .error-title .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background-color: var(--primary-black);
+    margin-left: 6px;
+    animation: wm-blink 1s step-end infinite;
+  }
+
+  @keyframes wm-blink {
+
+    from,
+    to {
+      background-color: transparent;
+    }
+
+    50% {
+      background-color: var(--primary-black);
+    }
+  }
+
+  /* --- BOUTON DE RETOUR --- */
+  .wm-btn-wrapper {
+    margin-top: 4px;
+  }
+
+  .wm-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 24px 10px 10px;
+    background-color: var(--primary-black) !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(12, 12, 14, 0.08);
+    cursor: pointer;
+  }
+
+  .wm-back-btn:hover {
+    background-color: #1a1a24 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(12, 12, 14, 0.15);
+  }
+
+  .wm-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: var(--primary-orange);
+    color: #ffffff;
+    transition: transform 0.3s ease;
+  }
+
+  .wm-back-btn:hover .wm-btn-icon {
+    transform: translateX(3px);
+  }
+
+  .wm-btn-text {
+    color: #ffffff;
+  }
+
+  @media (max-width: 480px) {
+    .wm-svg-404 {
+      max-width: 340px;
+    }
+
+    .wm-back-btn {
+      padding: 10px 20px 10px 10px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+<div class="wm-isolated-section">
+  <div class="error-container">
+
+    <!-- Code 404 Stylisé en SVG -->
+    <div class="wm-visual-404">
+      <svg viewBox="0 0 600 260" class="wm-svg-404">
+        <!-- Premier 4 -->
+        <text x="30" y="200" class="wm-digit-4">4</text>
+
+        <!-- Zéro stylisé en capsule avec le logo -->
+        <g class="wm-digit-0-container">
+          <rect x="220" y="25" width="160" height="210" rx="80" class="wm-zero-outer" />
+          <rect x="260" y="52" width="80" height="156" rx="40" class="wm-zero-inner" />
+
+          <!-- Logo de l'agence (White sails) -->
+          <svg x="270" y="85" width="60" height="90" viewBox="0 0 100 100" style="overflow: visible;">
+            <polygon points="20,28 42,28 42,76 25,76 21,58 27,58" fill="#ffffff" />
+            <polygon points="58,28 80,28 70,76 58,76" fill="#ffffff" />
+            <polygon points="41,66 59,66 50,46" fill="#ffffff" />
+          </svg>
+        </g>
+
+        <!-- Second 4 -->
+        <text x="405" y="200" class="wm-digit-4">4</text>
+      </svg>
+    </div>
+
+    <!-- Message d'erreur avec curseur clignotant -->
+    <h2 class="error-title">La page n'existe pas<span class="cursor"></span></h2>
+
+    <!-- Bouton de retour -->
+    <div class="wm-btn-wrapper">
+      <a href="https://webmodernseo.co/" class="wm-back-btn">
+        <span class="wm-btn-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 3L9.5 8L4.5 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M8.5 3L13.5 8L8.5 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="wm-btn-text">Retour à la page d'accueil</span>
+      </a>
+    </div>
+
+  </div>
+</div>
