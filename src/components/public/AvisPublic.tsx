@@ -282,6 +282,15 @@ export const AvisPublic: React.FC = () => {
     display: flex;
     padding: 24px 0;
     perspective: 1200px;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 90px, black calc(100% - 90px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, black 90px, black calc(100% - 90px), transparent 100%);
+  }
+
+  @media (max-width: 640px) {
+    .wm-reviews-section .rv-ticker-row {
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+    }
   }
 
   .wm-reviews-section .rv-ticker-track {

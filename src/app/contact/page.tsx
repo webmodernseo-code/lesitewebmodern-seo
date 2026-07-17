@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
-import { Mail, User, Phone, Briefcase, Send, CheckCircle, RefreshCw } from 'lucide-react';
+import Link from 'next/link';
+import { Mail, User, Phone, Briefcase, Send, CheckCircle, RefreshCw, CalendarClock } from 'lucide-react';
 
 export default function ContactPage() {
   const [name, setName] = useState('');
@@ -65,6 +66,13 @@ export default function ContactPage() {
           <p className="text-sm text-[#5c5c64] leading-relaxed">
             Que vous ayez besoin d'une refonte complète sous WordPress, d'une stratégie SEO de premier plan, ou d'automatisations de leads pour votre équipe, nous sommes là pour concrétiser vos objectifs.
           </p>
+          <Link
+            href="/reservation"
+            className="inline-flex items-center gap-2 bg-black hover:bg-black/90 text-white py-3 px-5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
+          >
+            <CalendarClock className="w-4 h-4" />
+            Prendre RDV directement
+          </Link>
           <div className="pt-4 space-y-3.5 text-sm">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-white border border-black/5 flex items-center justify-center text-[#ff4d00] shadow-sm">
