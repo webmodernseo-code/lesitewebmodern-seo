@@ -71,3 +71,19 @@ CREATE TABLE IF NOT EXISTS project_tasks (
 );
 
 CREATE INDEX IF NOT EXISTS idx_tasks_phase ON project_tasks (phase_id);
+
+-- ==========================================
+-- 5. Table pour les Leads (Formulaire de contact)
+-- ==========================================
+CREATE TABLE IF NOT EXISTS leads (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  company TEXT,
+  message TEXT,
+  status TEXT DEFAULT 'new', -- 'new' / 'contacted' / 'closed'
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_leads_status ON leads (status);
