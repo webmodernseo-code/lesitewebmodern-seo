@@ -1,6 +1,12 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
+
+export const metadata: Metadata = {
+  title: "Gestion des cookies | WebModernSEO",
+  description: "Politique de gestion des cookies du site WebModernSEO : cookies utilisés, finalités et modalités de contrôle.",
+};
 
 export default function Page() {
   return (

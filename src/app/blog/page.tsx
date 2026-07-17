@@ -1,9 +1,15 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 import { dbService } from '@/lib/supabase-db';
 import Link from 'next/link';
 import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: "Blog | WebModernSEO — Conseils SEO, Web & Growth",
+  description: "Nos meilleures pratiques en création de sites internet, référencement naturel et tunnels d'acquisition commerciale, par l'équipe WebModernSEO.",
+};
 
 export const revalidate = 60; // Régénération statique sémantique toutes les minutes
 

@@ -1,6 +1,12 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
+
+export const metadata: Metadata = {
+  title: "Mentions légales | WebModernSEO",
+  description: "Mentions légales du site WebModernSEO : éditeur, hébergeur et informations juridiques réglementaires.",
+};
 
 export default function Page() {
   return (

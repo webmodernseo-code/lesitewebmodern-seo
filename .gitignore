@@ -23,6 +23,11 @@ next-env.d.ts
 # Scripts et fichiers de travail jetables
 /scratch/
 
+# Environnements virtuels Python (ex: .claude/skills/seo/.venv)
+.venv/
+__pycache__/
+*.pyc
+
 # Logs de debug
 npm-debug.log*
 yarn-debug.log*

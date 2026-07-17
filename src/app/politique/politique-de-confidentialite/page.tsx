@@ -1,6 +1,12 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
+
+export const metadata: Metadata = {
+  title: "Politique de confidentialité | WebModernSEO",
+  description: "Politique de confidentialité de WebModernSEO : collecte, utilisation et protection de vos données personnelles.",
+};
 
 export default function Page() {
   return (

@@ -9,8 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cockpit Content IA — Blog & LinkedIn",
-  description: "Générez, planifiez, scorez et publiez votre contenu automatisé WordPress et LinkedIn.",
+  metadataBase: new URL("https://webmodernseo.co"),
+  title: "webmodernseo.co — Agence Web et Référencement Naturel Premium SEO",
+  description: "Création de sites internet modernes sous WordPress, stratégies de référencement naturel SEO avancées et automatisation de leads pour votre business.",
 };
 
 export default function RootLayout({

@@ -1,6 +1,12 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
+
+export const metadata: Metadata = {
+  title: "À propos — Jean-Prosper MONE, Fondateur | WebModernSEO",
+  description: "Ingénieur de formation, Jean-Prosper MONE allie rigueur méthodologique et expertise SEO pour créer des sites web performants et une visibilité Google durable.",
+};
 
 export default function Page() {
   return (

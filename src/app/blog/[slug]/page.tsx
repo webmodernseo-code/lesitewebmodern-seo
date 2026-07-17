@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 import { dbService } from '@/lib/supabase-db';
@@ -19,6 +20,27 @@ const slugify = (text: string) =>
 interface BlogPostPageProps {
   params: {
     slug: string;
+  };
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = params;
+  try {
+    const allItems = await dbService.getContentItems();
+    const blogPosts = allItems.filter(item => item.type === 'blog');
+    const post = blogPosts.find(p => slugify(p.title) === slug);
+    if (post) {
+      return {
+        title: `${post.title} | Blog WebModernSEO`,
+        description: post.meta_description || post.brief || "Découvrez notre analyse détaillée et nos conseils pour optimiser votre visibilité.",
+      };
+    }
+  } catch (err) {
+    console.error("Error generating blog post metadata:", err);
+  }
+  return {
+    title: "Article | Blog WebModernSEO",
+    description: "Analyses, conseils et stratégies de croissance en création de sites internet et référencement naturel.",
   };
 }
 
