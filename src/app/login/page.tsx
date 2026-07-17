@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { Mail, Lock, Eye, EyeOff, AlertCircle, RefreshCw, ShieldCheck } from 'lucide-react';
+import { Logo3D } from '@/components/public/Logo3D';
 
 export default function LoginPage() {
   const { user, login, loading, isDemoMode } = useAuth();
@@ -54,31 +55,39 @@ export default function LoginPage() {
     <div className="min-h-screen flex flex-col md:flex-row font-sans">
       {/* Panneau visuel */}
       <div className="relative w-full md:w-1/2 h-[34vh] md:h-screen overflow-hidden bg-black order-1 md:order-2">
-        <img
-          src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/85 via-black/50 to-black/20" />
-
-        {/* Mobile: logo centré */}
-        <div className="md:hidden absolute inset-0 flex flex-col items-center justify-center gap-3">
-          <div className="w-14 h-14 rounded-2xl bg-[#ff4d00] flex items-center justify-center text-white font-black text-2xl shadow-lg">
-            W
+        {/* Mobile: hero plein écran avec logo centré */}
+        <div className="md:hidden absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/25" />
+          <div className="relative h-full flex flex-col items-center justify-center gap-3">
+            <Logo3D scale={0.5} />
+            <span className="text-white font-bold text-lg tracking-tight -mt-2">
+              webmodern<span className="text-[#ff4d00]">seo</span>
+            </span>
           </div>
-          <span className="text-white font-bold text-lg tracking-tight">
-            webmodern<span className="text-[#ff4d00]">seo</span>
-          </span>
         </div>
 
-        {/* Desktop: carte flottante */}
-        <div className="hidden md:flex absolute bottom-10 left-10 right-10 bg-white/95 backdrop-blur-sm rounded-2xl p-5 items-center gap-3 shadow-xl">
-          <div className="w-10 h-10 rounded-xl bg-[#ff4d00]/10 flex items-center justify-center text-[#ff4d00] shrink-0">
-            <ShieldCheck className="w-5 h-5" />
+        {/* Desktop: mockup encadré, plus petit que l'espace disponible */}
+        <div className="hidden md:flex h-full items-center justify-center bg-[#FDFBF7] p-12">
+          <div className="relative w-full max-w-md aspect-[4/3] rounded-3xl overflow-hidden border border-black/10 shadow-lg">
+            <img
+              src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=80"
+              alt="Mockup d'un site web moderne affiché sur écran"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div>
-            <p className="text-sm font-bold text-black">Accès Cockpit sécurisé</p>
-            <p className="text-xs text-black/50">Réservé à l&apos;équipe webmodernseo</p>
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border border-black/10 rounded-2xl p-4 flex items-center gap-3 shadow-xl">
+            <div className="w-10 h-10 rounded-xl bg-[#ff4d00]/10 flex items-center justify-center text-[#ff4d00] shrink-0">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-black">Accès Cockpit sécurisé</p>
+              <p className="text-xs text-black/50">Réservé à l&apos;équipe webmodernseo</p>
+            </div>
           </div>
         </div>
       </div>
@@ -86,6 +95,13 @@ export default function LoginPage() {
       {/* Panneau formulaire */}
       <div className="w-full md:w-1/2 flex items-start md:items-center justify-center bg-[#FDFBF7] order-2 md:order-1">
         <div className="w-full max-w-md bg-white md:bg-transparent rounded-t-[32px] md:rounded-none px-8 py-10 md:p-12 shadow-[0_-12px_30px_rgba(0,0,0,0.06)] md:shadow-none -mt-8 md:mt-0 relative z-10 space-y-6">
+          <div className="hidden md:flex items-center gap-2.5 mb-2">
+            <Logo3D scale={0.32} />
+            <span className="text-black font-bold text-base tracking-tight -ml-3">
+              webmodern<span className="text-[#ff4d00]">seo</span>
+            </span>
+          </div>
+
           <div>
             <h1 className="text-2xl font-extrabold tracking-tight text-black">
               Connexion à votre <span className="text-[#ff4d00]">espace</span>
