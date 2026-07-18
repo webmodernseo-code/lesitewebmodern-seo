@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import { usersDb } from '@/lib/users-db';
-import { verifyPassword } from '@/lib/password';
-import { createSessionToken, SESSION_COOKIE_NAME, sessionCookieOptions } from '@/lib/session';
+import { verifyPassword, hashPassword } from '@/lib/password';
+import { createPendingToken, PENDING_COOKIE_NAME, pendingCookieOptions } from '@/lib/session';
+import { otpDb } from '@/lib/otp-db';
+import { sendOtpEmail } from '@/lib/mailer';
+
+function generateOtpCode(): string {
+  return Math.floor(1000 + Math.random() * 9000).toString();
+}
 
 export async function POST(request: Request) {
   try {
@@ -20,17 +26,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Identifiant ou mot de passe incorrect.' }, { status: 401 });
     }
 
-    const token = await createSessionToken({
-      sub: user.id,
-      email: user.email,
-      role: user.role,
-      permissions: user.permissions,
-    });
+    const code = generateOtpCode();
+    const codeHash = await hashPassword(code);
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+    await otpDb.create(user.email, codeHash, expiresAt);
 
-    const response = NextResponse.json({
-      user: { email: user.email, role: user.role, permissions: user.permissions },
-    });
-    response.cookies.set(SESSION_COOKIE_NAME, token, sessionCookieOptions);
+    try {
+      await sendOtpEmail(user.email, code);
+    } catch (mailErr) {
+      console.error('Failed to send OTP email:', mailErr);
+      return NextResponse.json(
+        { error: "L'envoi du code de vérification a échoué. Réessayez." },
+        { status: 500 }
+      );
+    }
+
+    const pendingToken = await createPendingToken(user.email);
+    const response = NextResponse.json({ otpRequired: true, email: user.email });
+    response.cookies.set(PENDING_COOKIE_NAME, pendingToken, pendingCookieOptions);
     return response;
   } catch (err) {
     console.error('Login error:', err);

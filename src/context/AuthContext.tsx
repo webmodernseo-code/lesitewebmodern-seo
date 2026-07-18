@@ -9,10 +9,17 @@ export interface Collaborator {
   permissions: string[];
 }
 
+export interface LoginResult {
+  status: 'success' | 'otp_required' | 'error';
+  error?: string;
+}
+
 interface AuthContextType {
   user: Collaborator | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<boolean>;
+  login: (email: string, password: string) => Promise<LoginResult>;
+  verifyOtp: (code: string) => Promise<LoginResult>;
+  resendOtp: () => Promise<boolean>;
   logout: () => Promise<void>;
   updatePassword: (password: string) => Promise<boolean>;
   collaborators: Collaborator[];
@@ -53,19 +60,53 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [user, fetchCollaborators]);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email: string, password: string): Promise<LoginResult> => {
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      if (!res.ok) return false;
       const data = await res.json();
+      if (!res.ok) {
+        return { status: 'error', error: data.error };
+      }
+      if (data.otpRequired) {
+        return { status: 'otp_required' };
+      }
       setUser(data.user);
-      return true;
+      return { status: 'success' };
     } catch (err) {
       console.error('Login error:', err);
+      return { status: 'error' };
+    }
+  };
+
+  const verifyOtp = async (code: string): Promise<LoginResult> => {
+    try {
+      const res = await fetch('/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return { status: 'error', error: data.error };
+      }
+      setUser(data.user);
+      return { status: 'success' };
+    } catch (err) {
+      console.error('Verify OTP error:', err);
+      return { status: 'error' };
+    }
+  };
+
+  const resendOtp = async (): Promise<boolean> => {
+    try {
+      const res = await fetch('/api/auth/resend-otp', { method: 'POST' });
+      return res.ok;
+    } catch (err) {
+      console.error('Resend OTP error:', err);
       return false;
     }
   };
@@ -126,7 +167,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, login, logout, updatePassword, collaborators, addCollaborator, removeCollaborator }}
+      value={{
+        user,
+        loading,
+        login,
+        verifyOtp,
+        resendOtp,
+        logout,
+        updatePassword,
+        collaborators,
+        addCollaborator,
+        removeCollaborator,
+      }}
     >
       {children}
     </AuthContext.Provider>

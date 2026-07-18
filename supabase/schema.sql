@@ -102,3 +102,17 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE INDEX IF NOT EXISTS idx_users_email ON users (email);
+
+-- ==========================================
+-- 7. Table pour les Codes de Verification par Email (2FA connexion)
+-- ==========================================
+CREATE TABLE IF NOT EXISTS login_otps (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT NOT NULL,
+  code_hash TEXT NOT NULL,
+  attempts INTEGER DEFAULT 0,
+  expires_at TIMESTAMP WITH TIME ZONE NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_login_otps_email ON login_otps (email);
