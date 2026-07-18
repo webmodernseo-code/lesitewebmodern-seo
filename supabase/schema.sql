@@ -87,3 +87,18 @@ CREATE TABLE IF NOT EXISTS leads (
 );
 
 CREATE INDEX IF NOT EXISTS idx_leads_status ON leads (status);
+
+-- ==========================================
+-- 6. Table pour les Utilisateurs (Authentification Cockpit)
+-- ==========================================
+CREATE TABLE IF NOT EXISTS users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role TEXT DEFAULT 'collaborator', -- 'super_admin' / 'admin' / 'collaborator'
+  permissions TEXT[] DEFAULT ARRAY['content','calendar','projects','leads','crm','settings'],
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_users_email ON users (email);

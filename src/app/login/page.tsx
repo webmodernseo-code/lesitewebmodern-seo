@@ -7,7 +7,7 @@ import { Mail, Lock, Eye, EyeOff, AlertCircle, RefreshCw, ShieldCheck } from 'lu
 import { Logo3D } from '@/components/public/Logo3D';
 
 export default function LoginPage() {
-  const { user, login, loading, isDemoMode } = useAuth();
+  const { user, login, loading } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -110,16 +110,6 @@ export default function LoginPage() {
               Cockpit webmodernseo
             </p>
           </div>
-
-          {isDemoMode && (
-            <div className="p-4 bg-[#ff4d00]/5 border border-[#ff4d00]/15 rounded-xl text-xs text-black/70">
-              <p className="font-bold flex items-center gap-1.5 text-[#ff4d00] uppercase text-[9px] tracking-wider mb-1">
-                <AlertCircle className="w-3.5 h-3.5" />
-                Mode Démo Local Actif
-              </p>
-              <p>Connectez-vous avec l&apos;identifiant administrateur configuré pour ce projet.</p>
-            </div>
-          )}
 
           {error && (
             <div className="p-3 bg-red-50 border border-red-100 text-red-700 text-xs font-semibold rounded-xl flex items-center gap-2">
