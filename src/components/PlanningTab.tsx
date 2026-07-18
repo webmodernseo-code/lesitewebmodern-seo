@@ -14,12 +14,14 @@ import {
 } from 'lucide-react';
 import { dbService } from '@/lib/projects-client';
 import { Project, ProjectPhase, ProjectTask, ProjectStatus, TaskPriority } from '@/types';
+import { useUIFeedback } from '@/context/UIFeedbackContext';
 
 interface PlanningTabProps {
   newTrigger?: number;
 }
 
 export const PlanningTab: React.FC<PlanningTabProps> = ({ newTrigger }) => {
+  const { toast, confirm, promptText } = useUIFeedback();
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
@@ -149,7 +151,12 @@ export const PlanningTab: React.FC<PlanningTabProps> = ({ newTrigger }) => {
 
   const handleDeleteProject = async (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!confirm('Voulez-vous supprimer ce projet ?')) return;
+    const ok = await confirm('Cette action est irréversible.', {
+      title: 'Supprimer ce projet ?',
+      danger: true,
+      confirmLabel: 'Supprimer',
+    });
+    if (!ok) return;
     try {
       setLoading(true);
       await dbService.deleteProject(id);
@@ -157,8 +164,10 @@ export const PlanningTab: React.FC<PlanningTabProps> = ({ newTrigger }) => {
         setSelectedProject(null);
       }
       await loadProjects();
+      toast.success('Projet supprimé.');
     } catch (err) {
       console.error(err);
+      toast.error("La suppression a échoué.");
     } finally {
       setLoading(false);
     }
@@ -167,14 +176,14 @@ export const PlanningTab: React.FC<PlanningTabProps> = ({ newTrigger }) => {
   // Phase Operations
   const handleAddPhase = async () => {
     if (!selectedProject) return;
-    const name = prompt('Entrez le nom de la nouvelle étape :');
-    if (!name || !name.trim()) return;
+    const name = await promptText('', { title: 'Nom de la nouvelle étape', placeholder: 'Ex : Maquettage' });
+    if (!name) return;
 
     try {
       const position = selectedProject.phases?.length || 0;
       const newPhase = await dbService.createProjectPhase({
         project_id: selectedProject.id,
-        name: name.trim(),
+        name,
         position
       });
 
@@ -187,15 +196,16 @@ export const PlanningTab: React.FC<PlanningTabProps> = ({ newTrigger }) => {
       await loadProjects();
     } catch (err) {
       console.error(err);
+      toast.error("Impossible d'ajouter l'étape.");
     }
   };
 
   const handleRenamePhase = async (phaseId: string, currentName: string) => {
-    const name = prompt('Renommer l\'étape :', currentName);
-    if (!name || !name.trim() || name === currentName) return;
+    const name = await promptText(currentName, { title: "Renommer l'étape" });
+    if (!name || name === currentName) return;
 
     try {
-      const updated = await dbService.updateProjectPhase(phaseId, { name: name.trim() });
+      const updated = await dbService.updateProjectPhase(phaseId, { name });
       setSelectedProject(prev => {
         if (!prev || !prev.phases) return null;
         const phases = prev.phases.map(ph => ph.id === phaseId ? { ...ph, name: updated.name } : ph);
@@ -204,12 +214,18 @@ export const PlanningTab: React.FC<PlanningTabProps> = ({ newTrigger }) => {
       await loadProjects();
     } catch (err) {
       console.error(err);
+      toast.error("Le renommage a échoué.");
     }
   };
 
   const handleDeletePhase = async (phaseId: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!confirm('Supprimer cette étape ?')) return;
+    const ok = await confirm('Cette action est irréversible.', {
+      title: 'Supprimer cette étape ?',
+      danger: true,
+      confirmLabel: 'Supprimer',
+    });
+    if (!ok) return;
     try {
       await dbService.deleteProjectPhase(phaseId);
       setSelectedProject(prev => {
@@ -220,6 +236,7 @@ export const PlanningTab: React.FC<PlanningTabProps> = ({ newTrigger }) => {
       await loadProjects();
     } catch (err) {
       console.error(err);
+      toast.error("La suppression a échoué.");
     }
   };
 

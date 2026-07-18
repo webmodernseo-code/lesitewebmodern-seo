@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { dbService } from '@/lib/content-client';
 import { ContentItem, ContentType, ContentStatus } from '@/types';
+import { useUIFeedback } from '@/context/UIFeedbackContext';
 
 interface ContentTabProps {
   newTrigger?: number;
@@ -52,6 +53,7 @@ Donnez de la valeur brute, sans détours.
 };
 
 export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
+  const { toast, confirm } = useUIFeedback();
   const [items, setItems] = useState<ContentItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<ContentItem | null>(null);
   const [loading, setLoading] = useState(true);
@@ -127,7 +129,12 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
 
   const handleDelete = async (id: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!confirm('Voulez-vous supprimer ce contenu ?')) return;
+    const ok = await confirm('Cette action est irréversible.', {
+      title: 'Supprimer ce contenu ?',
+      danger: true,
+      confirmLabel: 'Supprimer',
+    });
+    if (!ok) return;
     try {
       await dbService.deleteContentItem(id);
       if (selectedItem?.id === id) {
@@ -135,15 +142,20 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
         setSelectedItem(null);
       }
       await loadItems();
+      toast.success('Contenu supprimé.');
     } catch (err) {
       console.error(err);
+      toast.error("La suppression a échoué.");
     }
   };
 
   // AI Content generation simulation
   const handleGenerateAI = async () => {
-    if (!editTitle.trim()) return alert('Veuillez entrer un titre avant de lancer la génération.');
-    
+    if (!editTitle.trim()) {
+      toast.error('Veuillez entrer un titre avant de lancer la génération.');
+      return;
+    }
+
     try {
       setGenerating(true);
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -188,8 +200,11 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
 
   // Save content
   const handleSave = async () => {
-    if (!editTitle.trim()) return alert('Titre obligatoire');
-    
+    if (!editTitle.trim()) {
+      toast.error('Le titre est obligatoire.');
+      return;
+    }
+
     try {
       const payload: Partial<ContentItem> = {
         title: editTitle,
@@ -214,8 +229,10 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
       setIsEditing(false);
       setSelectedItem(null);
       await loadItems();
+      toast.success('Contenu enregistré.');
     } catch (err) {
       console.error(err);
+      toast.error("L'enregistrement a échoué.");
     }
   };
 
@@ -551,8 +568,16 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
           {/* Listing Rows (Instead of cards to match wireframe Écran 1) */}
           <div className="space-y-3 pt-4">
             {loading && items.length === 0 ? (
-              <div className="py-20 text-center text-sm font-semibold text-brand-black/45 bg-white border border-brand-black/10 rounded-2xl">
-                Chargement des contenus...
+              <div className="space-y-3">
+                {[0, 1, 2].map((i) => (
+                  <div key={i} className="bg-white border border-brand-black/10 p-5 rounded-2xl flex items-center justify-between gap-4 animate-pulse">
+                    <div className="space-y-2 flex-1">
+                      <div className="h-3 w-1/3 bg-brand-black/10 rounded" />
+                      <div className="h-2.5 w-16 bg-brand-black/5 rounded" />
+                    </div>
+                    <div className="h-2 w-40 bg-brand-black/5 rounded-full" />
+                  </div>
+                ))}
               </div>
             ) : filteredItems.length > 0 ? (
               filteredItems.map(item => {

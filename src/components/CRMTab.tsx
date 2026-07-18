@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Briefcase, DollarSign, Target, User, Phone, Mail, Plus, Trash, CheckCircle2, AlertCircle, TrendingUp, RefreshCw } from 'lucide-react';
+import { useUIFeedback } from '@/context/UIFeedbackContext';
 
 interface Deal {
   id: string;
@@ -52,6 +53,7 @@ const INITIAL_DEALS: Deal[] = [
 ];
 
 export const CRMTab: React.FC = () => {
+  const { toast, confirm } = useUIFeedback();
   const [deals, setDeals] = useState<Deal[]>([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -109,7 +111,9 @@ export const CRMTab: React.FC = () => {
     const updated = [...deals, newDeal];
     saveDeals(updated);
     setShowAddModal(false);
-    
+    toast.success('Opportunité ajoutée.');
+
+
     // Reset form
     setNewName('');
     setNewCompany('');
@@ -125,11 +129,16 @@ export const CRMTab: React.FC = () => {
     saveDeals(updated);
   };
 
-  const handleDeleteDeal = (id: string) => {
-    if (confirm('Voulez-vous vraiment supprimer cette opportunité commerciale ?')) {
-      const updated = deals.filter(d => d.id !== id);
-      saveDeals(updated);
-    }
+  const handleDeleteDeal = async (id: string) => {
+    const ok = await confirm('Cette action est irréversible.', {
+      title: 'Supprimer cette opportunité ?',
+      danger: true,
+      confirmLabel: 'Supprimer',
+    });
+    if (!ok) return;
+    const updated = deals.filter(d => d.id !== id);
+    saveDeals(updated);
+    toast.success('Opportunité supprimée.');
   };
 
   // Statics calculations

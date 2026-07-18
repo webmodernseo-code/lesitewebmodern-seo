@@ -2,10 +2,12 @@
 
 import React, { useState } from 'react';
 import { useAuth, Collaborator } from '@/context/AuthContext';
+import { useUIFeedback } from '@/context/UIFeedbackContext';
 import { UserPlus, Shield, Check, Trash2, Key, Users, Eye, EyeOff } from 'lucide-react';
 
 export const TeamTab: React.FC = () => {
   const { user, collaborators, addCollaborator, removeCollaborator } = useAuth();
+  const { confirm } = useUIFeedback();
   const [showAddModal, setShowAddModal] = useState(false);
   
   // Form states
@@ -51,6 +53,16 @@ export const TeamTab: React.FC = () => {
     setPassword('');
     setRole('collaborator');
     setPermissions(['content', 'leads']);
+  };
+
+  const handleRemoveMember = async (memberEmail: string) => {
+    const ok = await confirm(`${memberEmail} perdra immédiatement l'accès au Cockpit.`, {
+      title: 'Supprimer ce collaborateur ?',
+      danger: true,
+      confirmLabel: 'Supprimer',
+    });
+    if (!ok) return;
+    removeCollaborator(memberEmail);
   };
 
   const isSuperAdmin = user?.role === 'super_admin';
@@ -145,7 +157,7 @@ export const TeamTab: React.FC = () => {
                     ) : (
                       isSuperAdmin && (
                         <button
-                          onClick={() => removeCollaborator(collab.email)}
+                          onClick={() => handleRemoveMember(collab.email)}
                           className="p-2 text-brand-black/30 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                           title="Supprimer le collaborateur"
                         >

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { useUIFeedback } from './UIFeedbackContext';
 
 export interface Collaborator {
   email: string;
@@ -30,6 +31,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { toast } = useUIFeedback();
   const [user, setUser] = useState<Collaborator | null>(null);
   const [collaborators, setCollaborators] = useState<Collaborator[]>([]);
   const [loading, setLoading] = useState(true);
@@ -140,12 +142,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       if (res.ok) {
         await fetchCollaborators();
+        toast.success('Collaborateur ajouté.');
       } else {
         const data = await res.json();
-        alert(data.error || "Impossible d'ajouter ce collaborateur.");
+        toast.error(data.error || "Impossible d'ajouter ce collaborateur.");
       }
     } catch (err) {
       console.error('Add collaborator error:', err);
+      toast.error("Impossible d'ajouter ce collaborateur.");
     }
   };
 
@@ -156,12 +160,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       if (res.ok) {
         await fetchCollaborators();
+        toast.success('Collaborateur supprimé.');
       } else {
         const data = await res.json();
-        alert(data.error || 'Impossible de supprimer ce compte.');
+        toast.error(data.error || 'Impossible de supprimer ce compte.');
       }
     } catch (err) {
       console.error('Remove collaborator error:', err);
+      toast.error('Impossible de supprimer ce compte.');
     }
   };
 

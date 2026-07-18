@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AuthProvider } from "@/context/AuthContext";
+import { UIFeedbackProvider } from "@/context/UIFeedbackContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable}`}>
       <body className="font-sans antialiased bg-white text-brand-black min-h-screen">
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <UIFeedbackProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </UIFeedbackProvider>
       </body>
     </html>
   );

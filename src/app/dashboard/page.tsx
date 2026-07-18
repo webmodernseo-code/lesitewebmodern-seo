@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import { useUIFeedback } from '@/context/UIFeedbackContext';
 import { Plus, LayoutGrid, Calendar, FolderClosed, Settings, LogOut, RefreshCw, MessageSquare, Briefcase, Users, Shield } from 'lucide-react';
 import { ContentTab } from '@/components/ContentTab';
 import { PlanningTab } from '@/components/PlanningTab';
@@ -11,12 +12,12 @@ import { SettingsTab } from '@/components/SettingsTab';
 import { LeadsTab } from '@/components/LeadsTab';
 import { CRMTab } from '@/components/CRMTab';
 import { TeamTab } from '@/components/TeamTab';
-import { isSupabaseConfigured } from '@/lib/supabase';
 
 type ActiveViewType = 'content' | 'calendar' | 'projects' | 'leads' | 'crm' | 'team' | 'settings';
 
 export default function Home() {
   const { user, loading, logout } = useAuth();
+  const { confirm } = useUIFeedback();
   const router = useRouter();
   const [activeView, setActiveView] = useState<ActiveViewType>('content');
   const [newContentTrigger, setNewContentTrigger] = useState(0);
@@ -41,7 +42,11 @@ export default function Home() {
   };
 
   const handleLogout = async () => {
-    if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
+    const ok = await confirm('Vous devrez repasser par la vérification par email pour vous reconnecter.', {
+      title: 'Se déconnecter ?',
+      confirmLabel: 'Se déconnecter',
+    });
+    if (ok) {
       await logout();
       router.push('/login');
     }
@@ -202,17 +207,12 @@ export default function Home() {
 
         {/* User initials & connection status at bottom */}
         <div className="space-y-4">
-          {/* Supabase status badge */}
+          {/* Database status badge */}
           <div className="border-t border-brand-black/5 pt-4">
-            {isSupabaseConfigured ? (
-              <span className="text-[9px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-1 rounded-md block text-center uppercase tracking-wider">
-                base connectée
-              </span>
-            ) : (
-              <span className="text-[9px] font-bold text-brand-orange bg-brand-sable border border-brand-orange/20 px-2 py-1 rounded-md block text-center uppercase tracking-wider" title="Configuration de .env.local requise pour connecter Supabase">
-                mode démo local
-              </span>
-            )}
+            <span className="flex items-center justify-center gap-1.5 text-[9px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-1 rounded-md uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              base connectée
+            </span>
           </div>
 
           <div className="flex items-center justify-between gap-2">
