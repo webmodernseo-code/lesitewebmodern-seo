@@ -116,3 +116,16 @@ CREATE TABLE IF NOT EXISTS login_otps (
 );
 
 CREATE INDEX IF NOT EXISTS idx_login_otps_email ON login_otps (email);
+
+-- ==========================================
+-- 8. Table pour les Connexions API (Claude, OpenAI, ...)
+-- ==========================================
+CREATE TABLE IF NOT EXISTS integration_connections (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  provider TEXT UNIQUE NOT NULL, -- 'claude' / 'openai'
+  encrypted_key TEXT NOT NULL,
+  masked_key TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'connected',
+  connected_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);

@@ -59,7 +59,7 @@ export default async function BlogPage() {
   let blogPosts: BlogPostView[] = [];
   try {
     const allItems = await dbService.getContentItems();
-    blogPosts = allItems.filter(item => item.type === 'blog');
+    blogPosts = allItems.filter(item => item.type === 'blog' && item.status === 'published');
   } catch (err) {
     console.error("Error loading blog posts:", err);
   }

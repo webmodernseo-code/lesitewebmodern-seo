@@ -23,35 +23,6 @@ interface ContentTabProps {
   newTrigger?: number;
 }
 
-// Mock content generation matching design guidelines
-const generateMockContent = (type: ContentType, title: string, focusKeyword: string) => {
-  if (type === 'blog') {
-    return `
-      <h2 style="color:#000000; border-bottom:2px solid #ff4d00; padding-bottom:8px; margin-top:24px; font-weight:700;">H2 orange</h2>
-      <p style="margin:16px 0; line-height:1.7; color:#000000;">Découvrez comment optimiser votre référencement grâce à nos conseils d'experts. Le mot-clé <strong>${focusKeyword || 'stratégie SEO'}</strong> doit être intégré de manière fluide dans vos paragraphes pour maximiser la pertinence.</p>
-      
-      <div style="background:#F5E6D3; border-left:4px solid #ff4d00; padding:20px; border-radius:8px; margin:24px 0; color:#000000;">
-        <strong>À retenir :</strong> L'expérience utilisateur (SXO) prime sur la sur-optimisation sémantique.
-      </div>
-      
-      <p style="margin:16px 0; line-height:1.7; color:#000000;">Assurez-vous de structurer votre contenu avec des titres clairs et d'insérer des liens internes pertinents pour guider vos lecteurs.</p>
-      
-      <a href="#" style="display:inline-block; background:#ff4d00; color:#FFFFFF; padding:14px 28px; border-radius:8px; font-weight:600; text-decoration:none; margin:16px 0;">CTA</a>
-    `;
-  } else {
-    return `Formule LinkedIn performante 📈
-
-Voici comment capter l'attention en 3 étapes :
-- Un Hook de 3 lignes intriguant.
-- Une leçon métier claire tirée de votre expérience.
-- Une question ouverte à la fin pour susciter les commentaires.
-
-Donnez de la valeur brute, sans détours.
-
-#copywriting #linkedin`;
-  }
-};
-
 export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
   const { toast, confirm } = useUIFeedback();
   const [items, setItems] = useState<ContentItem[]>([]);
@@ -74,6 +45,7 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
   // IA State simulation
   const [generating, setGenerating] = useState(false);
   const [optimizing, setOptimizing] = useState(false);
+  const [generatingImage, setGeneratingImage] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
 
   useEffect(() => {
@@ -149,7 +121,7 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
     }
   };
 
-  // AI Content generation simulation
+  // AI Content generation (Claude API réelle)
   const handleGenerateAI = async () => {
     if (!editTitle.trim()) {
       toast.error('Veuillez entrer un titre avant de lancer la génération.');
@@ -158,20 +130,35 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
 
     try {
       setGenerating(true);
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      const generated = generateMockContent(editType, editTitle, editKeyword);
-      setEditContent(generated);
-      
+      const res = await fetch('/api/ai/generate-content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: editType,
+          title: editTitle,
+          brief: editBrief,
+          focusKeyword: editKeyword,
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.error || "La génération a échoué.");
+        return;
+      }
+
+      setEditContent(data.content);
+
       // Seed initial score (sub-optimal to show feedback loop)
       const initialScore = editType === 'blog' ? 87 : 81;
       setEditScore(initialScore);
-      
+
       if (editType === 'blog') {
         setEditMetaDesc(`Découvrez notre guide complet sur ${editTitle}.`);
       }
     } catch (err) {
       console.error(err);
+      toast.error("La génération a échoué.");
     } finally {
       setGenerating(false);
     }
@@ -193,9 +180,32 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
     }
   };
 
-  // Image upload mock
-  const handleTriggerUpload = () => {
-    setEditImage('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60');
+  // Image generation (OpenAI DALL-E réelle)
+  const handleTriggerUpload = async () => {
+    if (!editTitle.trim()) {
+      toast.error('Veuillez entrer un titre avant de générer une image.');
+      return;
+    }
+    try {
+      setGeneratingImage(true);
+      const prompt = `Image professionnelle et moderne illustrant un article de blog sur : "${editTitle}"${editKeyword ? ` (thème : ${editKeyword})` : ''}. Style photographique réaliste, épuré, adapté à une agence web premium.`;
+      const res = await fetch('/api/ai/generate-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error || "La génération d'image a échoué.");
+        return;
+      }
+      setEditImage(data.url);
+    } catch (err) {
+      console.error(err);
+      toast.error("La génération d'image a échoué.");
+    } finally {
+      setGeneratingImage(false);
+    }
   };
 
   // Save content
@@ -217,7 +227,8 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
         scheduled_at: editSchedule || undefined,
         seo_score: editType === 'blog' ? editScore : 0,
         channel_score: editType === 'linkedin' ? editScore : 0,
-        status: editSchedule ? 'scheduled' : (selectedItem?.status || 'draft')
+        status: editSchedule ? 'scheduled' : 'published',
+        published_at: editSchedule ? undefined : new Date().toISOString(),
       };
 
       if (selectedItem) {
@@ -357,10 +368,17 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
                 ) : (
                   <button
                     onClick={handleTriggerUpload}
-                    className="w-full h-24 border border-dashed border-brand-black/20 hover:border-brand-orange rounded-xl flex flex-col items-center justify-center gap-1.5 text-xs text-brand-black/40 hover:text-brand-orange transition-colors bg-[#FDFBF7]"
+                    disabled={generatingImage}
+                    className="w-full h-24 border border-dashed border-brand-black/20 hover:border-brand-orange rounded-xl flex flex-col items-center justify-center gap-1.5 text-xs text-brand-black/40 hover:text-brand-orange transition-colors bg-[#FDFBF7] disabled:opacity-50"
                   >
-                    <ImageIcon className="w-5 h-5" />
-                    <span className="font-semibold text-[10px] tracking-wider uppercase">gén. / upload</span>
+                    {generatingImage ? (
+                      <RefreshCw className="w-5 h-5 animate-spin" />
+                    ) : (
+                      <ImageIcon className="w-5 h-5" />
+                    )}
+                    <span className="font-semibold text-[10px] tracking-wider uppercase">
+                      {generatingImage ? 'génération...' : 'générer avec IA'}
+                    </span>
                   </button>
                 )}
               </div>

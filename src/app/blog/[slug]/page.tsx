@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const { slug } = params;
   try {
     const allItems = await dbService.getContentItems();
-    const blogPosts = allItems.filter(item => item.type === 'blog');
+    const blogPosts = allItems.filter(item => item.type === 'blog' && item.status === 'published');
     const post = blogPosts.find(p => slugify(p.title) === slug);
     if (post) {
       return {
@@ -50,7 +50,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   try {
     const allItems = await dbService.getContentItems();
-    const blogPosts = allItems.filter(item => item.type === 'blog');
+    const blogPosts = allItems.filter(item => item.type === 'blog' && item.status === 'published');
     
     // Rechercher le post dont le slug correspond
     post = blogPosts.find(p => slugify(p.title) === slug) || null;
