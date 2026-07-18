@@ -109,23 +109,29 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center font-sans overflow-hidden bg-[#FDFBF7] px-6 py-16">
-      {/* Fond décoratif : formes douces + blocs empilés (inspiré de la maquette) */}
+      {/* Fond décoratif : formes douces (inspiré de la maquette) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[#ff4d00]/10 blur-3xl" />
         <div className="absolute top-1/3 -right-32 w-[28rem] h-[28rem] rounded-full bg-black/[0.04] blur-3xl" />
         <div className="absolute -bottom-32 left-1/4 w-96 h-96 rounded-full bg-[#F5E6D3]/70 blur-3xl" />
-
-        {/* Pile de blocs 3D, visible uniquement sur grand écran */}
-        <div className="hidden lg:block absolute bottom-16 left-[8%] w-40 h-64">
-          <div className="absolute bottom-40 left-2 w-28 h-16 rounded-2xl bg-white border border-black/10 shadow-lg rotate-[-4deg]" />
-          <div className="absolute bottom-24 left-0 w-32 h-16 rounded-2xl bg-[#ff4d00] shadow-lg rotate-[3deg]" />
-          <div className="absolute bottom-8 left-3 w-28 h-16 rounded-2xl bg-[#F5E6D3] border border-black/5 shadow-lg rotate-[-2deg]" />
-          <div className="absolute bottom-0 left-1 w-28 h-14 rounded-2xl bg-black/85 shadow-lg rotate-[2deg]" />
-        </div>
       </div>
 
       {/* Zone carte(s) */}
       <div className="relative w-full max-w-md">
+        {/* Pile de blocs 3D, en arrière-plan à gauche de la carte (grand écran uniquement) */}
+        <div className="hidden lg:block absolute -left-36 -top-16 w-44 h-[27rem] z-0">
+          <div className="absolute top-0 left-6 w-28 h-28 rounded-[28px] bg-white border border-black/10 shadow-xl rotate-[-4deg] flex items-start justify-center overflow-visible">
+            <svg width="30" height="38" viewBox="0 0 30 38" className="absolute -top-7">
+              <path d="M15 38 L15 16" stroke="#5b8a63" strokeWidth="2.5" strokeLinecap="round" />
+              <path d="M15 20 C6 18 4 8 7 1 C14 4 17 11 15 20Z" fill="#6fa377" />
+              <path d="M15 16 C24 13 26 4 23 -2 C16 1 13 8 15 16Z" fill="#568a5c" />
+            </svg>
+          </div>
+          <div className="absolute top-24 left-0 w-32 h-28 rounded-[28px] bg-[#ff4d00] shadow-xl rotate-[3deg]" />
+          <div className="absolute top-[11.5rem] left-5 w-28 h-28 rounded-[28px] bg-[#F5E6D3] border border-black/5 shadow-xl rotate-[-2deg]" />
+          <div className="absolute top-[18.5rem] left-2 w-28 h-24 rounded-[28px] bg-black/90 shadow-xl rotate-[2deg]" />
+        </div>
+
         {/* Badge flottant décoratif (desktop uniquement) */}
         <div className="hidden md:flex absolute -top-7 left-6 z-20 items-center gap-2 bg-black text-white rounded-full pl-2 pr-4 py-2 shadow-xl rotate-[-2deg]">
           <svg width="28" height="28" viewBox="0 0 100 100" className="shrink-0 rounded-lg">
