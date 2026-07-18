@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   Plus, 
   Trash2, 
@@ -39,14 +39,17 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
   const [editContent, setEditContent] = useState('');
   const [editMetaDesc, setEditMetaDesc] = useState('');
   const [editImage, setEditImage] = useState('');
+  const [imageSource, setImageSource] = useState<'generated' | 'uploaded' | ''>('');
   const [editSchedule, setEditSchedule] = useState('');
   const [editScore, setEditScore] = useState(0);
 
-  // IA State simulation
+  // État IA
   const [generating, setGenerating] = useState(false);
   const [optimizing, setOptimizing] = useState(false);
   const [generatingImage, setGeneratingImage] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     loadItems();
@@ -80,6 +83,7 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
     setEditContent(item.content || '');
     setEditMetaDesc(item.meta_description || '');
     setEditImage(item.featured_image || '');
+    setImageSource((item.image_source as 'generated' | 'uploaded') || '');
     setEditSchedule(item.scheduled_at ? item.scheduled_at.substring(0, 16) : '');
     setEditScore(item.type === 'blog' ? item.seo_score : item.channel_score);
     setIsEditing(true);
@@ -94,6 +98,7 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
     setEditContent('');
     setEditMetaDesc('');
     setEditImage('');
+    setImageSource('');
     setEditSchedule('');
     setEditScore(0);
     setIsEditing(true);
@@ -180,8 +185,8 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
     }
   };
 
-  // Image generation (OpenAI DALL-E réelle)
-  const handleTriggerUpload = async () => {
+  // Génération d'image réelle (OpenAI DALL-E, une fois connecté dans Réglages)
+  const handleGenerateImage = async () => {
     if (!editTitle.trim()) {
       toast.error('Veuillez entrer un titre avant de générer une image.');
       return;
@@ -200,11 +205,41 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
         return;
       }
       setEditImage(data.url);
+      setImageSource('generated');
     } catch (err) {
       console.error(err);
       toast.error("La génération d'image a échoué.");
     } finally {
       setGeneratingImage(false);
+    }
+  };
+
+  // Upload réel d'un fichier image (Vercel Blob)
+  const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+
+    try {
+      setUploadingImage(true);
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error || "L'upload a échoué.");
+        return;
+      }
+      setEditImage(data.url);
+      setImageSource('uploaded');
+    } catch (err) {
+      console.error(err);
+      toast.error("L'upload a échoué.");
+    } finally {
+      setUploadingImage(false);
     }
   };
 
@@ -224,6 +259,7 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
         content: editContent,
         meta_description: editMetaDesc,
         featured_image: editImage,
+        image_source: imageSource || undefined,
         scheduled_at: editSchedule || undefined,
         seo_score: editType === 'blog' ? editScore : 0,
         channel_score: editType === 'linkedin' ? editScore : 0,
@@ -378,31 +414,56 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
               {/* Image Zone */}
               <div className="space-y-1 pt-2">
                 <label className="text-[10px] font-bold text-brand-black/50 uppercase tracking-widest">Image</label>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/gif"
+                  onChange={handleUploadImage}
+                  className="hidden"
+                />
                 {editImage ? (
                   <div className="border border-brand-black/10 rounded-xl overflow-hidden relative h-32 flex items-center justify-center bg-brand-sable/10 group">
                     <img src={editImage} alt="Preview" className="w-full h-full object-cover" />
                     <button
-                      onClick={() => setEditImage('')}
+                      onClick={() => { setEditImage(''); setImageSource(''); }}
                       className="absolute top-2 right-2 bg-brand-black/80 hover:bg-brand-black text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 ) : (
-                  <button
-                    onClick={handleTriggerUpload}
-                    disabled={generatingImage}
-                    className="w-full h-24 border border-dashed border-brand-black/20 hover:border-brand-orange rounded-xl flex flex-col items-center justify-center gap-1.5 text-xs text-brand-black/40 hover:text-brand-orange transition-colors bg-[#FDFBF7] disabled:opacity-50"
-                  >
-                    {generatingImage ? (
-                      <RefreshCw className="w-5 h-5 animate-spin" />
-                    ) : (
-                      <ImageIcon className="w-5 h-5" />
-                    )}
-                    <span className="font-semibold text-[10px] tracking-wider uppercase">
-                      {generatingImage ? 'génération...' : 'générer avec IA'}
-                    </span>
-                  </button>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={uploadingImage || generatingImage}
+                      className="h-24 border border-dashed border-brand-black/20 hover:border-brand-orange rounded-xl flex flex-col items-center justify-center gap-1.5 text-xs text-brand-black/40 hover:text-brand-orange transition-colors bg-[#FDFBF7] disabled:opacity-50"
+                    >
+                      {uploadingImage ? (
+                        <RefreshCw className="w-5 h-5 animate-spin" />
+                      ) : (
+                        <ImageIcon className="w-5 h-5" />
+                      )}
+                      <span className="font-semibold text-[10px] tracking-wider uppercase">
+                        {uploadingImage ? 'envoi...' : 'uploader'}
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleGenerateImage}
+                      disabled={uploadingImage || generatingImage}
+                      className="h-24 border border-dashed border-brand-black/20 hover:border-brand-orange rounded-xl flex flex-col items-center justify-center gap-1.5 text-xs text-brand-black/40 hover:text-brand-orange transition-colors bg-[#FDFBF7] disabled:opacity-50"
+                    >
+                      {generatingImage ? (
+                        <RefreshCw className="w-5 h-5 animate-spin" />
+                      ) : (
+                        <Sparkles className="w-5 h-5" />
+                      )}
+                      <span className="font-semibold text-[10px] tracking-wider uppercase">
+                        {generatingImage ? 'génération...' : 'générer IA'}
+                      </span>
+                    </button>
+                  </div>
                 )}
               </div>
 

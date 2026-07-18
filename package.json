@@ -12,6 +12,7 @@
     "@anthropic-ai/sdk": "^0.110.0",
     "@neondatabase/serverless": "^0.9.0",
     "@supabase/supabase-js": "^2.110.0",
+    "@vercel/blob": "^2.6.1",
     "bcryptjs": "^3.0.3",
     "dotenv": "^16.4.5",
     "jose": "^6.2.3",
