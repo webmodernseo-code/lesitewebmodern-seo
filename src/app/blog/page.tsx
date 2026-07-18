@@ -4,7 +4,7 @@ import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 import { dbService } from '@/lib/supabase-db';
 import Link from 'next/link';
-import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "Blog | WebModernSEO — Conseils SEO, Web & Growth",
@@ -13,7 +13,14 @@ export const metadata: Metadata = {
 
 export const revalidate = 60; // Régénération statique sémantique toutes les minutes
 
-const slugify = (text: string) => 
+interface BlogPostView {
+  id: string | number;
+  title: string;
+  brief?: string;
+  featured_image?: string;
+}
+
+const slugify = (text: string) =>
   text
     .toLowerCase()
     .normalize("NFD")
@@ -49,7 +56,7 @@ const MOCK_POSTS = [
 ];
 
 export default async function BlogPage() {
-  let blogPosts = [];
+  let blogPosts: BlogPostView[] = [];
   try {
     const allItems = await dbService.getContentItems();
     blogPosts = allItems.filter(item => item.type === 'blog');
@@ -59,15 +66,13 @@ export default async function BlogPage() {
 
   // Utiliser les articles de démo si aucun article n'est encore publié
   const postsToShow = blogPosts.length > 0 ? blogPosts : MOCK_POSTS;
-  const featuredPost = postsToShow[0];
-  const gridPosts = postsToShow.slice(1);
 
   return (
     <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
       <HeaderPublic />
 
       {/* Hero Section Épurée */}
-      <section className="w-full pt-36 pb-16 px-6 max-w-6xl mx-auto">
+      <section className="w-full pt-36 pb-16 px-6 max-w-7xl mx-auto">
         <div className="text-center space-y-5 max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 bg-[#ff4d00]/10 text-[#ff4d00] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
             <BookOpen className="w-3.5 h-3.5" />
@@ -81,108 +86,39 @@ export default async function BlogPage() {
           </p>
         </div>
 
-        {/* Featured Post (Grand Format Premium) */}
-        {featuredPost && (
-          <div className="bg-white border border-black/10 rounded-[32px] overflow-hidden shadow-sm hover:border-[#ff4d00]/25 transition-all duration-300 mb-16 flex flex-col lg:flex-row group">
-            {/* Image */}
-            <div className="w-full lg:w-7/12 h-64 sm:h-80 lg:h-auto bg-[#faf6ee] overflow-hidden relative">
-              <img 
-                src={featuredPost.featured_image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80'} 
-                alt={featuredPost.title}
-                className="object-cover w-full h-full group-hover:scale-105 transition-all duration-500"
-              />
-            </div>
-            {/* Content */}
-            <div className="w-full lg:w-5/12 p-8 md:p-10 flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-[10px] font-bold text-black/40 uppercase tracking-widest">
-                  <span>{new Date(featuredPost.created_at || '').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-                  <span>•</span>
-                  <span className="text-[#ff4d00]">{featuredPost.focus_keyword || 'SEO'}</span>
+        {/* Grid Posts — 4 par ligne */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {postsToShow.map((post) => {
+            const slug = slugify(post.title);
+
+            return (
+              <Link
+                key={post.id}
+                href={`/blog/${slug}`}
+                className="bg-white border border-black/10 rounded-2xl overflow-hidden shadow-sm hover:border-[#ff4d00]/25 hover:shadow-md transition-all duration-300 flex flex-col group"
+              >
+                {/* Image */}
+                <div className="relative h-44 w-full bg-[#fdfbf7] overflow-hidden">
+                  <img
+                    src={post.featured_image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60'}
+                    alt={post.title}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-all duration-500"
+                  />
                 </div>
-                <h2 className="text-xl md:text-2xl font-black text-black group-hover:text-[#ff4d00] transition-colors leading-tight">
-                  <Link href={`/blog/${slugify(featuredPost.title)}`}>
-                    {featuredPost.title}
-                  </Link>
-                </h2>
-                <p className="text-xs text-[#5c5c64] leading-relaxed font-medium">
-                  {featuredPost.brief || "Découvrez notre analyse détaillée et nos conseils dans cet article complet pour optimiser votre visibilité."}
-                </p>
-              </div>
-              
-              <div className="pt-6 border-t border-black/5 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-[#ff4d00]/10 flex items-center justify-center text-[10px] font-bold text-[#ff4d00]">WM</div>
-                  <span className="text-[10px] font-bold text-black/50">Par l'équipe WebModern</span>
+
+                {/* Content */}
+                <div className="p-5 space-y-2 flex-1 flex flex-col">
+                  <h3 className="text-base font-extrabold text-black leading-snug">
+                    {post.title}
+                  </h3>
+                  <p className="text-xs text-[#5c5c64] font-medium line-clamp-3 leading-relaxed">
+                    {post.brief || "Découvrez notre analyse détaillée et nos conseils dans cet article complet pour optimiser votre visibilité."}
+                  </p>
                 </div>
-                <Link 
-                  href={`/blog/${slugify(featuredPost.title)}`}
-                  className="text-xs font-black text-[#ff7e47] hover:text-[#ff4d00] flex items-center gap-1.5 transition-colors"
-                >
-                  Lire l'article
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Grid Posts */}
-        {gridPosts.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {gridPosts.map((post) => {
-              const slug = slugify(post.title);
-              const formattedDate = new Date(post.created_at || '').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-
-              return (
-                <article key={post.id} className="bg-white border border-black/10 rounded-3xl shadow-sm overflow-hidden flex flex-col justify-between group hover:border-[#ff4d00]/25 transition-all duration-300">
-                  <div>
-                    {/* Image */}
-                    <div className="relative h-52 w-full bg-[#fdfbf7] overflow-hidden">
-                      <img 
-                        src={post.featured_image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60'} 
-                        alt={post.title}
-                        className="object-cover w-full h-full group-hover:scale-105 transition-all duration-500"
-                      />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 space-y-3.5">
-                      <div className="flex items-center gap-3 text-[9px] font-bold text-black/40 uppercase tracking-widest">
-                        <span>{formattedDate}</span>
-                        <span>•</span>
-                        <span className="text-[#ff4d00]">{post.focus_keyword || 'SEO'}</span>
-                      </div>
-                      <h3 className="text-lg font-black text-black group-hover:text-[#ff4d00] transition-colors leading-snug">
-                        <Link href={`/blog/${slug}`}>
-                          {post.title}
-                        </Link>
-                      </h3>
-                      <p className="text-xs text-[#5c5c64] font-medium line-clamp-3 leading-relaxed">
-                        {post.brief || "Découvrez notre analyse détaillée et nos conseils dans cet article complet pour optimiser votre visibilité."}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Footer */}
-                  <div className="p-6 pt-0 border-t border-black/5 mt-4 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#ff4d00]/10 flex items-center justify-center text-[9px] font-bold text-[#ff4d00]">WM</div>
-                      <span className="text-[9px] font-bold text-black/50">Équipe WebModern</span>
-                    </div>
-                    <Link 
-                      href={`/blog/${slug}`}
-                      className="text-xs font-black text-[#ff7e47] hover:text-[#ff4d00] flex items-center gap-1.5 transition-colors"
-                    >
-                      Lire l'article
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        )}
+              </Link>
+            );
+          })}
+        </div>
       </section>
 
       <FooterPublic />
