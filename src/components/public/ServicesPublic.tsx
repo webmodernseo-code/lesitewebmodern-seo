@@ -358,6 +358,7 @@ export const ServicesPublic: React.FC = () => {
 
         @media (max-width: 768px) {
             .wms-services-section {
+                width: auto;
                 padding: 60px 24px;
                 margin: 40px 16px 20px 16px;
                 border-radius: 24px;
