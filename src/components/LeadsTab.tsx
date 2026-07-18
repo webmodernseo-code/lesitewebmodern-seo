@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { dbService, Lead } from '@/lib/supabase-db';
+import { dbService, Lead } from '@/lib/leads-client';
 import { Mail, Phone, Briefcase, Calendar, Check, MessageSquare, RefreshCw, Trash } from 'lucide-react';
 
 export const LeadsTab: React.FC = () => {

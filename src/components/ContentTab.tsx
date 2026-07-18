@@ -15,7 +15,7 @@ import {
   Check,
   X
 } from 'lucide-react';
-import { dbService } from '@/lib/supabase-db';
+import { dbService } from '@/lib/content-client';
 import { ContentItem, ContentType, ContentStatus } from '@/types';
 
 interface ContentTabProps {

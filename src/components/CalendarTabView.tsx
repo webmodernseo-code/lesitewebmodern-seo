@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, BookOpen, MessageSquare, Clock } from 'lucide-react';
-import { dbService } from '@/lib/supabase-db';
+import { dbService } from '@/lib/content-client';
 import { ContentItem } from '@/types';
 
 export const CalendarTabView: React.FC = () => {

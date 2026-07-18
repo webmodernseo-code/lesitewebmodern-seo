@@ -12,7 +12,7 @@ import {
   CheckCircle,
   FileText
 } from 'lucide-react';
-import { dbService } from '@/lib/supabase-db';
+import { dbService } from '@/lib/projects-client';
 import { Project, ProjectPhase, ProjectTask, ProjectStatus, TaskPriority } from '@/types';
 
 interface PlanningTabProps {
