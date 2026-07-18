@@ -1095,7 +1095,7 @@ export default function Page() {
   ✦ BALISES DE PARTAGE SOCIAL (Open Graph) :
     - og:title       : Création de Site Internet Sur-Mesure & Performant | WebModernSEO
     - og:description : Découvrez nos solutions de développement d'élite (vitrine, e-commerce, applications web) optimisées pour Google et chargeant instantanément.
-    - og:image       : https://webmodernseo.co/wp-content/uploads/2026/06/c2k8vbhynwm.jpg
+    - og:image       : /images/services/c2k8vbhynwm.jpg
   
   ==========================================================================
 -->
@@ -1144,7 +1144,7 @@ export default function Page() {
       <!-- Colonne Image Showcase premium -->
       <div class="wm-assets-image-column">
         <div class="wm-assets-image-wrapper">
-          <img src="https://webmodernseo.co/wp-content/uploads/2026/06/c2k8vbhynwm.jpg" alt="Création de Site Internet" class="wm-assets-img">
+          <img src="/images/services/c2k8vbhynwm.jpg" alt="Création de Site Internet" class="wm-assets-img">
           <div class="wm-assets-image-deco"></div>
           <div class="wm-assets-image-badge">
             <span class="wm-assets-image-badge-dot"></span> Vitesse Blitz < 0.8s

@@ -415,7 +415,7 @@ export const ServicesPublic: React.FC = () => {
                 <!-- Service 1 : Création de Site Web (Orange) -->
                 <div class="wms-services-card wms-services-card-orange">
                     <div class="wms-services-card-img-wrapper">
-                        <img src="https://webmodernseo.co/wp-content/uploads/2026/06/c2k8vbhynwm.jpg" alt="Création de Site Web">
+                        <img src="/images/services/c2k8vbhynwm.jpg" alt="Création de Site Web">
                     </div>
                     <h3 class="wms-services-card-title">Création de Site Web</h3>
                     <p class="wms-services-card-desc">
@@ -429,7 +429,7 @@ export const ServicesPublic: React.FC = () => {
                 <!-- Service 2 : Référencement SEO (Vert) -->
                 <div class="wms-services-card wms-services-card-green">
                     <div class="wms-services-card-img-wrapper">
-                        <img src="https://webmodernseo.co/wp-content/uploads/2026/05/c_ry4rm1_b4.jpg" alt="Référencement SEO d'élite">
+                        <img src="/images/services/c_ry4rm1_b4.jpg" alt="Référencement SEO d'élite">
                     </div>
                     <h3 class="wms-services-card-title">Référencement SEO</h3>
                     <p class="wms-services-card-desc">
@@ -443,7 +443,7 @@ export const ServicesPublic: React.FC = () => {
                 <!-- Service 3 : Acquisition Clients (Violet) -->
                 <div class="wms-services-card wms-services-card-purple">
                     <div class="wms-services-card-img-wrapper">
-                        <img src="https://webmodernseo.co/wp-content/uploads/2026/04/upsef48wagk.jpg" alt="Acquisition Clients Payante">
+                        <img src="/images/services/upsef48wagk.jpg" alt="Acquisition Clients Payante">
                     </div>
                     <h3 class="wms-services-card-title">Acquisition Clients</h3>
                     <p class="wms-services-card-desc">

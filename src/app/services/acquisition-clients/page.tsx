@@ -1007,7 +1007,7 @@ export default function Page() {
   ✦ BALISES DE PARTAGE SOCIAL (Open Graph) :
     - og:title       : Acquisition de Nouveaux Clients & Conversion Web | WebModernSEO
     - og:description : Transformez vos visiteurs passifs en clients réguliers grâce à un tunnel de vente optimisé pour la performance et le design.
-    - og:image       : https://webmodernseo.co/wp-content/uploads/2026/04/upsef48wagk.jpg
+    - og:image       : /images/services/upsef48wagk.jpg
   
   ==========================================================================
 -->
@@ -1054,7 +1054,7 @@ export default function Page() {
       <!-- Colonne Image Showcase premium -->
       <div class="wm-acq-image-column">
         <div class="wm-acq-image-wrapper">
-          <img src="https://webmodernseo.co/wp-content/uploads/2026/04/upsef48wagk.jpg" alt="Acquisition de Nouveaux Clients" class="wm-acq-img">
+          <img src="/images/services/upsef48wagk.jpg" alt="Acquisition de Nouveaux Clients" class="wm-acq-img">
           <div class="wm-acq-image-deco"></div>
           <div class="wm-acq-image-badge">
             <span class="wm-acq-image-badge-dot"></span> ROI Certifié

@@ -1197,7 +1197,7 @@ export default function Page() {
     <!-- Projet 1 : webmodernseo.co (Web uniquement) -->
     <article class="portfolio-card web">
       <div class="portfolio-card-visual">
-        <img src="https://webmodernseo.co/wp-content/uploads/2026/06/Capture-decran-2026-06-16-163553.png"
+        <img src="/images/portfolio/Capture-decran-2026-06-16-163553.png"
           alt="Création de site vitrine et référencement naturel d'élite - webmodernseo.co" width="600" height="380"
           class="portfolio-card-img" loading="lazy">
       </div>
@@ -1215,7 +1215,7 @@ export default function Page() {
     <!-- Projet 2 : digiproo.com (Web uniquement) -->
     <article class="portfolio-card web">
       <div class="portfolio-card-visual">
-        <img src="https://webmodernseo.co/wp-content/uploads/2026/04/Capture-decran-2026-04-14-120629.png"
+        <img src="/images/portfolio/Capture-decran-2026-04-14-120629.png"
           alt="Plateforme de services digitaux modernes et ergonomiques - digiproo.com" width="600" height="380"
           class="portfolio-card-img" loading="lazy">
       </div>
@@ -1233,7 +1233,7 @@ export default function Page() {
     <!-- Projet 3 : shammah.eu (Web uniquement) -->
     <article class="portfolio-card web">
       <div class="portfolio-card-visual">
-        <img src="https://webmodernseo.co/wp-content/uploads/2026/04/Capture-decran-2026-04-14-120331.png"
+        <img src="/images/portfolio/Capture-decran-2026-04-14-120331.png"
           alt="Plateforme logistique d'achats Europe-Afrique et livraison - shammah.eu" width="600" height="380"
           class="portfolio-card-img" loading="lazy">
       </div>
@@ -1251,7 +1251,7 @@ export default function Page() {
     <!-- Projet 4 : sinaihappycare.com (Web uniquement) -->
     <article class="portfolio-card web">
       <div class="portfolio-card-visual">
-        <img src="https://webmodernseo.co/wp-content/uploads/2026/05/Sinaihappycare-sinaihappycare.com_.png"
+        <img src="/images/portfolio/Sinaihappycare-sinaihappycare.com_.png"
           alt="Site vitrine professionnel de soins et santé à domicile - sinaihappycare.com" width="600" height="380"
           class="portfolio-card-img" loading="lazy">
       </div>
@@ -1269,7 +1269,7 @@ export default function Page() {
     <!-- Projet 5 : epbomi-europe.org (Web uniquement) -->
     <article class="portfolio-card web">
       <div class="portfolio-card-visual">
-        <img src="https://webmodernseo.co/wp-content/uploads/2026/05/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png"
+        <img src="/images/portfolio/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png"
           alt="Portail de la branche européenne de l'église EPBOMI - epbomi-europe.org" width="600" height="380"
           class="portfolio-card-img" loading="lazy">
       </div>
@@ -1287,7 +1287,7 @@ export default function Page() {
     <!-- Projet 6 : opticafe.fr (Web uniquement) -->
     <article class="portfolio-card web">
       <div class="portfolio-card-visual">
-        <img src="https://webmodernseo.co/wp-content/uploads/2026/06/he75ojuxofe.jpg" alt="Concept store de café et centre optique - opticafe.fr" width="600"
+        <img src="/images/portfolio/he75ojuxofe.jpg" alt="Concept store de café et centre optique - opticafe.fr" width="600"
           height="380" class="portfolio-card-img" loading="lazy">
       </div>
 
@@ -1304,7 +1304,7 @@ export default function Page() {
     <!-- Projet 7 : emypaul.opticafe.fr (Web uniquement) -->
     <article class="portfolio-card web">
       <div class="portfolio-card-visual">
-        <img src="https://webmodernseo.co/wp-content/uploads/2026/05/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png"
+        <img src="/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png"
           alt="Centre optique examens de vue et lunettes de créateur - emypaul.opticafe.fr" width="600" height="380"
           class="portfolio-card-img" loading="lazy">
       </div>

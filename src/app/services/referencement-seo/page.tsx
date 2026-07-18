@@ -1640,7 +1640,7 @@ export default function Page() {
   ✦ BALISES DE PARTAGE SOCIAL (Open Graph) :
     - og:title       : Référencement SEO & GÉO Sur-Mesure | WebModernSEO
     - og:description : Dominez les résultats de recherche Google et devenez la source recommandée par les moteurs d'intelligence artificielle (ChatGPT, Gemini).
-    - og:image       : https://webmodernseo.co/wp-content/uploads/2026/05/c_ry4rm1_b4.jpg
+    - og:image       : /images/services/c_ry4rm1_b4.jpg
   
   ==========================================================================
 -->
@@ -1687,7 +1687,7 @@ export default function Page() {
       <!-- Colonne Image Showcase premium -->
       <div class="wm-seo-image-column">
         <div class="wm-seo-image-wrapper">
-          <img src="https://webmodernseo.co/wp-content/uploads/2026/05/c_ry4rm1_b4.jpg" alt="Référencement SEO et GÉO" class="wm-seo-img">
+          <img src="/images/services/c_ry4rm1_b4.jpg" alt="Référencement SEO et GÉO" class="wm-seo-img">
           <div class="wm-seo-image-deco"></div>
           <div class="wm-seo-image-badge">
             <span class="wm-seo-image-badge-dot"></span> IA Ready & SGE

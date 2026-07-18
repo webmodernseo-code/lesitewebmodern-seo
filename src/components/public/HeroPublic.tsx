@@ -719,32 +719,32 @@ export const HeroPublic: React.FC = () => {
                     <div class="wms-social-logos-group">
                         <!-- Meta -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/meta.jpg" class="wms-logo-meta"
+                            <img src="/logo/meta.jpg" class="wms-logo-meta"
                                 alt="Meta Logo">
                         </div>
                         <!-- n8n -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/n8n.jpg" class="wms-logo-n8n"
+                            <img src="/logo/n8n.jpg" class="wms-logo-n8n"
                                 alt="n8n Logo">
                         </div>
                         <!-- o2switch -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/o2switch.jpeg"
+                            <img src="/logo/o2switch.jpeg"
                                 class="wms-logo-o2switch" alt="o2switch Logo">
                         </div>
                         <!-- WordPress -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/wordpress.jpg"
+                            <img src="/logo/wordpress.jpg"
                                 class="wms-logo-wordpress" alt="WordPress Logo">
                         </div>
                         <!-- Themify -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/Themify.png"
+                            <img src="/logo/Themify.png"
                                 class="wms-logo-themify" alt="Themify Logo">
                         </div>
                         <!-- Yoast SEO -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/Yoast-seo.jpg"
+                            <img src="/logo/Yoast-seo.jpg"
                                 class="wms-logo-yoast" alt="Yoast SEO Logo">
                         </div>
                     </div>
@@ -752,32 +752,32 @@ export const HeroPublic: React.FC = () => {
                     <div class="wms-social-logos-group" aria-hidden="true">
                         <!-- Meta -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/meta.jpg" class="wms-logo-meta"
+                            <img src="/logo/meta.jpg" class="wms-logo-meta"
                                 alt="Meta Logo">
                         </div>
                         <!-- n8n -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/n8n.jpg" class="wms-logo-n8n"
+                            <img src="/logo/n8n.jpg" class="wms-logo-n8n"
                                 alt="n8n Logo">
                         </div>
                         <!-- o2switch -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/o2switch.jpeg"
+                            <img src="/logo/o2switch.jpeg"
                                 class="wms-logo-o2switch" alt="o2switch Logo">
                         </div>
                         <!-- WordPress -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/wordpress.jpg"
+                            <img src="/logo/wordpress.jpg"
                                 class="wms-logo-wordpress" alt="WordPress Logo">
                         </div>
                         <!-- Themify -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/Themify.png"
+                            <img src="/logo/Themify.png"
                                 class="wms-logo-themify" alt="Themify Logo">
                         </div>
                         <!-- Yoast SEO -->
                         <div class="wms-social-logo">
-                            <img src="https://webmodernseo.co/wp-content/uploads/2026/06/Yoast-seo.jpg"
+                            <img src="/logo/Yoast-seo.jpg"
                                 class="wms-logo-yoast" alt="Yoast SEO Logo">
                         </div>
                     </div>
