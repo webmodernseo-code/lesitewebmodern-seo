@@ -3,54 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase, DollarSign, Target, User, Phone, Mail, Plus, Trash, CheckCircle2, AlertCircle, TrendingUp, RefreshCw } from 'lucide-react';
 import { useUIFeedback } from '@/context/UIFeedbackContext';
-
-interface Deal {
-  id: string;
-  name: string;
-  company: string;
-  value: number;
-  stage: 'lead' | 'contact' | 'proposal' | 'negotiation' | 'won' | 'lost';
-  email: string;
-  phone: string;
-  notes?: string;
-  created_at: string;
-}
-
-const INITIAL_DEALS: Deal[] = [
-  {
-    id: 'd1',
-    name: 'Jean-Pierre Lartigue',
-    company: 'Immo Prestige Lyon',
-    value: 4500,
-    stage: 'lead',
-    email: 'jp.lartigue@immo-prestige.fr',
-    phone: '06 54 88 90 21',
-    notes: 'Intéressé par une refonte complète WordPress + stratégie de référencement local.',
-    created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'd2',
-    name: 'Sophie Martin',
-    company: 'Clinique Dentaire des Alpes',
-    value: 8500,
-    stage: 'proposal',
-    email: 's.martin@dentaire-alpes.com',
-    phone: '04 76 54 32 10',
-    notes: 'Proposition de site sur-mesure et campagne SEO mensuelle envoyée le 14/07.',
-    created_at: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'd3',
-    name: 'Arthur Dupont',
-    company: 'EcoVolt Solutions',
-    value: 12000,
-    stage: 'won',
-    email: 'contact@ecovolt.fr',
-    phone: '06 88 77 66 55',
-    notes: 'Contrat signé pour le tunnel d\'acquisition et refonte. Acompte de 30% reçu.',
-    created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
-  }
-];
+import { crmService, Deal } from '@/lib/crm-client';
 
 export const CRMTab: React.FC = () => {
   const { toast, confirm } = useUIFeedback();
@@ -67,66 +20,66 @@ export const CRMTab: React.FC = () => {
   const [newPhone, setNewPhone] = useState('');
   const [newNotes, setNewNotes] = useState('');
 
-  const loadDeals = () => {
-    setLoading(true);
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('wm_crm_deals');
-      if (stored) {
-        setDeals(JSON.parse(stored));
-      } else {
-        localStorage.setItem('wm_crm_deals', JSON.stringify(INITIAL_DEALS));
-        setDeals(INITIAL_DEALS);
-      }
+  const loadDeals = async () => {
+    try {
+      setLoading(true);
+      const data = await crmService.getDeals();
+      setDeals(data);
+    } catch (err) {
+      console.error(err);
+      toast.error('Impossible de charger le pipeline.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
     loadDeals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const saveDeals = (updatedDeals: Deal[]) => {
-    setDeals(updatedDeals);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('wm_crm_deals', JSON.stringify(updatedDeals));
-    }
-  };
-
-  const handleAddDeal = (e: React.FormEvent) => {
+  const handleAddDeal = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newName || !newCompany) return;
 
-    const newDeal: Deal = {
-      id: 'd_' + Math.random().toString(36).substr(2, 9),
-      name: newName,
-      company: newCompany,
-      value: parseFloat(newValue) || 0,
-      stage: newStage,
-      email: newEmail,
-      phone: newPhone,
-      notes: newNotes,
-      created_at: new Date().toISOString()
-    };
+    try {
+      await crmService.createDeal({
+        name: newName,
+        company: newCompany,
+        value: parseFloat(newValue) || 0,
+        stage: newStage,
+        email: newEmail,
+        phone: newPhone,
+        notes: newNotes,
+      });
+      await loadDeals();
+      setShowAddModal(false);
+      toast.success('Opportunité ajoutée.');
 
-    const updated = [...deals, newDeal];
-    saveDeals(updated);
-    setShowAddModal(false);
-    toast.success('Opportunité ajoutée.');
-
-
-    // Reset form
-    setNewName('');
-    setNewCompany('');
-    setNewValue('');
-    setNewStage('lead');
-    setNewEmail('');
-    setNewPhone('');
-    setNewNotes('');
+      // Reset form
+      setNewName('');
+      setNewCompany('');
+      setNewValue('');
+      setNewStage('lead');
+      setNewEmail('');
+      setNewPhone('');
+      setNewNotes('');
+    } catch (err) {
+      console.error(err);
+      toast.error("L'ajout a échoué.");
+    }
   };
 
-  const handleUpdateStage = (id: string, stage: Deal['stage']) => {
-    const updated = deals.map(d => d.id === id ? { ...d, stage } : d);
-    saveDeals(updated);
+  const handleUpdateStage = async (id: string, stage: Deal['stage']) => {
+    const previous = deals;
+    setDeals(deals.map(d => (d.id === id ? { ...d, stage } : d)));
+    try {
+      await crmService.updateDealStage(id, stage);
+    } catch (err) {
+      console.error(err);
+      setDeals(previous);
+      toast.error("La mise à jour a échoué.");
+    }
   };
 
   const handleDeleteDeal = async (id: string) => {
@@ -136,9 +89,14 @@ export const CRMTab: React.FC = () => {
       confirmLabel: 'Supprimer',
     });
     if (!ok) return;
-    const updated = deals.filter(d => d.id !== id);
-    saveDeals(updated);
-    toast.success('Opportunité supprimée.');
+    try {
+      await crmService.deleteDeal(id);
+      setDeals(deals.filter(d => d.id !== id));
+      toast.success('Opportunité supprimée.');
+    } catch (err) {
+      console.error(err);
+      toast.error("La suppression a échoué.");
+    }
   };
 
   // Statics calculations

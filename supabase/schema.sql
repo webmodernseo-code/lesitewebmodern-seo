@@ -129,3 +129,21 @@ CREATE TABLE IF NOT EXISTS integration_connections (
   connected_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
+
+-- ==========================================
+-- 9. Table pour le CRM Commercial (pipeline de deals)
+-- ==========================================
+CREATE TABLE IF NOT EXISTS deals (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  company TEXT NOT NULL,
+  value NUMERIC DEFAULT 0,
+  stage TEXT NOT NULL DEFAULT 'lead', -- 'lead' / 'contact' / 'proposal' / 'negotiation' / 'won' / 'lost'
+  email TEXT,
+  phone TEXT,
+  notes TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_deals_stage ON deals (stage);
