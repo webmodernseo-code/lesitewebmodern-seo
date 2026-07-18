@@ -241,9 +241,32 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
       setSelectedItem(null);
       await loadItems();
       toast.success('Contenu enregistré.');
+
+      if (editType === 'linkedin' && !editSchedule) {
+        await handlePublishToLinkedin();
+      }
     } catch (err) {
       console.error(err);
       toast.error("L'enregistrement a échoué.");
+    }
+  };
+
+  const handlePublishToLinkedin = async () => {
+    try {
+      const res = await fetch('/api/linkedin/publish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: editContent }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error || 'La publication sur LinkedIn a échoué.');
+        return;
+      }
+      toast.success('Publié sur votre page LinkedIn.');
+    } catch (err) {
+      console.error(err);
+      toast.error('La publication sur LinkedIn a échoué.');
     }
   };
 

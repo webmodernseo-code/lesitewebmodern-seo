@@ -1,7 +1,7 @@
 import { sql } from './neon';
 import { encryptSecret, decryptSecret, maskSecret } from './crypto';
 
-export type IntegrationProvider = 'claude' | 'openai';
+export type IntegrationProvider = 'claude' | 'openai' | 'linkedin';
 
 export interface IntegrationConnection {
   provider: IntegrationProvider;

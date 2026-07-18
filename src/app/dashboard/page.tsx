@@ -17,7 +17,7 @@ type ActiveViewType = 'content' | 'calendar' | 'projects' | 'leads' | 'crm' | 't
 
 export default function Home() {
   const { user, loading, logout } = useAuth();
-  const { confirm } = useUIFeedback();
+  const { toast, confirm } = useUIFeedback();
   const router = useRouter();
   const [activeView, setActiveView] = useState<ActiveViewType>('content');
   const [newContentTrigger, setNewContentTrigger] = useState(0);
@@ -29,6 +29,27 @@ export default function Home() {
       router.push('/login');
     }
   }, [user, loading, router]);
+
+  // Retour OAuth LinkedIn (?linkedin=connected|error|missing_credentials)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const linkedinStatus = params.get('linkedin');
+    if (!linkedinStatus) return;
+
+    if (linkedinStatus === 'connected') {
+      setActiveView('settings');
+      toast.success('Page LinkedIn connectée avec succès.');
+    } else if (linkedinStatus === 'missing_credentials') {
+      setActiveView('settings');
+      toast.error('Enregistrez d\'abord le Client ID et le Client Secret LinkedIn.');
+    } else if (linkedinStatus === 'error') {
+      setActiveView('settings');
+      toast.error("La connexion à LinkedIn a échoué. Réessayez.");
+    }
+
+    window.history.replaceState({}, '', '/dashboard');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleNouveauClick = () => {
     if (activeView === 'content') {

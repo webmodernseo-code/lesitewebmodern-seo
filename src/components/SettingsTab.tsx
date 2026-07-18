@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Shield, Key, Sliders, CheckCircle, Lock, RefreshCw, AlertCircle, Clock, X } from 'lucide-react';
+import { Shield, Key, Sliders, CheckCircle, Lock, RefreshCw, AlertCircle, X, Share2 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useUIFeedback } from '@/context/UIFeedbackContext';
 
 type Provider = 'claude' | 'openai';
 
 interface IntegrationConnection {
-  provider: Provider;
+  provider: Provider | 'linkedin';
   masked_key: string;
   status: string;
   connected_at: string;
@@ -43,6 +43,11 @@ export const SettingsTab: React.FC = () => {
   const [openForm, setOpenForm] = useState<Provider | null>(null);
   const [apiKeyInput, setApiKeyInput] = useState('');
   const [connecting, setConnecting] = useState(false);
+
+  const [linkedinClientId, setLinkedinClientId] = useState('');
+  const [linkedinClientSecret, setLinkedinClientSecret] = useState('');
+  const [savingLinkedinCreds, setSavingLinkedinCreds] = useState(false);
+  const [editingLinkedinCreds, setEditingLinkedinCreds] = useState(false);
 
   const [blogThreshold, setBlogThreshold] = useState(95);
   const [linkedinThreshold, setLinkedinThreshold] = useState(90);
@@ -120,6 +125,54 @@ export const SettingsTab: React.FC = () => {
       const res = await fetch(`/api/integrations/${provider}`, { method: 'DELETE' });
       if (res.ok) {
         toast.success('Outil déconnecté.');
+        await loadConnections();
+      } else {
+        toast.error('La déconnexion a échoué.');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('La déconnexion a échoué.');
+    }
+  };
+
+  const handleSaveLinkedinCredentials = async () => {
+    if (!linkedinClientId.trim() || !linkedinClientSecret.trim()) return;
+    try {
+      setSavingLinkedinCreds(true);
+      const res = await fetch('/api/integrations/linkedin/credentials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId: linkedinClientId.trim(), clientSecret: linkedinClientSecret.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error || "L'enregistrement a échoué.");
+        return;
+      }
+      toast.success('Identifiants enregistrés. Cliquez sur "Connecter avec LinkedIn" pour autoriser la page.');
+      setEditingLinkedinCreds(false);
+      setLinkedinClientId('');
+      setLinkedinClientSecret('');
+      await loadConnections();
+    } catch (err) {
+      console.error(err);
+      toast.error("L'enregistrement a échoué.");
+    } finally {
+      setSavingLinkedinCreds(false);
+    }
+  };
+
+  const handleDisconnectLinkedin = async () => {
+    const ok = await confirm('La publication automatique sur votre page LinkedIn sera désactivée.', {
+      title: 'Déconnecter LinkedIn ?',
+      danger: true,
+      confirmLabel: 'Déconnecter',
+    });
+    if (!ok) return;
+    try {
+      const res = await fetch('/api/integrations/linkedin', { method: 'DELETE' });
+      if (res.ok) {
+        toast.success('LinkedIn déconnecté.');
         await loadConnections();
       } else {
         toast.error('La déconnexion a échoué.');
@@ -247,22 +300,99 @@ export const SettingsTab: React.FC = () => {
             );
           })}
 
-          {/* LinkedIn - coming soon */}
-          <div className="flex items-center justify-between p-4 border border-brand-black/5 rounded-xl bg-brand-sable/5 opacity-60">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-brand-black/5 flex items-center justify-center text-brand-black">
-                <Sliders className="w-5 h-5" />
+          {/* LinkedIn - OAuth (page entreprise) */}
+          {(() => {
+            const linkedin = connections['linkedin'];
+            const status = loadingConnections ? 'loading' : linkedin?.status || 'none';
+
+            return (
+              <div className="border border-brand-black/5 rounded-xl bg-brand-sable/5 transition-all">
+                <div className="flex items-center justify-between p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-brand-black/5 flex items-center justify-center text-brand-black">
+                      <Share2 className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-brand-black text-sm block">LinkedIn - page entreprise</span>
+                      <span className="text-[10px] text-brand-black/40 font-semibold tracking-wider uppercase">
+                        {status === 'connected' || status === 'pending' ? linkedin!.masked_key : 'publication automatique de posts'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {status === 'loading' ? (
+                    <RefreshCw className="w-4 h-4 text-brand-black/20 animate-spin" />
+                  ) : status === 'connected' ? (
+                    <div className="flex items-center gap-2">
+                      <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-lg text-xs font-bold flex items-center gap-1.5">
+                        <CheckCircle className="w-3.5 h-3.5" />
+                        connecté
+                      </span>
+                      <button
+                        onClick={handleDisconnectLinkedin}
+                        className="text-[10px] font-bold text-brand-black/40 hover:text-red-500 uppercase tracking-wider transition-colors"
+                      >
+                        déconnecter
+                      </button>
+                    </div>
+                  ) : status === 'pending' ? (
+                    <a
+                      href="/api/auth/linkedin/start"
+                      className="px-3 py-1 bg-brand-orange text-white rounded-lg text-xs font-bold hover:bg-brand-orange/90 transition-all"
+                    >
+                      Connecter avec LinkedIn
+                    </a>
+                  ) : editingLinkedinCreds ? (
+                    <button
+                      onClick={() => setEditingLinkedinCreds(false)}
+                      className="p-2 text-brand-black/40 hover:text-brand-black transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setEditingLinkedinCreds(true)}
+                      className="px-3 py-1 border border-brand-black/10 rounded-lg text-xs font-bold text-brand-black hover:bg-brand-sable transition-all"
+                    >
+                      Configurer
+                    </button>
+                  )}
+                </div>
+
+                {status === 'none' && editingLinkedinCreds && (
+                  <div className="px-4 pb-4 space-y-2 animate-fadeIn">
+                    <input
+                      type="text"
+                      autoFocus
+                      value={linkedinClientId}
+                      onChange={(e) => setLinkedinClientId(e.target.value)}
+                      placeholder="Client ID de l'app LinkedIn..."
+                      className="w-full bg-white border border-brand-black/10 rounded-lg px-3 py-2 text-xs text-brand-black focus:outline-none focus:border-brand-orange"
+                    />
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="password"
+                        value={linkedinClientSecret}
+                        onChange={(e) => setLinkedinClientSecret(e.target.value)}
+                        placeholder="Client Secret..."
+                        className="flex-1 bg-white border border-brand-black/10 rounded-lg px-3 py-2 text-xs text-brand-black focus:outline-none focus:border-brand-orange"
+                      />
+                      <button
+                        onClick={handleSaveLinkedinCredentials}
+                        disabled={savingLinkedinCreds || !linkedinClientId.trim() || !linkedinClientSecret.trim()}
+                        className="px-3 py-2 bg-brand-orange text-white rounded-lg text-xs font-bold hover:bg-brand-orange/90 transition-all disabled:opacity-40 flex items-center gap-1.5 whitespace-nowrap"
+                      >
+                        {savingLinkedinCreds ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : 'Enregistrer'}
+                      </button>
+                    </div>
+                    <p className="text-[10px] text-brand-black/35 leading-relaxed">
+                      Depuis votre app sur linkedin.com/developers/apps, une fois le produit "Community Management API" approuvé.
+                    </p>
+                  </div>
+                )}
               </div>
-              <div>
-                <span className="font-bold text-brand-black text-sm block">LinkedIn</span>
-                <span className="text-[10px] text-brand-black/40 font-semibold tracking-wider uppercase">publication automatique de posts</span>
-              </div>
-            </div>
-            <span className="px-3 py-1 bg-brand-sable text-brand-black/60 border border-brand-black/10 rounded-lg text-xs font-bold flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" />
-              bientôt disponible
-            </span>
-          </div>
+            );
+          })()}
 
           {/* Quality Thresholds */}
           <div className="flex items-center justify-between p-4 border border-brand-black/5 rounded-xl hover:border-brand-black/15 bg-brand-sable/5 transition-all">

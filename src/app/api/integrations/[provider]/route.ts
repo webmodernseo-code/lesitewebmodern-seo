@@ -3,7 +3,7 @@ import { getSession } from '@/lib/require-session';
 import { integrationsDb, IntegrationProvider } from '@/lib/integrations-db';
 import { testProviderKey } from '@/lib/ai-providers';
 
-const VALID_PROVIDERS: IntegrationProvider[] = ['claude', 'openai'];
+const VALID_PROVIDERS: IntegrationProvider[] = ['claude', 'openai', 'linkedin'];
 
 export async function POST(request: Request, { params }: { params: { provider: string } }) {
   const session = await getSession();
