@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { Mail, Lock, Eye, EyeOff, AlertCircle, RefreshCw, ShieldCheck, MailCheck } from 'lucide-react';
-import { Logo3D } from '@/components/public/Logo3D';
 
 export default function LoginPage() {
   const { user, login, verifyOtp, resendOtp, loading } = useAuth();
@@ -118,36 +117,27 @@ export default function LoginPage() {
 
       {/* Zone carte(s) */}
       <div className="relative w-full max-w-md">
-        {/* Pile de blocs 3D, en arrière-plan à gauche de la carte (grand écran uniquement) */}
-        <div className="hidden lg:block absolute -left-36 -top-16 w-44 h-[27rem] z-0">
-          <div className="absolute top-0 left-6 w-28 h-28 rounded-[28px] bg-white border border-black/10 shadow-xl rotate-[-4deg] flex items-start justify-center overflow-visible">
-            <svg width="30" height="38" viewBox="0 0 30 38" className="absolute -top-7">
-              <path d="M15 38 L15 16" stroke="#5b8a63" strokeWidth="2.5" strokeLinecap="round" />
-              <path d="M15 20 C6 18 4 8 7 1 C14 4 17 11 15 20Z" fill="#6fa377" />
-              <path d="M15 16 C24 13 26 4 23 -2 C16 1 13 8 15 16Z" fill="#568a5c" />
-            </svg>
-          </div>
-          <div className="absolute top-24 left-0 w-32 h-28 rounded-[28px] bg-[#ff4d00] shadow-xl rotate-[3deg]" />
-          <div className="absolute top-[11.5rem] left-5 w-28 h-28 rounded-[28px] bg-[#F5E6D3] border border-black/5 shadow-xl rotate-[-2deg]" />
-          <div className="absolute top-[18.5rem] left-2 w-28 h-24 rounded-[28px] bg-black/90 shadow-xl rotate-[2deg]" />
-        </div>
-
-        {/* Badge flottant décoratif (desktop uniquement) */}
-        <div className="hidden md:flex absolute -top-7 left-6 z-20 items-center gap-2 bg-black text-white rounded-full pl-2 pr-4 py-2 shadow-xl rotate-[-2deg]">
+        {/* Badge flottant décoratif, centré au-dessus de la carte */}
+        <div className="flex absolute -top-7 left-1/2 -translate-x-1/2 z-20 items-center gap-2 bg-black text-white rounded-full pl-2 pr-4 py-2 shadow-xl">
           <svg width="28" height="28" viewBox="0 0 100 100" className="shrink-0 rounded-lg">
             <rect width="100" height="100" rx="22" fill="#ff4d00" />
             <polygon points="20,28 42,28 42,76 25,76 21,58 27,58" fill="#ffffff" />
             <polygon points="58,28 80,28 70,76 58,76" fill="#ffffff" />
             <polygon points="41,66 59,66 50,46" fill="#ffffff" />
           </svg>
-          <span className="text-xs font-bold tracking-tight">Cockpit sécurisé</span>
+          <span className="text-xs font-bold tracking-tight whitespace-nowrap">Cockpit sécurisé</span>
         </div>
 
         {/* Carte principale en verre dépoli */}
         <div className="relative z-10 bg-white/75 backdrop-blur-xl border border-white shadow-2xl rounded-[32px] px-8 py-10 space-y-6">
-          <div className="flex items-center gap-2.5">
-            <Logo3D scale={0.32} />
-            <span className="text-black font-bold text-base tracking-tight -ml-3">
+          <div className="flex items-center gap-2">
+            <svg width="32" height="32" viewBox="0 0 100 100" className="shrink-0 rounded-lg">
+              <rect width="100" height="100" rx="22" fill="#ff4d00" />
+              <polygon points="20,28 42,28 42,76 25,76 21,58 27,58" fill="#ffffff" />
+              <polygon points="58,28 80,28 70,76 58,76" fill="#ffffff" />
+              <polygon points="41,66 59,66 50,46" fill="#ffffff" />
+            </svg>
+            <span className="text-black font-bold text-base tracking-tight">
               webmodern<span className="text-[#ff4d00]">seo</span>
             </span>
           </div>
