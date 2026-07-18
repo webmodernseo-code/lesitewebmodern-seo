@@ -28,44 +28,14 @@ const slugify = (text: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)+/g, '');
 
-const MOCK_POSTS = [
-  {
-    id: 'm1',
-    title: 'Comment optimiser votre SEO local en 2026',
-    brief: 'Découvrez nos conseils d\'experts et notre guide complet pour optimiser votre SEO local et sur-optimiser votre fiche Google Business Profile.',
-    focus_keyword: 'SEO Local 2026',
-    featured_image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60',
-    created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'm2',
-    title: 'Pourquoi choisir WordPress pour le site de votre agence web',
-    brief: 'Analyse comparative des CMS et des solutions sur-mesure. Pourquoi WordPress reste le pivot incontournable de l\'acquisition de leads en ligne.',
-    focus_keyword: 'WordPress',
-    featured_image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=60',
-    created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'm3',
-    title: 'Automatiser la génération de leads qualifiés avec Next.js',
-    brief: 'Comment coupler la rapidité et le SEO de Next.js avec vos formulaires de contact pour doubler vos taux de conversion commerciaux.',
-    focus_keyword: 'Lead Gen',
-    featured_image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=60',
-    created_at: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString()
-  }
-];
-
 export default async function BlogPage() {
-  let blogPosts: BlogPostView[] = [];
+  let postsToShow: BlogPostView[] = [];
   try {
     const allItems = await dbService.getContentItems();
-    blogPosts = allItems.filter(item => item.type === 'blog' && item.status === 'published');
+    postsToShow = allItems.filter(item => item.type === 'blog' && item.status === 'published');
   } catch (err) {
     console.error("Error loading blog posts:", err);
   }
-
-  // Utiliser les articles de démo si aucun article n'est encore publié
-  const postsToShow = blogPosts.length > 0 ? blogPosts : MOCK_POSTS;
 
   return (
     <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
@@ -87,6 +57,11 @@ export default async function BlogPage() {
         </div>
 
         {/* Grid Posts — 4 par ligne */}
+        {postsToShow.length === 0 ? (
+          <div className="text-center py-20 text-sm font-semibold text-black/40">
+            Aucun article publié pour le moment.
+          </div>
+        ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {postsToShow.map((post) => {
             const slug = slugify(post.title);
@@ -119,6 +94,7 @@ export default async function BlogPage() {
             );
           })}
         </div>
+        )}
       </section>
 
       <FooterPublic />
