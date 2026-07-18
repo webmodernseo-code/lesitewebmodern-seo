@@ -18,6 +18,7 @@ import {
 import { dbService } from '@/lib/content-client';
 import { ContentItem, ContentType, ContentStatus } from '@/types';
 import { useUIFeedback } from '@/context/UIFeedbackContext';
+import { RichTextEditor } from '@/components/RichTextEditor';
 
 interface ContentTabProps {
   newTrigger?: number;
@@ -479,28 +480,23 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
               </div>
             </div>
 
-            {/* Colonne 2 : Aperçu Stylé */}
+            {/* Colonne 2 : Éditeur de contenu */}
             <div className="bg-white border border-brand-black/10 p-6 rounded-2xl space-y-4 shadow-sm min-h-[450px] flex flex-col justify-between">
-              <div className="space-y-2">
+              <div className="space-y-2 flex-1">
                 <h4 className="font-bold text-xs text-brand-black/40 uppercase tracking-widest border-b border-brand-black/5 pb-2">
-                  Aperçu Stylé
+                  Contenu
                 </h4>
-                
-                {editContent ? (
-                  editType === 'blog' ? (
-                    <div 
-                      className="prose prose-sm max-w-none text-brand-black font-sans leading-relaxed text-sm select-text"
-                      dangerouslySetInnerHTML={{ __html: editContent }}
-                    />
-                  ) : (
-                    <div className="whitespace-pre-wrap font-mono text-xs p-4 bg-brand-sable/10 rounded-xl border border-brand-black/5 text-brand-black leading-relaxed">
-                      {editContent}
-                    </div>
-                  )
+
+                {editType === 'blog' ? (
+                  <RichTextEditor content={editContent} onChange={setEditContent} />
                 ) : (
-                  <div className="py-20 text-center text-xs font-semibold text-brand-black/30">
-                    Le contenu généré s'affichera ici.
-                  </div>
+                  <textarea
+                    value={editContent}
+                    onChange={(e) => setEditContent(e.target.value)}
+                    rows={14}
+                    placeholder="Le contenu généré s'affichera ici, ou rédigez-le directement..."
+                    className="w-full font-mono text-xs p-4 bg-brand-sable/10 rounded-xl border border-brand-black/5 text-brand-black leading-relaxed focus:outline-none focus:border-brand-orange resize-none"
+                  />
                 )}
               </div>
 
