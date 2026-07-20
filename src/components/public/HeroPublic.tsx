@@ -8,7 +8,7 @@ export const HeroPublic: React.FC = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
         /* Variables isolées pour le Hero */
-        --wms-hero-bg: linear-gradient(180deg, #faf6ee 0%, #fdfbf7 100%);
+        --wms-hero-bg: #ffffff;
         /* Dégradé sable vers le haut */
         --wms-hero-text-primary: #000000;
         --wms-hero-text-secondary: #5c5c64;
