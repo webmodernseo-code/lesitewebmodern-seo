@@ -67,7 +67,7 @@ export const HeroPublic: React.FC = () => {
 
     /* --- EN-TÊTE DU HERO (TEXTE & TITRES) --- */
     .wms-hero-title {
-        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-size: clamp(2rem, 3.8vw, 3.4rem);
         font-weight: 800;
         color: var(--wms-hero-text-primary);
         line-height: 1.1;
