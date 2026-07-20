@@ -47,7 +47,7 @@ export default async function BlogPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
+    <div className="relative min-h-screen bg-white text-black overflow-x-hidden font-sans">
       <JsonLd data={breadcrumbSchema} />
       <HeaderPublic />
 
@@ -83,7 +83,7 @@ export default async function BlogPage() {
                 className="bg-white border border-black/10 rounded-2xl overflow-hidden shadow-sm hover:border-[#ff4d00]/25 hover:shadow-md transition-all duration-300 flex flex-col group"
               >
                 {/* Image */}
-                <div className="relative h-44 w-full bg-[#fdfbf7] overflow-hidden">
+                <div className="relative h-44 w-full bg-zinc-100 overflow-hidden">
                   <img
                     src={post.featured_image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60'}
                     alt={post.title}

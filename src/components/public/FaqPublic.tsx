@@ -41,7 +41,7 @@ export const FaqPublic: React.FC = () => {
     --primary-orange:       #ff4d00;
     --primary-orange-light: #ff7e47;
     --primary-green:        #0FAC71;
-    --bg:                   linear-gradient(180deg, #fdfbf7 0%, #faf6ee 100%);
+    --bg:                   #ffffff;
     --card-bg:              #faf6ee; /* Couleur crème claire pour éléments pliés */
     --card-bg-active:       #ffffff; /* Blanc pur pour l'élément déplié */
     --text:                 #000000;

@@ -6,7 +6,7 @@ export const FooterPublic: React.FC = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
             /* Variables CSS isolées pour Webmodernseo */
-            --wms-footer-bg: linear-gradient(180deg, #faf6ee 0%, #fdfbf7 100%);
+            --wms-footer-bg: #faf6ee;
             --wms-footer-brand-orange: #ff4d00;
             --wms-footer-brand-orange-light: #ff7e47;
             --wms-footer-text-primary: #000000;

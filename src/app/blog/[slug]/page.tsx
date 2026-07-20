@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   ]);
 
   return (
-    <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
+    <div className="relative min-h-screen bg-white text-black overflow-x-hidden font-sans">
       <JsonLd data={articleSchema} />
       <JsonLd data={breadcrumbSchema} />
       <HeaderPublic />

@@ -132,7 +132,7 @@ export const AvisPublic: React.FC = () => {
     --primary-orange-light: #ff7e47;
     --primary-green:        #0FAC71;
     --primary-green-light:  #33db88;
-    --bg:                   linear-gradient(180deg, #fdfbf7 0%, #faf6ee 100%);
+    --bg:                   #ffffff;
     --card-bg:              #ffffff;
     --card-border:          rgba(15, 15, 17, 0.08);
     --text:                 #000000;

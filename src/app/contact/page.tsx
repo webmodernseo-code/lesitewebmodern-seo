@@ -6,7 +6,7 @@ import { Mail, Phone } from 'lucide-react';
 
 export default function ContactPage() {
   return (
-    <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
+    <div className="relative min-h-screen bg-white text-black overflow-x-hidden font-sans">
       <HeaderPublic />
 
       <main className="w-full pt-32 pb-32 px-6 max-w-5xl mx-auto flex flex-col md:flex-row gap-12 items-start">
@@ -28,13 +28,13 @@ export default function ContactPage() {
               Nos coordonnées
             </h2>
             <a href="mailto:contact@webmodernseo.co" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-xl bg-[#FDFBF7] border border-black/5 flex items-center justify-center text-[#ff4d00] shadow-sm shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-zinc-50 border border-black/5 flex items-center justify-center text-[#ff4d00] shadow-sm shrink-0">
                 <Mail className="w-4 h-4" />
               </div>
               <span className="font-semibold text-black text-sm group-hover:text-[#ff4d00] transition-colors">contact@webmodernseo.co</span>
             </a>
             <a href="tel:+33753887751" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-xl bg-[#FDFBF7] border border-black/5 flex items-center justify-center text-[#ff4d00] shadow-sm shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-zinc-50 border border-black/5 flex items-center justify-center text-[#ff4d00] shadow-sm shrink-0">
                 <Phone className="w-4 h-4" />
               </div>
               <span className="font-semibold text-black text-sm group-hover:text-[#ff4d00] transition-colors">+33 7 53 88 77 51</span>
