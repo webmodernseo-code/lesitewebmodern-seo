@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  Plus, 
-  Trash2, 
-  X, 
-  Check, 
-  ChevronRight, 
-  ArrowLeft, 
-  Briefcase,
-  Edit2,
-  Calendar,
-  CheckCircle,
-  FileText
+import {
+  Plus,
+  Trash2,
+  Check,
+  ChevronRight,
+  ArrowLeft,
+  Edit2
 } from 'lucide-react';
 import { dbService } from '@/lib/projects-client';
-import { Project, ProjectPhase, ProjectTask, ProjectStatus, TaskPriority } from '@/types';
+import { Project, ProjectPhase, ProjectTask } from '@/types';
 import { useUIFeedback } from '@/context/UIFeedbackContext';
 
 interface PlanningTabProps {
@@ -33,11 +28,6 @@ export const PlanningTab: React.FC<PlanningTabProps> = ({ newTrigger }) => {
   const [newProjClient, setNewProjClient] = useState('');
   const [newProjDeadline, setNewProjDeadline] = useState('');
 
-  // UI states for Phase creation/editing
-  const [newPhaseName, setNewPhaseName] = useState('');
-  const [editingPhaseId, setEditingPhaseId] = useState<string | null>(null);
-  const [editPhaseName, setEditPhaseName] = useState('');
-  
   // UI states for Task creation
   const [newTaskInputs, setNewTaskInputs] = useState<Record<string, string>>({});
 

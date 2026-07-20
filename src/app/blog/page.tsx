@@ -4,12 +4,14 @@ import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 import { dbService } from '@/lib/supabase-db';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BookOpen } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
+import { Reveal } from '@/components/Reveal';
 import { buildBreadcrumbSchema, SITE_URL } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: "Blog | WebModernSEO — Conseils SEO, Web & Growth",
+  title: "Blog — Conseils SEO, Web & Growth",
   description: "Nos meilleures pratiques en création de sites internet, référencement naturel et tunnels d'acquisition commerciale, par l'équipe WebModernSEO.",
   alternates: { canonical: '/blog' },
 };
@@ -52,7 +54,7 @@ export default async function BlogPage() {
       <HeaderPublic />
 
       {/* Hero Section Épurée */}
-      <section className="w-full pt-36 pb-16 px-6 max-w-7xl mx-auto">
+      <section className="w-full pt-36 pb-16 px-6 max-w-[1400px] mx-auto">
         <div className="text-center space-y-5 max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 bg-[#ff4d00]/10 text-[#ff4d00] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
             <BookOpen className="w-3.5 h-3.5" />
@@ -62,7 +64,7 @@ export default async function BlogPage() {
             Analyses, conseils & <span className="text-[#ff4d00]">stratégies</span> de croissance.
           </h1>
           <p className="text-sm md:text-base text-[#5c5c64] font-medium leading-relaxed max-w-2xl mx-auto">
-            Nous partageons nos meilleures pratiques en création de sites internet, référencement naturel et tunnels d'acquisition commerciale.
+            Nous partageons nos meilleures pratiques en création de sites internet, référencement naturel et tunnels d&apos;acquisition commerciale.
           </p>
         </div>
 
@@ -72,7 +74,7 @@ export default async function BlogPage() {
             Aucun article publié pour le moment.
           </div>
         ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {postsToShow.map((post) => {
             const slug = post.slug || slugify(post.title);
 
@@ -84,10 +86,12 @@ export default async function BlogPage() {
               >
                 {/* Image */}
                 <div className="relative h-44 w-full bg-zinc-100 overflow-hidden">
-                  <img
+                  <Image
                     src={post.featured_image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60'}
                     alt={post.title}
-                    className="object-cover w-full h-full group-hover:scale-105 transition-all duration-500"
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover group-hover:scale-105 transition-all duration-500"
                   />
                 </div>
 
@@ -103,7 +107,7 @@ export default async function BlogPage() {
               </Link>
             );
           })}
-        </div>
+        </Reveal>
         )}
       </section>
 

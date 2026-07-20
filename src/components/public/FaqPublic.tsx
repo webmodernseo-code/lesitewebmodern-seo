@@ -7,19 +7,20 @@ export const FaqPublic: React.FC = () => {
     try {
       (function() {
     const faqItems = document.querySelectorAll('.wms-faq-item');
-    
+
     faqItems.forEach(item => {
       const btn = item.querySelector('.wms-faq-question-btn');
-      
+      if (!btn) return;
+
       btn.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
-        
+
         // Ferme tous les autres éléments de la FAQ
         faqItems.forEach(otherItem => {
           otherItem.classList.remove('active');
-          otherItem.querySelector('.wms-faq-question-btn').setAttribute('aria-expanded', 'false');
+          otherItem.querySelector('.wms-faq-question-btn')?.setAttribute('aria-expanded', 'false');
         });
-        
+
         // Si l'élément cliqué n'était pas actif, on l'ouvre
         if (!isActive) {
           item.classList.add('active');
@@ -41,7 +42,7 @@ export const FaqPublic: React.FC = () => {
     --primary-orange:       #ff4d00;
     --primary-orange-light: #ff7e47;
     --primary-green:        #0FAC71;
-    --bg:                   #ffffff;
+    --bg:                   linear-gradient(180deg, #fdfbf7 0%, #faf6ee 100%);
     --card-bg:              #faf6ee; /* Couleur crème claire pour éléments pliés */
     --card-bg-active:       #ffffff; /* Blanc pur pour l'élément déplié */
     --text:                 #000000;

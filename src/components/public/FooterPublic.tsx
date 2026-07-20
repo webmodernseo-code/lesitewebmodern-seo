@@ -56,8 +56,8 @@ export const FooterPublic: React.FC = () => {
         /* --- GRID FOOTER --- */
         .wms-footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1.2fr 1.3fr;
-            gap: 48px;
+            grid-template-columns: 1.8fr 1fr 1fr 1fr 1.2fr;
+            gap: 40px;
             margin-bottom: 60px;
         }
 
@@ -261,17 +261,6 @@ export const FooterPublic: React.FC = () => {
       ` }} />
       
       <div dangerouslySetInnerHTML={{ __html: `
-        {/* Importation de la police Inter unique */}
-
-
-    {/* ==========================================================================
-       CSS DU COMPOSANT FOOTER (Styles isolés)
-       ========================================================================== */}
-    
-
-    {/* ==========================================================================
-       HTML DU FOOTER (Composant Footer)
-       ========================================================================== */}
     <footer class="wms-footer-wrapper">
         <div class="wms-footer-container">
             <div class="wms-footer-grid">
@@ -290,7 +279,7 @@ export const FooterPublic: React.FC = () => {
                     </a>
                     <p class="wms-footer-desc">Création de sites internet modernes (Next.js) et sur-mesure,
                         optimisés pour le référencement (SEO) et automatisés pour générer des leads. Basés à Grenoble,
-                        intervention à Lyon, Saint-Étienne, Paris et à distance partout en France.</p>
+                        intervention à Paris, Lyon, Saint-Étienne et à distance partout en France.</p>
                     <div class="wms-footer-socials">
                         <!-- Facebook -->
                         <a href="https://www.facebook.com/webmodernseo" class="wms-social-icon" target="_blank"
@@ -328,7 +317,20 @@ export const FooterPublic: React.FC = () => {
                         <li class="wms-footer-link-item"><a href="/services/creation-web">Création Web</a></li>
                         <li class="wms-footer-link-item"><a href="/services/referencement-seo">Référencement SEO</a></li>
                         <li class="wms-footer-link-item"><a href="/services/acquisition-clients">Acquisition Clients</a></li>
+                        <li class="wms-footer-link-item"><a href="/services/publicite-meta-ads">Publicité Meta Ads</a></li>
+                        <li class="wms-footer-link-item"><a href="/services/creation-site-ecommerce">Site E-commerce</a></li>
                         <li class="wms-footer-link-item"><a href="/services/creation-web#maintenance-securite">Maintenance de site</a></li>
+                    </ul>
+                </div>
+
+                <!-- Zones d'intervention (SEO local, Grenoble en priorité) -->
+                <div class="wms-footer-col">
+                    <h4>Zones d'intervention</h4>
+                    <ul class="wms-footer-links">
+                        <li class="wms-footer-link-item"><a href="/grenoble">Grenoble</a></li>
+                        <li class="wms-footer-link-item"><a href="/paris">Paris</a></li>
+                        <li class="wms-footer-link-item"><a href="/lyon">Lyon</a></li>
+                        <li class="wms-footer-link-item"><a href="/saint-etienne">Saint-Étienne</a></li>
                     </ul>
                 </div>
 
@@ -340,7 +342,6 @@ export const FooterPublic: React.FC = () => {
                         <li class="wms-footer-link-item"><a href="/apropos">À propos</a></li>
                         <li class="wms-footer-link-item"><a href="/portfolio">Portfolio</a></li>
                         <li class="wms-footer-link-item"><a href="/blog">Blog</a></li>
-                        <li class="wms-footer-link-item"><a href="/dashboard" style="color: #ff7e47; font-weight: 700;">Admin</a></li>
                     </ul>
                 </div>
 

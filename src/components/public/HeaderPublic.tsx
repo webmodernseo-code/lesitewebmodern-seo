@@ -1,7 +1,12 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { ThemeToggle } from '@/components/ThemeToggle';
+
+declare global {
+  interface Window {
+    toggleMobileDropdown?: (button: HTMLElement) => void;
+  }
+}
 
 export const HeaderPublic: React.FC = () => {
   useEffect(() => {
@@ -12,6 +17,10 @@ export const HeaderPublic: React.FC = () => {
                 const hamburgerBtn = document.getElementById('wms-hamburger');
                 const mobileMenu = document.getElementById('wms-mobile-menu');
                 const body = document.body;
+
+                if (!header || !hamburgerBtn || !mobileMenu) {
+                    return;
+                }
 
                 // 1. Gestion du changement de style au défilement (Sticky Scrolled)
                 const handleScroll = () => {
@@ -25,51 +34,51 @@ export const HeaderPublic: React.FC = () => {
                 handleScroll(); // Init au chargement
 
                 // 2. Gestion de l'ouverture/fermeture du menu mobile
-                const toggleMobileMenu = () => {
-                    const isOpen = hamburgerBtn.classList.contains('wms-active');
+                const toggleMobileMenu = (btn: Element) => {
+                    const isOpen = btn.classList.contains('wms-active');
                     if (isOpen) {
                         // Fermeture
-                        hamburgerBtn.classList.remove('wms-active');
+                        btn.classList.remove('wms-active');
                         mobileMenu.classList.remove('wms-active');
                         body.classList.remove('wms-menu-open');
-                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                        btn.setAttribute('aria-expanded', 'false');
                     } else {
                         // Ouverture
-                        hamburgerBtn.classList.add('wms-active');
+                        btn.classList.add('wms-active');
                         mobileMenu.classList.add('wms-active');
                         body.classList.add('wms-menu-open');
-                        hamburgerBtn.setAttribute('aria-expanded', 'true');
+                        btn.setAttribute('aria-expanded', 'true');
                     }
                 };
 
-                let activeHamburger = hamburgerBtn;
-                if (hamburgerBtn && mobileMenu) {
+                if (hamburgerBtn.parentNode) {
                     // Enlève l'ancien listener s'il existe (protection événements)
-                    const newHamburgerBtn = hamburgerBtn.cloneNode(true);
+                    const newHamburgerBtn = hamburgerBtn.cloneNode(true) as HTMLElement;
                     hamburgerBtn.parentNode.replaceChild(newHamburgerBtn, hamburgerBtn);
-                    activeHamburger = newHamburgerBtn;
-                    
-                    newHamburgerBtn.addEventListener('click', toggleMobileMenu);
+
+                    newHamburgerBtn.addEventListener('click', () => toggleMobileMenu(newHamburgerBtn));
 
                     // 2b. Fermer le menu mobile lors d'un clic en dehors
                     document.addEventListener('click', (event) => {
                         const isOpen = newHamburgerBtn.classList.contains('wms-active');
-                        if (isOpen && !mobileMenu.contains(event.target) && !newHamburgerBtn.contains(event.target)) {
-                            toggleMobileMenu();
+                        const target = event.target as Node | null;
+                        if (isOpen && target && !mobileMenu.contains(target) && !newHamburgerBtn.contains(target)) {
+                            toggleMobileMenu(newHamburgerBtn);
                         }
                     });
 
                     // 2c. Bouton de fermeture (croix) interne au menu mobile
                     const closeBtn = document.getElementById('wms-mobile-close-btn');
                     if (closeBtn) {
-                        closeBtn.addEventListener('click', toggleMobileMenu);
+                        closeBtn.addEventListener('click', () => toggleMobileMenu(newHamburgerBtn));
                     }
                 }
 
                 // 3. Gestion de l'accordéon mobile
-                window.toggleMobileDropdown = function(button) {
+                window.toggleMobileDropdown = function (button: HTMLElement) {
                     const parent = button.closest('.wms-mobile-dropdown');
-                    const submenu = parent.querySelector('.wms-mobile-submenu');
+                    const submenu = parent?.querySelector<HTMLElement>('.wms-mobile-submenu');
+                    if (!parent || !submenu) return;
                     parent.classList.toggle('wms-open');
                     if (parent.classList.contains('wms-open')) {
                         submenu.style.maxHeight = submenu.scrollHeight + 'px';
@@ -83,8 +92,8 @@ export const HeaderPublic: React.FC = () => {
                 const desktopLinks = header.querySelectorAll('.wms-nav-link, .wms-dropdown-item');
                 const mobileLinks = mobileMenu.querySelectorAll('.wms-mobile-nav-link, .wms-mobile-submenu-link');
 
-                const setActiveLink = (links, parentWrapperClass, toggleClass) => {
-                    let bestMatch = null;
+                const setActiveLink = (links: NodeListOf<Element>, parentWrapperClass: string, toggleClass: string) => {
+                    let bestMatch: Element | null = null;
                     let longestMatch = 0;
 
                     links.forEach(link => {
@@ -102,9 +111,10 @@ export const HeaderPublic: React.FC = () => {
                     });
 
                     if (bestMatch) {
-                        bestMatch.classList.add('wms-active');
+                        const matchedLink: Element = bestMatch;
+                        matchedLink.classList.add('wms-active');
                         // Activer le parent dropdown si c'est un lien de sous-menu
-                        const parentDropdown = bestMatch.closest(parentWrapperClass);
+                        const parentDropdown = matchedLink.closest(parentWrapperClass);
                         if (parentDropdown) {
                             const toggle = parentDropdown.querySelector(toggleClass);
                             if (toggle) toggle.classList.add('wms-active');
@@ -864,6 +874,19 @@ export const HeaderPublic: React.FC = () => {
                     <li class="wms-nav-item"><a href="/#services" class="wms-nav-link">Services</a></li>
                     <li class="wms-nav-item"><a href="/apropos" class="wms-nav-link">À propos</a></li>
                     <li class="wms-nav-item"><a href="/portfolio" class="wms-nav-link">Portfolio</a></li>
+                    <!-- Dropdown Nos Villes (Grenoble en priorité) -->
+                    <li class="wms-nav-item wms-dropdown">
+                        <a href="#" class="wms-nav-link wms-dropdown-toggle" onclick="return false;">
+                            Nos Villes
+                            <span class="wms-desktop-dot"></span>
+                        </a>
+                        <ul class="wms-dropdown-menu">
+                            <li><a href="/grenoble" class="wms-dropdown-item">Grenoble</a></li>
+                            <li><a href="/paris" class="wms-dropdown-item">Paris</a></li>
+                            <li><a href="/lyon" class="wms-dropdown-item">Lyon</a></li>
+                            <li><a href="/saint-etienne" class="wms-dropdown-item">Saint-Étienne</a></li>
+                        </ul>
+                    </li>
                     <!-- Dropdown Ressources -->
                     <li class="wms-nav-item wms-dropdown">
                         <a href="#" class="wms-nav-link wms-dropdown-toggle" onclick="return false;">
@@ -873,7 +896,6 @@ export const HeaderPublic: React.FC = () => {
                         <ul class="wms-dropdown-menu">
                             <li><a href="/blog" class="wms-dropdown-item">Blog</a></li>
                             <li><a href="https://magazinia.webmodernseo.co" class="wms-dropdown-item" target="_blank" rel="noopener">Magazine IA</a></li>
-                            <li><a href="/dashboard" class="wms-dropdown-item" style="color: #ff4d00; font-weight: 700;">Cockpit Admin</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -919,6 +941,20 @@ export const HeaderPublic: React.FC = () => {
                     <li><a href="/portfolio" class="wms-mobile-nav-link">Portfolio</a></li>
                     <li class="wms-mobile-dropdown">
                         <button class="wms-mobile-nav-link wms-mobile-dropdown-toggle" onclick="toggleMobileDropdown(this)">
+                            Nos Villes
+                            <svg class="wms-dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <ul class="wms-mobile-submenu">
+                            <li><a href="/grenoble" class="wms-mobile-submenu-link">Grenoble</a></li>
+                            <li><a href="/paris" class="wms-mobile-submenu-link">Paris</a></li>
+                            <li><a href="/lyon" class="wms-mobile-submenu-link">Lyon</a></li>
+                            <li><a href="/saint-etienne" class="wms-mobile-submenu-link">Saint-Étienne</a></li>
+                        </ul>
+                    </li>
+                    <li class="wms-mobile-dropdown">
+                        <button class="wms-mobile-nav-link wms-mobile-dropdown-toggle" onclick="toggleMobileDropdown(this)">
                             Ressources
                             <svg class="wms-dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -927,7 +963,6 @@ export const HeaderPublic: React.FC = () => {
                         <ul class="wms-mobile-submenu">
                             <li><a href="/blog" class="wms-mobile-submenu-link">Blog</a></li>
                             <li><a href="https://magazinia.webmodernseo.co" class="wms-mobile-submenu-link" target="_blank" rel="noopener">Magazine IA</a></li>
-                            <li><a href="/dashboard" class="wms-mobile-submenu-link" style="color: #ff4d00; font-weight: 700;">Cockpit Admin</a></li>
                         </ul>
                     </li>
                 </ul>

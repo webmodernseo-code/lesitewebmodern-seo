@@ -8,16 +8,22 @@ export default function Page() {
   useEffect(() => {
     try {
       (function() {
-    const slider = document.getElementById('speed-slider');
+    const slider = document.getElementById('speed-slider') as HTMLInputElement | null;
     const bounceVal = document.getElementById('bounce-val');
     const lossVal = document.getElementById('loss-val');
     const progressIndicator = document.getElementById('progress-indicator');
     const verdictText = document.getElementById('verdict-text');
-    const simVerdict = document.getElementById('sim-verdict');
 
     if (!slider || !bounceVal || !lossVal || !progressIndicator || !verdictText) return;
 
-    function updateSimulation(speed) {
+    // Réassignations narrowées : conservent le type non-nullable dans la closure ci-dessous.
+    const sliderEl = slider;
+    const bounceValEl = bounceVal;
+    const lossValEl = lossVal;
+    const progressIndicatorEl = progressIndicator;
+    const verdictTextEl = verdictText;
+
+    function updateSimulation(speed: number) {
       let bounce = 0;
       let loss = 0;
       let text = '';
@@ -49,40 +55,40 @@ export default function Page() {
 
       // Mises à jour des valeurs textuelles
       if (isPerfect) {
-        bounceVal.textContent = bounce + '%';
-        bounceVal.style.color = 'var(--primary-green)';
-        lossVal.textContent = '0%';
-        lossVal.style.color = 'var(--primary-green)';
-        lossVal.className = 'wm-sim-metric-val green-ok';
-        bounceVal.className = 'wm-sim-metric-val green-ok';
+        bounceValEl.textContent = bounce + '%';
+        bounceValEl.style.color = 'var(--primary-green)';
+        lossValEl.textContent = '0%';
+        lossValEl.style.color = 'var(--primary-green)';
+        lossValEl.className = 'wm-sim-metric-val green-ok';
+        bounceValEl.className = 'wm-sim-metric-val green-ok';
       } else {
-        bounceVal.textContent = bounce + '%';
-        bounceVal.style.color = '';
-        lossVal.textContent = '-' + loss + '%';
-        lossVal.style.color = '';
-        lossVal.className = 'wm-sim-metric-val';
-        bounceVal.className = 'wm-sim-metric-val';
+        bounceValEl.textContent = bounce + '%';
+        bounceValEl.style.color = '';
+        lossValEl.textContent = '-' + loss + '%';
+        lossValEl.style.color = '';
+        lossValEl.className = 'wm-sim-metric-val';
+        bounceValEl.className = 'wm-sim-metric-val';
       }
 
       // Mise à jour de la jauge visuelle
-      progressIndicator.style.width = loss + '%';
+      progressIndicatorEl.style.width = loss + '%';
       if (isPerfect) {
-        progressIndicator.style.background = 'var(--primary-green)';
+        progressIndicatorEl.style.background = 'var(--primary-green)';
       } else if (loss < 40) {
-        progressIndicator.style.background = '#f59e0b'; // Amber
+        progressIndicatorEl.style.background = '#f59e0b'; // Amber
       } else {
-        progressIndicator.style.background = ''; // Red gradient par défaut
+        progressIndicatorEl.style.background = ''; // Red gradient par défaut
       }
 
       // Mise à jour du verdict textuel
-      verdictText.textContent = text;
+      verdictTextEl.textContent = text;
     }
 
     // Initialisation
-    updateSimulation(parseFloat(slider.value));
+    updateSimulation(parseFloat(sliderEl.value));
 
     // Détecteurs d'événements (Input pour fluidité temps réel)
-    slider.addEventListener('input', function() {
+    sliderEl.addEventListener('input', function() {
       updateSimulation(parseFloat(this.value));
     });
   })();

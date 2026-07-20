@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Briefcase, DollarSign, Target, User, Phone, Mail, Plus, Trash, CheckCircle2, AlertCircle, TrendingUp, RefreshCw } from 'lucide-react';
+import { Briefcase, DollarSign, Target, Phone, Mail, Plus, Trash, CheckCircle2, TrendingUp, RefreshCw } from 'lucide-react';
 import { useUIFeedback } from '@/context/UIFeedbackContext';
 import { crmService, Deal } from '@/lib/crm-client';
 
@@ -122,7 +122,7 @@ export const CRMTab: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-brand-black/5 pb-5">
         <div>
           <h1 className="text-xl font-bold tracking-tight text-brand-black">Suivi Commercial CRM</h1>
-          <p className="text-xs text-brand-black/45 mt-0.5">Gérez votre pipeline de vente et suivez vos objectifs de chiffre d'affaires.</p>
+          <p className="text-xs text-brand-black/45 mt-0.5">Gérez votre pipeline de vente et suivez vos objectifs de chiffre d&apos;affaires.</p>
         </div>
         <button
           onClick={() => setShowAddModal(true)}
@@ -269,7 +269,7 @@ export const CRMTab: React.FC = () => {
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-brand-black/50 uppercase tracking-widest block">Nom de l'entreprise *</label>
+                <label className="text-[10px] font-bold text-brand-black/50 uppercase tracking-widest block">Nom de l&apos;entreprise *</label>
                 <input
                   type="text"
                   required

@@ -3,7 +3,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { buildBreadcrumbSchema, SITE_URL } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: "Contact | WebModernSEO — Agence Web & SEO",
+  title: "Contact — Agence Web & SEO",
   description: "Contactez WebModernSEO pour discuter de votre projet de site internet, de stratégie SEO ou d'automatisation de génération de leads.",
   alternates: { canonical: '/contact' },
 };

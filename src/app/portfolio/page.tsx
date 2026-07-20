@@ -10,7 +10,7 @@ export default function Page() {
       (function () {
     function initPortfolioFilters() {
       const filterBtns = document.querySelectorAll('.wm-portfolio .portfolio-filter-btn');
-      const cards = document.querySelectorAll('.wm-portfolio .portfolio-card');
+      const cards = document.querySelectorAll<HTMLElement>('.wm-portfolio .portfolio-card');
 
       if (filterBtns && cards) {
         filterBtns.forEach(btn => {
@@ -27,7 +27,7 @@ export default function Page() {
 
             // Filtrage avec fondu animé
             cards.forEach(card => {
-              if (filterValue === 'all' || card.classList.contains(filterValue)) {
+              if (filterValue === 'all' || (filterValue && card.classList.contains(filterValue))) {
                 // Montrer la carte
                 card.style.display = 'flex';
                 setTimeout(() => {
@@ -53,7 +53,7 @@ export default function Page() {
     function initSeoTabs() {
       const tabBtns = document.querySelectorAll('.wm-portfolio .seo-tab-btn');
       const tabContents = document.querySelectorAll('.wm-portfolio .seo-tab-content');
-      const mockupScreens = document.querySelectorAll('.wm-portfolio .mockup-screen');
+      const mockupScreens = document.querySelectorAll<HTMLElement>('.wm-portfolio .mockup-screen');
       const mockupUrl = document.getElementById('mockup-url');
 
       if (tabBtns && tabContents && mockupScreens) {
@@ -85,10 +85,10 @@ export default function Page() {
 
                 // Relancer l'animation du graphique SVG si c'est l'écran 3
                 if (stepId === '3') {
-                  const line = screen.querySelector('.chart-line');
+                  const line = screen.querySelector<HTMLElement>('.chart-line');
                   if (line) {
                     line.style.animation = 'none';
-                    line.offsetHeight; /* trigger reflow */
+                    void line.offsetHeight; // trigger reflow
                     line.style.animation = 'drawChart 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
                   }
                 }

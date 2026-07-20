@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AuthProvider } from "@/context/AuthContext";
 import { UIFeedbackProvider } from "@/context/UIFeedbackContext";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { JsonLd } from "@/components/JsonLd";
+import { buildWebSiteSchema } from "@/lib/schema";
 import "./globals.css";
 
 const inter = Inter({
@@ -10,9 +11,9 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const DEFAULT_TITLE = "webmodernseo.co — Agence Web et Référencement Naturel Premium SEO";
+const DEFAULT_TITLE = "Agence Web & SEO à Grenoble — Création de Site, Référencement";
 const DEFAULT_DESCRIPTION =
-  "Création de sites internet modernes et performants (Next.js), stratégies de référencement naturel SEO avancées et automatisation de leads pour votre business.";
+  "Agence basée à Grenoble : création de sites internet Next.js et référencement SEO. Intervention à Paris, Lyon, Saint-Étienne et partout en France.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://webmodernseo.co"),
@@ -22,9 +23,12 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   keywords: [
-    "agence seo",
+    "agence seo grenoble",
     "création de site internet",
     "référencement naturel",
+    "publicité meta ads",
+    "création application web",
+    "site e-commerce",
     "développement Next.js",
     "sxo",
     "acquisition de leads"
@@ -34,7 +38,7 @@ export const metadata: Metadata = {
   publisher: "WebModernSEO",
   category: "Technology",
   alternates: {
-    canonical: "./",
+    canonical: "https://webmodernseo.co/",
   },
   robots: {
     index: true,
@@ -73,13 +77,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable}`}>
       <body className="font-sans antialiased min-h-screen selection:bg-amber-500 selection:text-black">
-        <ThemeProvider>
-          <UIFeedbackProvider>
-            <AuthProvider>
-              {children}
-            </AuthProvider>
-          </UIFeedbackProvider>
-        </ThemeProvider>
+        <JsonLd data={buildWebSiteSchema()} />
+        <UIFeedbackProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </UIFeedbackProvider>
       </body>
     </html>
   );

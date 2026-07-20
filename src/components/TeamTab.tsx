@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useAuth, Collaborator } from '@/context/AuthContext';
 import { useUIFeedback } from '@/context/UIFeedbackContext';
-import { UserPlus, Shield, Check, Trash2, Key, Users, Eye, EyeOff } from 'lucide-react';
+import { UserPlus, Shield, Trash2, Users, Eye, EyeOff } from 'lucide-react';
 
 export const TeamTab: React.FC = () => {
   const { user, collaborators, addCollaborator, removeCollaborator } = useAuth();
@@ -76,7 +76,7 @@ export const TeamTab: React.FC = () => {
             <Users className="w-5 h-5 text-brand-orange" />
             Gestion des Collaborateurs
           </h1>
-          <p className="text-xs text-brand-black/45 mt-0.5">Configurez les comptes de votre équipe et assignez des droits d'accès sélectifs.</p>
+          <p className="text-xs text-brand-black/45 mt-0.5">Configurez les comptes de votre équipe et assignez des droits d&apos;accès sélectifs.</p>
         </div>
         {isSuperAdmin && (
           <button
@@ -94,7 +94,7 @@ export const TeamTab: React.FC = () => {
         <Shield className="w-5 h-5 text-[#0FAC71] shrink-0 mt-0.5" />
         <div>
           <span className="font-extrabold text-[#0FAC71] uppercase tracking-wider block mb-0.5">Règle de Monopole</span>
-          En tant que Super Administrateur fondateur (<span className="font-bold">webmodernseo@gmail.com</span>), vous seul détenez le contrôle global de l'équipe. Personne ne peut modifier ou supprimer votre compte, même les autres administrateurs.
+          En tant que Super Administrateur fondateur (<span className="font-bold">webmodernseo@gmail.com</span>), vous seul détenez le contrôle global de l&apos;équipe. Personne ne peut modifier ou supprimer votre compte, même les autres administrateurs.
         </div>
       </div>
 
@@ -177,7 +177,7 @@ export const TeamTab: React.FC = () => {
       {showAddModal && (
         <div className="fixed inset-0 bg-brand-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white border border-brand-black/10 p-8 rounded-[32px] max-w-md w-full shadow-2xl space-y-5 animate-scaleUp">
-            <h2 className="text-lg font-bold text-brand-black border-b border-brand-black/5 pb-3">Ajouter un membre d'équipe</h2>
+            <h2 className="text-lg font-bold text-brand-black border-b border-brand-black/5 pb-3">Ajouter un membre d&apos;équipe</h2>
             
             <form onSubmit={handleAddMember} className="space-y-4">
               <div className="space-y-1">

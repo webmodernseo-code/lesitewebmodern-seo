@@ -35,7 +35,7 @@ export const VILLES_DATA: Record<string, VilleSEOData> = {
     nom: 'Grenoble',
     codePostal: '38000',
     region: 'Auvergne-Rhône-Alpes',
-    titreSEO: 'Création de Site Web & SEO à Grenoble | WebModernSEO',
+    titreSEO: 'Création de Site Web & SEO à Grenoble',
     descriptionSEO: 'Spécialiste de la création de sites internet et du référencement naturel à Grenoble. Développez la notoriété de votre marque auprès des clients isérois.',
     introText: 'Au cœur des Alpes et du pôle d\'innovation isérois, Grenoble réclame une présence digitale d\'élite. Nous aidons les acteurs locaux à capturer de nouveaux prospects qualifiés.',
     avantagesLocaux: [
@@ -54,7 +54,7 @@ export const VILLES_DATA: Record<string, VilleSEOData> = {
     nom: 'Paris',
     codePostal: '75000',
     region: 'Île-de-France',
-    titreSEO: 'Agence SEO & Création Web Next.js à Paris | WebModernSEO',
+    titreSEO: 'Agence SEO & Création Web Next.js à Paris',
     descriptionSEO: 'Conception de sites internet sur-mesure d\'ingénieur et stratégies de référencement SEO de premier plan pour les entreprises et startups parisiennes.',
     introText: 'Sur le marché francilien ultra-exigeant, un site lent ou mal référencé est invisible. WebModernSEO apporte l\'excellence technique Next.js pour s\'imposer face aux acteurs parisiens.',
     avantagesLocaux: [

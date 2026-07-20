@@ -8,9 +8,9 @@ export default function Page() {
   useEffect(() => {
     try {
       (function() {
-    const sliderTraffic = document.getElementById('slider-traffic');
-    const sliderValue = document.getElementById('slider-value');
-    const toggleAcq = document.getElementById('toggle-acq');
+    const sliderTraffic = document.getElementById('slider-traffic') as HTMLInputElement | null;
+    const sliderValue = document.getElementById('slider-value') as HTMLInputElement | null;
+    const toggleAcq = document.getElementById('toggle-acq') as HTMLInputElement | null;
 
     const valTraffic = document.getElementById('val-traffic');
     const valValue = document.getElementById('val-value');
@@ -27,20 +27,42 @@ export default function Page() {
     const statRevenue = document.getElementById('stat-revenue');
     const roiBadge = document.getElementById('roi-badge');
 
-    if (!sliderTraffic || !sliderValue || !toggleAcq) return;
+    if (
+      !sliderTraffic || !sliderValue || !toggleAcq ||
+      !valTraffic || !valValue ||
+      !funnelTrafficNum || !funnelLeadsNum || !funnelSalesNum ||
+      !fillTraffic || !fillLeads || !fillSales ||
+      !statConvRate || !statRevenue || !roiBadge
+    ) return;
 
-    function formatNumber(num) {
+    // Réassignations narrowées : conservent le type non-nullable dans la closure ci-dessous.
+    const sliderTrafficEl = sliderTraffic;
+    const sliderValueEl = sliderValue;
+    const toggleAcqEl = toggleAcq;
+    const valTrafficEl = valTraffic;
+    const valValueEl = valValue;
+    const funnelTrafficNumEl = funnelTrafficNum;
+    const funnelLeadsNumEl = funnelLeadsNum;
+    const funnelSalesNumEl = funnelSalesNum;
+    const fillTrafficEl = fillTraffic;
+    const fillLeadsEl = fillLeads;
+    const fillSalesEl = fillSales;
+    const statConvRateEl = statConvRate;
+    const statRevenueEl = statRevenue;
+    const roiBadgeEl = roiBadge;
+
+    function formatNumber(num: number) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
     function updateFunnel() {
-      const traffic = parseInt(sliderTraffic.value);
-      const clientValue = parseInt(sliderValue.value);
-      const isOptimized = toggleAcq.checked;
+      const traffic = parseInt(sliderTrafficEl.value);
+      const clientValue = parseInt(sliderValueEl.value);
+      const isOptimized = toggleAcqEl.checked;
 
       // Update text values
-      valTraffic.textContent = formatNumber(traffic) + " Visiteurs";
-      valValue.textContent = formatNumber(clientValue) + " €";
+      valTrafficEl.textContent = formatNumber(traffic) + " Visiteurs";
+      valValueEl.textContent = formatNumber(clientValue) + " €";
 
       // Conversion rates
       // Normal: 1.2% conversion rate, 20% of those closed as customers
@@ -53,42 +75,41 @@ export default function Page() {
       const revenue = sales * clientValue;
 
       // Update UI numbers
-      funnelTrafficNum.textContent = formatNumber(traffic) + " / mois";
-      funnelLeadsNum.textContent = formatNumber(leads) + " Contacts";
-      funnelSalesNum.textContent = formatNumber(sales) + " Ventes";
+      funnelTrafficNumEl.textContent = formatNumber(traffic) + " / mois";
+      funnelLeadsNumEl.textContent = formatNumber(leads) + " Contacts";
+      funnelSalesNumEl.textContent = formatNumber(sales) + " Ventes";
 
-      statConvRate.textContent = conversionRate.toFixed(1) + "%";
-      statRevenue.textContent = formatNumber(revenue) + " €";
+      statConvRateEl.textContent = conversionRate.toFixed(1) + "%";
+      statRevenueEl.textContent = formatNumber(revenue) + " €";
 
       // Color coding metrics and badge
       if (isOptimized) {
-        statConvRate.style.color = "var(--primary-green)";
-        statRevenue.style.color = "var(--primary-green)";
-        roiBadge.classList.add('show');
+        statConvRateEl.style.color = "var(--primary-green)";
+        statRevenueEl.style.color = "var(--primary-green)";
+        roiBadgeEl.classList.add('show');
       } else {
-        statConvRate.style.color = "var(--primary-orange)";
-        statRevenue.style.color = "var(--primary-orange)";
-        roiBadge.classList.remove('show');
+        statConvRateEl.style.color = "var(--primary-orange)";
+        statRevenueEl.style.color = "var(--primary-orange)";
+        roiBadgeEl.classList.remove('show');
       }
 
       // Update fill widths of the bars relative to max values
       // Traffic is always 100% of the bar width
-      fillTraffic.style.width = "100%";
+      fillTrafficEl.style.width = "100%";
 
       // Leads bar shows conversion level visually
-      const maxLeadsPercent = 60;
       const leadsPercent = isOptimized ? 50 : 20;
-      fillLeads.style.width = leadsPercent + "%";
+      fillLeadsEl.style.width = leadsPercent + "%";
 
       // Sales bar shows close level visually
       const salesPercent = isOptimized ? 25 : 8;
-      fillSales.style.width = salesPercent + "%";
+      fillSalesEl.style.width = salesPercent + "%";
     }
 
     // Event listeners
-    sliderTraffic.addEventListener('input', updateFunnel);
-    sliderValue.addEventListener('input', updateFunnel);
-    toggleAcq.addEventListener('change', updateFunnel);
+    sliderTrafficEl.addEventListener('input', updateFunnel);
+    sliderValueEl.addEventListener('input', updateFunnel);
+    toggleAcqEl.addEventListener('change', updateFunnel);
 
     // Initial trigger
     updateFunnel();

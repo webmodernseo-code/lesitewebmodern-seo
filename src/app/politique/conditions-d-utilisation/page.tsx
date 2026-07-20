@@ -4,7 +4,7 @@ import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 
 export const metadata: Metadata = {
-  title: "Conditions d'utilisation | WebModernSEO",
+  title: "Conditions d'utilisation",
   description: "Conditions générales d'utilisation du site WebModernSEO : modalités d'accès, description des services et engagements des utilisateurs.",
 };
 

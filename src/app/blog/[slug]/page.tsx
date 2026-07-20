@@ -5,19 +5,12 @@ import { FooterPublic } from '@/components/public/FooterPublic';
 import { dbService } from '@/lib/supabase-db';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Calendar, User, ArrowLeft, Clock } from 'lucide-react';
+import { Calendar, User, ArrowLeft } from 'lucide-react';
+import Image from 'next/image';
 import { JsonLd } from '@/components/JsonLd';
 import { buildArticleSchema, buildBreadcrumbSchema, SITE_URL } from '@/lib/schema';
 
 export const revalidate = 60; // Régénération statique sémantique toutes les minutes
-
-const slugify = (text: string) => 
-  text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // Supprimer les accents
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)+/g, '');
 
 interface BlogPostPageProps {
   params: {
@@ -31,7 +24,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     const post = await dbService.getContentItemBySlug(slug);
     if (post && post.type === 'blog') {
       return {
-        title: `${post.title} | Blog WebModernSEO`,
+        title: post.title,
         description: post.meta_description || post.brief || "Découvrez notre analyse détaillée et nos conseils pour optimiser votre visibilité.",
         alternates: { canonical: `/blog/${slug}` },
       };
@@ -40,7 +33,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     console.error("Error generating blog post metadata:", err);
   }
   return {
-    title: "Article | Blog WebModernSEO",
+    title: "Article de blog",
     description: "Analyses, conseils et stratégies de croissance en création de sites internet et référencement naturel.",
   };
 }
@@ -110,21 +103,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <User className="w-4 h-4" />
               Rédigé par Jean-Prosper MONE
             </Link>
-            {post.seo_score > 0 && (
-              <span className="flex items-center gap-1.5 text-[#0FAC71] font-bold">
-                <Clock className="w-4 h-4" />
-                Score SEO : {post.seo_score}/100
-              </span>
-            )}
           </div>
         </header>
 
         {/* Image principale */}
         <div className="relative h-64 sm:h-96 w-full rounded-3xl overflow-hidden bg-white border border-black/5 mb-12">
-          <img 
-            src={post.featured_image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80'} 
+          <Image
+            src={post.featured_image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80'}
             alt={post.title}
-            className="object-cover w-full h-full"
+            fill
+            priority
+            sizes="(min-width: 768px) 768px, 100vw"
+            className="object-cover"
           />
         </div>
 
@@ -138,7 +128,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Section Newsletter / Fin d'article */}
         <div className="mt-16 bg-white border border-black/10 p-8 rounded-3xl text-center space-y-4">
-          <h3 className="text-lg font-bold text-black">Besoin d'aide pour votre visibilité en ligne ?</h3>
+          <h3 className="text-lg font-bold text-black">Besoin d&apos;aide pour votre visibilité en ligne ?</h3>
           <p className="text-xs text-[#5c5c64] max-w-md mx-auto">
             Nous concevons des stratégies SEO sur-mesure et des sites internet performants pour attirer des clients qualifiés chaque mois.
           </p>

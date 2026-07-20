@@ -4,7 +4,7 @@ import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 
 export const metadata: Metadata = {
-  title: "Mentions légales | WebModernSEO",
+  title: "Mentions légales",
   description: "Mentions légales du site WebModernSEO : éditeur, hébergeur et informations juridiques réglementaires.",
 };
 

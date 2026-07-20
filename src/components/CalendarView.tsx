@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Sparkles, BookOpen, MessageSquare } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, MessageSquare } from 'lucide-react';
 import { ContentItem } from '@/types';
 
 interface CalendarViewProps {

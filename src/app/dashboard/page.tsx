@@ -265,7 +265,7 @@ export default function Home() {
             <Shield className="w-12 h-12 text-[#ff4d00] mx-auto animate-pulse" />
             <h2 className="text-lg font-bold text-brand-black">Accès restreint</h2>
             <p className="text-xs text-brand-black/50 leading-relaxed">
-              Votre compte n'a pas les privilèges requis pour administrer cette section. 
+              Votre compte n&apos;a pas les privilèges requis pour administrer cette section.
               Veuillez contacter le super administrateur de WebModern SEO pour modifier vos permissions.
             </p>
           </div>

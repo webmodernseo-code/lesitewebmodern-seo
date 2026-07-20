@@ -8,7 +8,7 @@ export default function Page() {
   useEffect(() => {
     try {
       (function() {
-    const slider = document.getElementById('seo-slider');
+    const slider = document.getElementById('seo-slider') as HTMLInputElement | null;
     const ctrVal = document.getElementById('ctr-val');
     const trafficVal = document.getElementById('traffic-val');
     const progressIndicator = document.getElementById('seo-progress-indicator');
@@ -16,10 +16,17 @@ export default function Page() {
 
     if (!slider || !ctrVal || !trafficVal || !progressIndicator || !verdictText) return;
 
+    // Réassignations narrowées : conservent le type non-nullable dans la closure ci-dessous.
+    const sliderEl = slider;
+    const ctrValEl = ctrVal;
+    const trafficValEl = trafficVal;
+    const progressIndicatorEl = progressIndicator;
+    const verdictTextEl = verdictText;
+
     // Volume de recherche mensuel fictif pour simulation
     const MONTHLY_SEARCHES = 5000;
 
-    function updateSimulation(position) {
+    function updateSimulation(position: number) {
       let ctr = 0;
       let text = '';
       let isPerfect = false;
@@ -52,47 +59,47 @@ export default function Page() {
       const traffic = Math.round((MONTHLY_SEARCHES * ctr) / 100);
 
       // Mises à jour des valeurs textuelles
-      ctrVal.textContent = ctr.toFixed(1) + '%';
-      trafficVal.textContent = traffic;
+      ctrValEl.textContent = ctr.toFixed(1) + '%';
+      trafficValEl.textContent = String(traffic);
 
       if (isPerfect) {
-        ctrVal.style.color = 'var(--primary-green)';
-        trafficVal.style.color = 'var(--primary-green)';
-        ctrVal.className = 'wm-sim-metric-val green-ok';
-        trafficVal.className = 'wm-sim-metric-val green-ok';
+        ctrValEl.style.color = 'var(--primary-green)';
+        trafficValEl.style.color = 'var(--primary-green)';
+        ctrValEl.className = 'wm-sim-metric-val green-ok';
+        trafficValEl.className = 'wm-sim-metric-val green-ok';
       } else if (position > 10) {
-        ctrVal.style.color = '#e11d48';
-        trafficVal.style.color = '#e11d48';
-        ctrVal.className = 'wm-sim-metric-val bad-pos';
-        trafficVal.className = 'wm-sim-metric-val bad-pos';
+        ctrValEl.style.color = '#e11d48';
+        trafficValEl.style.color = '#e11d48';
+        ctrValEl.className = 'wm-sim-metric-val bad-pos';
+        trafficValEl.className = 'wm-sim-metric-val bad-pos';
       } else {
-        ctrVal.style.color = '';
-        trafficVal.style.color = '';
-        ctrVal.className = 'wm-sim-metric-val';
-        trafficVal.className = 'wm-sim-metric-val';
+        ctrValEl.style.color = '';
+        trafficValEl.style.color = '';
+        ctrValEl.className = 'wm-sim-metric-val';
+        trafficValEl.className = 'wm-sim-metric-val';
       }
 
       // Mise à jour de la jauge visuelle (inversée pour montrer la force)
       const percentFill = (16 - position) / 15 * 100;
-      progressIndicator.style.width = percentFill + '%';
-      
+      progressIndicatorEl.style.width = percentFill + '%';
+
       if (isPerfect) {
-        progressIndicator.style.background = 'linear-gradient(90deg, var(--primary-green-light) 0%, var(--primary-green) 100%)';
+        progressIndicatorEl.style.background = 'linear-gradient(90deg, var(--primary-green-light) 0%, var(--primary-green) 100%)';
       } else if (position <= 10) {
-        progressIndicator.style.background = '#f59e0b'; // Amber
+        progressIndicatorEl.style.background = '#f59e0b'; // Amber
       } else {
-        progressIndicator.style.background = '#e11d48'; // Red
+        progressIndicatorEl.style.background = '#e11d48'; // Red
       }
 
       // Mise à jour du verdict textuel
-      verdictText.textContent = text;
+      verdictTextEl.textContent = text;
     }
 
     // Initialisation
-    updateSimulation(parseInt(slider.value));
+    updateSimulation(parseInt(sliderEl.value));
 
     // Détecteurs d'événements
-    slider.addEventListener('input', function() {
+    sliderEl.addEventListener('input', function() {
       updateSimulation(parseInt(this.value));
     });
   })();
@@ -127,7 +134,13 @@ export default function Page() {
     
     if (!target || !comp1 || !comp2 || !btnReplay || !animStatus) return;
 
-    let animTimeoutIds = [];
+    // Réassignations narrowées : conservent le type non-nullable dans les closures ci-dessous.
+    const targetEl = target;
+    const comp1El = comp1;
+    const comp2El = comp2;
+    const animStatusEl = animStatus;
+
+    let animTimeoutIds: ReturnType<typeof setTimeout>[] = [];
     let isAnimating = false;
 
     function clearAllTimeouts() {
@@ -150,10 +163,10 @@ export default function Page() {
       if (badgeLinks) { badgeLinks.textContent = "En attente"; badgeLinks.style.background = ""; }
 
       // Reset Target Site visual states
-      target.classList.remove('climbing', 'success');
-      target.style.transform = 'translateY(0)';
-      comp1.style.transform = 'translateY(0)';
-      comp2.style.transform = 'translateY(0)';
+      targetEl.classList.remove('climbing', 'success');
+      targetEl.style.transform = 'translateY(0)';
+      comp1El.style.transform = 'translateY(0)';
+      comp2El.style.transform = 'translateY(0)';
 
       // Reset Target Metrics
       if (rankBadge) {
@@ -168,8 +181,8 @@ export default function Page() {
         animStatusDisp.style.color = "#e11d48";
       }
 
-      animStatus.textContent = "Initialisation...";
-      animStatus.style.color = "var(--text-dim)";
+      animStatusEl.textContent = "Initialisation...";
+      animStatusEl.style.color = "var(--text-dim)";
     }
 
     function runAnimationSequence() {
@@ -177,11 +190,11 @@ export default function Page() {
       isAnimating = true;
 
       // Calcul dynamique du décalage (step) entre deux éléments
-      const step = comp2.offsetTop - comp1.offsetTop;
+      const step = comp2El.offsetTop - comp1El.offsetTop;
 
       // Étape 1 : Vitesse
-      animStatus.textContent = "Optimisation Vitesse...";
-      animStatus.style.color = "var(--primary-orange)";
+      animStatusEl.textContent = "Optimisation Vitesse...";
+      animStatusEl.style.color = "var(--primary-orange)";
       
       let tid = setTimeout(() => {
         if (checkSpeed) checkSpeed.classList.add('active');
@@ -191,7 +204,7 @@ export default function Page() {
 
       // Étape 2 : Balises & Schema.org
       tid = setTimeout(() => {
-        animStatus.textContent = "Données structurées...";
+        animStatusEl.textContent = "Données structurées...";
         if (checkSchema) checkSchema.classList.add('active');
         if (badgeSchema) badgeSchema.textContent = "JSON-LD OK";
       }, 2000);
@@ -199,7 +212,7 @@ export default function Page() {
 
       // Étape 3 : Contenu d'Autorité
       tid = setTimeout(() => {
-        animStatus.textContent = "Rédaction sémantique...";
+        animStatusEl.textContent = "Rédaction sémantique...";
         if (checkContent) checkContent.classList.add('active');
         if (badgeContent) badgeContent.textContent = "EEAT Validé";
       }, 3200);
@@ -207,7 +220,7 @@ export default function Page() {
 
       // Étape 4 : Netlinking
       tid = setTimeout(() => {
-        animStatus.textContent = "Gain d'autorité...";
+        animStatusEl.textContent = "Gain d'autorité...";
         if (checkLinks) checkLinks.classList.add('active');
         if (badgeLinks) badgeLinks.textContent = "Backlinks OK";
       }, 4400);
@@ -215,13 +228,13 @@ export default function Page() {
 
       // Étape 5 : Ascension à la Position #2
       tid = setTimeout(() => {
-        animStatus.textContent = "Ascension dans l'index...";
-        target.classList.add('climbing');
-        
+        animStatusEl.textContent = "Ascension dans l'index...";
+        targetEl.classList.add('climbing');
+
         // Swapper de 1 position (Target monte, Comp 2 descend)
-        target.style.transform = 'translateY(' + (-step) + 'px)';
-        comp2.style.transform = 'translateY(' + step + 'px)';
-        comp1.style.transform = 'translateY(0)';
+        targetEl.style.transform = 'translateY(' + (-step) + 'px)';
+        comp2El.style.transform = 'translateY(' + step + 'px)';
+        comp1El.style.transform = 'translateY(0)';
 
         if (rankBadge) {
           rankBadge.textContent = "Position #2";
@@ -239,15 +252,15 @@ export default function Page() {
 
       // Étape 6 : Podium Position #1 (Victoire !)
       tid = setTimeout(() => {
-        animStatus.textContent = "Première place atteinte !";
-        animStatus.style.color = "var(--primary-green)";
-        target.classList.remove('climbing');
-        target.classList.add('success');
+        animStatusEl.textContent = "Première place atteinte !";
+        animStatusEl.style.color = "var(--primary-green)";
+        targetEl.classList.remove('climbing');
+        targetEl.classList.add('success');
 
         // Swapper de 2 positions (Target au top, Comp 1 et Comp 2 descendent)
-        target.style.transform = 'translateY(' + (-2 * step) + 'px)';
-        comp1.style.transform = 'translateY(' + step + 'px)';
-        comp2.style.transform = 'translateY(' + step + 'px)'; // Reste en bas
+        targetEl.style.transform = 'translateY(' + (-2 * step) + 'px)';
+        comp1El.style.transform = 'translateY(' + step + 'px)';
+        comp2El.style.transform = 'translateY(' + step + 'px)'; // Reste en bas
 
         if (rankBadge) {
           rankBadge.textContent = "Top 1 Google";
@@ -265,7 +278,7 @@ export default function Page() {
       tid = setTimeout(() => {
         resetAnimation();
         // Attendre 1.5s au repos avant de relancer automatiquement
-        let loopId = setTimeout(() => {
+        const loopId = setTimeout(() => {
           runAnimationSequence();
         }, 1500);
         animTimeoutIds.push(loopId);

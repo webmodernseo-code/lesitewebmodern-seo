@@ -4,10 +4,11 @@ import { notFound } from 'next/navigation';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 import { JsonLd } from '@/components/JsonLd';
+import { Reveal } from '@/components/Reveal';
 import { VILLES_DATA } from '@/lib/villes-data';
 import { buildBreadcrumbSchema, buildLocalBusinessSchema, SITE_URL } from '@/lib/schema';
 import Link from 'next/link';
-import { CheckCircle2, ArrowRight, MapPin, Sparkles, Zap, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, ArrowRight, MapPin, Sparkles } from 'lucide-react';
 
 interface VillePageProps {
   params: {
@@ -55,6 +56,7 @@ export default function VillePage({ params }: VillePageProps) {
   const localBusinessSchema = buildLocalBusinessSchema({
     name: `WebModernSEO ${villeData.nom}`,
     description: villeData.descriptionSEO,
+    slug: villeData.slug,
     address: {
       addressLocality: villeData.nom,
       postalCode: villeData.codePostal,
@@ -71,7 +73,7 @@ export default function VillePage({ params }: VillePageProps) {
 
       <main className="w-full pt-28 pb-20">
         {/* Section En-tête Local */}
-        <section className="container max-w-6xl mx-auto px-4 sm:px-6 mb-16 text-center">
+        <section className="container max-w-[1400px] mx-auto px-4 sm:px-6 mb-16 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 text-xs font-semibold uppercase tracking-wider mb-6">
             <MapPin className="w-3.5 h-3.5 text-amber-600" />
             Expertise SEO & Web à {villeData.nom} ({villeData.codePostal})
@@ -103,7 +105,7 @@ export default function VillePage({ params }: VillePageProps) {
         </section>
 
         {/* Grille de métriques locales */}
-        <section className="container max-w-5xl mx-auto px-4 mb-20">
+        <Reveal as="section" className="container max-w-[1400px] mx-auto px-4 mb-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {villeData.statsLocal.map((stat, idx) => (
               <div key={idx} className="p-8 rounded-2xl bg-zinc-50 border border-zinc-200/80 text-center">
@@ -112,10 +114,10 @@ export default function VillePage({ params }: VillePageProps) {
               </div>
             ))}
           </div>
-        </section>
+        </Reveal>
 
         {/* Avantages Spécifiques */}
-        <section className="container max-w-5xl mx-auto px-4 mb-20">
+        <Reveal as="section" className="container max-w-[1400px] mx-auto px-4 mb-20" delay={100}>
           <div className="p-8 md:p-12 rounded-3xl bg-white border border-zinc-200/80 shadow-xl shadow-black/5">
             <h2 className="text-2xl md:text-3xl font-extrabold text-black mb-8">
               Pourquoi choisir WebModernSEO pour votre projet à {villeData.nom} ?
@@ -131,7 +133,7 @@ export default function VillePage({ params }: VillePageProps) {
               ))}
             </div>
           </div>
-        </section>
+        </Reveal>
       </main>
 
       <FooterPublic />

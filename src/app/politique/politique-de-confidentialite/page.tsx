@@ -4,7 +4,7 @@ import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité | WebModernSEO",
+  title: "Politique de confidentialité",
   description: "Politique de confidentialité de WebModernSEO : collecte, utilisation et protection de vos données personnelles.",
 };
 

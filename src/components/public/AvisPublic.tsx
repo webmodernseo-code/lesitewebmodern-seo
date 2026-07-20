@@ -6,32 +6,33 @@ export const AvisPublic: React.FC = () => {
   useEffect(() => {
     try {
       (function() {
-    const track = document.querySelector('.rv-track-single');
+    const track = document.querySelector<HTMLElement>('.rv-track-single');
     if (!track) return;
-    
-    const cards = track.querySelectorAll('.rv-card');
+    const trackEl = track;
+
+    const cards = trackEl.querySelectorAll<HTMLElement>('.rv-card');
     if (cards.length === 0) return;
-    
+
     let index = 2; // Démarre sur l'Avis 1 (Paul)
     let isTransitioning = false;
-    let autoPlayInterval = null;
-    
+    let autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+
     function updateCarousel(animate = true) {
-      const container = track.closest('.rv-ticker-container');
+      const container = trackEl.closest<HTMLElement>('.rv-ticker-container');
       if (!container) return;
       const containerWidth = container.offsetWidth;
       const cardWidth = cards[0].offsetWidth || 300;
       const gap = 24;
-      
+
       const T = (containerWidth - cardWidth) / 2 - index * (cardWidth + gap);
-      
+
       if (animate) {
-        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+        trackEl.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
       } else {
-        track.style.transition = 'none';
+        trackEl.style.transition = 'none';
       }
-      
-      track.style.transform = `translate3d(${T}px, 0, 0)`;
+
+      trackEl.style.transform = `translate3d(${T}px, 0, 0)`;
       
       // Update classes pour les effets de perspective 3D
       cards.forEach((card, i) => {

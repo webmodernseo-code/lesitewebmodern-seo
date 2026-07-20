@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    ],
+  },
   typescript: {
     // Permet de compiler même s'il y a des avertissements de typage stricts
     ignoreBuildErrors: true,

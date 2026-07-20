@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export const HeroPublic: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ export const HeroPublic: React.FC = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
         /* Variables isolées pour le Hero */
-        --wms-hero-bg: #ffffff;
+        --wms-hero-bg: linear-gradient(180deg, #faf6ee 0%, #fdfbf7 100%);
         /* Dégradé sable vers le haut */
         --wms-hero-text-primary: #000000;
         --wms-hero-text-secondary: #5c5c64;
@@ -74,9 +74,7 @@ export const HeroPublic: React.FC = () => {
         letter-spacing: -0.03em;
         max-width: 900px;
         margin: 0 auto 24px auto;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: wmsFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: wmsSlideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .wms-hero-title span {
@@ -105,9 +103,7 @@ export const HeroPublic: React.FC = () => {
         color: var(--wms-hero-text-secondary);
         max-width: 680px;
         margin: 0 auto 36px auto;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: wmsFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+        animation: wmsSlideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
     }
 
     /* --- BOUTONS D'ACTION (CTA) --- */
@@ -523,6 +519,18 @@ export const HeroPublic: React.FC = () => {
         }
     }
 
+    /* Variante sans opacity pour le H1/sous-titre (candidats LCP) : évite de retarder
+       le paint du texte principal tout en gardant l'effet de glissement. */
+    @keyframes wmsSlideInUp {
+        0% {
+            transform: translateY(20px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
     @keyframes wmsFadeIn {
         0% {
             opacity: 0;
@@ -599,8 +607,8 @@ export const HeroPublic: React.FC = () => {
         </h1>
         <!-- Sous-titre explicatif -->
         <p class="wms-hero-subtitle">
-            Création de sites internet sur-mesure (Next.js), référencement naturel (SEO) haute performance, stratégies Google
-            Ads et automatisations intelligentes pour générer des leads en continu.
+            Agence basée à Grenoble : création de sites internet sur-mesure (Next.js), référencement naturel (SEO) haute
+            performance, publicité Meta Ads et automatisations intelligentes pour générer des leads en continu.
         </p>
 
         <!-- Actions CTA -->

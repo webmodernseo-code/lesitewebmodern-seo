@@ -1,24 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { 
-  Plus, 
-  Trash2, 
-  Sparkles, 
-  Image as ImageIcon, 
+import dynamic from 'next/dynamic';
+import {
+  Trash2,
+  Sparkles,
+  Image as ImageIcon,
   ArrowLeft,
-  BookOpen,
-  MessageSquare,
-  Copy,
   ChevronRight,
   RefreshCw,
-  AlertTriangle,
   Lock,
   Check,
   X
 } from 'lucide-react';
 import { dbService } from '@/lib/content-client';
-import { ContentItem, ContentType, ContentStatus } from '@/types';
+import { ContentItem, ContentType } from '@/types';
 import { useUIFeedback } from '@/context/UIFeedbackContext';
-import { RichTextEditor } from '@/components/RichTextEditor';
+
+// Chargé à la demande : Tiptap (@tiptap/*) est lourd et n'est nécessaire
+// que lorsqu'un article est réellement ouvert en édition.
+const RichTextEditor = dynamic(
+  () => import('@/components/RichTextEditor').then((mod) => mod.RichTextEditor),
+  { ssr: false }
+);
 
 interface ContentTabProps {
   newTrigger?: number;
@@ -90,13 +92,30 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
     setIsEditing(true);
   };
 
+  // Structure éditoriale type pour un nouvel article de blog : le titre (H1) et l'image
+  // à la une sont déjà gérés par des champs dédiés (editTitle / editImage) plus bas dans
+  // le formulaire, ce template ne couvre que le corps de l'article (intro + sections H2).
+  const BLOG_ARTICLE_TEMPLATE = `<p>[Introduction — 2 à 3 phrases : le problème ou le sujet que rencontre le lecteur, et ce qu'il va apprendre dans cet article.]</p>
+
+<h2>[Sous-titre 1 — contexte ou définition]</h2>
+<p>[Développement...]</p>
+
+<h2>[Sous-titre 2 — premier point clé]</h2>
+<p>[Développement...]</p>
+
+<h2>[Sous-titre 3 — deuxième point clé]</h2>
+<p>[Développement...]</p>
+
+<h2>Conclusion</h2>
+<p>[Résumé des points clés et appel à l'action, ex : contactez-nous pour un audit gratuit.]</p>`;
+
   const handleStartNew = () => {
     setSelectedItem(null);
     setEditTitle('');
     setEditType(activeSubTab); // inherit the active sub tab (Blog/LinkedIn)
     setEditBrief('');
     setEditKeyword('');
-    setEditContent('');
+    setEditContent(activeSubTab === 'blog' ? BLOG_ARTICLE_TEMPLATE : '');
     setEditMetaDesc('');
     setEditImage('');
     setImageSource('');
@@ -712,6 +731,16 @@ export const ContentTab: React.FC<ContentTabProps> = ({ newTrigger }) => {
                           {score} %
                         </span>
                       </div>
+
+                      {/* Suppression */}
+                      <button
+                        type="button"
+                        onClick={(e) => handleDelete(item.id, e)}
+                        aria-label="Supprimer ce contenu"
+                        className="p-1.5 rounded-lg text-brand-black/40 hover:text-red-500 hover:bg-red-50 transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
 
                       {/* Edit link */}
                       <span className="text-xs font-semibold text-brand-black/60 group-hover:text-brand-orange transition-colors flex items-center gap-0.5">

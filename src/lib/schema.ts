@@ -14,8 +14,11 @@ function buildAreaServed() {
   }));
 }
 
+export const FOUNDER_ID = `${SITE_URL}/apropos#person`;
+
 const FOUNDER = {
   '@type': 'Person',
+  '@id': FOUNDER_ID,
   name: 'Jean-Prosper MONE',
   jobTitle: 'Fondateur',
   url: `${SITE_URL}/apropos`,
@@ -23,8 +26,8 @@ const FOUNDER = {
 
 /**
  * Organization + ProfessionalService, à injecter une seule fois sur la page d'accueil.
- * Pas de champ "address" : recommandation Google pour les service-area businesses
- * sans adresse publique visitable.
+ * Pas de "streetAddress" public : recommandation Google pour les service-area businesses
+ * sans point de vente visitable (l'adresse locality/region/country reste renseignée).
  */
 export function buildOrganizationSchema() {
   return {
@@ -241,6 +244,7 @@ export function buildFaqSchema(items: { question: string; answer: string }[] = H
 export interface LocalBusinessSchemaParams {
   name: string;
   description: string;
+  slug: string;
   address: {
     addressLocality: string;
     postalCode: string;
@@ -248,14 +252,14 @@ export interface LocalBusinessSchemaParams {
   };
 }
 
-export function buildLocalBusinessSchema({ name, description, address }: LocalBusinessSchemaParams) {
+export function buildLocalBusinessSchema({ name, description, slug, address }: LocalBusinessSchemaParams) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    '@id': `${SITE_URL}/#local-${address.addressLocality.toLowerCase()}`,
+    '@id': `${SITE_URL}/${slug}#local-business`,
     name,
     description,
-    url: SITE_URL,
+    url: `${SITE_URL}/${slug}`,
     image: `${SITE_URL}/apple-icon.png`,
     telephone: '+33753887751',
     address: {
@@ -265,6 +269,39 @@ export function buildLocalBusinessSchema({ name, description, address }: LocalBu
       addressRegion: address.addressRegion,
       addressCountry: 'FR',
     },
-    provider: getPublisherStub(),
+    parentOrganization: getPublisherStub(),
+  };
+}
+
+/**
+ * Person du fondateur, à injecter sur /apropos. Partage FOUNDER_ID avec
+ * Organization.founder et BlogPosting.author pour consolider l'entité.
+ */
+export function buildPersonSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': FOUNDER_ID,
+    name: 'Jean-Prosper MONE',
+    jobTitle: 'Fondateur',
+    description:
+      "Ingénieur en gestion des risques de formation, spécialisé en référencement naturel (SEO) et création de sites web performants.",
+    url: `${SITE_URL}/apropos`,
+    image: `${SITE_URL}/apple-icon.png`,
+    worksFor: { '@type': 'Organization', '@id': ORGANIZATION_ID, name: 'WebModernSEO' },
+    knowsAbout: ['SEO', 'Référencement naturel', 'Next.js', 'GEO (Generative Engine Optimization)'],
+  };
+}
+
+/** WebSite, à injecter une seule fois dans le layout racine pour consolider le graphe d'entités. */
+export function buildWebSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
+    name: 'WebModernSEO',
+    url: SITE_URL,
+    inLanguage: 'fr-FR',
+    publisher: { '@type': 'Organization', '@id': ORGANIZATION_ID },
   };
 }

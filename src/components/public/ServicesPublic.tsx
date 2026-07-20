@@ -6,7 +6,7 @@ export const ServicesPublic: React.FC = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
             /* Variables isolées pour les Services en Mode Clair Chaleureux */
-            --wms-srv-bg: #ffffff;
+            --wms-srv-bg: linear-gradient(180deg, #fdfbf7 0%, #faf6ee 100%); /* Warm light background */
             --wms-srv-card-bg: #ffffff; /* White card background */
             --wms-srv-text-primary: #000000; /* Anthracite dark text */
             --wms-srv-text-secondary: #5c5c64; /* Slate gray body text */
@@ -380,16 +380,9 @@ export const ServicesPublic: React.FC = () => {
       ` }} />
       
       <div dangerouslySetInnerHTML={{ __html: `
-        {/* Importation de la police Inter unique */}
-
-
-    {/* ==========================================================================
-       CSS DE LA SECTION SERVICES (Styles isolés)
-  ========================================================================== */}
     ` }} />
-      
+
       <div dangerouslySetInnerHTML={{ __html: `
-       {/* HTML DE LA SECTION SERVICES (Composant Services) */}
     <section class="wms-services-section">
         <div class="wms-services-container">
             <!-- Badge supérieur -->

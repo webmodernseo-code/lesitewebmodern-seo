@@ -81,7 +81,7 @@ export default function Page() {
             <CalendlyWidget />
             <noscript>
               <p className="text-center text-sm text-[#5c5c64] mt-4">
-                JavaScript est requis pour afficher l'agenda. Vous pouvez aussi réserver directement via{' '}
+                JavaScript est requis pour afficher l&apos;agenda. Vous pouvez aussi réserver directement via{' '}
                 <a href="https://calendly.com/webmodernseo/reunion" className="text-[#ff4d00] underline">
                   ce lien Calendly
                 </a>.

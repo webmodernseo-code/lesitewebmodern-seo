@@ -217,7 +217,7 @@ export const SettingsTab: React.FC = () => {
     <div className="max-w-4xl mx-auto px-6 py-8 space-y-8 animate-fadeIn">
       <div>
         <h2 className="text-xl font-bold text-brand-black tracking-tight">Réglages</h2>
-        <p className="text-xs text-brand-black/50 font-medium">Configurez vos connexions aux APIs de rédaction et de génération d'images.</p>
+        <p className="text-xs text-brand-black/50 font-medium">Configurez vos connexions aux APIs de rédaction et de génération d&apos;images.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
@@ -386,7 +386,7 @@ export const SettingsTab: React.FC = () => {
                       </button>
                     </div>
                     <p className="text-[10px] text-brand-black/35 leading-relaxed">
-                      Depuis votre app sur linkedin.com/developers/apps, une fois le produit "Community Management API" approuvé.
+                      Depuis votre app sur linkedin.com/developers/apps, une fois le produit &quot;Community Management API&quot; approuvé.
                     </p>
                   </div>
                 )}

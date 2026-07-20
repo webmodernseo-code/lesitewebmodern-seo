@@ -6,12 +6,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/dashboard/', '/login/', '/api/'],
+        disallow: ['/dashboard', '/dashboard/', '/login', '/login/', '/api/'],
       },
       {
         userAgent: ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'PerplexityBot'],
         allow: ['/', '/llms.txt'],
-        disallow: ['/dashboard/', '/login/', '/api/'],
+        disallow: ['/dashboard', '/dashboard/', '/login', '/login/', '/api/'],
       },
     ],
     sitemap: 'https://webmodernseo.co/sitemap.xml',

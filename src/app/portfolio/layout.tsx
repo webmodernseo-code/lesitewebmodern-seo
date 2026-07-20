@@ -3,7 +3,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { buildBreadcrumbSchema, SITE_URL } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: "Portfolio — Réalisations Web & SEO | WebModernSEO",
+  title: "Portfolio — Réalisations Web & SEO",
   description: "Découvrez les sites vitrines et stratégies SEO conçus par WebModernSEO : création web sur-mesure, référencement local et optimisation technique pour des résultats concrets.",
   alternates: { canonical: '/portfolio' },
 };

@@ -3,10 +3,10 @@ import type { Metadata } from 'next';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 import { JsonLd } from '@/components/JsonLd';
-import { buildBreadcrumbSchema, SITE_URL } from '@/lib/schema';
+import { buildBreadcrumbSchema, buildPersonSchema, SITE_URL } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: "À propos — Jean-Prosper MONE, Fondateur | WebModernSEO",
+  title: "À propos — Jean-Prosper MONE, Fondateur",
   description: "Ingénieur de formation, Jean-Prosper MONE allie rigueur méthodologique et expertise SEO pour créer des sites web performants et une visibilité Google durable.",
   alternates: { canonical: '/apropos' },
 };
@@ -20,6 +20,7 @@ export default function Page() {
   return (
     <div className="relative min-h-screen bg-white text-black overflow-x-hidden font-sans">
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={buildPersonSchema()} />
       <HeaderPublic />
 
       <main className="w-full pt-24 pb-16">

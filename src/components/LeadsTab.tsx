@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { dbService, Lead } from '@/lib/leads-client';
-import { Mail, Phone, Briefcase, Calendar, Check, MessageSquare, RefreshCw, Trash } from 'lucide-react';
+import { Mail, Phone, Briefcase, Calendar, Check, MessageSquare, RefreshCw } from 'lucide-react';
 
 export const LeadsTab: React.FC = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -159,7 +159,7 @@ export const LeadsTab: React.FC = () => {
 
                   {/* Message de demande */}
                   <div className="md:col-span-2 bg-[#fdfbf7] p-4 rounded-xl border border-brand-black/5 text-xs text-brand-black/80 whitespace-pre-line leading-relaxed italic">
-                    "{lead.message || 'Aucun message de description.'}"
+                    &quot;{lead.message || 'Aucun message de description.'}&quot;
                   </div>
                 </div>
 
