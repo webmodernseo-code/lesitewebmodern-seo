@@ -24,11 +24,11 @@ Le design s'appuie sur une esthétique minimaliste technologique et chaleureuse,
 
 ---
 
-## ⚙️ 3. Architecture Technique (Intégration WordPress)
-Pour permettre une intégration directe et sans conflits dans votre site WordPress (via Elementor ou Gutenberg) :
+## ⚙️ 3. Architecture Technique (Application Web Next.js 14)
+Pour garantir une rapidité exceptionnelle et une évolutivité maximale avec Next.js 14 (App Router) :
 - **Préfixage des Classes** : Toutes les classes CSS du projet utilisent le préfixe `wms-` (ex: `.wms-header-wrapper`, `.wms-hero-title`, etc.).
-- **Aucun Style Global Bloquant** : Les fichiers ne contiennent aucun style sur les balises de base (`body`, `a`, `h1`) hors de leur conteneur respectif, évitant ainsi de casser les styles de votre thème WordPress actuel.
-- **Autonomie des Composants** : Chaque section est développée dans un fichier HTML indépendant contenant sa propre structure, son CSS isolé et son JavaScript nécessaire.
+- **Isolation des Fichiers & Composants** : Les styles et composants React/TypeScript sont encapsulés sans risque de collision globale.
+- **Autonomie des Composants** : Chaque section est développée dans un module réutilisable avec son CSS isolé et son hydratation optimale.
 
 ---
 
@@ -44,9 +44,9 @@ Chaque section ci-dessous est conçue pour maximiser l'engagement des clients :
    - Titre fort axé conversion + sous-titre présentant votre expertise.
    - Boutons CTAs (Bouton pilule carbone "Prendre RDV" + bouton contour "Nos Services").
    - **Maquette SaaS Client** : Graphique de croissance SEO en SVG orange, compteur de leads et modules d'automations actives.
-   - **Ruban de confiance** : Logos SVG des technologies partenaires (WordPress, Zapier, Google Ads, Google Analytics).
+   - **Ruban de confiance** : Logos SVG des technologies partenaires (Next.js, Supabase, Vercel, Google Analytics).
 3. **Services** :
-   - Grille de services présentant vos spécialités (Création WordPress, Référencement SEO, Automatisation, Google Ads, Maintenance).
+   - Grille de services présentant vos spécialités (Création Web Next.js, Référencement SEO & GEO, Automatisation, Google Ads, Maintenance Élite).
 4. **À propos** :
    - Présentation de votre méthode d'accompagnement et de votre vision stratégique.
 5. **Portfolio** :

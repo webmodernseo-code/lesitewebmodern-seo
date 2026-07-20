@@ -2,20 +2,29 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
+import { JsonLd } from '@/components/JsonLd';
+import { buildBreadcrumbSchema, SITE_URL } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: "À propos — Jean-Prosper MONE, Fondateur | WebModernSEO",
   description: "Ingénieur de formation, Jean-Prosper MONE allie rigueur méthodologique et expertise SEO pour créer des sites web performants et une visibilité Google durable.",
+  alternates: { canonical: '/apropos' },
 };
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'Accueil', url: SITE_URL },
+  { name: 'À propos', url: `${SITE_URL}/apropos` },
+]);
 
 export default function Page() {
   return (
     <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
+      <JsonLd data={breadcrumbSchema} />
       <HeaderPublic />
-      
+
       <main className="w-full pt-24 pb-16">
         <style dangerouslySetInnerHTML={{ __html: `
-          /* --- ISOLATION TOTALE DU CSS A PROPOS POUR WORDPRESS --- */
+          /* --- ISOLATION TOTALE DU CSS À PROPOS --- */
   .wm-about-section {
     --primary-orange: #ff4d00;
     --primary-orange-light: #ff7e47;
@@ -52,7 +61,7 @@ export default function Page() {
     border-bottom: 1px solid var(--card-border) !important;
   }
 
-  /* Force la police Inter + reset isolation WordPress */
+  /* Force la police Inter */
   .wm-about-section *,
   .wm-about-section *::before,
   .wm-about-section *::after {
@@ -529,8 +538,7 @@ export default function Page() {
           <span class="wm-about-badge-dot"></span> Qui suis-je ?
         </div>
 
-        <h2 class="wm-about-title">Créateur d'expériences digitales <span class="fancy-underline">sur-mesure.</span>
-        </h2>
+        <h1 className="wm-about-title">Créateur d'expériences digitales <span className="fancy-underline">sur-mesure.</span></h1>
 
         <p class="wm-about-name">
           Jean-Prosper <span class="wm-about-lastname">MONE</span> &bull; <span class="wm-about-title-role">Fondateur de
@@ -562,8 +570,13 @@ export default function Page() {
 
         <p class="wm-about-text">
           Fort de 3 ans d'expérience dans la création d'interfaces modernes, j'accompagne les professionnels à franchir
-          un cap digital. Qu'il s'agisse de concevoir un site WordPress robuste, de propulser votre trafic sur Google ou
+          un cap digital. Qu'il s'agisse de concevoir un site internet moderne et rapide (Next.js), de propulser votre trafic sur Google ou
           d'automatiser vos tunnels de vente (CRM, Zapier), je traduis vos objectifs commerciaux en outils performants.
+        </p>
+
+        <p class="wm-about-text">
+          Basé à Grenoble, j'interviens dans toute la région Auvergne-Rhône-Alpes (Lyon, Saint-Étienne) ainsi qu'à distance
+          pour des clients à Paris. Découvrez <a href="/portfolio" style="color:#ff4d00; text-decoration:underline;">mes réalisations</a> ou <a href="/contact" style="color:#ff4d00; text-decoration:underline;">discutons de votre projet</a>.
         </p>
 
         <!-- Les valeurs de l'agence -->

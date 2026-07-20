@@ -6,6 +6,8 @@ import { dbService } from '@/lib/supabase-db';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, User, ArrowLeft, Clock } from 'lucide-react';
+import { JsonLd } from '@/components/JsonLd';
+import { buildArticleSchema, buildBreadcrumbSchema, SITE_URL } from '@/lib/schema';
 
 export const revalidate = 60; // Régénération statique sémantique toutes les minutes
 
@@ -26,13 +28,12 @@ interface BlogPostPageProps {
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = params;
   try {
-    const allItems = await dbService.getContentItems();
-    const blogPosts = allItems.filter(item => item.type === 'blog' && item.status === 'published');
-    const post = blogPosts.find(p => slugify(p.title) === slug);
-    if (post) {
+    const post = await dbService.getContentItemBySlug(slug);
+    if (post && post.type === 'blog') {
       return {
         title: `${post.title} | Blog WebModernSEO`,
         description: post.meta_description || post.brief || "Découvrez notre analyse détaillée et nos conseils pour optimiser votre visibilité.",
+        alternates: { canonical: `/blog/${slug}` },
       };
     }
   } catch (err) {
@@ -49,11 +50,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   let post = null;
 
   try {
-    const allItems = await dbService.getContentItems();
-    const blogPosts = allItems.filter(item => item.type === 'blog' && item.status === 'published');
-    
-    // Rechercher le post dont le slug correspond
-    post = blogPosts.find(p => slugify(p.title) === slug) || null;
+    post = await dbService.getContentItemBySlug(slug);
   } catch (err) {
     console.error("Error fetching post by slug:", err);
   }
@@ -62,12 +59,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const formattedDate = post.published_at 
+  const formattedDate = post.published_at
     ? new Date(post.published_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
     : new Date(post.created_at || '').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 
+  const articleSchema = buildArticleSchema(post, slug);
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Accueil', url: SITE_URL },
+    { name: 'Blog', url: `${SITE_URL}/blog` },
+    { name: post.title, url: `${SITE_URL}/blog/${slug}` },
+  ]);
+
   return (
     <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <HeaderPublic />
 
       <main className="w-full pt-32 pb-24 px-6 max-w-3xl mx-auto">
@@ -100,10 +106,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <Calendar className="w-4 h-4" />
               {formattedDate}
             </span>
-            <span className="flex items-center gap-1.5">
+            <Link href="/apropos" className="flex items-center gap-1.5 hover:text-[#ff4d00] transition-colors">
               <User className="w-4 h-4" />
-              Rédigé par WebModern SEO
-            </span>
+              Rédigé par Jean-Prosper MONE
+            </Link>
             {post.seo_score > 0 && (
               <span className="flex items-center gap-1.5 text-[#0FAC71] font-bold">
                 <Clock className="w-4 h-4" />

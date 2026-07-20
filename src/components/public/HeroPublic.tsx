@@ -482,7 +482,7 @@ export const HeroPublic: React.FC = () => {
         object-position: center;
     }
 
-    .wms-logo-wordpress {
+    .wms-logo-tech {
         width: 38px;
         object-fit: cover;
         object-position: center;
@@ -584,12 +584,12 @@ export const HeroPublic: React.FC = () => {
 
 
 <!-- ==========================================================================
-       CSS DU COMPOSANT HERO (À copier dans WordPress / Custom CSS ou Elementor)
+       CSS DU COMPOSANT HERO (Styles isolés)
        ========================================================================== -->
 
 
 <!-- ==========================================================================
-       HTML DU HERO (À copier-coller dans votre élément HTML WordPress)
+       HTML DU HERO (Composant Hero)
        ========================================================================== -->
 <section class="wms-hero-wrapper">
     <div class="wms-hero-container">
@@ -599,7 +599,7 @@ export const HeroPublic: React.FC = () => {
         </h1>
         <!-- Sous-titre explicatif -->
         <p class="wms-hero-subtitle">
-            Création de sites WordPress sur-mesure, référencement naturel (SEO) haute performance, stratégies Google
+            Création de sites internet sur-mesure (Next.js), référencement naturel (SEO) haute performance, stratégies Google
             Ads et automatisations intelligentes pour générer des leads en continu.
         </p>
 
@@ -732,21 +732,6 @@ export const HeroPublic: React.FC = () => {
                             <img src="/logo/o2switch.jpeg"
                                 class="wms-logo-o2switch" alt="o2switch Logo">
                         </div>
-                        <!-- WordPress -->
-                        <div class="wms-social-logo">
-                            <img src="/logo/wordpress.jpg"
-                                class="wms-logo-wordpress" alt="WordPress Logo">
-                        </div>
-                        <!-- Themify -->
-                        <div class="wms-social-logo">
-                            <img src="/logo/Themify.png"
-                                class="wms-logo-themify" alt="Themify Logo">
-                        </div>
-                        <!-- Yoast SEO -->
-                        <div class="wms-social-logo">
-                            <img src="/logo/Yoast-seo.jpg"
-                                class="wms-logo-yoast" alt="Yoast SEO Logo">
-                        </div>
                     </div>
                     <!-- Group 2 (Duplicated for infinite looping) -->
                     <div class="wms-social-logos-group" aria-hidden="true">
@@ -764,21 +749,6 @@ export const HeroPublic: React.FC = () => {
                         <div class="wms-social-logo">
                             <img src="/logo/o2switch.jpeg"
                                 class="wms-logo-o2switch" alt="o2switch Logo">
-                        </div>
-                        <!-- WordPress -->
-                        <div class="wms-social-logo">
-                            <img src="/logo/wordpress.jpg"
-                                class="wms-logo-wordpress" alt="WordPress Logo">
-                        </div>
-                        <!-- Themify -->
-                        <div class="wms-social-logo">
-                            <img src="/logo/Themify.png"
-                                class="wms-logo-themify" alt="Themify Logo">
-                        </div>
-                        <!-- Yoast SEO -->
-                        <div class="wms-social-logo">
-                            <img src="/logo/Yoast-seo.jpg"
-                                class="wms-logo-yoast" alt="Yoast SEO Logo">
                         </div>
                     </div>
                 </div>

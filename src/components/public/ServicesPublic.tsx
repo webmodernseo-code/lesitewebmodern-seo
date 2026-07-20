@@ -380,17 +380,16 @@ export const ServicesPublic: React.FC = () => {
       ` }} />
       
       <div dangerouslySetInnerHTML={{ __html: `
-        <!-- Importation de la police Inter unique -->
+        {/* Importation de la police Inter unique */}
 
 
-    <!-- ==========================================================================
-       CSS DE LA SECTION SERVICES (À copier dans WordPress / Custom CSS ou Elementor)
-       ========================================================================== -->
-    
-
-    <!-- ==========================================================================
-       HTML DE LA SECTION SERVICES (À copier-coller dans votre élément HTML WordPress)
-       ========================================================================== -->
+    {/* ==========================================================================
+       CSS DE LA SECTION SERVICES (Styles isolés)
+  ========================================================================== */}
+    ` }} />
+      
+      <div dangerouslySetInnerHTML={{ __html: `
+       {/* HTML DE LA SECTION SERVICES (Composant Services) */}
     <section class="wms-services-section">
         <div class="wms-services-container">
             <!-- Badge supérieur -->

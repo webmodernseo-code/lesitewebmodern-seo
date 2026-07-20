@@ -27,6 +27,7 @@ export interface ContentItem {
   id: number;
   type: ContentType;
   title: string;
+  slug?: string;
   brief?: string;
   focus_keyword?: string;
   content?: string;

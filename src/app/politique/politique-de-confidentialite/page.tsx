@@ -15,7 +15,7 @@ export default function Page() {
       
       <main className="w-full pt-24 pb-16">
         <style dangerouslySetInnerHTML={{ __html: `
-          /* --- ISOLATION CSS WORDPRESS --- */
+          /* --- ISOLATION CSS --- */
 
         .wms-policy-section {
           --bg-color: #faf6ee;

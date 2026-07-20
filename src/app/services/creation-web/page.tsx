@@ -1077,7 +1077,7 @@ export default function Page() {
         <div dangerouslySetInnerHTML={{ __html: `
           <!-- 
   ==========================================================================
-  CONFIGURATION SEO POUR CETTE PAGE (À configurer dans WordPress / Yoast SEO / Rank Math)
+  CONFIGURATION SEO POUR CETTE PAGE (Next.js Metadata)
   ==========================================================================
   
   ✦ SLUG (Permalien) :
@@ -1090,7 +1090,7 @@ export default function Page() {
     Besoin d'un site web rapide et unique ? Jean-Prosper MONE conçoit votre site internet sur-mesure (vitrine, e-commerce, SaaS) optimisé pour le SEO avec des performances d'ingénieur. Demandez votre diagnostic !
     
   ✦ MOTS-CLÉS CIBLES (Focus Keywords) :
-    création de site internet sur-mesure, développement web performant, conception site wordpress, site internet rapide, agence web
+    création de site internet sur-mesure, développement web performant, conception site Next.js, site internet rapide, agence web
     
   ✦ BALISES DE PARTAGE SOCIAL (Open Graph) :
     - og:title       : Création de Site Internet Sur-Mesure & Performant | WebModernSEO
@@ -1116,7 +1116,7 @@ export default function Page() {
       <div class="wm-service-badge">
         <span class="wm-service-badge-dot"></span> Service Élite
       </div>
-      <h1 class="wm-service-title">
+      <h1 className="wm-service-title">
         Création de Sites Internet d'Élite <span class="fancy-underline">sur-mesure.</span>
       </h1>
       <p class="wm-service-subtitle">
@@ -1474,12 +1474,12 @@ export default function Page() {
         </div>
         <h3 class="wm-catalogue-card-title">Maintenance & Sécurité</h3>
         <p class="wm-catalogue-card-desc">
-          Un site performant doit le rester. Je protège votre actif digital contre le piratage, gère les mises à jour critiques de WordPress, sécurise vos sauvegardes et surveille en temps réel vos temps de chargement.
+          Un site performant doit le rester. Je protège votre actif digital contre les failles, gère les mises à jour critiques de votre application web (Next.js), sécurise vos sauvegardes et surveille en temps réel vos temps de chargement.
         </p>
         <div class="wm-catalogue-features">
           <div class="wm-feature-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Mises à jour WordPress & extensions
+            Mises à jour applicatives & dépendances Next.js
           </div>
           <div class="wm-feature-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>

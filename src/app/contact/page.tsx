@@ -19,7 +19,7 @@ export default function ContactPage() {
             Prêt à faire décoller votre <span className="text-[#ff4d00]">visibilité</span> ?
           </h1>
           <p className="text-sm text-[#5c5c64] leading-relaxed">
-            Refonte WordPress, stratégie SEO ou automatisation de leads : nous sommes là pour concrétiser vos objectifs.
+            Création de site internet, stratégie SEO ou automatisation de leads : nous sommes là pour concrétiser vos objectifs.
           </p>
 
           {/* Carte Coordonnées - même style que la carte Calendly à droite */}
@@ -37,7 +37,7 @@ export default function ContactPage() {
               <div className="w-9 h-9 rounded-xl bg-[#FDFBF7] border border-black/5 flex items-center justify-center text-[#ff4d00] shadow-sm shrink-0">
                 <Phone className="w-4 h-4" />
               </div>
-              <span className="font-semibold text-black text-sm group-hover:text-[#ff4d00] transition-colors">+33 (0)1 84 60 90 20</span>
+              <span className="font-semibold text-black text-sm group-hover:text-[#ff4d00] transition-colors">+33 7 53 88 77 51</span>
             </a>
             <div className="pt-3 border-t border-black/5 text-xs text-[#5c5c64]">
               Lundi - Vendredi, 9h00 - 18h00

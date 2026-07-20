@@ -205,12 +205,12 @@ export const CtaPublic: React.FC = () => {
 
 
 <!-- ==========================================================================
-       CSS DU COMPOSANT CTA (À copier dans WordPress / Custom CSS ou Elementor)
-       ========================================================================== -->
+       CSS DU COMPOSANT CTA (Styles isolés)
+  ========================================================================== */
 
 
 <!-- ==========================================================================
-       HTML DU CTA (À copier-coller dans votre élément HTML WordPress)
+       HTML DU CTA (Composant CTA)
        ========================================================================== -->
 <div class="wms-cta-wrapper">
     <!-- Titre Principal -->

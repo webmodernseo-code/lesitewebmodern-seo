@@ -4,7 +4,7 @@ export const AboutPublic: React.FC = () => {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
-        /* --- ISOLATION TOTALE DU CSS DE PRESENTATION POUR WORDPRESS --- */
+        /* --- ISOLATION TOTALE DU CSS DE PRESENTATION --- */
     .wm-presentation {
         --primary-orange: #e85500;
         --primary-orange-light: #ff7315;
@@ -31,7 +31,7 @@ export const AboutPublic: React.FC = () => {
         justify-content: center;
     }
 
-    /* Force la police Inter sur tous les enfants (anti-WordPress) */
+    /* Force la police Inter sur tous les enfants */
     .wm-presentation *,
     .wm-presentation *::before,
     .wm-presentation *::after {

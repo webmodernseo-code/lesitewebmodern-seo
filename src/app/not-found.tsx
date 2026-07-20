@@ -11,7 +11,7 @@ export default function NotFound() {
       <HeaderPublic />
       <main className="w-full pt-24 pb-16">
         <style dangerouslySetInnerHTML={{ __html: `
-          /* --- ISOLATION CSS WORDPRESS --- */
+          /* --- ISOLATION CSS --- */
   .wm-isolated-section {
     --primary-orange: #ff4d00;
     --primary-black: #000000;

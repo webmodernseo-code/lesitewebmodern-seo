@@ -261,17 +261,17 @@ export const FooterPublic: React.FC = () => {
       ` }} />
       
       <div dangerouslySetInnerHTML={{ __html: `
-        <!-- Importation de la police Inter unique -->
+        {/* Importation de la police Inter unique */}
 
 
-    <!-- ==========================================================================
-       CSS DU COMPOSANT FOOTER (À copier dans WordPress / Custom CSS ou Elementor)
-       ========================================================================== -->
+    {/* ==========================================================================
+       CSS DU COMPOSANT FOOTER (Styles isolés)
+       ========================================================================== */}
     
 
-    <!-- ==========================================================================
-       HTML DU FOOTER (À copier-coller dans votre élément HTML WordPress)
-       ========================================================================== -->
+    {/* ==========================================================================
+       HTML DU FOOTER (Composant Footer)
+       ========================================================================== */}
     <footer class="wms-footer-wrapper">
         <div class="wms-footer-container">
             <div class="wms-footer-grid">
@@ -288,8 +288,9 @@ export const FooterPublic: React.FC = () => {
                         <span class="wms-footer-logo-text">webmodern<span
                                 class="wms-footer-logo-accent">seo</span></span>
                     </a>
-                    <p class="wms-footer-desc">Création de sites WordPress professionnels de nouvelle génération,
-                        optimisés pour le référencement (SEO) et automatisés pour générer des leads.</p>
+                    <p class="wms-footer-desc">Création de sites internet modernes (Next.js) et sur-mesure,
+                        optimisés pour le référencement (SEO) et automatisés pour générer des leads. Basés à Grenoble,
+                        intervention à Lyon, Saint-Étienne, Paris et à distance partout en France.</p>
                     <div class="wms-footer-socials">
                         <!-- Facebook -->
                         <a href="https://www.facebook.com/webmodernseo" class="wms-social-icon" target="_blank"
@@ -354,7 +355,7 @@ export const FooterPublic: React.FC = () => {
                                 <path
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
-                            <a href="tel:+33758418018">+33 7 53 88 77 51</a>
+                            <a href="tel:+33753887751">+33 7 53 88 77 51</a>
                         </div>
                         <div class="wms-contact-item">
                             <!-- E-mail -->

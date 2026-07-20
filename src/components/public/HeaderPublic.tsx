@@ -44,7 +44,7 @@ export const HeaderPublic: React.FC = () => {
 
                 let activeHamburger = hamburgerBtn;
                 if (hamburgerBtn && mobileMenu) {
-                    // Enlève l'ancien listener s'il existe (protection WordPress)
+                    // Enlève l'ancien listener s'il existe (protection événements)
                     const newHamburgerBtn = hamburgerBtn.cloneNode(true);
                     hamburgerBtn.parentNode.replaceChild(newHamburgerBtn, hamburgerBtn);
                     activeHamburger = newHamburgerBtn;
@@ -784,12 +784,12 @@ export const HeaderPublic: React.FC = () => {
 
 
     <!-- ==========================================================================
-       CSS DU COMPOSANT HEADER (À copier dans WordPress / Custom CSS ou Elementor)
+       CSS DU COMPOSANT HEADER (Styles isolés)
        ========================================================================== -->
     
 
     <!-- ==========================================================================
-       HTML DU HEADER (À copier-coller dans votre élément HTML WordPress)
+       HTML DU HEADER (Composant Header)
        ========================================================================== -->
     <header class="wms-header-wrapper" id="wms-header">
         <!-- SVG Definitions pour le logo 3D -->
@@ -949,7 +949,7 @@ export const HeaderPublic: React.FC = () => {
 
 
     <!-- ==========================================================================
-       JAVASCRIPT DU COMPOSANT HEADER (À copier dans votre zone JS WordPress)
+       JAVASCRIPT DU COMPOSANT HEADER (Gestion dynamique du Header)
        ========================================================================== -->
     
       ` }} />

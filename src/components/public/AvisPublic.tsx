@@ -126,7 +126,7 @@ export const AvisPublic: React.FC = () => {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
-        /* --- ISOLATION TOTALE DU CSS AVIS POUR WORDPRESS --- */
+        /* --- ISOLATION TOTALE DU CSS AVIS --- */
   .wm-reviews-section {
     --primary-orange:       #ff4d00;
     --primary-orange-light: #ff7e47;
@@ -150,7 +150,7 @@ export const AvisPublic: React.FC = () => {
     border-bottom: 1px solid var(--card-border) !important;
   }
 
-  /* Force Inter + reset isolation WordPress */
+  /* Force la police Inter */
   .wm-reviews-section *,
   .wm-reviews-section *::before,
   .wm-reviews-section *::after {
@@ -732,13 +732,13 @@ export const AvisPublic: React.FC = () => {
             <svg class="rv-star filled" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
           <div class="rv-card-header">
-            <span class="rv-service-badge">Création WordPress</span>
+            <span class="rv-service-badge">Création de site internet</span>
             <span class="rv-verified-badge">
               <svg class="rv-verified-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
               Avis Vérifié
             </span>
           </div>
-          <p class="rv-text">« Notre nouveau site WordPress est d'une fluidité incroyable. L'équipe a su traduire notre vision avec un design ultra-moderne et des performances techniques exceptionnelles. »</p>
+          <p class="rv-text">« Notre nouveau site internet est d'une fluidité incroyable. L'équipe a su traduire notre vision avec un design ultra-moderne et des performances techniques exceptionnelles. »</p>
           <div class="rv-divider"></div>
           <div class="rv-author">
             <div class="rv-avatar av-paul">P</div>
@@ -872,13 +872,13 @@ export const AvisPublic: React.FC = () => {
             <svg class="rv-star filled" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
           <div class="rv-card-header">
-            <span class="rv-service-badge">Création WordPress</span>
+            <span class="rv-service-badge">Création de site internet</span>
             <span class="rv-verified-badge">
               <svg class="rv-verified-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
               Avis Vérifié
             </span>
           </div>
-          <p class="rv-text">« Notre nouveau site WordPress est d'une fluidité incroyable. L'équipe a su traduire notre vision avec un design ultra-moderne et des performances techniques exceptionnelles. »</p>
+          <p class="rv-text">« Notre nouveau site internet est d'une fluidité incroyable. L'équipe a su traduire notre vision avec un design ultra-moderne et des performances techniques exceptionnelles. »</p>
           <div class="rv-divider"></div>
           <div class="rv-author">
             <div class="rv-avatar av-paul">P</div>

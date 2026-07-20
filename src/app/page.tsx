@@ -7,15 +7,17 @@ import { TestimonialsSection } from '@/components/ui/testimonial-v2';
 import { CtaPublic } from '@/components/public/CtaPublic';
 import { FaqPublic } from '@/components/public/FaqPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
+import { JsonLd } from '@/components/JsonLd';
+import { buildOrganizationSchema, buildFaqSchema } from '@/lib/schema';
 
-export const metadata = {
-  title: "webmodernseo.co — Agence Web et Référencement Naturel Premium SEO",
-  description: "Création de sites internet modernes sous WordPress, stratégies de référencement naturel SEO avancées et automatisation de leads pour votre business.",
-};
+// Titre/description/canonical/OG hérités de src/app/layout.tsx (déjà corrects pour la home).
 
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-white text-black overflow-x-hidden font-sans">
+      <JsonLd data={buildOrganizationSchema()} />
+      <JsonLd data={buildFaqSchema()} />
+
       {/* En-tête public */}
       <HeaderPublic />
 

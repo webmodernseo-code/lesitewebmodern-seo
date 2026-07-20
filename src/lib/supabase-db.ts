@@ -11,6 +11,27 @@ import {
   TaskPriority
 } from '@/types';
 
+const slugify = (text: string) =>
+  text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+
+// Génère un slug stable et unique à partir du titre (ajoute un suffixe numérique en cas de collision).
+async function generateUniqueSlug(title: string): Promise<string> {
+  const base = slugify(title) || 'article';
+  let candidate = base;
+  let attempt = 1;
+  while (true) {
+    const existing = await sql`SELECT id FROM content_items WHERE slug = ${candidate} LIMIT 1`;
+    if (existing.length === 0) return candidate;
+    attempt += 1;
+    candidate = `${base}-${attempt}`;
+  }
+}
+
 // Interface pour les Leads
 export interface Lead {
   id?: number;
@@ -132,7 +153,7 @@ const INITIAL_PHASES: ProjectPhase[] = [
   {
     id: 'ph3',
     project_id: 'p1',
-    name: 'Phase 3 : Intégration WordPress & SEO',
+    name: 'Phase 3 : Intégration Next.js & SEO',
     position: 2,
     created_at: '2026-07-10T10:07:00Z'
   }
@@ -259,19 +280,39 @@ export const dbService = {
     }
   },
 
+  async getContentItemBySlug(slug: string): Promise<ContentItem | null> {
+    const slugifyStr = (t: string) => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    if (isNeonConfigured) {
+      try {
+        const data = await sql`SELECT * FROM content_items WHERE slug = ${slug} LIMIT 1`;
+        if (data && data.length > 0) return data[0] as ContentItem;
+        const all = await sql`SELECT * FROM content_items WHERE type = 'blog' AND status = 'published'`;
+        return (all as ContentItem[]).find(i => (i.slug || slugifyStr(i.title)) === slug) || null;
+      } catch (err) {
+        console.error("Neon query error:", err);
+        return null;
+      }
+    } else {
+      initLocalStorage();
+      const items = JSON.parse(storage.getItem('wm_content_items') || '[]');
+      return items.find((i: ContentItem) => (i.slug || slugifyStr(i.title)) === slug) || null;
+    }
+  },
+
   async createContentItem(item: Partial<ContentItem>): Promise<ContentItem> {
     if (isNeonConfigured) {
       try {
+        const slug = await generateUniqueSlug(item.title || 'article');
         const rows = await sql`
           INSERT INTO content_items (
-            type, title, brief, focus_keyword, content, hashtags, status, seo_score, 
-            channel_score, seo_details, featured_image, image_source, meta_description, 
+            type, title, slug, brief, focus_keyword, content, hashtags, status, seo_score,
+            channel_score, seo_details, featured_image, image_source, meta_description,
             scheduled_at, published_at, wp_post_id
           ) VALUES (
-            ${item.type || 'blog'}, ${item.title || ''}, ${item.brief || ''}, ${item.focus_keyword || ''}, 
-            ${item.content || ''}, ${item.hashtags || []}, ${item.status || 'draft'}, 
-            ${item.seo_score || 0}, ${item.channel_score || 0}, ${JSON.stringify(item.seo_details || {})}, 
-            ${item.featured_image || ''}, ${item.image_source || 'generated'}, ${item.meta_description || ''}, 
+            ${item.type || 'blog'}, ${item.title || ''}, ${slug}, ${item.brief || ''}, ${item.focus_keyword || ''},
+            ${item.content || ''}, ${item.hashtags || []}, ${item.status || 'draft'},
+            ${item.seo_score || 0}, ${item.channel_score || 0}, ${JSON.stringify(item.seo_details || {})},
+            ${item.featured_image || ''}, ${item.image_source || 'generated'}, ${item.meta_description || ''},
             ${item.scheduled_at || null}, ${item.published_at || null}, ${item.wp_post_id || null}
           ) RETURNING *;
         `;

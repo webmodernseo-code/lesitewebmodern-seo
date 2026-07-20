@@ -1622,7 +1622,7 @@ export default function Page() {
         <div dangerouslySetInnerHTML={{ __html: `
           <!-- 
   ==========================================================================
-  CONFIGURATION SEO POUR CETTE PAGE (À configurer dans WordPress / Yoast SEO / Rank Math)
+  CONFIGURATION SEO POUR CETTE PAGE (Next.js Metadata)
   ==========================================================================
   
   ✦ SLUG (Permalien) :
@@ -1659,7 +1659,7 @@ export default function Page() {
       <div class="wm-seo-badge">
         <span class="wm-seo-badge-dot"></span> Next-Gen SEO & GÉO
       </div>
-      <h1 class="wm-seo-title">
+      <h1 className="wm-seo-title">
         Optimisation SEO & GÉO <span class="fancy-underline">sur-mesure.</span>
       </h1>
       <p class="wm-seo-subtitle">

@@ -133,7 +133,7 @@ export default function Page() {
       
       <main className="w-full pt-24 pb-16">
         <style dangerouslySetInnerHTML={{ __html: `
-          /* --- ISOLATION TOTALE DU CSS PORTFOLIO POUR WORDPRESS --- */
+          /* --- ISOLATION TOTALE DU CSS PORTFOLIO --- */
   .wm-portfolio {
     --primary-orange: #e85500;
     --primary-orange-light: #ff6a1a;
@@ -156,7 +156,7 @@ export default function Page() {
     width: 100%;
   }
 
-  /* --- FORCE POLICE INTER SUR TOUS LES ENFANTS (anti-WordPress) --- */
+  /* --- FORCE POLICE INTER SUR TOUS LES ENFANTS --- */
   .wm-portfolio *,
   .wm-portfolio *::before,
   .wm-portfolio *::after {
@@ -1175,10 +1175,10 @@ export default function Page() {
     <div class="portfolio-badge">
       <span class="portfolio-badge-icon">✦</span> Réalisations Réelles
     </div>
-    <h2 class="portfolio-title">
+    <h1 className="portfolio-title">
       Des résultats concrets pour<br>
       <span class="highlight">propulser votre marque</span>
-    </h2>
+    </h1>
     <p class="portfolio-subtitle">
       Explorez les véritables sites vitrines et e-commerce que j'ai conçus et référencés. Une expertise Web & SEO
       sur-mesure au service de la réussite de mes clients.
@@ -1347,7 +1347,7 @@ export default function Page() {
       <p>Positionnement stratégique dans le Top 3 Google Maps sur des requêtes locales à fort taux d'intention d'achat.
         Idéal pour attirer des clients qualifiés en boutique physique ou services de proximité.</p>
 
-      <a href="tel:+33758418018" class="visit-link">
+      <a href="tel:+33753887751" class="visit-link">
         Obtenir mon audit local <span class="link-arrow">→</span>
       </a>
     </article>
@@ -1376,7 +1376,7 @@ export default function Page() {
       <p>Campagne d'acquisition de backlinks thématisés à forte autorité de domaine et restructuration de maillage
         interne. Propulse le trafic organique et double les impressions en moins de 6 mois.</p>
 
-      <a href="tel:+33758418018" class="visit-link">
+      <a href="tel:+33753887751" class="visit-link">
         Demander ma stratégie <span class="link-arrow">→</span>
       </a>
     </article>
@@ -1407,7 +1407,7 @@ export default function Page() {
       <p>Structure de code ultra-propre, sans décalage de mise en page (CLS = 0) et indexation instantanée des pages. Le
         socle technique ultime pour pérenniser vos positions durables sur les moteurs.</p>
 
-      <a href="tel:+33758418018" class="visit-link">
+      <a href="tel:+33753887751" class="visit-link">
         Analyser mon code <span class="link-arrow">→</span>
       </a>
     </article>

@@ -36,7 +36,7 @@ export const FaqPublic: React.FC = () => {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
-        /* --- ISOLATION TOTALE DU CSS FAQ POUR WORDPRESS --- */
+        /* --- ISOLATION TOTALE DU CSS FAQ --- */
   .wms-faq-section {
     --primary-orange:       #ff4d00;
     --primary-orange-light: #ff7e47;
@@ -63,7 +63,7 @@ export const FaqPublic: React.FC = () => {
     border-bottom: 1px solid rgba(15, 15, 17, 0.08) !important;
   }
 
-  /* Force la police Inter + reset isolation WordPress */
+  /* Force la police Inter */
   .wms-faq-section *,
   .wms-faq-section *::before,
   .wms-faq-section *::after {
@@ -253,7 +253,7 @@ export const FaqPublic: React.FC = () => {
         </button>
         <div class="wms-faq-answer-wrapper">
           <div class="wms-faq-answer-content">
-            <p class="wms-faq-answer">Nous créons des sites WordPress sur-mesure de haute performance, des landing pages de conversion ultra-rapides, et des applications web SaaS. Tous nos designs sont exclusifs, modernes et optimisés pour le mobile.</p>
+            <p class="wms-faq-answer">Nous créons des sites internet sur-mesure de haute performance (Next.js), des landing pages de conversion ultra-rapides, et des applications web SaaS. Tous nos designs sont exclusifs, modernes et optimisés pour le mobile.</p>
           </div>
         </div>
       </div>
@@ -298,7 +298,7 @@ export const FaqPublic: React.FC = () => {
         </button>
         <div class="wms-faq-answer-wrapper">
           <div class="wms-faq-answer-content">
-            <p class="wms-faq-answer">Une landing page de vente prend généralement entre 7 à 10 jours. Pour un site WordPress complet ou une refonte sur-mesure, comptez entre 3 à 5 semaines de développement selon la complexité et le nombre d'automatisations demandées.</p>
+            <p class="wms-faq-answer">Une landing page de vente prend généralement entre 7 à 10 jours. Pour un site internet complet ou une refonte sur-mesure, comptez entre 3 à 5 semaines de développement selon la complexité et le nombre d'automatisations demandées.</p>
           </div>
         </div>
       </div>

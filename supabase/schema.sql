@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS content_items (
   id SERIAL PRIMARY KEY,
   type TEXT DEFAULT 'blog', -- 'blog' / 'linkedin'
   title TEXT NOT NULL,
+  slug TEXT UNIQUE, -- Slug stable généré à la création (ne change pas si le titre est édité)
   brief TEXT, -- Instructions ou notes pour l'IA
   focus_keyword TEXT, -- Mot-clé principal pour le SEO (blog)
   content TEXT, -- HTML stylé (blog) ou texte brut (LinkedIn)

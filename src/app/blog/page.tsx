@@ -5,17 +5,26 @@ import { FooterPublic } from '@/components/public/FooterPublic';
 import { dbService } from '@/lib/supabase-db';
 import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
+import { JsonLd } from '@/components/JsonLd';
+import { buildBreadcrumbSchema, SITE_URL } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: "Blog | WebModernSEO — Conseils SEO, Web & Growth",
   description: "Nos meilleures pratiques en création de sites internet, référencement naturel et tunnels d'acquisition commerciale, par l'équipe WebModernSEO.",
+  alternates: { canonical: '/blog' },
 };
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'Accueil', url: SITE_URL },
+  { name: 'Blog', url: `${SITE_URL}/blog` },
+]);
 
 export const revalidate = 60; // Régénération statique sémantique toutes les minutes
 
 interface BlogPostView {
   id: string | number;
   title: string;
+  slug?: string;
   brief?: string;
   featured_image?: string;
 }
@@ -39,6 +48,7 @@ export default async function BlogPage() {
 
   return (
     <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
+      <JsonLd data={breadcrumbSchema} />
       <HeaderPublic />
 
       {/* Hero Section Épurée */}
@@ -64,7 +74,7 @@ export default async function BlogPage() {
         ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {postsToShow.map((post) => {
-            const slug = slugify(post.title);
+            const slug = post.slug || slugify(post.title);
 
             return (
               <Link
