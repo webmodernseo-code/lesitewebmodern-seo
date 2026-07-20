@@ -13,7 +13,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light');
+  const [theme, setThemeState] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (savedTheme) {
       setThemeState(savedTheme);
     } else {
-      setThemeState('light');
+      setThemeState('dark');
     }
   }, []);
 
@@ -31,14 +31,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');
-      document.body.classList.add('dark');
       root.classList.remove('light');
-      document.body.classList.remove('light');
     } else {
       root.classList.add('light');
-      document.body.classList.add('light');
       root.classList.remove('dark');
-      document.body.classList.remove('dark');
     }
     localStorage.setItem('wms-theme', theme);
   }, [theme, mounted]);
