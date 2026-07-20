@@ -56,8 +56,8 @@ export const FooterPublic: React.FC = () => {
         /* --- GRID FOOTER --- */
         .wms-footer-grid {
             display: grid;
-            grid-template-columns: 1.8fr 1fr 1fr 1fr 1.2fr;
-            gap: 40px;
+            grid-template-columns: 2fr 1fr 1.2fr 1.3fr;
+            gap: 48px;
             margin-bottom: 60px;
         }
 
@@ -317,20 +317,7 @@ export const FooterPublic: React.FC = () => {
                         <li class="wms-footer-link-item"><a href="/services/creation-web">Création Web</a></li>
                         <li class="wms-footer-link-item"><a href="/services/referencement-seo">Référencement SEO</a></li>
                         <li class="wms-footer-link-item"><a href="/services/acquisition-clients">Acquisition Clients</a></li>
-                        <li class="wms-footer-link-item"><a href="/services/publicite-meta-ads">Publicité Meta Ads</a></li>
-                        <li class="wms-footer-link-item"><a href="/services/creation-site-ecommerce">Site E-commerce</a></li>
                         <li class="wms-footer-link-item"><a href="/services/creation-web#maintenance-securite">Maintenance de site</a></li>
-                    </ul>
-                </div>
-
-                <!-- Zones d'intervention (SEO local, Grenoble en priorité) -->
-                <div class="wms-footer-col">
-                    <h4>Zones d'intervention</h4>
-                    <ul class="wms-footer-links">
-                        <li class="wms-footer-link-item"><a href="/grenoble">Grenoble</a></li>
-                        <li class="wms-footer-link-item"><a href="/paris">Paris</a></li>
-                        <li class="wms-footer-link-item"><a href="/lyon">Lyon</a></li>
-                        <li class="wms-footer-link-item"><a href="/saint-etienne">Saint-Étienne</a></li>
                     </ul>
                 </div>
 

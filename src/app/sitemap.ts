@@ -19,8 +19,6 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/services/creation-web`, lastModified: LAST_UPDATED, changeFrequency: 'monthly', priority: 0.9 },
   { url: `${BASE_URL}/services/referencement-seo`, lastModified: LAST_UPDATED, changeFrequency: 'monthly', priority: 0.9 },
   { url: `${BASE_URL}/services/acquisition-clients`, lastModified: LAST_UPDATED, changeFrequency: 'monthly', priority: 0.9 },
-  { url: `${BASE_URL}/services/publicite-meta-ads`, lastModified: LAST_UPDATED, changeFrequency: 'monthly', priority: 0.85 },
-  { url: `${BASE_URL}/services/creation-site-ecommerce`, lastModified: LAST_UPDATED, changeFrequency: 'monthly', priority: 0.85 },
   { url: `${BASE_URL}/blog`, lastModified: LAST_UPDATED, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${BASE_URL}/contact`, lastModified: LAST_UPDATED, changeFrequency: 'yearly', priority: 0.6 },
   { url: `${BASE_URL}/reservation`, lastModified: LAST_UPDATED, changeFrequency: 'yearly', priority: 0.6 },

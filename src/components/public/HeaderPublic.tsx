@@ -874,19 +874,6 @@ export const HeaderPublic: React.FC = () => {
                     <li class="wms-nav-item"><a href="/#services" class="wms-nav-link">Services</a></li>
                     <li class="wms-nav-item"><a href="/apropos" class="wms-nav-link">À propos</a></li>
                     <li class="wms-nav-item"><a href="/portfolio" class="wms-nav-link">Portfolio</a></li>
-                    <!-- Dropdown Nos Villes (Grenoble en priorité) -->
-                    <li class="wms-nav-item wms-dropdown">
-                        <a href="#" class="wms-nav-link wms-dropdown-toggle" onclick="return false;">
-                            Nos Villes
-                            <span class="wms-desktop-dot"></span>
-                        </a>
-                        <ul class="wms-dropdown-menu">
-                            <li><a href="/grenoble" class="wms-dropdown-item">Grenoble</a></li>
-                            <li><a href="/paris" class="wms-dropdown-item">Paris</a></li>
-                            <li><a href="/lyon" class="wms-dropdown-item">Lyon</a></li>
-                            <li><a href="/saint-etienne" class="wms-dropdown-item">Saint-Étienne</a></li>
-                        </ul>
-                    </li>
                     <!-- Dropdown Ressources -->
                     <li class="wms-nav-item wms-dropdown">
                         <a href="#" class="wms-nav-link wms-dropdown-toggle" onclick="return false;">
@@ -939,20 +926,6 @@ export const HeaderPublic: React.FC = () => {
                     <li><a href="/#services" class="wms-mobile-nav-link">Services</a></li>
                     <li><a href="/apropos" class="wms-mobile-nav-link">À propos</a></li>
                     <li><a href="/portfolio" class="wms-mobile-nav-link">Portfolio</a></li>
-                    <li class="wms-mobile-dropdown">
-                        <button class="wms-mobile-nav-link wms-mobile-dropdown-toggle" onclick="toggleMobileDropdown(this)">
-                            Nos Villes
-                            <svg class="wms-dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </button>
-                        <ul class="wms-mobile-submenu">
-                            <li><a href="/grenoble" class="wms-mobile-submenu-link">Grenoble</a></li>
-                            <li><a href="/paris" class="wms-mobile-submenu-link">Paris</a></li>
-                            <li><a href="/lyon" class="wms-mobile-submenu-link">Lyon</a></li>
-                            <li><a href="/saint-etienne" class="wms-mobile-submenu-link">Saint-Étienne</a></li>
-                        </ul>
-                    </li>
                     <li class="wms-mobile-dropdown">
                         <button class="wms-mobile-nav-link wms-mobile-dropdown-toggle" onclick="toggleMobileDropdown(this)">
                             Ressources
