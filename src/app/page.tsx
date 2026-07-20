@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
+    <div className="relative min-h-screen bg-[#FDFBF7] dark:bg-[#050609] text-black dark:text-white transition-colors duration-400 overflow-x-hidden font-sans">
       {/* En-tête public */}
       <HeaderPublic />
 

@@ -10,6 +10,31 @@
 body {
   color: var(--foreground);
   background: var(--background);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.dark, html.dark, body.dark {
+  --background: #050609;
+  --foreground: #ffffff;
+
+  --wms-bg-header: rgba(13, 15, 23, 0.85);
+  --wms-bg-scrolled: rgba(13, 15, 23, 0.95);
+  --wms-bg-mobile: rgba(13, 15, 23, 0.98);
+  --wms-text-primary: #ffffff;
+  --wms-text-secondary: #94a3b8;
+  --wms-border-color: rgba(255, 255, 255, 0.1);
+  --wms-border-scrolled: rgba(255, 255, 255, 0.15);
+
+  --wms-hero-bg: linear-gradient(180deg, #090b10 0%, #050609 100%);
+  --wms-hero-text-primary: #ffffff;
+  --wms-hero-text-secondary: #94a3b8;
+  --wms-hero-card-bg: #0d0f17;
+  --wms-hero-border: rgba(255, 255, 255, 0.08);
+
+  --wms-footer-bg: linear-gradient(180deg, #050609 0%, #0d0f17 100%);
+  --wms-footer-text-primary: #ffffff;
+  --wms-footer-text-secondary: #94a3b8;
+  --wms-footer-border: rgba(255, 255, 255, 0.08);
 }
 
 /* Style pour les liens internes dans les articles du blog */

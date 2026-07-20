@@ -6,13 +6,22 @@ export const FooterPublic: React.FC = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
             /* Variables CSS isolées pour Webmodernseo */
-            --wms-footer-bg: linear-gradient(180deg, #000000 0%, #050506 100%);
-            --wms-footer-brand-orange: #ff7e47;
-            --wms-footer-brand-orange-light: #FF9E66;
+            --wms-footer-bg: linear-gradient(180deg, #faf6ee 0%, #fdfbf7 100%);
+            --wms-footer-brand-orange: #ff4d00;
+            --wms-footer-brand-orange-light: #ff7e47;
+            --wms-footer-text-primary: #000000;
+            --wms-footer-text-secondary: #5c5c64;
+            --wms-footer-border: rgba(15, 15, 17, 0.08);
+            --wms-footer-transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dark .wms-footer-wrapper,
+        html.dark .wms-footer-wrapper,
+        body.dark .wms-footer-wrapper {
+            --wms-footer-bg: linear-gradient(180deg, #050609 0%, #0d0f17 100%);
             --wms-footer-text-primary: #ffffff;
             --wms-footer-text-secondary: #94a3b8;
             --wms-footer-border: rgba(255, 255, 255, 0.08);
-            --wms-footer-transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* Encapsulation complète sous le sélecteur .wms-footer-wrapper pour éviter les conflits */

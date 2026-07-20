@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export const HeaderPublic: React.FC = () => {
   useEffect(() => {
@@ -879,7 +880,8 @@ export const HeaderPublic: React.FC = () => {
             </nav>
 
             <!-- Actions CTA Bureau -->
-            <div class="wms-header-actions">
+            <div class="wms-header-actions flex items-center gap-3">
+                <ThemeToggle />
                 <a href="/contact" class="wms-cta-button wms-cta-primary">
                     <span class="wms-cta-icon-badge">
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
