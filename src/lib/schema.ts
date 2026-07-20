@@ -237,3 +237,34 @@ export function buildFaqSchema(items: { question: string; answer: string }[] = H
     })),
   };
 }
+
+export interface LocalBusinessSchemaParams {
+  name: string;
+  description: string;
+  address: {
+    addressLocality: string;
+    postalCode: string;
+    addressRegion: string;
+  };
+}
+
+export function buildLocalBusinessSchema({ name, description, address }: LocalBusinessSchemaParams) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${SITE_URL}/#local-${address.addressLocality.toLowerCase()}`,
+    name,
+    description,
+    url: SITE_URL,
+    image: `${SITE_URL}/apple-icon.png`,
+    telephone: '+33753887751',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: address.addressLocality,
+      postalCode: address.postalCode,
+      addressRegion: address.addressRegion,
+      addressCountry: 'FR',
+    },
+    provider: getPublisherStub(),
+  };
+}
