@@ -114,10 +114,10 @@ const TestimonialsColumn = (props: {
                     boxShadow: "0 25px 50px -12px rgba(249, 115, 22, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
                     transition: { type: "spring", stiffness: 400, damping: 17 }
                   }}
-                  className="p-8 md:p-10 rounded-3xl border border-zinc-200 dark:border-zinc-800/80 shadow-lg shadow-black/5 max-w-xs w-full bg-white dark:bg-zinc-900/90 backdrop-blur-md transition-all duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-orange-500/30" 
+                  className="p-8 md:p-10 rounded-3xl border border-zinc-200/80 shadow-lg shadow-black/5 max-w-xs w-full bg-white backdrop-blur-md transition-all duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-orange-500/30" 
                 >
                   <blockquote className="m-0 p-0">
-                    <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal text-sm md:text-base m-0 transition-colors duration-300">
+                    <p className="text-zinc-700 leading-relaxed font-normal text-sm md:text-base m-0 transition-colors duration-300">
                       "{text}"
                     </p>
                     <footer className="flex items-center gap-3 mt-6">
@@ -126,13 +126,13 @@ const TestimonialsColumn = (props: {
                         height={40}
                         src={image}
                         alt={`Photo de ${name}`}
-                        className="h-10 w-10 rounded-full object-cover ring-2 ring-orange-500/20 dark:ring-zinc-800 group-hover:ring-orange-500/50 transition-all duration-300 ease-in-out"
+                        className="h-10 w-10 rounded-full object-cover ring-2 ring-orange-500/20 group-hover:ring-orange-500/50 transition-all duration-300 ease-in-out"
                       />
                       <div className="flex flex-col">
-                        <cite className="font-bold not-italic tracking-tight leading-5 text-zinc-900 dark:text-white transition-colors duration-300">
+                        <cite className="font-bold not-italic tracking-tight leading-5 text-zinc-900 transition-colors duration-300">
                           {name}
                         </cite>
-                        <span className="text-xs leading-5 tracking-tight text-zinc-500 dark:text-zinc-400 mt-0.5 transition-colors duration-300">
+                        <span className="text-xs leading-5 tracking-tight text-zinc-500 mt-0.5 transition-colors duration-300">
                           {role}
                         </span>
                       </div>
@@ -153,7 +153,7 @@ export function TestimonialsSection() {
     <section 
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="py-24 relative overflow-hidden bg-transparent border-t border-b border-zinc-200 dark:border-white/5 transition-colors duration-400 font-sans"
+      className="py-24 relative overflow-hidden bg-transparent border-t border-b border-zinc-200/80 transition-colors duration-400 font-sans"
     >
       <motion.div 
         initial={{ opacity: 0, y: 50, rotate: -1 }}
@@ -168,16 +168,16 @@ export function TestimonialsSection() {
       >
         <div className="flex flex-col items-center justify-center max-w-[600px] mx-auto mb-16 text-center">
           <div className="flex justify-center mb-3">
-            <div className="inline-flex items-center gap-2 border border-orange-500/30 py-1 px-4 rounded-full text-xs font-semibold tracking-wide uppercase text-orange-600 dark:text-orange-400 bg-orange-500/10 dark:bg-zinc-900/80 transition-colors">
+            <div className="inline-flex items-center gap-2 border border-orange-500/30 py-1 px-4 rounded-full text-xs font-semibold tracking-wide uppercase text-orange-600 bg-orange-500/10 transition-colors">
               <Quote className="w-3.5 h-3.5" />
               <span>Témoignages Clients</span>
             </div>
           </div>
 
-          <h2 id="testimonials-heading" className="text-3xl md:text-5xl font-extrabold tracking-tight mt-3 text-center text-zinc-900 dark:text-white transition-colors">
+          <h2 id="testimonials-heading" className="text-3xl md:text-5xl font-extrabold tracking-tight mt-3 text-center text-zinc-900 transition-colors">
             Ce que nos clients <span className="orange-gradient-text">disent</span>
           </h2>
-          <p className="text-center mt-4 text-zinc-600 dark:text-zinc-300 text-base leading-relaxed max-w-md transition-colors">
+          <p className="text-center mt-4 text-zinc-600 text-base leading-relaxed max-w-md transition-colors">
             Découvrez comment WebModernSEO propulse la croissance et les conversions des entreprises leaders.
           </p>
         </div>

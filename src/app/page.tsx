@@ -1,45 +1,59 @@
 import React from 'react';
-import { Navbar } from '@/components/Navbar';
-import { Hero } from '@/components/Hero';
-import { StatsSection } from '@/components/StatsSection';
-import { LogosMarquee } from '@/components/LogosMarquee';
-import { FeaturesGrid } from '@/components/FeaturesGrid';
-import { VideoShowcase } from '@/components/VideoShowcase';
-import { AnalyticsResults } from '@/components/AnalyticsResults';
-import { PortfolioGrid } from '@/components/PortfolioGrid';
-import { ProcessTimeline } from '@/components/ProcessTimeline';
-import { Testimonials } from '@/components/Testimonials';
-import { PricingSection } from '@/components/PricingSection';
-import { TeamSection } from '@/components/TeamSection';
-import { ContactSection } from '@/components/ContactSection';
-import { BlogSection } from '@/components/BlogSection';
-import { FaqSection } from '@/components/FaqSection';
-import { Footer } from '@/components/Footer';
+import { HeaderPublic } from '@/components/public/HeaderPublic';
+import { HeroPublic } from '@/components/public/HeroPublic';
+import { ServicesPublic } from '@/components/public/ServicesPublic';
+import { AboutPublic } from '@/components/public/AboutPublic';
+import { TestimonialsSection } from '@/components/ui/testimonial-v2';
+import { CtaPublic } from '@/components/public/CtaPublic';
+import { FaqPublic } from '@/components/public/FaqPublic';
+import { FooterPublic } from '@/components/public/FooterPublic';
 
 export const metadata = {
-  title: "webmodernseo.co — Agence Web & Plateforme de Croissance SEO IA",
-  description: "Développez votre chiffre d'affaires, automatisez vos workflows et dominez votre secteur grâce à notre architecture stratégique SEO & IA.",
+  title: "webmodernseo.co — Agence Web et Référencement Naturel Premium SEO",
+  description: "Création de sites internet modernes sous WordPress, stratégies de référencement naturel SEO avancées et automatisation de leads pour votre business.",
 };
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FAF8F5] dark:bg-[#050609] text-zinc-900 dark:text-zinc-100 transition-colors duration-400 selection:bg-amber-500 selection:text-black">
-      <Navbar />
-      <Hero />
-      <StatsSection />
-      <LogosMarquee />
-      <FeaturesGrid />
-      <VideoShowcase />
-      <AnalyticsResults />
-      <PortfolioGrid />
-      <ProcessTimeline />
-      <Testimonials />
-      <PricingSection />
-      <TeamSection />
-      <ContactSection />
-      <BlogSection />
-      <FaqSection />
-      <Footer />
+    <div className="relative min-h-screen bg-[#FDFBF7] text-black overflow-x-hidden font-sans">
+      {/* En-tête public */}
+      <HeaderPublic />
+
+      {/* Corps du site vitrine */}
+      <main className="w-full relative z-10 pt-16">
+        {/* Section Hero */}
+        <section id="hero" className="w-full">
+          <HeroPublic />
+        </section>
+
+        {/* Section Services */}
+        <section id="services" className="w-full">
+          <ServicesPublic />
+        </section>
+
+        {/* Section À Propos */}
+        <section id="apropos" className="w-full">
+          <AboutPublic />
+        </section>
+
+        {/* Section Témoignages (remplacée par testimonial-v2) */}
+        <section id="temoignages" className="w-full">
+          <TestimonialsSection />
+        </section>
+
+        {/* Section Appel à l'action (CTA) */}
+        <section id="cta" className="w-full">
+          <CtaPublic />
+        </section>
+
+        {/* Section FAQ */}
+        <section id="faq" className="w-full">
+          <FaqPublic />
+        </section>
+      </main>
+
+      {/* Pied de page public */}
+      <FooterPublic />
     </div>
   );
 }
