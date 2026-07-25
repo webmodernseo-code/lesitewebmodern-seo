@@ -4,7 +4,7 @@ import { buildServiceSchema, buildBreadcrumbSchema, SITE_URL } from '@/lib/schem
 
 export const metadata: Metadata = {
   title: "Référencement SEO & GÉO Sur-Mesure",
-  description: "Doublez votre visibilité digitale : Jean-Prosper MONE optimise votre référencement Google (SEO) et votre présence sur les moteurs IA (GÉO - ChatGPT, Perplexity).",
+  description: "Doublez votre visibilité digitale : Notre agence optimise votre référencement Google (SEO) et votre présence sur les moteurs IA (GÉO - ChatGPT, Perplexity).",
   openGraph: {
     title: "Référencement SEO & GÉO Sur-Mesure",
     description: "Dominez les résultats de recherche Google et devenez la source recommandée par les moteurs d'intelligence artificielle (ChatGPT, Gemini).",

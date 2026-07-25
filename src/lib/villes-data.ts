@@ -17,7 +17,7 @@ export const VILLES_DATA: Record<string, VilleSEOData> = {
     codePostal: '69000',
     region: 'Auvergne-Rhône-Alpes',
     titreSEO: 'Agence Web & SEO à Lyon — Création de Site Internet & Référencement',
-    descriptionSEO: 'Propulsez votre entreprise à Lyon avec des sites web Next.js ultra-rapides et des stratégies de référencement naturel SEO/SXO sur-mesure par Jean-Prosper MONE.',
+    descriptionSEO: 'Propulsez votre entreprise à Lyon avec des sites web Next.js ultra-rapides et des stratégies de référencement naturel SEO/SXO sur-mesure par WebModernSEO.',
     introText: 'Capitale économique de la région Auvergne-Rhône-Alpes, Lyon offre un marché dynamique mais hautement concurrentiel. WebModernSEO accompagne les PME et entreprises lyonnaises pour dominer les résultats de recherche locaux sur Google.',
     avantagesLocaux: [
       'Positionnement prioritaire sur les recherches locales "Agence Web Lyon" et "SEO Lyon"',

@@ -180,6 +180,8 @@ export const CtaPublic: React.FC = () => {
            ========================================================================== */
     @media (max-width: 768px) {
         .wms-cta-wrapper {
+            margin: 40px 16px 20px 16px;
+            width: auto;
             padding: 50px 24px;
             border-radius: 24px;
         }
@@ -235,7 +237,7 @@ export const CtaPublic: React.FC = () => {
                         stroke-linejoin="round" />
                 </svg>
             </span>
-            Lancer ma croissance
+            Lancer votre croissance
         </a>
 
         <!-- Bouton Secondaire (Comment ça marche) -->

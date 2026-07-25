@@ -577,10 +577,17 @@ export default function Page() {
   /* ── SECTION DES STATISTIQUES (DESIGN PREMIUM) ── */
   .wm-assets-stats {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 16px;
     margin-bottom: 96px;
     width: 100%;
+  }
+
+  @media (min-width: 576px) {
+    .wm-assets-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
   }
 
   @media (min-width: 992px) {
@@ -1032,6 +1039,12 @@ export default function Page() {
     .wm-service-page {
       padding: 65px 16px;
     }
+    .wm-service-page::before,
+    .wm-service-page::after,
+    .wm-glow-accent {
+      width: 300px;
+      height: 300px;
+    }
     .wm-accompagnement-section {
       padding: 40px 24px;
     }
@@ -1093,7 +1106,7 @@ export default function Page() {
     Création de Site Internet Sur-Mesure & Performant | WebModernSEO
     
   ✦ META DESCRIPTION :
-    Besoin d'un site web rapide et unique ? Jean-Prosper MONE conçoit votre site internet sur-mesure (vitrine, e-commerce, SaaS) optimisé pour le SEO avec des performances d'ingénieur. Demandez votre diagnostic !
+    Besoin d'un site web rapide et unique ? Notre agence conçoit votre site internet sur-mesure (vitrine, e-commerce, SaaS) optimisé pour le SEO avec des performances d'ingénieur. Demandez votre diagnostic !
     
   ✦ MOTS-CLÉS CIBLES (Focus Keywords) :
     création de site internet sur-mesure, développement web performant, conception site Next.js, site internet rapide, agence web
@@ -1143,7 +1156,7 @@ export default function Page() {
           « Un mauvais site coûte de l'argent. Un site performant, structuré sur des bases d'ingénierie web solides, en rapporte continuellement. »
         </div>
         <p class="wm-assets-text">
-          Ne laissez plus un design obsolète ou des lenteurs techniques freiner vos ventes. Ensemble, avec <a href="/apropos" class="wm-seo-link">Jean-Prosper MONE</a>, nous créons un outil d'acquisition taillé pour l'efficacité.
+          Ne laissez plus un design obsolète ou des lenteurs techniques freiner vos ventes. Ensemble, avec <a href="/apropos" class="wm-seo-link">nos experts</a>, nous créons un outil d'acquisition taillé pour l'efficacité.
         </p>
       </div>
 
@@ -1243,7 +1256,7 @@ export default function Page() {
     <!-- Section Accompagnement (Timeline) -->
     <div class="wm-accompagnement-section">
       <h2 class="wm-accomp-title">
-        Mon Accompagnement : <span>L'alliance du design et de l'ingénierie</span>
+        Notre Accompagnement : <span>L'alliance du design et de l'ingénierie</span>
       </h2>
       <p class="wm-accomp-subtitle">
         Une méthodologie rigoureuse en 3 étapes pour bâtir un écosystème web performant et sur-mesure.
@@ -1268,7 +1281,7 @@ export default function Page() {
           </div>
           <h3 class="wm-accomp-card-title">Ciblage & Besoins Clients</h3>
           <p class="wm-accomp-card-desc">
-            Un beau site inutile ne sert à rien. J'analyse vos process métiers et les attentes réelles de vos clients pour concevoir un parcours utilisateur (UX) fluide, taillé pour guider vers l'acte d'achat ou le contact.
+            Un beau site inutile ne sert à rien. Nous analysons vos process métiers et les attentes réelles de vos clients pour concevoir un parcours utilisateur (UX) fluide, taillé pour guider vers l'acte d'achat ou le contact.
           </p>
         </div>
 
@@ -1279,7 +1292,7 @@ export default function Page() {
           </div>
           <h3 class="wm-accomp-card-title">Vitesse Blitz & SEO</h3>
           <p class="wm-accomp-card-desc">
-            Issu d'une formation d'ingénieur, j'optimise chaque ligne de code pour éliminer la lenteur. Votre site charge en un clin d'œil, réduisant le taux de rebond et boostant directement votre référencement Google.
+            Forts de notre expertise technique, nous optimisons chaque ligne de code pour éliminer la lenteur. Votre site charge en un clin d'œil, réduisant le taux de rebond et boostant directement votre référencement Google.
           </p>
         </div>
       </div>
@@ -1291,7 +1304,7 @@ export default function Page() {
         Des technologies adaptées à chaque vision
       </h2>
       <p class="wm-catalogue-subtitle">
-        Quel que soit votre secteur, je développe des solutions sur-mesure répondant précisément à vos objectifs stratégiques.
+        Quel que soit votre secteur, nous développons des solutions sur-mesure répondant précisément à vos objectifs stratégiques.
       </p>
     </div>
 
@@ -1455,7 +1468,7 @@ export default function Page() {
         </div>
         <h3 class="wm-catalogue-card-title">Refonte de Site Web</h3>
         <p class="wm-catalogue-card-desc">
-          Offrez une seconde jeunesse à votre plateforme vieillissante. J'analyse les points de friction, modernise l'esthétique générale de votre site et corrige l'obsolescence technique pour relancer vos conversions.
+          Offrez une seconde jeunesse à votre plateforme vieillissante. Nous analysons les points de friction, modernisons l'esthétique générale de votre site et corrigeons l'obsolescence technique pour relancer vos conversions.
         </p>
         <div class="wm-catalogue-features">
           <div class="wm-feature-item">
@@ -1480,7 +1493,7 @@ export default function Page() {
         </div>
         <h3 class="wm-catalogue-card-title">Maintenance & Sécurité</h3>
         <p class="wm-catalogue-card-desc">
-          Un site performant doit le rester. Je protège votre actif digital contre les failles, gère les mises à jour critiques de votre application web (Next.js), sécurise vos sauvegardes et surveille en temps réel vos temps de chargement.
+          Un site performant doit le rester. Nous protégeons votre actif digital contre les failles, gérons les mises à jour critiques de votre application web (Next.js), sécurisons vos sauvegardes et surveillons en temps réel vos temps de chargement.
         </p>
         <div class="wm-catalogue-features">
           <div class="wm-feature-item">
@@ -1528,7 +1541,7 @@ export default function Page() {
               <path d="M3.5 2.5L9.5 6L3.5 9.5V2.5Z" />
             </svg>
           </span>
-          Découvrir mes services
+          Découvrir nos services
         </a>
       </div>
     </div>

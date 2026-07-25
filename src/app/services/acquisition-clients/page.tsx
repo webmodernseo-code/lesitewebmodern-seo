@@ -986,6 +986,11 @@ export default function Page() {
     .wm-acquisition-page {
       padding: 65px 16px;
     }
+    .wm-acquisition-page::before,
+    .wm-acquisition-page::after {
+      width: 300px;
+      height: 300px;
+    }
     .wm-funnel-card {
       padding: 24px;
     }
@@ -1020,7 +1025,7 @@ export default function Page() {
     Acquisition de Nouveaux Clients & Conversion Web | WebModernSEO
     
   ✦ META DESCRIPTION :
-    Maximilisez le retour sur investissement (ROI) de votre site : Jean-Prosper MONE conçoit vos tunnels de conversion, landing pages et stratégies d'acquisition de clients.
+    Maximisez le retour sur investissement (ROI) de votre site : Notre agence conçoit vos tunnels de conversion, landing pages et stratégies d'acquisition de clients.
     
   ✦ MOTS-CLÉS CIBLES (Focus Keywords) :
     acquisition de nouveaux clients, tunnel de conversion, retour sur investissement web, croissance chiffre d'affaires, conversion prospects
@@ -1068,7 +1073,7 @@ export default function Page() {
           « L'acquisition n'est pas un hasard technique. C'est l'alignement d'un design premium, d'un copywriting persuasif et d'une fluidité d'utilisation absolue. »
         </div>
         <p class="wm-acq-text">
-          Ingénieur de formation, j'analyse le parcours utilisateur de vos visiteurs pour éliminer les freins à la conversion. En combinant la puissance de la <a href="/services/creation-web" class="wm-acq-link">création web sur-mesure</a> et de l'<a href="/services/referencement-seo" class="wm-acq-link">optimisation SEO technique</a>, nous bâtissons des tunnels de conversion qui multiplient votre nombre de clients.
+          Experts de formation technique, nous analysons le parcours utilisateur de vos visiteurs pour éliminer les freins à la conversion. En combinant la puissance de la <a href="/services/creation-web" class="wm-acq-link">création web sur-mesure</a> et de l'<a href="/services/referencement-seo" class="wm-acq-link">optimisation SEO technique</a>, nous bâtissons des tunnels de conversion qui multiplient votre nombre de clients.
         </p>
       </div>
 
@@ -1186,7 +1191,7 @@ export default function Page() {
     <!-- SECTION LES TROIS PILIERS DE LA CONVERSION -->
     <div class="wm-pil-header">
       <h2 class="wm-pil-title">
-        Mes Piliers pour Multiplier vos Ventes
+        Nos Piliers pour Multiplier vos Ventes
       </h2>
       <p class="wm-pil-subtitle">
         Une méthodologie scientifique combinant psychologie d'achat et ingénierie de données pour maximiser vos résultats.
@@ -1200,7 +1205,7 @@ export default function Page() {
         <div class="wm-pil-card-icon">✍️</div>
         <h3 class="wm-pil-card-title">Copywriting Persuasif</h3>
         <p class="wm-pil-card-desc">
-          Les mots vendent. Je rédige des textes percutants qui captent l'attention de votre cible, résolvent ses doutes et la guident naturellement vers l'action.
+          Les mots vendent. Nous rédigeons des textes percutants qui captent l'attention de votre cible, résolvent ses doutes et la guident naturellement vers l'action.
         </p>
       </div>
 
@@ -1252,7 +1257,7 @@ export default function Page() {
               <path d="M3.5 2.5L9.5 6L3.5 9.5V2.5Z" />
             </svg>
           </span>
-          Découvrir mes services
+          Découvrir nos services
         </a>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { CalendlyWidget } from '@/components/public/CalendlyWidget';
 
 export const metadata: Metadata = {
   title: 'Réserver un appel stratégique SEO & Web gratuit',
-  description: 'Réservez 30 minutes de consultation gratuite avec Jean-Prosper MONE pour analyser votre visibilité SEO et votre projet web.',
+  description: 'Réservez 30 minutes de consultation gratuite avec notre agence pour analyser votre visibilité SEO et votre projet web.',
   alternates: { canonical: '/reservation' },
 };
 

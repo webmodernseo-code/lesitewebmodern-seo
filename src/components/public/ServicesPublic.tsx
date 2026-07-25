@@ -398,7 +398,7 @@ export const ServicesPublic: React.FC = () => {
                     Solutions <span>Web & SEO</span> d'élite
                 </h2>
                 <p class="wms-services-subtitle">
-                    Grâce à une expertise technique poussée, je crée des solutions sur-mesure de haute qualité qui favorisent la réussite de votre activité et dépassent systématiquement les standards du web.
+                    Grâce à une expertise technique poussée, nous créons des solutions sur-mesure de haute qualité qui favorisent la réussite de votre activité et dépassent systématiquement les standards du web.
                 </p>
             </div>
 

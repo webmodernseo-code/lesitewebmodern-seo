@@ -1588,6 +1588,11 @@ export default function Page() {
     .wm-seo-page {
       padding: 65px 16px;
     }
+    .wm-seo-page::before,
+    .wm-seo-page::after {
+      width: 300px;
+      height: 300px;
+    }
     .wm-geo-intro-section {
       padding: 32px 20px;
     }
@@ -1645,7 +1650,7 @@ export default function Page() {
     Référencement SEO & GÉO Sur-Mesure | WebModernSEO
     
   ✦ META DESCRIPTION :
-    Doublez votre visibilité digitale : Jean-Prosper MONE optimise votre référencement Google (SEO) et votre présence sur les moteurs IA (GÉO - ChatGPT, Perplexity).
+    Doublez votre visibilité digitale : Notre agence optimise votre référencement Google (SEO) et votre présence sur les moteurs IA (GÉO - ChatGPT, Perplexity).
     
   ✦ MOTS-CLÉS CIBLES (Focus Keywords) :
     référencement SEO et GÉO, optimisation SEO Google, visibilité moteurs IA, référencement naturel
@@ -1693,7 +1698,7 @@ export default function Page() {
           « L'essor de la recherche par Intelligence Artificielle (GÉO) redéfinit les règles. Être visible aujourd'hui, c'est aussi être la source citée par ChatGPT et Perplexity. »
         </div>
         <p class="wm-seo-text">
-          Avec mon expertise d'ingénieur, je structure votre site pour le rendre parfaitement lisible par les robots de Google et les modèles de langage de l'IA. Ensemble, avec <a href="/apropos" class="wm-seo-link">Jean-Prosper MONE</a>, bâtissons votre autorité digitale.
+          Avec notre expertise technique, nous structurons votre site pour le rendre parfaitement lisible par les robots de Google et les modèles de langage de l'IA. Ensemble, avec <a href="/apropos" class="wm-seo-link">nos experts</a>, bâtissons votre autorité digitale.
         </p>
       </div>
 
@@ -1963,7 +1968,7 @@ export default function Page() {
         </div>
         <h3 class="wm-catalogue-card-title">Audit & SEO Technique</h3>
         <p class="wm-catalogue-card-desc">
-          L'indexation et la vitesse sont les piliers de votre visibilité. J'analyse l'infrastructure de votre site pour corriger les freins techniques et maximiser le crawl des robots.
+          L'indexation et la vitesse sont les piliers de votre visibilité. Nous analysons l'infrastructure de votre site pour corriger les freins techniques et maximiser le crawl des robots.
         </p>
         <div class="wm-catalogue-features">
           <div class="wm-feature-item">
@@ -2036,7 +2041,7 @@ export default function Page() {
               <path d="M3.5 2.5L9.5 6L3.5 9.5V2.5Z" />
             </svg>
           </span>
-          Découvrir mes services
+          Découvrir nos services
         </a>
       </div>
     </div>

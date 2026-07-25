@@ -229,9 +229,10 @@ export const FooterPublic: React.FC = () => {
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .wms-footer-wrapper {
                 margin: 40px 16px 20px 16px;
+                width: auto;
                 padding: 32px 20px 24px 20px;
                 border-radius: 24px;
             }

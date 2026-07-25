@@ -575,6 +575,21 @@ export const AboutPublic: React.FC = () => {
             left: -2%;
         }
     }
+    @media (max-width: 768px) {
+        .wm-presentation {
+            padding: 60px 16px;
+        }
+
+        .toast-top {
+            right: 0;
+            top: 4%;
+        }
+
+        .toast-bottom {
+            left: 0;
+            bottom: 4%;
+        }
+    }
 
     @media (max-width: 480px) {
         .wm-presentation {
@@ -608,7 +623,7 @@ export const AboutPublic: React.FC = () => {
 
 
 
-<section class="wm-presentation" id="a-propos-section" aria-label="Présentation de Jean-Prosper">
+<section class="wm-presentation" id="a-propos-section" aria-label="Présentation de notre agence">
 
     <div class="presentation-container">
 
@@ -618,19 +633,19 @@ export const AboutPublic: React.FC = () => {
             <!-- Badge discret -->
             <div class="presentation-badge">
                 <span class="presentation-badge-dot"></span>
-                <span>À propos de moi</span>
+                <span>À propos de nous</span>
             </div>
 
             <!-- Titre principal avec la capsule animée -->
             <h2 class="presentation-title">
-                Créateur de sites conçus pour la <span class="highlight-pill">conversion.</span>
+                Concepteurs de sites conçus pour la <span class="highlight-pill">conversion.</span>
             </h2>
 
             <!-- Pitch introductif personnalisé -->
             <p class="presentation-subtitle">
-                Je suis <strong>Jean-Prosper</strong>, développeur web freelance et consultant SEO. Je ne conçois pas de
+                Nous sommes <strong>WebModernSEO</strong>, une agence spécialisée en création de sites internet et référencement SEO. Nous ne concevons pas de
                 simples
-                pages vitrines : je bâtis des plateformes d'acquisition rapides, visibles et automatisées pour
+                pages vitrines : nous bâtissons des plateformes d'acquisition rapides, visibles et automatisées pour
                 transformer vos
                 visiteurs en clients qualifiés.
             </p>
@@ -680,7 +695,7 @@ export const AboutPublic: React.FC = () => {
                                 stroke-linejoin="round" />
                         </svg>
                     </span>
-                    Discuter de mon projet
+                    Discuter de votre projet
                 </a>
                 <a href="/apropos" class="presentation-link-secondary">
                     En savoir plus <span class="link-arrow">→</span>
@@ -696,7 +711,7 @@ export const AboutPublic: React.FC = () => {
             <div class="presentation-img-wrapper">
                 <img class="presentation-portrait"
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&h=700&q=80"
-                    alt="Jean-Prosper - Développeur Web & SEO Freelance" loading="lazy">
+                    alt="WebModernSEO - Agence Web & SEO" loading="lazy">
             </div>
 
             <!-- Toast Flottant 1 (Haut Droite) : Réactivité -->

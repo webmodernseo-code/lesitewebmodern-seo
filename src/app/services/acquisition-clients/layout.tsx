@@ -4,7 +4,7 @@ import { buildServiceSchema, buildBreadcrumbSchema, SITE_URL } from '@/lib/schem
 
 export const metadata: Metadata = {
   title: "Acquisition de Nouveaux Clients & Conversion Web",
-  description: "Maximisez le retour sur investissement (ROI) de votre site : Jean-Prosper MONE conçoit vos tunnels de conversion, landing pages et stratégies d'acquisition de clients.",
+  description: "Maximisez le retour sur investissement (ROI) de votre site : Notre agence conçoit vos tunnels de conversion, landing pages et stratégies d'acquisition de clients.",
   openGraph: {
     title: "Acquisition de Nouveaux Clients & Conversion Web",
     description: "Transformez vos visiteurs passifs en clients réguliers grâce à un tunnel de vente optimisé pour la performance et le design.",

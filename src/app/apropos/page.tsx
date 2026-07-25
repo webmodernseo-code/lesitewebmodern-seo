@@ -536,10 +536,10 @@ export default function Page() {
       <!-- Colonne Histoire de Droite -->
       <div class="wm-about-content">
         <div class="wm-about-badge">
-          <span class="wm-about-badge-dot"></span> Qui suis-je ?
+          <span class="wm-about-badge-dot"></span> Qui sommes-nous ?
         </div>
 
-        <h1 className="wm-about-title">Créateur d'expériences digitales <span className="fancy-underline">sur-mesure.</span></h1>
+        <h1 className="wm-about-title">Créateurs d'expériences digitales <span className="fancy-underline">sur-mesure.</span></h1>
 
         <p class="wm-about-name">
           Jean-Prosper <span class="wm-about-lastname">MONE</span> &bull; <span class="wm-about-title-role">Fondateur de
@@ -547,8 +547,8 @@ export default function Page() {
         </p>
 
         <p class="wm-about-text">
-          Ingénieur en gestion des risques de formation, j'ai choisi de mettre ma rigueur méthodologique, mon sens de
-          l'analyse et ma vision stratégique au service de ma passion de toujours : le développement web, le
+          Ingénieurs de formation technique, nous mettons notre rigueur méthodologique, notre sens de
+          l'analyse et notre vision stratégique au service de notre passion de toujours : le développement web, le
           référencement naturel (SEO) et l'automatisation de processus.
         </p>
 
@@ -564,20 +564,20 @@ export default function Page() {
         </div>
 
         <div class="wm-about-quote">
-          « Mon bagage d'ingénieur m'apporte une approche unique : là où d'autres se contentent d'un design, j'analyse
-          les flux de conversion, je préviens les risques de lenteur technique et je structure chaque projet pour qu'il
+          « Notre expertise technique nous apporte une approche unique : là où d'autres se contentent d'un design, nous analysons
+          les flux de conversion, nous prévenons les risques de lenteur technique et nous structurons chaque projet pour qu'il
           soit fiable, rapide et rentable. »
         </div>
 
         <p class="wm-about-text">
-          Fort de 3 ans d'expérience dans la création d'interfaces modernes, j'accompagne les professionnels à franchir
+          Forts de notre expérience dans la création d'interfaces modernes, nous accompagnons les professionnels à franchir
           un cap digital. Qu'il s'agisse de concevoir un site internet moderne et rapide (Next.js), de propulser votre trafic sur Google ou
-          d'automatiser vos tunnels de vente (CRM, Zapier), je traduis vos objectifs commerciaux en outils performants.
+          d'automatiser vos tunnels de vente (CRM, Zapier), nous traduisons vos objectifs commerciaux en outils performants.
         </p>
 
         <p class="wm-about-text">
-          Basé à Grenoble, j'interviens dans toute la région Auvergne-Rhône-Alpes (Lyon, Saint-Étienne) ainsi qu'à distance
-          pour des clients à Paris. Découvrez <a href="/portfolio" style="color:#ff4d00; text-decoration:underline;">mes réalisations</a> ou <a href="/contact" style="color:#ff4d00; text-decoration:underline;">discutons de votre projet</a>.
+          Basée à Grenoble, notre agence intervient dans toute la région Auvergne-Rhône-Alpes (Lyon, Saint-Étienne) ainsi qu'à distance
+          pour des clients à Paris. Découvrez <a href="/portfolio" style="color:#ff4d00; text-decoration:underline;">nos réalisations</a> ou <a href="/contact" style="color:#ff4d00; text-decoration:underline;">discutons de votre projet</a>.
         </p>
 
         <!-- Les valeurs de l'agence -->
@@ -651,7 +651,7 @@ export default function Page() {
               <path d="M3.5 2.5L9.5 6L3.5 9.5V2.5Z" />
             </svg>
           </span>
-          Découvrir mes services
+          Découvrir nos services
         </a>
       </div>
     </div>

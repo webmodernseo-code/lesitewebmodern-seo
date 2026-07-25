@@ -238,7 +238,7 @@ export const FaqPublic: React.FC = () => {
     
     <!-- Entête de la FAQ -->
     <div class="wms-faq-header">
-      <h2 class="wms-faq-title">Got questions?<br>We've the answers</h2>
+      <h2 class="wms-faq-title">Des questions ?<br>Nous avons les réponses</h2>
     </div>
 
     <!-- Liste des questions/réponses -->

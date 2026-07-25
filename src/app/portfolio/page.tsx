@@ -1180,8 +1180,8 @@ export default function Page() {
       <span class="highlight">propulser votre marque</span>
     </h1>
     <p class="portfolio-subtitle">
-      Explorez les véritables sites vitrines et e-commerce que j'ai conçus et référencés. Une expertise Web & SEO
-      sur-mesure au service de la réussite de mes clients.
+      Explorez les véritables sites vitrines et e-commerce que nous avons conçus et référencés. Une expertise Web & SEO
+      sur-mesure au service de la réussite de nos clients.
     </p>
   </div>
 
@@ -1204,7 +1204,7 @@ export default function Page() {
 
       <span class="project-tag">Création Web & SEO</span>
       <h3>webmodernseo.co</h3>
-      <p>Mon propre site vitrine d'élite. Une vitrine technologique illustrant mes compétences en développement
+      <p>Mon propre site vitrine d'élite. Une vitrine technologique illustrant nos compétences en développement
         ultra-rapide (sans layout shifts) et en **référencement naturel d'élite**.</p>
 
       <a href="https://webmodernseo.co" target="_blank" rel="noopener noreferrer" class="visit-link">
@@ -1348,7 +1348,7 @@ export default function Page() {
         Idéal pour attirer des clients qualifiés en boutique physique ou services de proximité.</p>
 
       <a href="tel:+33753887751" class="visit-link">
-        Obtenir mon audit local <span class="link-arrow">→</span>
+        Obtenir votre audit local <span class="link-arrow">→</span>
       </a>
     </article>
 
@@ -1377,7 +1377,7 @@ export default function Page() {
         interne. Propulse le trafic organique et double les impressions en moins de 6 mois.</p>
 
       <a href="tel:+33753887751" class="visit-link">
-        Demander ma stratégie <span class="link-arrow">→</span>
+        Demander votre stratégie <span class="link-arrow">→</span>
       </a>
     </article>
 
@@ -1408,7 +1408,7 @@ export default function Page() {
         socle technique ultime pour pérenniser vos positions durables sur les moteurs.</p>
 
       <a href="tel:+33753887751" class="visit-link">
-        Analyser mon code <span class="link-arrow">→</span>
+        Analyser votre code <span class="link-arrow">→</span>
       </a>
     </article>
 
@@ -1424,10 +1424,10 @@ export default function Page() {
         <span class="portfolio-badge-icon">✦</span> Méthodologie SEO d'Élite
       </div>
       <h3 class="seo-section-title">
-        Comment j'améliore la <span class="highlight-green">visibilité Google</span> de mes clients
+        Comment nous améliorons la <span class="highlight-green">visibilité Google</span> de nos clients
       </h3>
       <p class="seo-section-subtitle">
-        Découvrez les 3 interfaces et étapes stratégiques de mon plan d'action pour propulser vos sites en première page
+        Découvrez les 3 interfaces et étapes stratégiques de notre plan d'action pour propulser vos sites en première page
         de Google.
       </p>
     </div>
@@ -1461,7 +1461,7 @@ export default function Page() {
           <div class="seo-tab-content active" data-step="1">
             <h4>01. Analyse & Stratégie Sémantique</h4>
             <p>
-              Avant d'écrire la moindre ligne de code, j'analyse votre marché et étudie vos concurrents directs.
+              Avant d'écrire la moindre ligne de code, nous analysons votre marché et étudions vos concurrents directs.
               L'objectif est d'identifier les mots-clés stratégiques à fort volume de recherche et à faible concurrence
               pour cibler une intention d'achat qualifiée.
             </p>
@@ -1477,8 +1477,8 @@ export default function Page() {
           <div class="seo-tab-content" data-step="2">
             <h4>02. Optimisation Technique & Structure de Code</h4>
             <p>
-              Un excellent contenu ne sert à rien si le site est lent ou mal structuré. J'optimise en profondeur le
-              balisage sémantique HTML (H1-H6, microdonnées Schema.org) et améliore drastiquement vos scores Core Web
+              Un excellent contenu ne sert à rien si le site est lent ou mal structuré. Nous optimisons en profondeur le
+              balisage sémantique HTML (H1-H6, microdonnées Schema.org) et améliorons drastiquement vos scores Core Web
               Vitals pour une vitesse de chargement instantanée.
             </p>
             <div class="seo-tags-list">
@@ -1493,8 +1493,8 @@ export default function Page() {
           <div class="seo-tab-content" data-step="3">
             <h4>03. Suivi Search Console & Acquisition Continue</h4>
             <p>
-              Le SEO est une discipline continue. Je mets en place un tableau de bord analytique complet reliant la
-              Google Search Console et Google Analytics. Je suis quotidiennement l'évolution des clics, impressions, et
+              Le SEO est une discipline continue. Nous mettons en place un tableau de bord analytique complet reliant la
+              Google Search Console et Google Analytics. Nous suivons quotidiennement l'évolution des clics, impressions, et
               positions moyennes pour affiner et maintenir votre domination.
             </p>
             <div class="seo-tags-list">
