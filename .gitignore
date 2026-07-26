@@ -23,6 +23,9 @@ next-env.d.ts
 # Scripts et fichiers de travail jetables
 /scratch/
 
+# Session du companion visuel de brainstorming (mockups temporaires)
+/.superpowers/
+
 # Environnements virtuels Python (ex: .claude/skills/seo/.venv)
 .venv/
 __pycache__/
