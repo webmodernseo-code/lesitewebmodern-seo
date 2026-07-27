@@ -1135,7 +1135,7 @@ export default function Page() {
       <div class="wm-service-badge">
         <span class="wm-service-badge-dot"></span> Service Élite
       </div>
-      <h1 className="wm-service-title">
+      <h1 class="wm-service-title">
         Création de Sites Internet d'Élite <span class="fancy-underline">sur-mesure.</span>
       </h1>
       <p class="wm-service-subtitle">

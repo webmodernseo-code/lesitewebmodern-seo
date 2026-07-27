@@ -1175,7 +1175,7 @@ export default function Page() {
     <div class="portfolio-badge">
       <span class="portfolio-badge-icon">✦</span> Réalisations Réelles
     </div>
-    <h1 className="portfolio-title">
+    <h1 class="portfolio-title">
       Des résultats concrets pour<br>
       <span class="highlight">propulser votre marque</span>
     </h1>
