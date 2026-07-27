@@ -26,6 +26,9 @@ next-env.d.ts
 # Session du companion visuel de brainstorming (mockups temporaires)
 /.superpowers/
 
+# Worktrees d'implémentation isolés
+/.worktrees/
+
 # Environnements virtuels Python (ex: .claude/skills/seo/.venv)
 .venv/
 __pycache__/
