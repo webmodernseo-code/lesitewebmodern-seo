@@ -1,19 +1,18 @@
 import React from 'react';
 
-// Valeur provisoire (placeholder) : à remplacer par le vrai chiffre client dès qu'il est disponible.
+// TODO(pre-launch): valeur fictive à remplacer par le vrai chiffre client avant mise en ligne — ne pas déployer en prod sans données réelles.
 const HERO_PROOF_STAT = '1 482 leads générés ce mois pour nos clients';
 
 export const HeroPublic: React.FC = () => {
   return (
     <section className="w-full bg-gradient-to-b from-brand-sable/60 to-white">
       <div className="mx-auto flex max-w-3xl flex-col items-center px-6 py-24 text-center sm:py-32">
-        <span className="mb-6 block animate-fadeIn text-xs font-semibold uppercase tracking-[0.15em] text-brand-orange motion-reduce:animate-none">
+        <span className="mb-6 block animate-fadeIn [animation-fill-mode:both] text-xs font-semibold uppercase tracking-[0.15em] text-brand-charcoal motion-reduce:animate-none">
           Agence Web &amp; SEO — Grenoble
         </span>
 
         <h1
-          className="mb-6 animate-fadeIn font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-black motion-reduce:animate-none sm:text-5xl md:text-6xl"
-          style={{ animationDelay: '80ms' }}
+          className="mb-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-black sm:text-5xl md:text-6xl"
         >
           Attirez plus de clients avec{' '}
           <span className="bg-gradient-to-br from-brand-orangeLight to-brand-orange bg-clip-text text-transparent">
@@ -25,7 +24,7 @@ export const HeroPublic: React.FC = () => {
         </h1>
 
         <p
-          className="mb-9 max-w-xl animate-fadeIn text-base leading-relaxed text-[#5c5c64] motion-reduce:animate-none sm:text-lg"
+          className="mb-9 max-w-xl animate-fadeIn [animation-fill-mode:both] text-base leading-relaxed text-[#5c5c64] motion-reduce:animate-none sm:text-lg"
           style={{ animationDelay: '150ms' }}
         >
           Agence basée à Grenoble : création de sites internet sur-mesure (Next.js), référencement naturel (SEO)
@@ -33,7 +32,7 @@ export const HeroPublic: React.FC = () => {
         </p>
 
         <div
-          className="mb-8 flex animate-fadeIn flex-wrap items-center justify-center gap-4 motion-reduce:animate-none"
+          className="mb-8 flex animate-fadeIn [animation-fill-mode:both] flex-wrap items-center justify-center gap-4 motion-reduce:animate-none"
           style={{ animationDelay: '220ms' }}
         >
           <a
@@ -63,7 +62,7 @@ export const HeroPublic: React.FC = () => {
         </div>
 
         <div
-          className="inline-flex animate-fadeIn items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-semibold text-black shadow-soft motion-reduce:animate-none"
+          className="inline-flex animate-fadeIn [animation-fill-mode:both] items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-semibold text-black shadow-soft motion-reduce:animate-none"
           style={{ animationDelay: '320ms' }}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#22c55e]" aria-hidden="true" />

@@ -13,7 +13,7 @@ export const CtaPublic: React.FC = () => {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
             href="/contact"
-            className="inline-flex items-center gap-3 rounded-full bg-brand-orange py-2.5 pl-2.5 pr-6 text-base font-semibold text-white shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-orangeLight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal"
+            className="inline-flex items-center gap-3 rounded-full bg-brand-orange py-2.5 pl-2.5 pr-6 text-base font-semibold text-black shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-orangeLight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-brand-orange">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

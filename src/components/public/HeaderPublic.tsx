@@ -257,7 +257,6 @@ export const HeaderPublic: React.FC = () => {
             letter-spacing: -0.03em;
             margin-left: 12px;
             text-transform: lowercase;
-            font-family: var(--font-display), sans-serif !important;
             transition: color var(--wms-transition-fast);
         }
 
@@ -268,6 +267,12 @@ export const HeaderPublic: React.FC = () => {
 
         .wms-header-logo:hover .wms-logo-text-accent {
             color: var(--wms-logo-orange-light);
+        }
+
+        /* Logo en police d'affichage (sélecteur plus spécifique que la règle Inter forcée plus haut) */
+        .wms-header-wrapper .wms-logo-text,
+        .wms-header-wrapper .wms-logo-text-accent {
+            font-family: var(--font-display), sans-serif !important;
         }
 
         .wms-scene-3d {
