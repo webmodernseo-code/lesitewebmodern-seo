@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 import { AuthProvider } from "@/context/AuthContext";
 import { UIFeedbackProvider } from "@/context/UIFeedbackContext";
 import { JsonLd } from "@/components/JsonLd";
@@ -9,6 +9,11 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-display",
 });
 
 const DEFAULT_TITLE = "Agence Web & SEO à Grenoble — Création de Site, Référencement";
@@ -75,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${bricolageGrotesque.variable}`}>
       <body className="font-sans antialiased min-h-screen selection:bg-amber-500 selection:text-black">
         <JsonLd data={buildWebSiteSchema()} />
         <UIFeedbackProvider>

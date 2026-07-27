@@ -13,12 +13,18 @@ const config: Config = {
         foreground: "var(--foreground)",
         brand: {
           orange: "#ff4d00",
+          orangeLight: "#ff7e47",
           sable: "#F5E6D3",
           black: "#000000",
+          charcoal: "#16161a",
         },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-display)", "sans-serif"],
+      },
+      boxShadow: {
+        soft: "0 20px 40px -15px rgba(15, 15, 17, 0.06), 0 1px 3px rgba(15, 15, 17, 0.02)",
       },
       keyframes: {
         fadeIn: {
