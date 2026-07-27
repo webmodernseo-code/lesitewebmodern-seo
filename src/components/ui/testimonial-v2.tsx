@@ -174,7 +174,7 @@ export function TestimonialsSection() {
             </div>
           </div>
 
-          <h2 id="testimonials-heading" className="text-3xl md:text-5xl font-extrabold tracking-tight mt-3 text-center text-zinc-900 transition-colors">
+          <h2 id="testimonials-heading" className="font-display text-3xl md:text-5xl font-extrabold tracking-tight mt-3 text-center text-zinc-900 transition-colors">
             Ce que nos clients <span className="orange-gradient-text">disent</span>
           </h2>
           <p className="text-center mt-4 text-zinc-600 text-base leading-relaxed max-w-md transition-colors">

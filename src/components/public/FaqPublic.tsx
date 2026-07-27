@@ -96,6 +96,11 @@ export const FaqPublic: React.FC = () => {
     margin: 0;
   }
 
+  /* Titre en police d'affichage (sélecteur plus spécifique que la règle Inter forcée plus haut) */
+  .wms-faq-section .wms-faq-title {
+    font-family: var(--font-display), sans-serif !important;
+  }
+
   /* ── ACCORDÉON FAQ ── */
   .wms-faq-list {
     display: flex;

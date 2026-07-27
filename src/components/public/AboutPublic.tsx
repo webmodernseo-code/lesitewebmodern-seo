@@ -111,6 +111,11 @@ export const AboutPublic: React.FC = () => {
         margin-bottom: 24px;
     }
 
+    /* Titre en police d'affichage (sélecteur plus spécifique que la règle Inter forcée plus haut) */
+    .wm-presentation .presentation-title {
+        font-family: var(--font-display), sans-serif !important;
+    }
+
     .presentation-title .highlight-pill {
         background: var(--primary-green);
         color: #ffffff;

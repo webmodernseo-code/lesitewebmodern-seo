@@ -96,6 +96,11 @@ export const ServicesPublic: React.FC = () => {
             max-width: 800px;
         }
 
+        /* Titre en police d'affichage (sélecteur plus spécifique que la règle Inter forcée plus haut) */
+        .wms-services-section .wms-services-title {
+            font-family: var(--font-display), sans-serif !important;
+        }
+
         /* Écriture orange pour Web & SEO */
         .wms-services-title span {
             background: linear-gradient(135deg, var(--wms-srv-orange-light) 0%, var(--wms-srv-orange) 100%);
