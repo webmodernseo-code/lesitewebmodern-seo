@@ -2,6 +2,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { HeroPublic } from '@/components/public/HeroPublic';
+import { PortfolioShowcase } from '@/components/public/PortfolioShowcase';
 import { ServicesPublic } from '@/components/public/ServicesPublic';
 import { AboutPublic } from '@/components/public/AboutPublic';
 import { CtaPublic } from '@/components/public/CtaPublic';
@@ -35,6 +36,15 @@ export default function Home() {
         <section id="hero" className="w-full">
           <HeroPublic />
         </section>
+
+        {/* Section Portfolio (preuve de savoir-faire) */}
+        <Reveal as="section" id="portfolio-showcase" className="w-full">
+          <PortfolioShowcase
+            title="Conçu avec la même exigence pour nos clients"
+            imageSrc="/portfolio/webmodernseo-home-showcase.png"
+            imageAlt="Aperçu de la home de WebModernSEO affichée dans un ordinateur portable"
+          />
+        </Reveal>
 
         {/* Section Services */}
         <Reveal as="section" id="services" className="w-full">
