@@ -257,7 +257,7 @@ export const HeaderPublic: React.FC = () => {
             letter-spacing: -0.03em;
             margin-left: 12px;
             text-transform: lowercase;
-            font-family: 'Inter', sans-serif !important;
+            font-family: var(--font-display), sans-serif !important;
             transition: color var(--wms-transition-fast);
         }
 
