@@ -539,7 +539,7 @@ export default function Page() {
           <span class="wm-about-badge-dot"></span> Qui sommes-nous ?
         </div>
 
-        <h1 className="wm-about-title">Créateurs d'expériences digitales <span className="fancy-underline">sur-mesure.</span></h1>
+        <h1 class="wm-about-title">Créateurs d'expériences digitales <span class="fancy-underline">sur-mesure.</span></h1>
 
         <p class="wm-about-name">
           Jean-Prosper <span class="wm-about-lastname">MONE</span> &bull; <span class="wm-about-title-role">Fondateur de

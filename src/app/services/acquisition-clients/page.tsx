@@ -1052,7 +1052,7 @@ export default function Page() {
       <div class="wm-acq-badge">
         <span class="wm-acq-badge-dot"></span> Croissance & Performance
       </div>
-      <h1 className="wm-acq-title">
+      <h1 class="wm-acq-title">
         Acquisition de <span class="fancy-underline">Nouveaux Clients.</span>
       </h1>
       <p class="wm-acq-subtitle">
