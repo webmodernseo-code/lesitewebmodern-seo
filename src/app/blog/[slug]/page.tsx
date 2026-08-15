@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </span>
           
           {/* Titre */}
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-black leading-tight">
+          <h1 className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-black leading-tight">
             {post.title}
           </h1>
 
@@ -128,7 +128,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Section Newsletter / Fin d'article */}
         <div className="mt-16 bg-white border border-black/10 p-8 rounded-3xl text-center space-y-4">
-          <h3 className="text-lg font-bold text-black">Besoin d&apos;aide pour votre visibilité en ligne ?</h3>
+          <h3 className="font-display text-lg font-bold text-black">Besoin d&apos;aide pour votre visibilité en ligne ?</h3>
           <p className="text-xs text-[#5c5c64] max-w-md mx-auto">
             Nous concevons des stratégies SEO sur-mesure et des sites internet performants pour attirer des clients qualifiés chaque mois.
           </p>

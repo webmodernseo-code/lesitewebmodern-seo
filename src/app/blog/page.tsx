@@ -60,7 +60,7 @@ export default async function BlogPage() {
             <BookOpen className="w-3.5 h-3.5" />
             Le Blog WebModern SEO
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-black leading-none">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-black leading-none">
             Analyses, conseils & <span className="text-[#ff4d00]">stratégies</span> de croissance.
           </h1>
           <p className="text-sm md:text-base text-[#5c5c64] font-medium leading-relaxed max-w-2xl mx-auto">
@@ -97,7 +97,7 @@ export default async function BlogPage() {
 
                 {/* Content */}
                 <div className="p-5 space-y-2 flex-1 flex flex-col">
-                  <h3 className="text-base font-extrabold text-black leading-snug">
+                  <h3 className="font-display text-base font-extrabold text-black leading-snug">
                     {post.title}
                   </h3>
                   <p className="text-xs text-[#5c5c64] font-medium line-clamp-3 leading-relaxed">

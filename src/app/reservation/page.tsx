@@ -70,7 +70,7 @@ export default function Page() {
         <section className="wm-booking-section" id="reservation-calendly">
           <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '900px', margin: '0 auto' }}>
             <div className="text-center mb-8 px-4">
-              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-black mb-3">
+              <h1 className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-black mb-3">
                 Réservez votre appel stratégique <span className="text-[#ff4d00]">gratuit</span>
               </h1>
               <p className="text-sm md:text-base text-[#5c5c64] max-w-xl mx-auto leading-relaxed">

@@ -15,7 +15,7 @@ export default function ContactPage() {
           <div className="w-fit inline-block bg-[#ff4d00]/10 text-[#ff4d00] px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
             Parlons SEO & Web
           </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-black leading-none">
+          <h1 className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-black leading-none">
             Prêt à faire décoller votre <span className="text-[#ff4d00]">visibilité</span> ?
           </h1>
           <p className="text-sm text-[#5c5c64] leading-relaxed">
@@ -24,7 +24,7 @@ export default function ContactPage() {
 
           {/* Carte Coordonnées - même style que la carte Calendly à droite */}
           <div className="bg-white border border-black/10 rounded-3xl shadow-sm p-6 space-y-4">
-            <h2 className="text-xs font-bold text-black/50 uppercase tracking-widest">
+            <h2 className="font-display text-xs font-bold text-black/50 uppercase tracking-widest">
               Nos coordonnées
             </h2>
             <a href="mailto:contact@webmodernseo.co" className="flex items-center gap-3 group">
