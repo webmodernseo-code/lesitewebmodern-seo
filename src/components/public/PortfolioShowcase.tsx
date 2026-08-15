@@ -31,7 +31,7 @@ export const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ title, ima
           <div className="mx-auto h-2 w-full rounded-b-sm bg-zinc-800" />
 
           {/* Socle */}
-          <div className="relative mx-auto -mt-px h-4 w-[92%] rounded-b-2xl bg-gradient-to-b from-zinc-300 to-zinc-400 shadow-xl sm:h-5">
+          <div className="relative mx-auto -mt-px h-4 w-[106%] rounded-b-2xl bg-gradient-to-b from-zinc-300 to-zinc-400 shadow-xl sm:h-5">
             <div className="absolute left-1/2 top-0 h-1 w-16 -translate-x-1/2 rounded-b-md bg-zinc-500/60" />
           </div>
         </div>
