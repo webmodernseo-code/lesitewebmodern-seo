@@ -89,6 +89,7 @@ export default function Page() {
         }
 
         .wms-policy-section .page-title {
+          font-family: var(--font-display), sans-serif !important;
           font-size: clamp(32px, 5vw, 48px);
           font-weight: 800;
           letter-spacing: -1px;
@@ -121,6 +122,7 @@ export default function Page() {
         }
 
         .wms-policy-section .content-section h2 {
+          font-family: var(--font-display), sans-serif !important;
           color: var(--text-primary);
           font-size: 26px;
           font-weight: 700;
@@ -142,6 +144,7 @@ export default function Page() {
         }
 
         .wms-policy-section .content-section h3 {
+          font-family: var(--font-display), sans-serif !important;
           color: var(--text-primary);
           font-size: 19px;
           font-weight: 600;

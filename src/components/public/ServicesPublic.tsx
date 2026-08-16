@@ -31,6 +31,11 @@ export const ServicesPublic: React.FC = () => {
             font-family: 'Inter', sans-serif !important;
         }
 
+        /* Titres de carte en police d'affichage (sélecteur plus spécifique que le reset Inter ci-dessus) */
+        .wms-services-section .wms-services-card-title {
+            font-family: var(--font-display), sans-serif !important;
+        }
+
         /* Conteneur principal de la section Services */
         .wms-services-section {
             max-width: 1400px;

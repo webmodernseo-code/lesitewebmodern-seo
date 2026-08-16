@@ -238,6 +238,7 @@ export default function Page() {
   }
 
   .wm-about-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(28px, 4vw, 42px);
     font-weight: 800;
     line-height: 1.2;
@@ -330,6 +331,7 @@ export default function Page() {
   }
 
   .wm-about-value-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: 15px;
     font-weight: 700;
     color: var(--text);
@@ -369,6 +371,7 @@ export default function Page() {
   }
 
   .wms-cta-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     color: var(--wms-cta-text-primary);

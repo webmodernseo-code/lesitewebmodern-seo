@@ -82,7 +82,7 @@ export default function NotFound() {
 
   /* --- TEXTE ET CURSEUR --- */
   .error-title {
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(24px, 4.2vw, 36px);
     font-weight: 800;
     color: var(--primary-black);

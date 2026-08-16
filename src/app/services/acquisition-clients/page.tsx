@@ -244,6 +244,7 @@ export default function Page() {
   }
 
   .wm-acq-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(32px, 5.5vw, 54px);
     font-weight: 800;
     line-height: 1.12;
@@ -302,6 +303,7 @@ export default function Page() {
   }
 
   .wm-acq-headline {
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(26px, 3.8vw, 36px);
     font-weight: 800;
     line-height: 1.2;
@@ -441,6 +443,7 @@ export default function Page() {
   }
 
   .wm-funnel-header h3 {
+    font-family: var(--font-display), sans-serif !important;
     font-size: 26px;
     font-weight: 800;
     margin: 0 0 8px 0;
@@ -741,6 +744,7 @@ export default function Page() {
   }
 
   .wm-pil-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(26px, 3.8vw, 36px);
     font-weight: 800;
     margin-bottom: 16px;
@@ -829,6 +833,7 @@ export default function Page() {
   .wm-pil-card-green:hover .wm-pil-card-icon { background: var(--primary-green); color: #ffffff; }
 
   .wm-pil-card-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: 19px;
     font-weight: 700;
     color: var(--text);
@@ -871,6 +876,7 @@ export default function Page() {
   }
 
   .wms-cta-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     color: var(--wms-cta-text-primary);

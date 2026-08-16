@@ -48,6 +48,11 @@ export const FooterPublic: React.FC = () => {
             font-family: 'Inter', sans-serif !important;
         }
 
+        /* Titres de colonne en police d'affichage (sélecteur plus spécifique que le reset Inter ci-dessus) */
+        .wms-footer-wrapper .wms-footer-col h4 {
+            font-family: var(--font-display), sans-serif !important;
+        }
+
         .wms-footer-container {
             max-width: 1400px;
             margin: 0 auto;

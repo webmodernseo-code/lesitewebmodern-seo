@@ -79,7 +79,7 @@ export default function VillePage({ params }: VillePageProps) {
             Expertise SEO & Web à {villeData.nom} ({villeData.codePostal})
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-black leading-tight mb-6">
+          <h1 className="font-display text-4xl md:text-6xl font-black tracking-tight text-black leading-tight mb-6">
             Création de Site Internet & Référencement SEO à <span className="text-[#ff4d00]">{villeData.nom}</span>
           </h1>
 
@@ -119,7 +119,7 @@ export default function VillePage({ params }: VillePageProps) {
         {/* Avantages Spécifiques */}
         <Reveal as="section" className="container max-w-[1400px] mx-auto px-4 mb-20" delay={100}>
           <div className="p-8 md:p-12 rounded-3xl bg-white border border-zinc-200/80 shadow-xl shadow-black/5">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-black mb-8">
+            <h2 className="font-display text-2xl md:text-3xl font-extrabold text-black mb-8">
               Pourquoi choisir WebModernSEO pour votre projet à {villeData.nom} ?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
