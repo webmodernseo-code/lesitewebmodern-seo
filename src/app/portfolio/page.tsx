@@ -207,6 +207,7 @@ export default function Page() {
   }
 
   .wm-portfolio .portfolio-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(28px, 4.5vw, 48px);
     font-weight: 800;
     line-height: 1.2;
@@ -330,6 +331,7 @@ export default function Page() {
   }
 
   .wm-portfolio .portfolio-card h3 {
+    font-family: var(--font-display), sans-serif !important;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 8px;
@@ -443,6 +445,7 @@ export default function Page() {
   }
 
   .wm-portfolio .seo-section-title {
+    font-family: var(--font-display), sans-serif !important;
     font-size: clamp(24px, 3.5vw, 38px);
     font-weight: 800;
     line-height: 1.25;
@@ -569,6 +572,7 @@ export default function Page() {
   }
 
   .wm-portfolio .seo-tab-content h4 {
+    font-family: var(--font-display), sans-serif !important;
     font-size: 18px;
     font-weight: 700;
     color: var(--text-main) !important;
