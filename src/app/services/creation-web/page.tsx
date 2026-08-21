@@ -146,7 +146,7 @@ export default function Page() {
   .wm-service-page *::before,
   .wm-service-page *::after {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   /* Lueur d'ambiance orange (haut droite) */

@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Bricolage_Grotesque } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import { AuthProvider } from "@/context/AuthContext";
 import { UIFeedbackProvider } from "@/context/UIFeedbackContext";
 import { JsonLd } from "@/components/JsonLd";
 import { buildWebSiteSchema } from "@/lib/schema";
 import "./globals.css";
 
-const inter = Inter({
+const bricolageSans = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
 });
 
-const bricolageGrotesque = Bricolage_Grotesque({
+const bricolageDisplay = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-display",
 });
@@ -80,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${bricolageGrotesque.variable}`}>
+    <html lang="fr" className={`${bricolageSans.variable} ${bricolageDisplay.variable}`}>
       <body className="font-sans antialiased min-h-screen selection:bg-amber-500 selection:text-black">
         <JsonLd data={buildWebSiteSchema()} />
         <UIFeedbackProvider>

@@ -180,7 +180,7 @@ export const HeaderPublic: React.FC = () => {
         .wms-header-wrapper p,
         .wms-header-wrapper a,
         .wms-header-wrapper span {
-            font-family: 'Inter', sans-serif !important;
+            font-family: var(--font-sans), sans-serif !important;
         }
 
         /* Encapsulation complète sous le sélecteur .wms-header-wrapper pour éviter les conflits */
@@ -197,7 +197,7 @@ export const HeaderPublic: React.FC = () => {
             border-radius: 20px;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans), sans-serif;
             box-shadow: 
                 0 10px 30px -10px rgba(15, 15, 17, 0.08), 
                 0 1px 3px rgba(15, 15, 17, 0.04), 
@@ -668,7 +668,7 @@ export const HeaderPublic: React.FC = () => {
             padding: 0;
             text-align: left;
             cursor: pointer;
-            font-family: 'Inter', sans-serif !important;
+            font-family: var(--font-sans), sans-serif !important;
             transform: translateY(10px);
             opacity: 0;
             transition: color var(--wms-transition-fast), transform var(--wms-transition-fast), opacity var(--wms-transition-fast);

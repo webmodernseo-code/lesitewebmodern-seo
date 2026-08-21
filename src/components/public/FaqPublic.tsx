@@ -69,7 +69,7 @@ export const FaqPublic: React.FC = () => {
   .wms-faq-section *::before,
   .wms-faq-section *::after {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   /* ── CONTENEUR GENERAL ── */

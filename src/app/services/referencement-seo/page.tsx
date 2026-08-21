@@ -355,7 +355,7 @@ export default function Page() {
   .wm-seo-page *::before,
   .wm-seo-page *::after {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   /* Lueur d'ambiance verte (haut droite) */

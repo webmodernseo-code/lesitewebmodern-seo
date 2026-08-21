@@ -174,7 +174,7 @@ export default function Page() {
   .wm-portfolio div,
   .wm-portfolio a,
   .wm-portfolio button {
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   /* === EN-TETE === */

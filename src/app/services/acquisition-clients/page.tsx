@@ -170,7 +170,7 @@ export default function Page() {
   .wm-acquisition-page *::before,
   .wm-acquisition-page *::after {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   /* Lueur d'ambiance bleue (haut gauche) */

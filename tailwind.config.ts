@@ -20,7 +20,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
         display: ["var(--font-display)", "sans-serif"],
       },
       boxShadow: {

@@ -28,7 +28,7 @@ export const ServicesPublic: React.FC = () => {
         .wms-services-section p,
         .wms-services-section a,
         .wms-services-section span {
-            font-family: 'Inter', sans-serif !important;
+            font-family: var(--font-sans), sans-serif !important;
         }
 
         /* Titres de carte en police d'affichage (sélecteur plus spécifique que le reset Inter ci-dessus) */
@@ -46,7 +46,7 @@ export const ServicesPublic: React.FC = () => {
             border-radius: 32px;
             padding: 80px 48px;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans), sans-serif;
             color: var(--wms-srv-text-primary);
             box-shadow: 
                 0 20px 40px -15px rgba(15, 15, 17, 0.04),

@@ -23,7 +23,7 @@ export const FooterPublic: React.FC = () => {
             border: 1px solid var(--wms-footer-border);
             border-radius: 32px;
             padding: 48px 36px 32px 36px;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans), sans-serif;
             color: var(--wms-footer-text-secondary);
             box-sizing: border-box;
             box-shadow:
@@ -45,7 +45,7 @@ export const FooterPublic: React.FC = () => {
             padding: 0;
             list-style: none;
             text-decoration: none;
-            font-family: 'Inter', sans-serif !important;
+            font-family: var(--font-sans), sans-serif !important;
         }
 
         /* Titres de colonne en police d'affichage (sélecteur plus spécifique que le reset Inter ci-dessus) */

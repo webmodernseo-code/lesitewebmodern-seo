@@ -42,11 +42,11 @@ export default function Page() {
           box-sizing: border-box;
           margin: 0;
           padding: 0;
-          font-family: 'Inter', sans-serif !important;
+          font-family: var(--font-sans), sans-serif !important;
         }
 
         .wms-policy-section {
-          font-family: 'Inter', sans-serif !important;
+          font-family: var(--font-sans), sans-serif !important;
           background-color: var(--bg-color);
           color: var(--text-secondary);
           line-height: 1.7;

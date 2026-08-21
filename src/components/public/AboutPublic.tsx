@@ -49,7 +49,7 @@ export const AboutPublic: React.FC = () => {
     .wm-presentation strong,
     .wm-presentation small,
     .wm-presentation div {
-        font-family: 'Inter', sans-serif !important;
+        font-family: var(--font-sans), sans-serif !important;
     }
 
     /* Titres de carte en police d'affichage (sélecteur plus spécifique que le reset Inter ci-dessus) */

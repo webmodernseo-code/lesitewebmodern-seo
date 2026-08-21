@@ -156,7 +156,7 @@ export const AvisPublic: React.FC = () => {
   .wm-reviews-section *::before,
   .wm-reviews-section *::after {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   /* Lueur ambiante subtile orange (haut droite) */
@@ -462,7 +462,7 @@ export const AvisPublic: React.FC = () => {
     font-style: italic;
     flex-grow: 1;
     margin: 0 0 16px;
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   /* Séparateur */

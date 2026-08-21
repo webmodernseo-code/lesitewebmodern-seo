@@ -33,7 +33,7 @@ export default function NotFound() {
   .wm-isolated-section,
   .wm-isolated-section * {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   .error-container {
@@ -65,7 +65,7 @@ export default function NotFound() {
   }
 
   .wm-digit-4 {
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
     font-size: 260px;
     font-weight: 900;
     fill: var(--primary-black);

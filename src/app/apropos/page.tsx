@@ -67,7 +67,7 @@ export default function Page() {
   .wm-about-section *::before,
   .wm-about-section *::after {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif !important;
+    font-family: var(--font-sans), sans-serif !important;
   }
 
   /* Lueur d'ambiance orange (haut droite) */
