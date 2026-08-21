@@ -12,6 +12,34 @@
   }
 }
 
+@keyframes homePortfolioMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.home-portfolio-track {
+  animation: homePortfolioMarquee 34s linear infinite;
+}
+
+.home-portfolio-viewport:hover .home-portfolio-track {
+  animation-duration: 70s;
+}
+
+.home-portfolio-viewport:focus-within .home-portfolio-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-portfolio-track {
+    animation: none;
+    transform: none;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
