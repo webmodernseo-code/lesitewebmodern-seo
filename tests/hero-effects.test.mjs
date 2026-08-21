@@ -14,11 +14,20 @@ test('exports the canvas background and rotating word components', async () => {
   assert.match(source, /export function RotatingWord/);
 });
 
-test('honours reduced motion and exposes a decorative canvas', async () => {
+test('reacts to reduced-motion preference changes and exposes a decorative canvas', async () => {
   const source = await effectsSource();
-  assert.match(source, /prefers-reduced-motion: reduce/);
+  const bubbleSource = source.split('export function RotatingWord')[0];
+  assert.match(bubbleSource, /const reducedMotion = useReducedMotion\(\)/);
+  assert.doesNotMatch(bubbleSource, /window\.matchMedia/);
   assert.match(source, /aria-hidden="true"/);
   assert.match(source, /pointer-events-none/);
+});
+
+test('observes hero size changes that are not window resizes', async () => {
+  const source = await effectsSource();
+  assert.match(source, /new ResizeObserver\(resize\)/);
+  assert.match(source, /resizeObserver\.observe\(parent\)/);
+  assert.match(source, /resizeObserver\.disconnect\(\)/);
 });
 
 test('cleans up animation frame and browser listeners', async () => {

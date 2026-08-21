@@ -22,6 +22,7 @@ export function BubbleBackground() {
   const frameRef = useRef<number | null>(null);
   const sizeRef = useRef({ width: 0, height: 0 });
   const mouseRef = useRef<{ x: number | null; y: number | null }>({ x: null, y: null });
+  const reducedMotion = useReducedMotion();
 
   const createBubbles = useCallback(() => {
     const { width, height } = sizeRef.current;
@@ -64,10 +65,9 @@ export function BubbleBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
+    const parent = canvas?.parentElement;
 
-    if (!canvas || !context) return;
-
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!canvas || !context || !parent) return;
 
     const handleMouseMove = (event: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -112,6 +112,8 @@ export function BubbleBackground() {
     };
 
     resize();
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(parent);
     window.addEventListener('resize', resize);
     if (!reducedMotion) {
       window.addEventListener('mousemove', handleMouseMove, { passive: true });
@@ -120,6 +122,7 @@ export function BubbleBackground() {
     draw();
 
     return () => {
+      resizeObserver.disconnect();
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.documentElement.removeEventListener('mouseleave', handleMouseLeave);
@@ -127,7 +130,7 @@ export function BubbleBackground() {
         cancelAnimationFrame(frameRef.current);
       }
     };
-  }, [resize]);
+  }, [reducedMotion, resize]);
 
   return (
     <div className="pointer-events-none absolute inset-0" aria-hidden="true">
