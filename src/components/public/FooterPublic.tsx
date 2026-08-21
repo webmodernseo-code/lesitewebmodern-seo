@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { type FooterSection, getNextFooterSection } from './footer-accordion';
 
 const linkClass = 'text-[0.95rem] text-[#5c5c64] transition hover:translate-x-1 hover:text-brand-orange';
-const sectionClass = 'border-t border-black/10 py-1 md:border-0 md:py-0';
+const sectionClass = 'border-t border-black/10 py-1 lg:border-0 lg:py-0';
 
 export function FooterPublic() {
   const [openSection, setOpenSection] = useState<FooterSection | null>(null);
@@ -15,8 +15,8 @@ export function FooterPublic() {
   return (
     <footer className="mx-4 mb-5 mt-10 max-w-[1400px] rounded-3xl border border-black/[0.08] bg-[#faf6ee] px-5 pb-6 pt-8 text-[#5c5c64] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.4),0_1px_3px_rgba(0,0,0,0.2)] md:mx-9 md:mb-10 md:mt-20 md:rounded-[32px] md:px-9 md:pb-8 md:pt-12 min-[1472px]:mx-auto">
       <div className="mx-auto max-w-[1400px]">
-        <div className="mb-8 grid grid-cols-1 gap-0 md:mb-[60px] md:grid-cols-[2fr_1fr_1.2fr_1.3fr] md:gap-12">
-          <div className="mb-8 flex flex-col gap-5 md:mb-0">
+        <div className="mb-8 grid grid-cols-1 gap-0 lg:mb-[60px] lg:grid-cols-[2fr_1fr_1.2fr_1.3fr] lg:gap-12">
+          <div className="mb-8 flex flex-col gap-5 lg:mb-0">
             <a href="/" className="inline-flex items-center gap-3" aria-label="Accueil">
               <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true">
                 <rect x="5" y="5" width="90" height="90" rx="22" fill="#ff4d00" />
@@ -67,11 +67,11 @@ export function FooterPublic() {
 function FooterColumn({ id, title, open, onToggle, ariaExpanded, children }: { id: string; title: string; open: boolean; onToggle: () => void; ariaExpanded: boolean; children: React.ReactNode }) {
   return (
     <section className={sectionClass}>
-      <h2 className="hidden text-base font-bold uppercase tracking-[1.5px] text-black md:block">{title}</h2>
-      <button type="button" className="flex min-h-12 w-full items-center justify-between py-3 text-left text-base font-bold uppercase tracking-[1.5px] text-black md:hidden" aria-expanded={ariaExpanded} aria-controls={id} onClick={onToggle}>
+      <h2 className="hidden text-base font-bold uppercase tracking-[1.5px] text-black lg:block">{title}</h2>
+      <button type="button" className="flex min-h-12 w-full items-center justify-between py-3 text-left text-base font-bold uppercase tracking-[1.5px] text-black lg:hidden" aria-expanded={ariaExpanded} aria-controls={id} onClick={onToggle}>
         {title}<ChevronDown className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
       </button>
-      <div id={id} className={`${open ? 'flex' : 'hidden'} flex-col gap-3.5 pb-4 md:mt-6 md:flex md:pb-0`}>{children}</div>
+      <div id={id} className={`${open ? 'flex' : 'hidden'} flex-col gap-3.5 pb-4 lg:mt-6 lg:flex lg:pb-0`}>{children}</div>
     </section>
   );
 }

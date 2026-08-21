@@ -19,6 +19,7 @@ test('the footer exposes three accessible accordion controls without raw HTML', 
   assert.match(source, /footer-services/);
   assert.match(source, /footer-navigation/);
   assert.match(source, /footer-contact/);
+  assert.match(source, /lg:grid-cols-\[2fr_1fr_1\.2fr_1\.3fr\]/);
   assert.match(source, /Mentions légales/);
   assert.match(source, /Politique de confidentialité/);
   assert.doesNotMatch(source, /dangerouslySetInnerHTML/);
