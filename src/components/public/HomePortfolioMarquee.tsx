@@ -54,9 +54,9 @@ function ProjectGroup({ duplicate = false }: { duplicate?: boolean }) {
 
 export function HomePortfolioMarquee() {
   return (
-    <section className="w-full overflow-hidden bg-white py-12 sm:py-16" aria-label="Aperçu de nos réalisations">
+    <section className="w-full overflow-hidden bg-white py-6 sm:py-8" aria-label="Aperçu de nos réalisations">
       <div
-        className="home-portfolio-viewport -mx-8 -rotate-2 overflow-hidden py-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-4"
+        className="home-portfolio-viewport -mx-8 -rotate-2 overflow-hidden py-5 sm:py-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-4"
         tabIndex={0}
         aria-label="Portfolio défilant, mettre au point pour suspendre l’animation"
       >
