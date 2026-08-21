@@ -1,5 +1,6 @@
 import React from 'react';
 import { BubbleBackground, RotatingWord } from '@/components/public/HeroEffects';
+import { PartnerLogoSlider } from '@/components/public/PartnerLogoSlider';
 
 // TODO(pre-launch): valeur fictive à remplacer par le vrai chiffre client avant mise en ligne — ne pas déployer en prod sans données réelles.
 const HERO_PROOF_STAT = '1 482 leads générés ce mois pour nos clients';
@@ -66,6 +67,8 @@ export const HeroPublic: React.FC = () => {
           <span className="h-1.5 w-1.5 rounded-full bg-[#22c55e]" aria-hidden="true" />
           {HERO_PROOF_STAT}
         </div>
+
+        <PartnerLogoSlider />
         </div>
       </div>
     </section>
