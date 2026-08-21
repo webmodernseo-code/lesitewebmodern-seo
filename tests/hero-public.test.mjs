@@ -17,7 +17,7 @@ test('keeps the commercial content and uses a rounded clipped shell', async () =
   const source = await readFile(heroPath, 'utf8');
   assert.match(source, /Prendre un RDV offert/);
   assert.match(source, /Découvrir nos services/);
-  assert.match(source, /HERO_PROOF_STAT/);
+  assert.match(source, /<HeroSocialProof \/>/);
   assert.match(source, /rounded-\[32px\]/);
   assert.match(source, /overflow-hidden/);
 });

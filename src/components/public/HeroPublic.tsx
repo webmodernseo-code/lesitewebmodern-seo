@@ -1,9 +1,8 @@
 import React from 'react';
 import { BubbleBackground, RotatingWord } from '@/components/public/HeroEffects';
+import { HeroSocialProof } from '@/components/public/HeroSocialProof';
 import { PartnerLogoSlider } from '@/components/public/PartnerLogoSlider';
 
-// TODO(pre-launch): valeur fictive à remplacer par le vrai chiffre client avant mise en ligne — ne pas déployer en prod sans données réelles.
-const HERO_PROOF_STAT = '1 482 leads générés ce mois pour nos clients';
 const HERO_WORDS = ['visibilité', 'trafic', 'notoriété', 'chiffre d’affaires'] as const;
 
 export const HeroPublic: React.FC = () => {
@@ -12,7 +11,7 @@ export const HeroPublic: React.FC = () => {
       <div className="relative mx-auto w-full max-w-[1440px] overflow-hidden rounded-[24px] bg-gradient-to-b from-brand-sable/60 to-white sm:rounded-[32px]">
         <BubbleBackground />
 
-        <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-24 text-center sm:py-32">
+        <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 pt-12 pb-24 text-center sm:pt-16 sm:pb-32">
         <span className="mb-6 block animate-fadeIn [animation-fill-mode:both] text-xs font-semibold uppercase tracking-[0.15em] text-brand-charcoal motion-reduce:animate-none">
           Agence Web &amp; SEO — Grenoble
         </span>
@@ -60,12 +59,8 @@ export const HeroPublic: React.FC = () => {
           </a>
         </div>
 
-        <div
-          className="inline-flex animate-fadeIn [animation-fill-mode:both] items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-semibold text-black shadow-soft motion-reduce:animate-none"
-          style={{ animationDelay: '320ms' }}
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-[#22c55e]" aria-hidden="true" />
-          {HERO_PROOF_STAT}
+        <div className="animate-fadeIn [animation-fill-mode:both] motion-reduce:animate-none" style={{ animationDelay: '320ms' }}>
+          <HeroSocialProof />
         </div>
 
         <PartnerLogoSlider />
