@@ -5,7 +5,11 @@ import test from 'node:test';
 test('home no longer composes the orange portfolio showcase', async () => {
   const source = await readFile('src/app/page.tsx', 'utf8');
   assert.doesNotMatch(source, /PortfolioShowcase|portfolio-showcase/);
-  assert.match(source, /<HeroPublic\s*\/>[\s\S]*<ServicesPublic\s*\/>/);
+  assert.match(source, /import \{ HomePortfolioMarquee \}/);
+  const hero = source.indexOf('<HeroPublic />');
+  const portfolio = source.indexOf('<HomePortfolioMarquee />');
+  const services = source.indexOf('<ServicesPublic />');
+  assert.ok(hero >= 0 && portfolio > hero && services > portfolio);
 });
 
 test('partner slider contains the historical logos and accessible duplicate group', async () => {
@@ -19,7 +23,7 @@ test('partner slider contains the historical logos and accessible duplicate grou
   assert.match(source, /group-hover:\[animation-play-state:paused\]/);
 });
 
-test('hero composes the partner slider after the proof stat', async () => {
+test('hero composes the partner slider after the social proof', async () => {
   const source = await readFile('src/components/public/HeroPublic.tsx', 'utf8');
-  assert.match(source, /HERO_PROOF_STAT[\s\S]*<PartnerLogoSlider\s*\/>/);
+  assert.match(source, /<HeroSocialProof\s*\/>[\s\S]*<PartnerLogoSlider\s*\/>/);
 });

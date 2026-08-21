@@ -2,6 +2,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { HeroPublic } from '@/components/public/HeroPublic';
+import { HomePortfolioMarquee } from '@/components/public/HomePortfolioMarquee';
 import { ServicesPublic } from '@/components/public/ServicesPublic';
 import { AboutPublic } from '@/components/public/AboutPublic';
 import { CtaPublic } from '@/components/public/CtaPublic';
@@ -35,6 +36,8 @@ export default function Home() {
         <section id="hero" className="w-full">
           <HeroPublic />
         </section>
+
+        <HomePortfolioMarquee />
 
         {/* Section Services */}
         <Reveal as="section" id="services" className="w-full">
