@@ -11,4 +11,7 @@ test('Reveal exposes four motion variants with up as the default', async () => {
   }
   assert.match(source, /prefers-reduced-motion/);
   assert.match(source, /opacity-100 translate-x-0 translate-y-0 scale-100/);
+  assert.match(source, /motion-reduce:transition-none/);
+  assert.match(source, /motion-reduce:transform-none/);
+  assert.match(source, /motion-reduce:opacity-100/);
 });

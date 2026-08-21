@@ -23,23 +23,23 @@
   will-change: opacity, transform;
 }
 
-.stagger-reveal[data-stagger-variant="up"] .stagger-reveal-item {
+:where(.stagger-reveal[data-stagger-variant="up"]) .stagger-reveal-item {
   transform: translateY(24px);
 }
 
-.stagger-reveal[data-stagger-variant="left"] .stagger-reveal-item {
+:where(.stagger-reveal[data-stagger-variant="left"]) .stagger-reveal-item {
   transform: translateX(-32px);
 }
 
-.stagger-reveal[data-stagger-variant="right"] .stagger-reveal-item {
+:where(.stagger-reveal[data-stagger-variant="right"]) .stagger-reveal-item {
   transform: translateX(32px);
 }
 
-.stagger-reveal[data-stagger-variant="scale"] .stagger-reveal-item {
+:where(.stagger-reveal[data-stagger-variant="scale"]) .stagger-reveal-item {
   transform: translateY(12px) scale(0.97);
 }
 
-.stagger-reveal.is-visible .stagger-reveal-item {
+:where(.stagger-reveal.is-visible) .stagger-reveal-item {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
 }

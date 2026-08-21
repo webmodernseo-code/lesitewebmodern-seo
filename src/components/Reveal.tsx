@@ -72,7 +72,7 @@ export function Reveal({ children, className = '', delay = 0, as = 'div', id, va
     <Tag
       ref={ref as never}
       id={id}
-      className={`transition-all duration-700 ease-out ${
+      className={`transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${
         visible
           ? 'opacity-100 translate-x-0 translate-y-0 scale-100'
           : hiddenClasses[variant]

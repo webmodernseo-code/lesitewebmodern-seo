@@ -25,4 +25,7 @@ test('stagger styles expose directional variants and a reduced-motion fallback',
   ]) {
     assert.ok(source.includes(marker), `missing ${marker}`);
   }
+
+  assert.match(source, /:where\(\.stagger-reveal\.is-visible\) \.stagger-reveal-item/);
+  assert.doesNotMatch(source, /\.stagger-reveal\.is-visible \.stagger-reveal-item/);
 });
