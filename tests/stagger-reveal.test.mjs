@@ -10,6 +10,7 @@ test('StaggerReveal prepares selected descendants and remains accessible', async
   assert.match(source, /prefers-reduced-motion/);
   assert.match(source, /observer\?\.disconnect\(\)/);
   assert.match(source, /removeProperty\('--stagger-index'\)/);
+  assert.doesNotMatch(source, /setTimeout\(\(\) => setVisible\(true\), 1200\)/);
 });
 
 test('stagger styles expose directional variants and a reduced-motion fallback', async () => {

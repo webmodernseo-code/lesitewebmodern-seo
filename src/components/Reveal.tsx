@@ -26,9 +26,8 @@ interface RevealProps {
  * Anime légèrement l'apparition d'un bloc lorsqu'il entre dans le viewport
  * (IntersectionObserver, sans dépendance externe). Ne jamais utiliser sur le
  * contenu du premier écran (candidat LCP) : uniquement pour des sections plus
- * bas dans la page. Un filet de sécurité force l'affichage après 1.2s dans tous
- * les cas (JS lent, crawler, navigateur sans IntersectionObserver, saut direct
- * en bas de page) pour qu'aucun contenu ne reste invisible.
+ * bas dans la page. Les navigateurs sans IntersectionObserver et les personnes
+ * ayant demandé moins de mouvement voient immédiatement le contenu.
  */
 export function Reveal({ children, className = '', delay = 0, as = 'div', id, variant = 'up' }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,13 +55,8 @@ export function Reveal({ children, className = '', delay = 0, as = 'div', id, va
     );
 
     observer.observe(node);
-    // Filet de sécurité : garantit que le contenu apparaît même si l'observer
-    // ne se déclenche jamais (ex: redimensionnement instantané sans scroll réel).
-    const fallback = setTimeout(() => setVisible(true), 1200);
-
     return () => {
       observer.disconnect();
-      clearTimeout(fallback);
     };
   }, []);
 

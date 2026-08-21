@@ -54,11 +54,8 @@ export function StaggerReveal({
       observer.observe(node);
     }
 
-    const fallback = setTimeout(() => setVisible(true), 1200);
-
     return () => {
       observer?.disconnect();
-      clearTimeout(fallback);
       items.forEach((item) => {
         item.classList.remove('stagger-reveal-item');
         item.style.removeProperty('--stagger-index');

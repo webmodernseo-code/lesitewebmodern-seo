@@ -14,4 +14,5 @@ test('Reveal exposes four motion variants with up as the default', async () => {
   assert.match(source, /motion-reduce:transition-none/);
   assert.match(source, /motion-reduce:transform-none/);
   assert.match(source, /motion-reduce:opacity-100/);
+  assert.doesNotMatch(source, /setTimeout\(\(\) => setVisible\(true\), 1200\)/);
 });
