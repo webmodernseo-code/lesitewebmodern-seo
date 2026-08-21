@@ -27,3 +27,16 @@ test('hero composes the partner slider after the social proof', async () => {
   const source = await readFile('src/components/public/HeroPublic.tsx', 'utf8');
   assert.match(source, /<HeroSocialProof\s*\/>[\s\S]*<PartnerLogoSlider\s*\/>/);
 });
+
+test('homepage applies deliberate reveal variants without wrapping the hero or testimonials', async () => {
+  const source = await readFile('src/app/page.tsx', 'utf8');
+
+  assert.match(source, /import \{ StaggerReveal \}/);
+  assert.match(source, /<Reveal variant="up" className="w-full">\s*<HomePortfolioMarquee \/>/);
+  assert.match(source, /selector="\.wms-services-card, \.wms-services-tag-badge"/);
+  assert.match(source, /id="apropos" className="w-full" variant="right"/);
+  assert.match(source, /id="cta" className="w-full" variant="scale"/);
+  assert.match(source, /selector="\.wms-faq-item"/);
+  assert.doesNotMatch(source, /<Reveal[^>]*>[\s\S]{0,120}<HeroPublic \/>/);
+  assert.doesNotMatch(source, /<Reveal[^>]*>[\s\S]{0,120}<TestimonialsSection \/>/);
+});

@@ -10,6 +10,7 @@ import { FaqPublic } from '@/components/public/FaqPublic';
 import { FooterPublic } from '@/components/public/FooterPublic';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
+import { StaggerReveal } from '@/components/StaggerReveal';
 import { buildOrganizationSchema, buildFaqSchema } from '@/lib/schema';
 
 // Chargé uniquement quand la section devient visible : évite d'alourdir le bundle
@@ -37,15 +38,19 @@ export default function Home() {
           <HeroPublic />
         </section>
 
-        <HomePortfolioMarquee />
+        <Reveal variant="up" className="w-full">
+          <HomePortfolioMarquee />
+        </Reveal>
 
         {/* Section Services */}
-        <Reveal as="section" id="services" className="w-full">
-          <ServicesPublic />
+        <Reveal as="section" id="services" className="w-full" variant="up">
+          <StaggerReveal selector=".wms-services-card, .wms-services-tag-badge" variant="up" step={80}>
+            <ServicesPublic />
+          </StaggerReveal>
         </Reveal>
 
         {/* Section À Propos */}
-        <Reveal as="section" id="apropos" className="w-full">
+        <Reveal as="section" id="apropos" className="w-full" variant="right">
           <AboutPublic />
         </Reveal>
 
@@ -56,13 +61,15 @@ export default function Home() {
         </section>
 
         {/* Section Appel à l'action (CTA) */}
-        <Reveal as="section" id="cta" className="w-full">
+        <Reveal as="section" id="cta" className="w-full" variant="scale">
           <CtaPublic />
         </Reveal>
 
         {/* Section FAQ */}
-        <Reveal as="section" id="faq" className="w-full">
-          <FaqPublic />
+        <Reveal as="section" id="faq" className="w-full" variant="up">
+          <StaggerReveal selector=".wms-faq-item" variant="up" step={80}>
+            <FaqPublic />
+          </StaggerReveal>
         </Reveal>
       </main>
 

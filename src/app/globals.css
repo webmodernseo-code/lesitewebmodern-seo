@@ -12,6 +12,46 @@
   }
 }
 
+/* Reveals échelonnés : mouvement court et lisible, sans masquer le contenu
+   pour les personnes ayant demandé moins d'animations. */
+.stagger-reveal-item {
+  opacity: 0;
+  transition:
+    opacity 700ms ease-out,
+    transform 700ms ease-out;
+  transition-delay: calc(var(--stagger-index, 0) * var(--stagger-step, 100ms));
+  will-change: opacity, transform;
+}
+
+:where(.stagger-reveal[data-stagger-variant="up"]) .stagger-reveal-item {
+  transform: translateY(24px);
+}
+
+:where(.stagger-reveal[data-stagger-variant="left"]) .stagger-reveal-item {
+  transform: translateX(-32px);
+}
+
+:where(.stagger-reveal[data-stagger-variant="right"]) .stagger-reveal-item {
+  transform: translateX(32px);
+}
+
+:where(.stagger-reveal[data-stagger-variant="scale"]) .stagger-reveal-item {
+  transform: translateY(12px) scale(0.97);
+}
+
+:where(.stagger-reveal.is-visible) .stagger-reveal-item {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 @keyframes homePortfolioMarquee {
   from {
     transform: translateX(0);

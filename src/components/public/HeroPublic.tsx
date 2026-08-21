@@ -12,7 +12,8 @@ export const HeroPublic: React.FC = () => {
         <BubbleBackground />
 
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 pt-12 pb-24 text-center sm:pt-16 sm:pb-32">
-        <span className="mb-6 block animate-fadeIn [animation-fill-mode:both] text-xs font-semibold uppercase tracking-[0.15em] text-brand-charcoal motion-reduce:animate-none">
+        <span className="mb-6 inline-flex animate-fadeIn [animation-fill-mode:both] items-center gap-2 rounded-full border border-black/[0.08] bg-black/[0.03] px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.08em] text-[#5c5c64] motion-reduce:animate-none">
+          <span className="text-[#0FAC71]" aria-hidden="true">✦</span>
           Agence Web &amp; SEO — Grenoble
         </span>
 
