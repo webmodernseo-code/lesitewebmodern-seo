@@ -1,393 +1,85 @@
-import React from 'react';
+'use client';
 
-export const FooterPublic: React.FC = () => {
+import { ChevronDown, Clock3, Mail, Phone } from 'lucide-react';
+import { useState } from 'react';
+
+import { type FooterSection, getNextFooterSection } from './footer-accordion';
+
+const linkClass = 'text-[0.95rem] text-[#5c5c64] transition hover:translate-x-1 hover:text-brand-orange';
+const sectionClass = 'border-t border-black/10 py-1 md:border-0 md:py-0';
+
+export function FooterPublic() {
+  const [openSection, setOpenSection] = useState<FooterSection | null>(null);
+  const toggle = (section: FooterSection) => setOpenSection((current) => getNextFooterSection(current, section));
+
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: `
-        :root {
-            /* Variables CSS isolées pour Webmodernseo */
-            --wms-footer-bg: #faf6ee;
-            --wms-footer-brand-orange: #ff4d00;
-            --wms-footer-brand-orange-light: #ff7e47;
-            --wms-footer-text-primary: #000000;
-            --wms-footer-text-secondary: #5c5c64;
-            --wms-footer-border: rgba(15, 15, 17, 0.08);
-            --wms-footer-transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Encapsulation complète sous le sélecteur .wms-footer-wrapper pour éviter les conflits */
-        .wms-footer-wrapper {
-            max-width: 1400px;
-            margin: 80px auto 40px auto;
-            background: var(--wms-footer-bg);
-            border: 1px solid var(--wms-footer-border);
-            border-radius: 32px;
-            padding: 48px 36px 32px 36px;
-            font-family: var(--font-sans), sans-serif;
-            color: var(--wms-footer-text-secondary);
-            box-sizing: border-box;
-            box-shadow:
-                0 30px 60px -20px rgba(0, 0, 0, 0.4),
-                0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        .wms-footer-wrapper *,
-        .wms-footer-wrapper h1,
-        .wms-footer-wrapper h2,
-        .wms-footer-wrapper h3,
-        .wms-footer-wrapper h4,
-        .wms-footer-wrapper p,
-        .wms-footer-wrapper a,
-        .wms-footer-wrapper span,
-        .wms-footer-wrapper li {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            text-decoration: none;
-            font-family: var(--font-sans), sans-serif !important;
-        }
-
-        /* Titres de colonne en police d'affichage (sélecteur plus spécifique que le reset Inter ci-dessus) */
-        .wms-footer-wrapper .wms-footer-col h4 {
-            font-family: var(--font-display), sans-serif !important;
-        }
-
-        .wms-footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* --- GRID FOOTER --- */
-        .wms-footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1.2fr 1.3fr;
-            gap: 48px;
-            margin-bottom: 60px;
-        }
-
-        /* Colonne 1 : Brand & Logo */
-        .wms-footer-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .wms-footer-logo-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .wms-footer-logo-text {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--wms-footer-text-primary);
-            letter-spacing: -0.03em;
-            text-transform: lowercase;
-        }
-
-        .wms-footer-logo-accent {
-            color: var(--wms-footer-brand-orange);
-        }
-
-        .wms-footer-desc {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            max-width: 320px;
-            color: var(--wms-footer-text-secondary);
-        }
-
-        /* Réseaux Sociaux */
-        .wms-footer-socials {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
-        }
-
-        .wms-social-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--wms-footer-border);
-            color: var(--wms-footer-text-secondary);
-            transition: all var(--wms-footer-transition);
-        }
-
-        .wms-social-icon:hover {
-            border-color: var(--wms-footer-brand-orange-light);
-            color: #ffffff;
-            background-color: var(--wms-footer-brand-orange);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(224, 83, 0, 0.4);
-        }
-
-        .wms-social-icon svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Colonnes Communes : Titres & Liens */
-        .wms-footer-col h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--wms-footer-text-primary);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 24px;
-        }
-
-        .wms-footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .wms-footer-link-item a {
-            font-size: 0.95rem;
-            color: var(--wms-footer-text-secondary);
-            display: inline-flex;
-            align-items: center;
-            transition: all var(--wms-footer-transition);
-        }
-
-        .wms-footer-link-item a:hover {
-            color: var(--wms-footer-brand-orange);
-            transform: translateX(4px);
-        }
-
-        /* Colonne Contact Spécifique */
-        .wms-contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .wms-contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .wms-contact-item svg {
-            width: 18px;
-            height: 18px;
-            color: var(--wms-footer-brand-orange);
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
-
-        .wms-contact-item a {
-            color: var(--wms-footer-text-secondary);
-            transition: color var(--wms-footer-transition);
-        }
-
-        .wms-contact-item a:hover {
-            color: var(--wms-footer-brand-orange);
-        }
-
-        /* --- BARRE DE COPYRIGHT & PAGES POLITIQUES --- */
-        .wms-footer-bottom {
-            border-top: 1px solid var(--wms-footer-border);
-            padding-top: 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .wms-footer-copyright {
-            font-size: 0.88rem;
-            color: var(--wms-footer-text-secondary);
-        }
-
-        .wms-footer-policy-links {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .wms-footer-policy-links a {
-            font-size: 0.88rem;
-            color: var(--wms-footer-text-secondary);
-            transition: color var(--wms-footer-transition);
-        }
-
-        .wms-footer-policy-links a:hover {
-            color: var(--wms-footer-brand-orange);
-        }
-
-        /* ==========================================================================
-           RESPONSIVE MEDIA QUERIES
-           ========================================================================== */
-        @media (max-width: 960px) {
-            .wms-footer-grid {
-                grid-template-columns: 1.2fr 1fr;
-                gap: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .wms-footer-wrapper {
-                margin: 40px 16px 20px 16px;
-                width: auto;
-                padding: 32px 20px 24px 20px;
-                border-radius: 24px;
-            }
-
-            .wms-footer-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
-                margin-bottom: 40px;
-            }
-
-            .wms-footer-col h4 {
-                margin-bottom: 16px;
-            }
-
-            .wms-footer-bottom {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-                padding-top: 24px;
-            }
-
-            .wms-footer-policy-links {
-                flex-direction: column;
-                gap: 12px;
-            }
-        }
-      ` }} />
-      
-      <div dangerouslySetInnerHTML={{ __html: `
-    <footer class="wms-footer-wrapper">
-        <div class="wms-footer-container">
-            <div class="wms-footer-grid">
-                <!-- Colonne 1 : Brand & Description -->
-                <div class="wms-footer-brand">
-                    <a href="/" class="wms-footer-logo-link" aria-label="Accueil">
-                        <!-- Mini version simplifiée du logo orange du Header -->
-                        <svg width="28" height="28" viewBox="0 0 100 100" style="overflow: visible;">
-                            <rect x="5" y="5" width="90" height="90" rx="22" fill="var(--wms-footer-brand-orange)" />
-                            <polygon points="20,28 42,28 42,76 25,76 21,58 27,58" fill="#ffffff" />
-                            <polygon points="58,28 80,28 70,76 58,76" fill="#ffffff" />
-                            <polygon points="41,66 59,66 50,46" fill="#ffffff" />
-                        </svg>
-                        <span class="wms-footer-logo-text">webmodern<span
-                                class="wms-footer-logo-accent">seo</span></span>
-                    </a>
-                    <p class="wms-footer-desc">Création de sites internet modernes (Next.js) et sur-mesure,
-                        optimisés pour le référencement (SEO) et automatisés pour générer des leads. Basés à Grenoble,
-                        intervention à Paris, Lyon, Saint-Étienne et à distance partout en France.</p>
-                    <div class="wms-footer-socials">
-                        <!-- Facebook -->
-                        <a href="https://www.facebook.com/webmodernseo" class="wms-social-icon" target="_blank"
-                            rel="noopener" aria-label="Facebook">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                            </svg>
-                        </a>
-                        <!-- Instagram -->
-                        <a href="https://www.instagram.com/webmodernseo" class="wms-social-icon" target="_blank"
-                            rel="noopener" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
-                        <!-- TikTok -->
-                        <a href="https://www.tiktok.com/@webmodernseo" class="wms-social-icon" target="_blank"
-                            rel="noopener" aria-label="TikTok">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Services -->
-                <div class="wms-footer-col">
-                    <h4>Nos Services</h4>
-                    <ul class="wms-footer-links">
-                        <li class="wms-footer-link-item"><a href="/services/creation-web">Création Web</a></li>
-                        <li class="wms-footer-link-item"><a href="/services/referencement-seo">Référencement SEO</a></li>
-                        <li class="wms-footer-link-item"><a href="/services/acquisition-clients">Acquisition Clients</a></li>
-                        <li class="wms-footer-link-item"><a href="/services/creation-web#maintenance-securite">Maintenance de site</a></li>
-                    </ul>
-                </div>
-
-                <!-- Colonne 3 : Navigation -->
-                <div class="wms-footer-col">
-                    <h4>Navigation</h4>
-                    <ul class="wms-footer-links">
-                        <li class="wms-footer-link-item"><a href="/">Accueil</a></li>
-                        <li class="wms-footer-link-item"><a href="/apropos">À propos</a></li>
-                        <li class="wms-footer-link-item"><a href="/portfolio">Portfolio</a></li>
-                        <li class="wms-footer-link-item"><a href="/blog">Blog</a></li>
-                    </ul>
-                </div>
-
-                <!-- Colonne 4 : Contact -->
-                <div class="wms-footer-col">
-                    <h4>Contact</h4>
-                    <div class="wms-contact-list">
-                        <div class="wms-contact-item">
-                            <!-- Téléphone -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                            </svg>
-                            <a href="tel:+33753887751">+33 7 53 88 77 51</a>
-                        </div>
-                        <div class="wms-contact-item">
-                            <!-- E-mail -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                <polyline points="22,6 12,13 2,6" />
-                            </svg>
-                            <a href="mailto:contact@webmodernseo.co">contact@webmodernseo.co</a>
-                        </div>
-                        <div class="wms-contact-item">
-                            <!-- Horaires -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10" />
-                                <polyline points="12 6 12 12 16 14" />
-                            </svg>
-                            <span>Lundi - Vendredi<br>09h00 - 18h00</span>
-                        </div>
-                    </div>
-                </div>
+    <footer className="mx-4 mb-5 mt-10 max-w-[1400px] rounded-3xl border border-black/[0.08] bg-[#faf6ee] px-5 pb-6 pt-8 text-[#5c5c64] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.4),0_1px_3px_rgba(0,0,0,0.2)] md:mx-9 md:mb-10 md:mt-20 md:rounded-[32px] md:px-9 md:pb-8 md:pt-12 min-[1472px]:mx-auto">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="mb-8 grid grid-cols-1 gap-0 md:mb-[60px] md:grid-cols-[2fr_1fr_1.2fr_1.3fr] md:gap-12">
+          <div className="mb-8 flex flex-col gap-5 md:mb-0">
+            <a href="/" className="inline-flex items-center gap-3" aria-label="Accueil">
+              <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true">
+                <rect x="5" y="5" width="90" height="90" rx="22" fill="#ff4d00" />
+                <polygon points="20,28 42,28 42,76 25,76 21,58 27,58" fill="#fff" />
+                <polygon points="58,28 80,28 70,76 58,76" fill="#fff" />
+                <polygon points="41,66 59,66 50,46" fill="#fff" />
+              </svg>
+              <span className="text-[1.4rem] font-extrabold tracking-[-0.03em] text-black">webmodern<span className="text-brand-orange">seo</span></span>
+            </a>
+            <p className="max-w-xs text-[0.95rem] leading-relaxed">Création de sites internet modernes (Next.js) et sur-mesure, optimisés pour le référencement (SEO) et automatisés pour générer des leads. Basés à Grenoble, intervention à Paris, Lyon, Saint-Étienne et à distance partout en France.</p>
+            <div className="mt-2 flex gap-3">
+              <SocialLink href="https://www.facebook.com/webmodernseo" label="Facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></SocialLink>
+              <SocialLink href="https://www.instagram.com/webmodernseo" label="Instagram"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" /></SocialLink>
+              <SocialLink href="https://www.tiktok.com/@webmodernseo" label="TikTok"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></SocialLink>
             </div>
+          </div>
 
-            <!-- Barre de pied de page (Copyright & Pages politiques) -->
-            <div class="wms-footer-bottom">
-                <div class="wms-footer-copyright">
-                    © 2026 Webmodernseo. Tous droits réservés.
-                </div>
-                <div class="wms-footer-policy-links">
-                    <a href="/politique/mentions-legales">Mentions légales</a>
-                    <a href="/politique/conditions-d-utilisation">Conditions d'utilisation</a>
-                    <a href="/politique/gestion-des-cookies">Gestion des cookies</a>
-                    <a href="/politique/politique-de-confidentialite">Politique de confidentialité</a>
-                </div>
-            </div>
+          <FooterColumn id="footer-services" title="Nos Services" open={openSection === 'services'} onToggle={() => toggle('services')} ariaExpanded={openSection === 'services'}>
+            <FooterLink href="/services/creation-web">Création Web</FooterLink>
+            <FooterLink href="/services/referencement-seo">Référencement SEO</FooterLink>
+            <FooterLink href="/services/acquisition-clients">Acquisition Clients</FooterLink>
+            <FooterLink href="/services/creation-web#maintenance-securite">Maintenance de site</FooterLink>
+          </FooterColumn>
+          <FooterColumn id="footer-navigation" title="Navigation" open={openSection === 'navigation'} onToggle={() => toggle('navigation')} ariaExpanded={openSection === 'navigation'}>
+            <FooterLink href="/">Accueil</FooterLink><FooterLink href="/apropos">À propos</FooterLink><FooterLink href="/portfolio">Portfolio</FooterLink><FooterLink href="/blog">Blog</FooterLink>
+          </FooterColumn>
+          <FooterColumn id="footer-contact" title="Contact" open={openSection === 'contact'} onToggle={() => toggle('contact')} ariaExpanded={openSection === 'contact'}>
+            <div className="flex items-start gap-3"><Phone className="mt-0.5 h-[18px] w-[18px] shrink-0 text-brand-orange" /><a className={linkClass} href="tel:+33753887751">+33 7 53 88 77 51</a></div>
+            <div className="flex items-start gap-3"><Mail className="mt-0.5 h-[18px] w-[18px] shrink-0 text-brand-orange" /><a className={linkClass} href="mailto:contact@webmodernseo.co">contact@webmodernseo.co</a></div>
+            <div className="flex items-start gap-3 text-[0.95rem]"><Clock3 className="mt-0.5 h-[18px] w-[18px] shrink-0 text-brand-orange" /><span>Lundi - Vendredi<br />09h00 - 18h00</span></div>
+          </FooterColumn>
         </div>
+
+        <div className="flex flex-col items-start gap-4 border-t border-black/10 pt-6 text-[0.88rem] md:flex-row md:items-center md:justify-between md:gap-5 md:pt-8">
+          <p>© 2026 Webmodernseo. Tous droits réservés.</p>
+          <nav className="flex flex-col gap-3 md:flex-row md:flex-wrap md:gap-6" aria-label="Liens légaux">
+            <a className="transition hover:text-brand-orange" href="/politique/mentions-legales">Mentions légales</a>
+            <a className="transition hover:text-brand-orange" href="/politique/conditions-d-utilisation">Conditions d'utilisation</a>
+            <a className="transition hover:text-brand-orange" href="/politique/gestion-des-cookies">Gestion des cookies</a>
+            <a className="transition hover:text-brand-orange" href="/politique/politique-de-confidentialite">Politique de confidentialité</a>
+          </nav>
+        </div>
+      </div>
     </footer>
-      ` }} />
-    </>
   );
-};
+}
+
+function FooterColumn({ id, title, open, onToggle, ariaExpanded, children }: { id: string; title: string; open: boolean; onToggle: () => void; ariaExpanded: boolean; children: React.ReactNode }) {
+  return (
+    <section className={sectionClass}>
+      <h2 className="hidden text-base font-bold uppercase tracking-[1.5px] text-black md:block">{title}</h2>
+      <button type="button" className="flex min-h-12 w-full items-center justify-between py-3 text-left text-base font-bold uppercase tracking-[1.5px] text-black md:hidden" aria-expanded={ariaExpanded} aria-controls={id} onClick={onToggle}>
+        {title}<ChevronDown className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+      </button>
+      <div id={id} className={`${open ? 'flex' : 'hidden'} flex-col gap-3.5 pb-4 md:mt-6 md:flex md:pb-0`}>{children}</div>
+    </section>
+  );
+}
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return <a className={linkClass} href={href}>{children}</a>;
+}
+
+function SocialLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
+  return <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="inline-flex h-[38px] w-[38px] items-center justify-center rounded-full border border-black/[0.08] transition hover:-translate-y-0.5 hover:border-brand-orange hover:bg-brand-orange hover:text-white"><svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{children}</svg></a>;
+}
