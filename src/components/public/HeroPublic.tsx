@@ -1,26 +1,24 @@
 import React from 'react';
+import { BubbleBackground, RotatingWord } from '@/components/public/HeroEffects';
 
 // TODO(pre-launch): valeur fictive à remplacer par le vrai chiffre client avant mise en ligne — ne pas déployer en prod sans données réelles.
 const HERO_PROOF_STAT = '1 482 leads générés ce mois pour nos clients';
+const HERO_WORDS = ['visibilité', 'trafic', 'notoriété', 'chiffre d’affaires'] as const;
 
 export const HeroPublic: React.FC = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-brand-sable/60 to-white">
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-6 py-24 text-center sm:py-32">
+    <section className="w-full bg-white px-3 py-3 sm:px-6 sm:py-6">
+      <div className="relative mx-auto w-full max-w-[1440px] overflow-hidden rounded-[24px] bg-gradient-to-b from-brand-sable/60 to-white sm:rounded-[32px]">
+        <BubbleBackground />
+
+        <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-24 text-center sm:py-32">
         <span className="mb-6 block animate-fadeIn [animation-fill-mode:both] text-xs font-semibold uppercase tracking-[0.15em] text-brand-charcoal motion-reduce:animate-none">
           Agence Web &amp; SEO — Grenoble
         </span>
 
-        <h1
-          className="mb-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-black sm:text-5xl md:text-6xl"
-        >
-          Attirez plus de clients avec{' '}
-          <span className="bg-gradient-to-br from-brand-orangeLight to-brand-orange bg-clip-text text-transparent">
-            webmoderne
-          </span>
-          <span className="ml-1 inline-block rounded-full bg-gradient-to-br from-[#0FAC71] to-[#1B9476] px-3 py-0.5 align-middle text-[0.55em] font-bold text-white">
-            seo
-          </span>
+        <h1 className="mb-6 max-w-4xl font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-black sm:text-5xl md:text-6xl">
+          <span className="block">On développe votre</span>
+          <RotatingWord words={HERO_WORDS} />
         </h1>
 
         <p
@@ -67,6 +65,7 @@ export const HeroPublic: React.FC = () => {
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#22c55e]" aria-hidden="true" />
           {HERO_PROOF_STAT}
+        </div>
         </div>
       </div>
     </section>
