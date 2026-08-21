@@ -2,6 +2,15 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
+export type RevealVariant = 'up' | 'left' | 'right' | 'scale';
+
+const hiddenClasses: Record<RevealVariant, string> = {
+  up: 'opacity-0 translate-y-6',
+  left: 'opacity-0 -translate-x-8',
+  right: 'opacity-0 translate-x-8',
+  scale: 'opacity-0 translate-y-3 scale-[0.97]',
+};
+
 interface RevealProps {
   children: React.ReactNode;
   className?: string;
@@ -10,6 +19,7 @@ interface RevealProps {
   /** Élément HTML à rendre (par défaut "div"). */
   as?: 'div' | 'section';
   id?: string;
+  variant?: RevealVariant;
 }
 
 /**
@@ -20,7 +30,7 @@ interface RevealProps {
  * les cas (JS lent, crawler, navigateur sans IntersectionObserver, saut direct
  * en bas de page) pour qu'aucun contenu ne reste invisible.
  */
-export function Reveal({ children, className = '', delay = 0, as = 'div', id }: RevealProps) {
+export function Reveal({ children, className = '', delay = 0, as = 'div', id, variant = 'up' }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -62,7 +72,11 @@ export function Reveal({ children, className = '', delay = 0, as = 'div', id }: 
     <Tag
       ref={ref as never}
       id={id}
-      className={`transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'} ${className}`}
+      className={`transition-all duration-700 ease-out ${
+        visible
+          ? 'opacity-100 translate-x-0 translate-y-0 scale-100'
+          : hiddenClasses[variant]
+      } ${className}`}
       style={{ transitionDelay: visible ? `${delay}ms` : '0ms' }}
     >
       {children}
