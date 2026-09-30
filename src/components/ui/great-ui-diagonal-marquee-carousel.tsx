@@ -167,7 +167,7 @@ export default function DiagonalMarqueeCarousel({
         />
         <MarqueeRow
           cards={rowCardsReverse}
-          speed={baseSpeed - 15 > 20 ? baseSpeed - 15 : 30}
+          speed={baseSpeed + 25}
           direction={alternateDirections ? 1 : -1}
           cardClassName={cardClassName}
         />
@@ -179,13 +179,13 @@ export default function DiagonalMarqueeCarousel({
         />
         <MarqueeRow
           cards={rowCardsReverse}
-          speed={baseSpeed - 6 > 20 ? baseSpeed - 6 : 35}
+          speed={baseSpeed + 35}
           direction={alternateDirections ? 1 : -1}
           cardClassName={cardClassName}
         />
         <MarqueeRow
           cards={rowCards}
-          speed={baseSpeed + 24}
+          speed={baseSpeed + 20}
           direction={-1}
           cardClassName={cardClassName}
         />

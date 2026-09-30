@@ -177,9 +177,9 @@ export function TestimonialsSection() {
           role="region"
           aria-label="Témoignages défilants"
         >
-          <TestimonialsColumn testimonials={firstColumn} duration={15} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+          <TestimonialsColumn testimonials={firstColumn} duration={35} />
+          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={42} />
+          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={38} />
         </div>
       </div>
     </section>

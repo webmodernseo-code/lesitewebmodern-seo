@@ -44,7 +44,7 @@ export function PartnerLogoSlider() {
         Technologies &amp; Partenaires clés
       </p>
       <div className="group mx-auto max-w-xl overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,#000_12%,#000_88%,transparent)]">
-        <div className="flex w-max animate-[partnerLogos_25s_linear_infinite] group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] motion-reduce:animate-none">
+        <div className="flex w-max animate-[partnerLogos_50s_linear_infinite] group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] motion-reduce:animate-none">
           <LogoGroup />
           <LogoGroup duplicate />
         </div>

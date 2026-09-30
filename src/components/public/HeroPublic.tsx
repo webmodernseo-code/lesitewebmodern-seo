@@ -57,7 +57,7 @@ export const HeroPublic: React.FC = () => {
           <div className="relative w-full h-[440px] sm:h-[520px] lg:h-[600px] overflow-hidden rounded-2xl border border-black/[0.06] bg-white/40">
             <DiagonalMarqueeCarousel
               angle={-14}
-              baseSpeed={85}
+              baseSpeed={190}
               className="h-full w-full"
               cardClassName="h-[180px] w-[260px] sm:h-[220px] sm:w-[320px] lg:h-[260px] lg:w-[380px] rounded-xl border border-black/10 shadow-lg"
               fadeClassName="hidden"
