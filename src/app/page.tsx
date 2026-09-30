@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { HeroPublic } from '@/components/public/HeroPublic';
 import { PartenairesPublic } from '@/components/public/PartenairesPublic';
-import ServicesSection from '@/components/ui/services';
 import GenerativeArtGallery from '@/components/ui/generative-art-gallery';
 import { AboutPublic } from '@/components/public/AboutPublic';
 import { CtaPublic } from '@/components/public/CtaPublic';
@@ -39,11 +38,6 @@ export default function Home() {
         {/* Section Partenaires & Confiance */}
         <section id="partenaires" className="w-full">
           <PartenairesPublic />
-        </section>
-
-        {/* Section Services */}
-        <section id="services" className="w-full">
-          <ServicesSection />
         </section>
 
         {/* Section Projets & Créations immersives */}
