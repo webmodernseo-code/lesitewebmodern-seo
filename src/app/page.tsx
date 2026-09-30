@@ -2,8 +2,9 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { HeroPublic } from '@/components/public/HeroPublic';
-import { HomePortfolioMarquee } from '@/components/public/HomePortfolioMarquee';
-import { ServicesPublic } from '@/components/public/ServicesPublic';
+import { PartenairesPublic } from '@/components/public/PartenairesPublic';
+import ServicesSection from '@/components/ui/services';
+import GenerativeArtGallery from '@/components/ui/generative-art-gallery';
 import { AboutPublic } from '@/components/public/AboutPublic';
 import { CtaPublic } from '@/components/public/CtaPublic';
 import { FaqPublic } from '@/components/public/FaqPublic';
@@ -13,14 +14,11 @@ import { Reveal } from '@/components/Reveal';
 import { StaggerReveal } from '@/components/StaggerReveal';
 import { buildOrganizationSchema, buildFaqSchema } from '@/lib/schema';
 
-// Chargé uniquement quand la section devient visible : évite d'alourdir le bundle
-// initial avec framer-motion pour un contenu qui n'est jamais visible au premier écran.
+// Chargé dynamiquement pour alléger le bundle initial
 const TestimonialsSection = dynamic(
   () => import('@/components/ui/testimonial-v2').then((mod) => mod.TestimonialsSection),
   { ssr: true }
 );
-
-// Titre/description/canonical/OG hérités de src/app/layout.tsx (déjà corrects pour la home).
 
 export default function Home() {
   return (
@@ -33,29 +31,32 @@ export default function Home() {
 
       {/* Corps du site vitrine */}
       <main className="w-full relative z-10 pt-16">
-        {/* Section Hero */}
+        {/* Section Hero avec Carrousel */}
         <section id="hero" className="w-full">
           <HeroPublic />
         </section>
 
-        <Reveal variant="up" className="w-full">
-          <HomePortfolioMarquee />
-        </Reveal>
+        {/* Section Partenaires & Confiance */}
+        <section id="partenaires" className="w-full">
+          <PartenairesPublic />
+        </section>
 
         {/* Section Services */}
-        <Reveal as="section" id="services" className="w-full" variant="up">
-          <StaggerReveal selector=".wms-services-card, .wms-services-tag-badge" variant="up" step={80}>
-            <ServicesPublic />
-          </StaggerReveal>
-        </Reveal>
+        <section id="services" className="w-full">
+          <ServicesSection />
+        </section>
+
+        {/* Section Projets & Créations immersives */}
+        <section id="creations" className="w-full">
+          <GenerativeArtGallery />
+        </section>
 
         {/* Section À Propos */}
         <Reveal as="section" id="apropos" className="w-full" variant="right">
           <AboutPublic />
         </Reveal>
 
-        {/* Section Témoignages (remplacée par testimonial-v2) : anime déjà son
-            apparition elle-même (framer-motion whileInView), pas de double Reveal ici. */}
+        {/* Section Témoignages */}
         <section id="temoignages" className="w-full">
           <TestimonialsSection />
         </section>

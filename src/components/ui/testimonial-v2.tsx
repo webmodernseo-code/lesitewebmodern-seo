@@ -155,17 +155,7 @@ export function TestimonialsSection() {
       aria-labelledby="testimonials-heading"
       className="py-24 relative overflow-hidden bg-transparent border-t border-b border-zinc-200/80 transition-colors duration-400 font-sans"
     >
-      <motion.div 
-        initial={{ opacity: 0, y: 50, rotate: -1 }}
-        whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ 
-          duration: 1.0, 
-          ease: [0.16, 1, 0.3, 1],
-          opacity: { duration: 0.8 }
-        }}
-        className="container px-4 z-10 mx-auto"
-      >
+      <div className="container px-4 z-10 mx-auto">
         <div className="flex flex-col items-center justify-center max-w-[600px] mx-auto mb-16 text-center">
           <div className="flex justify-center mb-3">
             <div className="inline-flex items-center gap-2 border border-orange-500/30 py-1 px-4 rounded-full text-xs font-semibold tracking-wide uppercase text-orange-600 bg-orange-500/10 transition-colors">
@@ -191,7 +181,7 @@ export function TestimonialsSection() {
           <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
           <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

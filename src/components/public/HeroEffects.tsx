@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 
 interface Bubble {
   x: number;
@@ -142,29 +142,20 @@ export function BubbleBackground() {
 
 export function RotatingWord({ words }: { words: readonly string[] }) {
   const [index, setIndex] = useState(0);
-  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (reducedMotion) return;
-
     const interval = window.setInterval(() => {
       setIndex((current) => (current + 1) % words.length);
     }, 2400);
 
     return () => window.clearInterval(interval);
-  }, [reducedMotion, words.length]);
+  }, [words.length]);
 
   return (
     <span className="relative inline-flex min-h-[1.15em] max-w-full overflow-hidden align-bottom text-brand-orange">
-      <motion.span
-        key={words[index]}
-        initial={reducedMotion ? false : { y: '100%', opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ type: 'spring', damping: 22, stiffness: 260 }}
-        className="inline-block max-w-full whitespace-normal sm:whitespace-nowrap"
-      >
+      <span className="inline-block max-w-full whitespace-normal sm:whitespace-nowrap">
         {words[index]}
-      </motion.span>
+      </span>
     </span>
   );
 }

@@ -54,7 +54,7 @@ export function FooterPublic() {
           <p>© 2026 Webmodernseo. Tous droits réservés.</p>
           <nav className="flex flex-col gap-3 md:flex-row md:flex-wrap md:gap-6" aria-label="Liens légaux">
             <a className="transition hover:text-brand-orange" href="/politique/mentions-legales">Mentions légales</a>
-            <a className="transition hover:text-brand-orange" href="/politique/conditions-d-utilisation">Conditions d'utilisation</a>
+            <a className="transition hover:text-brand-orange" href="/politique/conditions-d-utilisation">Conditions d&apos;utilisation</a>
             <a className="transition hover:text-brand-orange" href="/politique/gestion-des-cookies">Gestion des cookies</a>
             <a className="transition hover:text-brand-orange" href="/politique/politique-de-confidentialite">Politique de confidentialité</a>
           </nav>
