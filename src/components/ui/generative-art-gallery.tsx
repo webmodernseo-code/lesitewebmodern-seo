@@ -209,11 +209,11 @@ const GalleryCard = ({
       onMouseLeave={handleMouseLeave}
       onMouseEnter={() => setIsHovered(true)}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="group relative h-80 sm:h-96 w-full rounded-3xl bg-white border border-gray-200 shadow-sm cursor-pointer select-none overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-brand-orange/40 hover:-translate-y-1"
+      className="group relative aspect-[16/10.5] sm:aspect-[16/10] min-h-[220px] sm:min-h-[250px] w-full rounded-3xl bg-white border border-gray-200 shadow-sm cursor-pointer select-none overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-brand-orange/40 hover:-translate-y-1"
     >
       <div
-        style={{ transform: "translateZ(25px)", transformStyle: "preserve-3d" }}
-        className="absolute inset-3 sm:inset-3.5 flex flex-col justify-end p-5 sm:p-6 rounded-2xl overflow-hidden bg-gray-50 border border-gray-100"
+        style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }}
+        className="absolute inset-2.5 sm:inset-3 flex flex-col justify-end p-4 sm:p-5 rounded-2xl overflow-hidden bg-gray-50 border border-gray-100"
       >
         <img
           src={item.image}
@@ -228,11 +228,11 @@ const GalleryCard = ({
         <GenerativeArtCanvas isHovered={isHovered} />
         
         {/* Dégradé doux et lisible */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
         {/* Badge Galerie / Click info (Style Clair) */}
-        <div className="absolute top-3 left-3 z-10">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-white/95 backdrop-blur-md text-gray-800 border border-gray-200/80 shadow-xs">
+        <div className="absolute top-2.5 left-2.5 z-10">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/95 backdrop-blur-md text-gray-800 border border-gray-200/80 shadow-xs">
             <Layers className="w-3 h-3 text-brand-orange" />
             {item.galleryImages.length} vues
           </span>
@@ -240,17 +240,17 @@ const GalleryCard = ({
 
         {/* Textes de la réalisation */}
         <div className="relative z-10">
-          <h3 className="text-lg sm:text-xl font-bold font-display text-white mb-1 tracking-tight group-hover:text-brand-orangeLight transition-colors">
+          <h3 className="text-base sm:text-lg font-bold font-display text-white mb-0.5 tracking-tight group-hover:text-brand-orangeLight transition-colors">
             {item.title}
           </h3>
-          <p className="text-xs sm:text-sm text-gray-200 line-clamp-1 font-medium">
+          <p className="text-xs sm:text-[13px] text-gray-200 line-clamp-1 font-medium">
             {item.category}
           </p>
         </div>
 
         {/* Bouton d'action flottant */}
-        <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 flex items-center justify-center text-gray-800 opacity-0 group-hover:opacity-100 group-hover:bg-brand-orange group-hover:text-white group-hover:border-brand-orange group-hover:scale-110 transition-all duration-300 shadow-md">
-          <ArrowUpRight className="w-4 h-4" />
+        <div className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 flex items-center justify-center text-gray-800 opacity-0 group-hover:opacity-100 group-hover:bg-brand-orange group-hover:text-white group-hover:border-brand-orange group-hover:scale-110 transition-all duration-300 shadow-md">
+          <ArrowUpRight className="w-3.5 h-3.5" />
         </div>
       </div>
     </motion.div>
