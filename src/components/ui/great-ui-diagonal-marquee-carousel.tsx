@@ -21,34 +21,44 @@ export interface DiagonalMarqueeCarouselProps {
 
 const DEFAULT_CARDS: CardItem[] = [
   {
-    id: 2,
-    url: "https://cdn.21st.dev/assets/mirror/ea/ea608dad4b140cc5d6ecc2be86bc5f2deeafe98cf8502d871282048215e3d622.jpg",
-    title: "Landscape",
+    id: 'aniq-overview',
+    url: '/images/portfolio/aniq-ui-overview.png',
+    title: 'Aniq-ui Analytics Dashboard',
   },
   {
-    id: 3,
-    url: "https://cdn.21st.dev/assets/mirror/6b/6b6fec49246cddee6ba49e493fc5bb31edf1e12c654756552620b78a83c9ddc1.jpg",
-    title: "Nature",
+    id: 'aniq-orders',
+    url: '/images/portfolio/aniq-ui-orders.png',
+    title: 'Aniq-ui Orders Management',
   },
   {
-    id: 4,
-    url: "https://cdn.21st.dev/assets/mirror/28/280d2dbc25810f40d5dc719091c10506bae978a6aeebdfc4d6f8ac322a1fa31d.jpg",
-    title: "Forest",
+    id: 'aniq-ai-product',
+    url: '/images/portfolio/aniq-ui-ai-product.png',
+    title: 'Aniq-ui AI Product Studio',
   },
   {
-    id: 5,
-    url: "https://cdn.21st.dev/assets/mirror/c8/c8853a7d2976e101bce74f1bf4431ea59703f7e21f1c1b3ebeba16d4e35c2146.jpg",
-    title: "Bridge",
+    id: 'emypaul',
+    url: '/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png',
+    title: 'Centre Optique Emy Paul',
   },
   {
-    id: 6,
-    url: "https://cdn.21st.dev/assets/mirror/3c/3c4fd6a11e5a0b20c886fd010021f39c102483ae6c8eda44e15b4d42fe32c5bd.jpg",
-    title: "Ocean",
+    id: 'sinai',
+    url: '/images/portfolio/Sinaihappycare-sinaihappycare.com_.png',
+    title: 'Sinai Happy Care',
   },
   {
-    id: 7,
-    url: "https://cdn.21st.dev/assets/mirror/78/78039a78d191168120b66b5b97565b64cb1751b0cadfcaab4d9b03a785b41925.jpg",
-    title: "Valley",
+    id: 'epbomi',
+    url: '/images/portfolio/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png',
+    title: 'EPBOMI Europe Portal',
+  },
+  {
+    id: 'opticafe',
+    url: '/images/portfolio/he75ojuxofe.jpg',
+    title: 'Opticafé Client Experience',
+  },
+  {
+    id: 'cockpit-seo',
+    url: '/images/portfolio/Capture-decran-2026-04-14-120331.png',
+    title: 'Cockpit SEO SaaS Platform',
   },
 ];
 

@@ -17,6 +17,18 @@ export interface GalleryProject {
 
 const DEFAULT_PROJECTS: GalleryProject[] = [
   {
+    id: "aniq-ui",
+    title: "Aniq-ui — E-commerce & Studio IA",
+    category: "Dashboard SaaS & Assistant IA",
+    description: "Plateforme de gestion e-commerce haute performance avec suivi des commandes en temps réel, analytics et studio IA de génération de photos mannequin sur-mesure.",
+    image: "/images/portfolio/aniq-ui-overview.png",
+    galleryImages: [
+      "/images/portfolio/aniq-ui-overview.png",
+      "/images/portfolio/aniq-ui-orders.png",
+      "/images/portfolio/aniq-ui-ai-product.png"
+    ]
+  },
+  {
     id: "cygnus",
     title: "Centre Optique Emy Paul",
     category: "Site E-commerce & Prise de RDV",
@@ -25,7 +37,7 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     galleryImages: [
       "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
       "/images/portfolio/he75ojuxofe.jpg",
-      "https://cdn.21st.dev/assets/mirror/5c/5ca5be9f573e502cbf14b27eb1469d26128e1edc4ee9628a67804ba95428db86.jpg"
+      "/images/portfolio/Capture-decran-2026-04-14-120629.png"
     ]
   },
   {
@@ -36,8 +48,8 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     image: "/images/portfolio/Sinaihappycare-sinaihappycare.com_.png",
     galleryImages: [
       "/images/portfolio/Sinaihappycare-sinaihappycare.com_.png",
-      "https://cdn.21st.dev/assets/mirror/26/26874879d8d2f85e40ba2b18784d99a44e06651e1df084be15bbd45fa5580c7e.jpg",
-      "/images/portfolio/Capture-decran-2026-04-14-120629.png"
+      "/images/portfolio/Capture-decran-2026-04-14-120629.png",
+      "/images/portfolio/Capture-decran-2026-06-16-163553.png"
     ]
   },
   {
@@ -48,8 +60,8 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     image: "/images/portfolio/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png",
     galleryImages: [
       "/images/portfolio/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png",
-      "https://cdn.21st.dev/assets/mirror/d0/d093c8b3e15cb544b366e48841b597edc429492fe00cffc7645c07238c467889.jpg",
-      "/images/portfolio/Capture-decran-2026-06-16-163553.png"
+      "/images/portfolio/Capture-decran-2026-06-16-163553.png",
+      "/images/portfolio/Capture-decran-2026-04-14-120331.png"
     ]
   },
   {
@@ -61,7 +73,7 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     galleryImages: [
       "/images/portfolio/Capture-decran-2026-04-14-120331.png",
       "/images/portfolio/Capture-decran-2026-04-14-120629.png",
-      "https://cdn.21st.dev/assets/mirror/72/72a14b0382af5afd11053fa6f1d2f380b0ba757bb31eb191f823b1a09011a0fe.jpg"
+      "/images/portfolio/aniq-ui-overview.png"
     ]
   },
   {
@@ -72,22 +84,9 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     image: "/images/portfolio/he75ojuxofe.jpg",
     galleryImages: [
       "/images/portfolio/he75ojuxofe.jpg",
-      "https://cdn.21st.dev/assets/mirror/cd/cd6f9f5bc630c050dbc2629b5205cc8295c2f62458fd60177044949fe60377f8.jpg",
-      "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png"
+      "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
     ]
-  },
-  {
-    id: "pavo",
-    title: "Plateforme Next.js Haute Performance",
-    category: "Architecture Dédiée & Lead Gen",
-    description: "Conception modulaire, score Google Lighthouse 100/100 et indexation ultra-rapide.",
-    image: "/images/portfolio/Capture-decran-2026-06-16-163553.png",
-    galleryImages: [
-      "/images/portfolio/Capture-decran-2026-06-16-163553.png",
-      "https://cdn.21st.dev/assets/mirror/ae/ae546a2e9190983b16a50402080ec54b878f13d86870a463db5f3fe8ba2574ca.jpg",
-      "/images/portfolio/Capture-decran-2026-04-14-120331.png"
-    ]
-  },
+  }
 ];
 
 // Generative Art Canvas Component
