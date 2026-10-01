@@ -220,51 +220,22 @@ const ShowcaseProjectCard = ({
         </div>
       </div>
 
-      {/* 3. Bas de carte : Pilule Fondateur/Métriques à gauche + 2 Boutons Flèches Bleues à droite */}
-      <div className="flex items-center justify-between gap-3 w-full z-10 pt-1">
-        {/* Pilule Fondateur & Métrique clé */}
-        <div className="inline-flex items-center gap-2.5 sm:gap-3 rounded-full bg-white p-1.5 pr-4 sm:pr-5 shadow-lg max-w-[calc(100%-88px)] sm:max-w-none">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 border border-gray-100 bg-gray-100 shadow-2xs">
-            <img
-              src={item.clientAvatar || "/images/avatars/client-portrait-1.jpg"}
-              alt={item.clientName || item.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2">
-              <span className="text-xs sm:text-sm font-bold text-gray-900 truncate">
-                {item.clientName || item.title}
-              </span>
-              {item.metric && (
-                <span className="text-[10px] sm:text-xs font-semibold text-blue-600 shrink-0">
-                  {item.metric}
-                </span>
-              )}
-            </div>
-            <p className="text-[10px] sm:text-xs text-gray-500 font-medium truncate">
-              {item.clientRole || item.category}
-            </p>
-          </div>
-        </div>
-
-        {/* Boutons de navigation (flèches bleues circulaires) */}
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            onClick={handlePrevImage}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
-            aria-label="Capture précédente"
-          >
-            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
-          </button>
-          <button
-            onClick={handleNextImage}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
-            aria-label="Capture suivante"
-          >
-            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
-          </button>
-        </div>
+      {/* 3. Bas de carte : Boutons de navigation (flèches bleues circulaires) */}
+      <div className="flex items-center justify-end gap-2 w-full z-10 pt-1">
+        <button
+          onClick={handlePrevImage}
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
+          aria-label="Capture précédente"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+        </button>
+        <button
+          onClick={handleNextImage}
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
+          aria-label="Capture suivante"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+        </button>
       </div>
     </div>
   );
