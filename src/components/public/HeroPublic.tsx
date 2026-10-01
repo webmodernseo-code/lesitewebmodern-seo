@@ -6,8 +6,8 @@ const HERO_WORDS = ['visibilité', 'trafic', 'notoriété', 'chiffre d’affaire
 
 export const HeroPublic: React.FC = () => {
   return (
-    <section className="w-full bg-white px-3 py-3 sm:px-6 sm:py-6">
-      <div className="relative mx-auto w-full max-w-[1440px] overflow-hidden rounded-[24px] bg-gradient-to-b from-brand-sable/60 to-white sm:rounded-[32px]">
+    <section className="w-full overflow-hidden bg-white py-3 sm:py-6">
+      <div className="relative mx-3 max-w-[1440px] overflow-hidden rounded-[24px] bg-gradient-to-b from-brand-sable/60 to-white sm:mx-6 sm:rounded-[32px] xl:mx-auto">
         <BubbleBackground />
 
         <div className="relative z-10 mx-auto flex flex-col items-center px-4 pt-12 pb-6 text-center sm:pt-16 sm:pb-8">
@@ -26,7 +26,7 @@ export const HeroPublic: React.FC = () => {
             haute performance, publicité Meta Ads et automatisations intelligentes pour générer des leads en continu.
           </p>
 
-          <div className="mb-10 flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <a
               href="/contact"
               className="inline-flex items-center gap-3 rounded-full border border-black bg-black py-2.5 pl-2.5 pr-6 text-base font-semibold text-white shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1a1a20] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2"
@@ -53,22 +53,23 @@ export const HeroPublic: React.FC = () => {
             </a>
           </div>
 
-          {/* Deux bandes ouvertes et identiques : aucun cadre autour du slider. */}
-          <div className="relative h-[500px] w-full overflow-hidden sm:h-[610px] lg:h-[700px]">
-            <DiagonalMarqueeCarousel
-              angle={4}
-              baseSpeed={110}
-              rowCount={2}
-              pauseOnHover={false}
-              dimCards={false}
-              rowGap={16}
-              speedStep={0}
-              className="h-full w-full"
-              cardClassName="h-[220px] w-[340px] rounded-[20px] border-0 bg-transparent shadow-none sm:h-[270px] sm:w-[460px] lg:h-[310px] lg:w-[540px]"
-              fadeClassName="hidden"
-            />
-          </div>
         </div>
+      </div>
+
+      {/* Slider hors du panneau du hero : deux lignes complètes, sans cadre. */}
+      <div className="relative mt-5 h-[400px] w-full overflow-hidden sm:mt-7 sm:h-[570px] lg:h-[690px]">
+        <DiagonalMarqueeCarousel
+          angle={0}
+          baseSpeed={110}
+          rowCount={2}
+          pauseOnHover={false}
+          dimCards={false}
+          rowGap={24}
+          speedStep={0}
+          className="h-full w-full"
+          cardClassName="h-[170px] w-[280px] rotate-[2deg] rounded-[16px] border-0 bg-transparent shadow-none sm:h-[250px] sm:w-[420px] sm:rounded-[20px] lg:h-[310px] lg:w-[540px]"
+          fadeClassName="hidden"
+        />
       </div>
     </section>
   );
