@@ -52,25 +52,24 @@ export const HeroPublic: React.FC = () => {
               Découvrir nos services
             </a>
           </div>
+        </div>
 
-          {/* Cadre vitrine du carrousel de réalisations intégré au Hero */}
-          <div className="mt-8 w-full max-w-[1280px] px-1 sm:mt-10 sm:px-2">
-            <div className="relative w-full overflow-hidden rounded-2xl border border-black/[0.08] bg-white/70 py-2.5 sm:py-3.5 shadow-xs backdrop-blur-xs sm:rounded-3xl">
-              <DiagonalMarqueeCarousel
-                angle={0}
-                baseSpeed={85}
-                rowCount={2}
-                pauseOnHover={false}
-                dimCards={false}
-                rowGap={12}
-                speedStep={0}
-                className="h-[250px] w-full sm:h-[310px] lg:h-[375px]"
-                cardClassName="h-[116px] w-[188px] rounded-lg border border-black/[0.08] bg-white shadow-2xs sm:h-[145px] sm:w-[235px] sm:rounded-xl lg:h-[175px] lg:w-[285px]"
-                fadeClassName="hidden"
-              />
-            </div>
+        {/* Slider étendu jusqu'aux extrémités du Hero */}
+        <div className="relative z-10 w-full mt-4 pb-6 sm:mt-6 sm:pb-8">
+          <div className="relative w-full overflow-hidden border-y border-black/[0.06] bg-white/60 py-2.5 sm:py-3.5 backdrop-blur-xs">
+            <DiagonalMarqueeCarousel
+              angle={0}
+              baseSpeed={85}
+              rowCount={2}
+              pauseOnHover={false}
+              dimCards={false}
+              rowGap={12}
+              speedStep={0}
+              className="h-[250px] w-full sm:h-[310px] lg:h-[375px]"
+              cardClassName="h-[116px] w-[188px] rounded-lg border border-black/[0.08] bg-white shadow-2xs sm:h-[145px] sm:w-[235px] sm:rounded-xl lg:h-[175px] lg:w-[285px]"
+              fadeClassName="hidden"
+            />
           </div>
-
         </div>
       </div>
     </section>
