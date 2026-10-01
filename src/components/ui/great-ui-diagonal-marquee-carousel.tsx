@@ -71,16 +71,20 @@ const Card = ({ card, className, dimmed }: { card: CardItem; className?: string;
   return (
     <div
       className={cn(
-        "group relative h-[300px] w-[400px] shrink-0 cursor-pointer overflow-hidden rounded-xl shadow-2xl",
+        "group relative shrink-0 cursor-pointer overflow-hidden rounded-xl border border-black/[0.08] bg-white shadow-2xs transition-all duration-300 hover:shadow-md hover:border-black/20",
         className,
       )}
     >
       <img
         src={card.url}
         alt={card.title}
-        className="h-full w-full object-cover"
+        className="h-full w-full object-cover object-top"
+        loading="lazy"
       />
       {dimmed && <div className="absolute inset-0 bg-black/40" />}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <p className="truncate text-xs font-medium text-white">{card.title}</p>
+      </div>
     </div>
   );
 };
@@ -104,7 +108,7 @@ const MarqueeRow = ({
     direction === -1 ? "animate-marquee-left" : "animate-marquee-right";
 
   return (
-    <div className="flex w-full overflow-hidden">
+    <div className="flex w-full py-0.5">
       <div
         className={cn(
           "flex shrink-0",
@@ -115,14 +119,14 @@ const MarqueeRow = ({
       >
         <div className="flex shrink-0">
           {cards.map((card, idx) => (
-            <div key={`${card.id}-${idx}`} className="shrink-0 pr-8">
+            <div key={`${card.id}-${idx}`} className="shrink-0 pr-3 sm:pr-5 lg:pr-6">
               <Card card={card} className={cardClassName} dimmed={dimCards} />
             </div>
           ))}
         </div>
         <div className="flex shrink-0">
           {cards.map((card, idx) => (
-            <div key={`${card.id}-${idx}-copy`} className="shrink-0 pr-8">
+            <div key={`${card.id}-${idx}-copy`} className="shrink-0 pr-3 sm:pr-5 lg:pr-6">
               <Card card={card} className={cardClassName} dimmed={dimCards} />
             </div>
           ))}
@@ -134,21 +138,21 @@ const MarqueeRow = ({
 
 export default function DiagonalMarqueeCarousel({
   cards = DEFAULT_CARDS,
-  angle = -25,
-  baseSpeed = 120,
+  angle = 0,
+  baseSpeed = 80,
   alternateDirections = true,
-  rowCount = 5,
+  rowCount = 2,
   pauseOnHover = true,
-  dimCards = true,
-  rowGap = 32,
+  dimCards = false,
+  rowGap = 12,
   speedStep = 0,
   className = "",
   cardClassName = "",
   fadeClassName = "",
 }: DiagonalMarqueeCarouselProps) {
-  const rotationStyle = {
+  const rotationStyle = angle !== 0 ? {
     transform: `rotate(${angle}deg)`,
-  };
+  } : undefined;
 
   const rowCards = [...cards, ...cards, ...cards];
   const rowCardsReverse = [...rowCards].reverse();
@@ -157,7 +161,7 @@ export default function DiagonalMarqueeCarousel({
   return (
     <div
       className={cn(
-        "relative flex h-screen w-full items-center justify-center overflow-hidden",
+        "relative flex w-full items-center justify-center overflow-hidden",
         className,
       )}
     >
@@ -182,7 +186,10 @@ export default function DiagonalMarqueeCarousel({
         }}
       />
       <div
-        className="absolute z-0 flex w-[220vw] flex-col"
+        className={cn(
+          "absolute z-0 flex flex-col",
+          angle !== 0 ? "w-[220vw]" : "w-full"
+        )}
         style={{ ...rotationStyle, gap: `${rowGap}px` }}
       >
         {rows.map((_, index) => (
