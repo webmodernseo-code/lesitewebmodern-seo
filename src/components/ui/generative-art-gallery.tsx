@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, X, ChevronLeft, ChevronRight, Eye, Layers } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { X, ChevronLeft, ChevronRight, Eye, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface GalleryProject {
@@ -13,6 +13,13 @@ export interface GalleryProject {
   image: string;
   galleryImages: string[];
   link?: string;
+  brandName?: string;
+  brandIconBg?: string;
+  clientName?: string;
+  clientRole?: string;
+  clientAvatar?: string;
+  metric?: string;
+  gradient?: string;
 }
 
 const DEFAULT_PROJECTS: GalleryProject[] = [
@@ -26,7 +33,15 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "/images/portfolio/aniq-ui-overview.png",
       "/images/portfolio/aniq-ui-orders.png",
       "/images/portfolio/aniq-ui-ai-product.png"
-    ]
+    ],
+    brandName: "Aniq-ui",
+    brandIconBg: "bg-slate-900",
+    clientName: "Sami B.",
+    clientRole: "Co-Founder & CPO Aniq-ui",
+    metric: "Conversion +42%",
+    clientAvatar: "/images/avatars/client-portrait-1.jpg",
+    gradient: "from-[#021027] via-[#041d44] to-[#0a316c]",
+    link: "/portfolio"
   },
   {
     id: "cygnus",
@@ -38,7 +53,15 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
       "/images/portfolio/he75ojuxofe.jpg",
       "/images/portfolio/Capture-decran-2026-04-14-120629.png"
-    ]
+    ],
+    brandName: "Emy Paul",
+    brandIconBg: "bg-emerald-800",
+    clientName: "Emy Paul",
+    clientRole: "Fondatrice Centre Optique",
+    metric: "RDV en ligne x3",
+    clientAvatar: "/images/avatars/client-portrait-2.jpg",
+    gradient: "from-[#084826] via-[#157a44] to-[#2cb269]",
+    link: "/portfolio"
   },
   {
     id: "orion",
@@ -50,19 +73,15 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "/images/portfolio/Sinaihappycare-sinaihappycare.com_.png",
       "/images/portfolio/Capture-decran-2026-04-14-120629.png",
       "/images/portfolio/Capture-decran-2026-06-16-163553.png"
-    ]
-  },
-  {
-    id: "lyra",
-    title: "EPBOMI Europe Portal",
-    category: "Portail Institutionnel & Événements",
-    description: "Refonte complète, calendrier interactif, gestion multilingue et référencement naturel.",
-    image: "/images/portfolio/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png",
-    galleryImages: [
-      "/images/portfolio/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png",
-      "/images/portfolio/Capture-decran-2026-06-16-163553.png",
-      "/images/portfolio/Capture-decran-2026-04-14-120331.png"
-    ]
+    ],
+    brandName: "Sinai Happy Care",
+    brandIconBg: "bg-cyan-900",
+    clientName: "Dr. K. Sinai",
+    clientRole: "Directeur Médical Fondateur",
+    metric: "Score SEO 100/100",
+    clientAvatar: "/images/avatars/client-portrait-3.jpg",
+    gradient: "from-[#021f2d] via-[#053d56] to-[#09668f]",
+    link: "/portfolio"
   },
   {
     id: "draco",
@@ -74,7 +93,35 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "/images/portfolio/Capture-decran-2026-04-14-120331.png",
       "/images/portfolio/Capture-decran-2026-04-14-120629.png",
       "/images/portfolio/aniq-ui-overview.png"
-    ]
+    ],
+    brandName: "Cockpit SEO",
+    brandIconBg: "bg-indigo-900",
+    clientName: "Julien R.",
+    clientRole: "Head of Growth & Co-Founder",
+    metric: "Trafic organique x4",
+    clientAvatar: "/images/avatars/client-portrait-1.jpg",
+    gradient: "from-[#190e2e] via-[#2f1854] to-[#51258d]",
+    link: "/portfolio"
+  },
+  {
+    id: "lyra",
+    title: "EPBOMI Europe Portal",
+    category: "Portail Institutionnel & Événements",
+    description: "Refonte complète, calendrier interactif, gestion multilingue et référencement naturel.",
+    image: "/images/portfolio/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png",
+    galleryImages: [
+      "/images/portfolio/FireShot-Capture-008-Accueil-Epbomi-Europe-epbomi-europe.org-1.png",
+      "/images/portfolio/Capture-decran-2026-06-16-163553.png",
+      "/images/portfolio/Capture-decran-2026-04-14-120331.png"
+    ],
+    brandName: "EPBOMI Europe",
+    brandIconBg: "bg-slate-800",
+    clientName: "Jean M.",
+    clientRole: "Coordinateur Général Europe",
+    metric: "Portée multilingue",
+    clientAvatar: "/images/avatars/client-portrait-2.jpg",
+    gradient: "from-[#141b2b] via-[#243049] to-[#3a4c72]",
+    link: "/portfolio"
   },
   {
     id: "vela",
@@ -84,179 +131,146 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     image: "/images/portfolio/he75ojuxofe.jpg",
     galleryImages: [
       "/images/portfolio/he75ojuxofe.jpg",
-      "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
-    ]
+      "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png"
+    ],
+    brandName: "Opticafé",
+    brandIconBg: "bg-amber-900",
+    clientName: "Marc L.",
+    clientRole: "Directeur Réseau & Expérience",
+    metric: "+180 leads qualifiés",
+    clientAvatar: "/images/avatars/client-portrait-3.jpg",
+    gradient: "from-[#2b1605] via-[#4d280b] to-[#794114]",
+    link: "/portfolio"
   }
 ];
 
-// Generative Art Canvas Component
-const GenerativeArtCanvas = ({ isHovered }: { isHovered: boolean }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let lines: { x: number; y: number; speed: number; angle: number; length: number }[] = [];
-    const numLines = 26;
-
-    class Line {
-      x: number;
-      y: number;
-      speed: number;
-      angle: number;
-      length: number;
-
-      constructor() {
-        this.x = Math.random() * (canvas?.width || 400);
-        this.y = Math.random() * (canvas?.height || 400);
-        this.speed = Math.random() * 0.5 + 0.15;
-        this.angle = Math.random() * Math.PI * 2;
-        this.length = Math.random() * 22 + 6;
-      }
-
-      update() {
-        if (!canvas) return;
-        this.x += Math.cos(this.angle) * this.speed;
-        this.y += Math.sin(this.angle) * this.speed;
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-        }
-      }
-
-      draw(context: CanvasRenderingContext2D) {
-        context.beginPath();
-        context.moveTo(this.x, this.y);
-        context.lineTo(this.x - Math.cos(this.angle) * this.length, this.y - Math.sin(this.angle) * this.length);
-        context.strokeStyle = `rgba(255, 77, 0, ${Math.random() * 0.3 + 0.15})`;
-        context.lineWidth = 1.2;
-        context.stroke();
-      }
-    }
-
-    const init = () => {
-      lines = [];
-      for (let i = 0; i < numLines; i++) {
-        lines.push(new Line());
-      }
-    };
-
-    const animate = () => {
-      if (isHovered) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        lines.forEach(line => {
-          (line as any).update();
-          (line as any).draw(ctx);
-        });
-      } else {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    canvas.width = 400;
-    canvas.height = 400;
-    init();
-    animate();
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovered]);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />;
-};
-
-// Gallery Card Component with 3D tilt effect (Design Clair)
-const GalleryCard = ({
+// Carte Réalisation inspirée du format premium demandé
+const ShowcaseProjectCard = ({
   item,
   onOpenProject
 }: {
   item: GalleryProject;
-  index: number;
   onOpenProject: (item: GalleryProject) => void;
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const images = item.galleryImages && item.galleryImages.length > 0 ? item.galleryImages : [item.image];
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 25 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 25 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["6deg", "-6deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-6deg", "6deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImgIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
   };
 
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setIsHovered(false);
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImgIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
   };
 
   return (
-    <motion.div
-      onClick={() => onOpenProject(item)}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={() => setIsHovered(true)}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="group relative aspect-[16/10.5] sm:aspect-[16/10] min-h-[220px] sm:min-h-[250px] w-full rounded-3xl bg-white border border-gray-200 shadow-sm cursor-pointer select-none overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-brand-orange/40 hover:-translate-y-1"
+    <div
+      className={cn(
+        "group relative w-full rounded-[26px] sm:rounded-[34px] overflow-hidden p-4 sm:p-6 shadow-xl flex flex-col justify-between transition-all duration-300 hover:shadow-2xl border border-white/15",
+        `bg-gradient-to-br ${item.gradient || "from-[#021027] via-[#041d44] to-[#0a316c]"}`
+      )}
     >
-      <div
-        style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }}
-        className="absolute inset-2.5 sm:inset-3 flex flex-col justify-end p-4 sm:p-5 rounded-2xl overflow-hidden bg-gray-50 border border-gray-100"
-      >
-        <img
-          src={item.image}
-          alt={item.title}
-          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-108"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.onerror = null;
-            target.src = 'https://cdn.21st.dev/assets/mirror/6a/6a6e4ed1abce146a2e0fe926cd28a8546c7f433494fce63e253adc752a00c7af.svg';
-          }}
-        />
-        <GenerativeArtCanvas isHovered={isHovered} />
-        
-        {/* Dégradé doux et lisible */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-
-        {/* Badge Galerie / Click info (Style Clair) */}
-        <div className="absolute top-2.5 left-2.5 z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/95 backdrop-blur-md text-gray-800 border border-gray-200/80 shadow-xs">
-            <Layers className="w-3 h-3 text-brand-orange" />
-            {item.galleryImages.length} vues
+      {/* 1. Haut de carte : Badge Pilule Blanche Marque */}
+      <div className="flex items-center justify-between w-full z-10">
+        <div className="inline-flex items-center gap-2.5 rounded-full bg-white px-3.5 py-1.5 shadow-md">
+          <div
+            className={cn(
+              "w-6 h-6 rounded-full text-white flex items-center justify-center text-[10px] font-bold shrink-0 shadow-2xs",
+              item.brandIconBg || "bg-gray-900"
+            )}
+          >
+            {item.brandName ? item.brandName.slice(0, 2).toUpperCase() : "WM"}
+          </div>
+          <span className="text-xs sm:text-sm font-bold text-gray-900 tracking-tight">
+            {item.brandName || item.title}
           </span>
         </div>
 
-        {/* Textes de la réalisation */}
-        <div className="relative z-10">
-          <h3 className="text-base sm:text-lg font-bold font-display text-white mb-0.5 tracking-tight group-hover:text-brand-orangeLight transition-colors">
-            {item.title}
-          </h3>
-          <p className="text-xs sm:text-[13px] text-gray-200 line-clamp-1 font-medium">
-            {item.category}
-          </p>
-        </div>
+        {/* Compteur discret de captures */}
+        {images.length > 1 && (
+          <span className="text-[11px] font-semibold text-white/90 bg-black/35 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+            {currentImgIndex + 1} / {images.length}
+          </span>
+        )}
+      </div>
 
-        {/* Bouton d'action flottant */}
-        <div className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 flex items-center justify-center text-gray-800 opacity-0 group-hover:opacity-100 group-hover:bg-brand-orange group-hover:text-white group-hover:border-brand-orange group-hover:scale-110 transition-all duration-300 shadow-md">
-          <ArrowUpRight className="w-3.5 h-3.5" />
+      {/* 2. Centre : Écran Mockup avec capture de réalisation */}
+      <div
+        onClick={() => onOpenProject(item)}
+        className="relative my-4 sm:my-5 w-full aspect-[16/10] sm:aspect-[16/9.6] rounded-xl sm:rounded-[20px] overflow-hidden bg-black/60 border border-white/20 shadow-2xl backdrop-blur-xs flex items-center justify-center cursor-pointer group/screen transition-transform duration-300 hover:scale-[1.01]"
+      >
+        <img
+          src={images[currentImgIndex]}
+          alt={`${item.title} - capture ${currentImgIndex + 1}`}
+          className="w-full h-full object-cover object-top transition-opacity duration-300"
+          loading="lazy"
+        />
+
+        {/* Effet reflet de verre en biseau */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
+
+        {/* Indication au survol pour ouvrir en plein écran */}
+        <div className="absolute inset-0 bg-black/35 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 text-gray-900 text-xs font-semibold shadow-lg backdrop-blur-md">
+            <Eye className="w-3.5 h-3.5 text-blue-600" />
+            Agrandir la capture
+          </span>
         </div>
       </div>
-    </motion.div>
+
+      {/* 3. Bas de carte : Pilule Fondateur/Métriques à gauche + 2 Boutons Flèches Bleues à droite */}
+      <div className="flex items-center justify-between gap-3 w-full z-10 pt-1">
+        {/* Pilule Fondateur & Métrique clé */}
+        <div className="inline-flex items-center gap-2.5 sm:gap-3 rounded-full bg-white p-1.5 pr-4 sm:pr-5 shadow-lg max-w-[calc(100%-88px)] sm:max-w-none">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 border border-gray-100 bg-gray-100 shadow-2xs">
+            <img
+              src={item.clientAvatar || "/images/avatars/client-portrait-1.jpg"}
+              alt={item.clientName || item.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <span className="text-xs sm:text-sm font-bold text-gray-900 truncate">
+                {item.clientName || item.title}
+              </span>
+              {item.metric && (
+                <span className="text-[10px] sm:text-xs font-semibold text-blue-600 shrink-0">
+                  {item.metric}
+                </span>
+              )}
+            </div>
+            <p className="text-[10px] sm:text-xs text-gray-500 font-medium truncate">
+              {item.clientRole || item.category}
+            </p>
+          </div>
+        </div>
+
+        {/* Boutons de navigation (flèches bleues circulaires) */}
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={handlePrevImage}
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-label="Capture précédente"
+          >
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+          </button>
+          <button
+            onClick={handleNextImage}
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-label="Capture suivante"
+          >
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
-// Modal Carousel Lightbox (Design Clair & Épuré)
+// Modal Carousel Lightbox
 const ProjectCarouselModal = ({
   project,
   onClose
@@ -302,7 +316,7 @@ const ProjectCarouselModal = ({
   return (
     <AnimatePresence>
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 sm:p-6"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md p-4 sm:p-6"
         onClick={onClose}
         role="dialog"
         aria-modal="true"
@@ -312,10 +326,10 @@ const ProjectCarouselModal = ({
           className="relative w-full max-w-5xl bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-2xl flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header modal (Design Clair) */}
+          {/* Header modal */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200/80 bg-gray-50/70">
             <div>
-              <span className="text-xs font-bold text-brand-orange uppercase tracking-wider">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
                 {project.category}
               </span>
               <h3 className="text-xl font-bold font-display text-gray-900 mt-0.5">
@@ -325,7 +339,7 @@ const ProjectCarouselModal = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-200/70 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange"
+              className="p-2 rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-200/70 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600"
               aria-label="Fermer la galerie"
             >
               <X className="w-5 h-5" />
@@ -340,19 +354,19 @@ const ProjectCarouselModal = ({
               className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-102"
             />
 
-            {/* Navigation Arrows (Clair) */}
+            {/* Navigation Arrows */}
             {images.length > 1 && (
               <>
                 <button
                   onClick={handlePrev}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-brand-orange text-gray-900 hover:text-white backdrop-blur-md border border-gray-200 transition-all duration-200 shadow-lg"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-blue-600 text-gray-900 hover:text-white backdrop-blur-md border border-gray-200 transition-all duration-200 shadow-lg"
                   aria-label="Image précédente"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-brand-orange text-gray-900 hover:text-white backdrop-blur-md border border-gray-200 transition-all duration-200 shadow-lg"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-blue-600 text-gray-900 hover:text-white backdrop-blur-md border border-gray-200 transition-all duration-200 shadow-lg"
                   aria-label="Image suivante"
                 >
                   <ChevronRight className="w-6 h-6" />
@@ -366,7 +380,7 @@ const ProjectCarouselModal = ({
             </div>
           </div>
 
-          {/* Footer & Thumbnails (Design Clair) */}
+          {/* Footer & Thumbnails */}
           <div className="px-6 py-4 bg-white border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-600 max-w-xl text-center sm:text-left">
               {project.description || "Aperçu détaillé des maquettes et fonctionnalités développées."}
@@ -382,7 +396,7 @@ const ProjectCarouselModal = ({
                     className={cn(
                       "relative w-14 h-10 rounded-lg overflow-hidden border-2 shrink-0 transition-all duration-200 bg-gray-100",
                       currentIndex === idx
-                        ? "border-brand-orange scale-105 shadow-md shadow-brand-orange/20"
+                        ? "border-blue-600 scale-105 shadow-md shadow-blue-600/20"
                         : "border-gray-200 opacity-60 hover:opacity-100"
                     )}
                   >
@@ -411,14 +425,14 @@ export default function GenerativeArtGallery({
   className = "",
   badge = "Nos Réalisations Récentes",
   title = "Des projets créés pour inspirer et convertir",
-  subtitle = "Cliquez sur une réalisation pour parcourir la galerie de captures, zoomer et apprécier la qualité du rendu.",
+  subtitle = "Parcourez les captures d'écran directement dans les cartes ou cliquez pour agrandir chaque réalisation.",
 }: GenerativeArtGalleryProps) {
   const [selectedProject, setSelectedProject] = useState<GalleryProject | null>(null);
 
   return (
     <section className={cn("relative w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#fafbfc] border-t border-gray-200/70 text-gray-900 font-sans overflow-hidden", className)}>
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center">
-        {/* En-tête de section (Design Clair) */}
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
+        {/* En-tête de section */}
         <div className="text-center mb-12 sm:mb-16">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-black/[0.03] px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.08em] text-[#5c5c64] mb-4 shadow-2xs">
             <Eye className="w-3.5 h-3.5 text-brand-orange" />
@@ -432,13 +446,12 @@ export default function GenerativeArtGallery({
           </p>
         </div>
 
-        {/* Grille des cartes 3D en design clair */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {projects.map((item, index) => (
-            <GalleryCard
+        {/* Grille 2 colonnes fidèle au mockup fourni */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          {projects.map((item) => (
+            <ShowcaseProjectCard
               key={item.id || item.title}
               item={item}
-              index={index}
               onOpenProject={(proj) => setSelectedProject(proj)}
             />
           ))}
