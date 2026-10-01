@@ -4,6 +4,19 @@ import DiagonalMarqueeCarousel from '@/components/ui/great-ui-diagonal-marquee-c
 
 const HERO_WORDS = ['visibilité', 'trafic', 'notoriété', 'chiffre d’affaires'] as const;
 
+const HERO_SLIDES = [
+  {
+    id: 'aniq-overview',
+    url: '/images/portfolio/aniq-ui-overview.png',
+    title: 'Aniq-ui Analytics Dashboard',
+  },
+  {
+    id: 'emypaul',
+    url: '/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png',
+    title: 'Centre Optique Emy Paul',
+  },
+] as const;
+
 export const HeroPublic: React.FC = () => {
   return (
     <section className="w-full bg-white px-3 py-3 sm:px-6 sm:py-6">
@@ -53,13 +66,16 @@ export const HeroPublic: React.FC = () => {
             </a>
           </div>
 
-          {/* Carrousel Diagonal de sites internet dans le Hero (100% visible sans fondu) */}
-          <div className="relative w-full h-[440px] sm:h-[520px] lg:h-[600px] overflow-hidden rounded-2xl border border-black/[0.06] bg-white/40">
+          {/* Deux lignes obliques, lentes et continues, sans pause au survol. */}
+          <div className="relative h-[400px] w-full overflow-hidden rounded-2xl border border-black/[0.06] bg-white/50 sm:h-[480px] lg:h-[540px]">
             <DiagonalMarqueeCarousel
-              angle={-14}
-              baseSpeed={190}
+              cards={[...HERO_SLIDES]}
+              angle={-10}
+              baseSpeed={65}
+              rowCount={2}
+              pauseOnHover={false}
               className="h-full w-full"
-              cardClassName="h-[180px] w-[260px] sm:h-[220px] sm:w-[320px] lg:h-[260px] lg:w-[380px] rounded-xl border border-black/10 shadow-lg"
+              cardClassName="h-[190px] w-[300px] sm:h-[230px] sm:w-[380px] lg:h-[270px] lg:w-[460px] rounded-2xl border border-black/10 bg-white shadow-xl"
               fadeClassName="hidden"
             />
           </div>

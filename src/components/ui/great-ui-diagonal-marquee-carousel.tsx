@@ -14,6 +14,8 @@ export interface DiagonalMarqueeCarouselProps {
   angle?: number;
   baseSpeed?: number;
   alternateDirections?: boolean;
+  rowCount?: number;
+  pauseOnHover?: boolean;
   className?: string;
   cardClassName?: string;
   fadeClassName?: string;
@@ -85,11 +87,13 @@ const MarqueeRow = ({
   speed,
   direction,
   cardClassName,
+  pauseOnHover,
 }: {
   cards: CardItem[];
   speed: number;
   direction: 1 | -1;
   cardClassName?: string;
+  pauseOnHover: boolean;
 }) => {
   const animationClass =
     direction === -1 ? "animate-marquee-left" : "animate-marquee-right";
@@ -98,7 +102,8 @@ const MarqueeRow = ({
     <div className="flex w-full overflow-hidden">
       <div
         className={cn(
-          "flex shrink-0 cursor-pointer hover:[animation-play-state:paused]",
+          "flex shrink-0",
+          pauseOnHover && "cursor-pointer hover:[animation-play-state:paused]",
           animationClass,
         )}
         style={{ "--speed": `${speed}s` } as React.CSSProperties}
@@ -127,6 +132,8 @@ export default function DiagonalMarqueeCarousel({
   angle = -25,
   baseSpeed = 120,
   alternateDirections = true,
+  rowCount = 5,
+  pauseOnHover = true,
   className = "",
   cardClassName = "",
   fadeClassName = "",
@@ -137,6 +144,7 @@ export default function DiagonalMarqueeCarousel({
 
   const rowCards = [...cards, ...cards, ...cards];
   const rowCardsReverse = [...rowCards].reverse();
+  const rows = Array.from({ length: Math.max(1, Math.min(rowCount, 5)) });
 
   return (
     <div
@@ -169,36 +177,16 @@ export default function DiagonalMarqueeCarousel({
         className="absolute z-0 flex w-[200vw] flex-col gap-8"
         style={rotationStyle}
       >
-        <MarqueeRow
-          cards={rowCards}
-          speed={baseSpeed}
-          direction={-1}
-          cardClassName={cardClassName}
-        />
-        <MarqueeRow
-          cards={rowCardsReverse}
-          speed={baseSpeed + 25}
-          direction={alternateDirections ? 1 : -1}
-          cardClassName={cardClassName}
-        />
-        <MarqueeRow
-          cards={rowCards}
-          speed={baseSpeed + 15}
-          direction={-1}
-          cardClassName={cardClassName}
-        />
-        <MarqueeRow
-          cards={rowCardsReverse}
-          speed={baseSpeed + 35}
-          direction={alternateDirections ? 1 : -1}
-          cardClassName={cardClassName}
-        />
-        <MarqueeRow
-          cards={rowCards}
-          speed={baseSpeed + 20}
-          direction={-1}
-          cardClassName={cardClassName}
-        />
+        {rows.map((_, index) => (
+          <MarqueeRow
+            key={index}
+            cards={index % 2 === 0 ? rowCards : rowCardsReverse}
+            speed={baseSpeed + index * 8}
+            direction={index % 2 === 1 && alternateDirections ? 1 : -1}
+            cardClassName={cardClassName}
+            pauseOnHover={pauseOnHover}
+          />
+        ))}
       </div>
 
       {fadeClassName !== "hidden" && fadeClassName !== "none" && (
