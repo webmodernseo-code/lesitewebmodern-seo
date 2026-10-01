@@ -16,6 +16,8 @@ export interface DiagonalMarqueeCarouselProps {
   alternateDirections?: boolean;
   rowCount?: number;
   pauseOnHover?: boolean;
+  dimCards?: boolean;
+  rowGap?: number;
   className?: string;
   cardClassName?: string;
   fadeClassName?: string;
@@ -64,7 +66,7 @@ const DEFAULT_CARDS: CardItem[] = [
   },
 ];
 
-const Card = ({ card, className }: { card: CardItem; className?: string }) => {
+const Card = ({ card, className, dimmed }: { card: CardItem; className?: string; dimmed: boolean }) => {
   return (
     <div
       className={cn(
@@ -77,7 +79,7 @@ const Card = ({ card, className }: { card: CardItem; className?: string }) => {
         alt={card.title}
         className="h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-black/40" />
+      {dimmed && <div className="absolute inset-0 bg-black/40" />}
     </div>
   );
 };
@@ -88,12 +90,14 @@ const MarqueeRow = ({
   direction,
   cardClassName,
   pauseOnHover,
+  dimCards,
 }: {
   cards: CardItem[];
   speed: number;
   direction: 1 | -1;
   cardClassName?: string;
   pauseOnHover: boolean;
+  dimCards: boolean;
 }) => {
   const animationClass =
     direction === -1 ? "animate-marquee-left" : "animate-marquee-right";
@@ -111,14 +115,14 @@ const MarqueeRow = ({
         <div className="flex shrink-0">
           {cards.map((card, idx) => (
             <div key={`${card.id}-${idx}`} className="shrink-0 pr-8">
-              <Card card={card} className={cardClassName} />
+              <Card card={card} className={cardClassName} dimmed={dimCards} />
             </div>
           ))}
         </div>
         <div className="flex shrink-0">
           {cards.map((card, idx) => (
             <div key={`${card.id}-${idx}-copy`} className="shrink-0 pr-8">
-              <Card card={card} className={cardClassName} />
+              <Card card={card} className={cardClassName} dimmed={dimCards} />
             </div>
           ))}
         </div>
@@ -134,6 +138,8 @@ export default function DiagonalMarqueeCarousel({
   alternateDirections = true,
   rowCount = 5,
   pauseOnHover = true,
+  dimCards = true,
+  rowGap = 32,
   className = "",
   cardClassName = "",
   fadeClassName = "",
@@ -174,8 +180,8 @@ export default function DiagonalMarqueeCarousel({
         }}
       />
       <div
-        className="absolute z-0 flex w-[200vw] flex-col gap-8"
-        style={rotationStyle}
+        className="absolute z-0 flex w-[220vw] flex-col"
+        style={{ ...rotationStyle, gap: `${rowGap}px` }}
       >
         {rows.map((_, index) => (
           <MarqueeRow
@@ -185,6 +191,7 @@ export default function DiagonalMarqueeCarousel({
             direction={index % 2 === 1 && alternateDirections ? 1 : -1}
             cardClassName={cardClassName}
             pauseOnHover={pauseOnHover}
+            dimCards={dimCards}
           />
         ))}
       </div>

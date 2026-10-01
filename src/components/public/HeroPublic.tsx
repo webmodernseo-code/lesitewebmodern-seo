@@ -66,16 +66,18 @@ export const HeroPublic: React.FC = () => {
             </a>
           </div>
 
-          {/* Deux lignes obliques, lentes et continues, sans pause au survol. */}
-          <div className="relative h-[400px] w-full overflow-hidden rounded-2xl border border-black/[0.06] bg-white/50 sm:h-[480px] lg:h-[540px]">
+          {/* Deux lignes obliques et décalées, inspirées d'un mur de réalisations. */}
+          <div className="relative h-[440px] w-full overflow-hidden rounded-2xl border border-black/[0.06] bg-white/50 sm:h-[540px] lg:h-[620px]">
             <DiagonalMarqueeCarousel
               cards={[...HERO_SLIDES]}
-              angle={-10}
-              baseSpeed={65}
+              angle={4}
+              baseSpeed={72}
               rowCount={2}
               pauseOnHover={false}
+              dimCards={false}
+              rowGap={18}
               className="h-full w-full"
-              cardClassName="h-[190px] w-[300px] sm:h-[230px] sm:w-[380px] lg:h-[270px] lg:w-[460px] rounded-2xl border border-black/10 bg-white shadow-xl"
+              cardClassName="h-[210px] w-[340px] sm:h-[260px] sm:w-[460px] lg:h-[300px] lg:w-[540px] rounded-[24px] border border-white/20 bg-white shadow-2xl"
               fadeClassName="hidden"
             />
           </div>
