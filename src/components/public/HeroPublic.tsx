@@ -54,22 +54,18 @@ export const HeroPublic: React.FC = () => {
           </div>
 
           {/* Cadre vitrine du carrousel de réalisations intégré au Hero */}
-          <div className="mt-8 w-full max-w-[1200px] px-1 sm:mt-10 sm:px-2">
+          <div className="mt-8 w-full max-w-[1280px] px-1 sm:mt-10 sm:px-2">
             <div className="relative w-full overflow-hidden rounded-2xl border border-black/[0.08] bg-white/70 py-2.5 sm:py-3.5 shadow-xs backdrop-blur-xs sm:rounded-3xl">
-              {/* Fondus latéraux gauche et droite pour fluidifier l'entrée/sortie des slides */}
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-16 bg-gradient-to-r from-white via-white/80 to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-16 bg-gradient-to-l from-white via-white/80 to-transparent" />
-
               <DiagonalMarqueeCarousel
                 angle={0}
                 baseSpeed={85}
                 rowCount={2}
                 pauseOnHover={false}
                 dimCards={false}
-                rowGap={10}
+                rowGap={12}
                 speedStep={0}
-                className="h-[210px] w-full sm:h-[265px] lg:h-[315px]"
-                cardClassName="h-[96px] w-[160px] rounded-lg border border-black/[0.08] bg-white shadow-2xs sm:h-[120px] sm:w-[200px] sm:rounded-xl lg:h-[145px] lg:w-[240px]"
+                className="h-[250px] w-full sm:h-[310px] lg:h-[375px]"
+                cardClassName="h-[116px] w-[188px] rounded-lg border border-black/[0.08] bg-white shadow-2xs sm:h-[145px] sm:w-[235px] sm:rounded-xl lg:h-[175px] lg:w-[285px]"
                 fadeClassName="hidden"
               />
             </div>
