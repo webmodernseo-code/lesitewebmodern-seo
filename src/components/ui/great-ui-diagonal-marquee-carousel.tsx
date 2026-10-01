@@ -18,6 +18,7 @@ export interface DiagonalMarqueeCarouselProps {
   pauseOnHover?: boolean;
   dimCards?: boolean;
   rowGap?: number;
+  speedStep?: number;
   className?: string;
   cardClassName?: string;
   fadeClassName?: string;
@@ -140,6 +141,7 @@ export default function DiagonalMarqueeCarousel({
   pauseOnHover = true,
   dimCards = true,
   rowGap = 32,
+  speedStep = 0,
   className = "",
   cardClassName = "",
   fadeClassName = "",
@@ -187,7 +189,7 @@ export default function DiagonalMarqueeCarousel({
           <MarqueeRow
             key={index}
             cards={index % 2 === 0 ? rowCards : rowCardsReverse}
-            speed={baseSpeed + index * 8}
+            speed={baseSpeed + index * speedStep}
             direction={index % 2 === 1 && alternateDirections ? 1 : -1}
             cardClassName={cardClassName}
             pauseOnHover={pauseOnHover}

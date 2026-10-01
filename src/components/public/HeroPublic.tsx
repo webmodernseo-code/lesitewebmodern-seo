@@ -4,19 +4,6 @@ import DiagonalMarqueeCarousel from '@/components/ui/great-ui-diagonal-marquee-c
 
 const HERO_WORDS = ['visibilité', 'trafic', 'notoriété', 'chiffre d’affaires'] as const;
 
-const HERO_SLIDES = [
-  {
-    id: 'aniq-overview',
-    url: '/images/portfolio/aniq-ui-overview.png',
-    title: 'Aniq-ui Analytics Dashboard',
-  },
-  {
-    id: 'emypaul',
-    url: '/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png',
-    title: 'Centre Optique Emy Paul',
-  },
-] as const;
-
 export const HeroPublic: React.FC = () => {
   return (
     <section className="w-full bg-white px-3 py-3 sm:px-6 sm:py-6">
@@ -66,18 +53,18 @@ export const HeroPublic: React.FC = () => {
             </a>
           </div>
 
-          {/* Deux lignes obliques et décalées, inspirées d'un mur de réalisations. */}
-          <div className="relative h-[440px] w-full overflow-hidden rounded-2xl border border-black/[0.06] bg-white/50 sm:h-[540px] lg:h-[620px]">
+          {/* Deux bandes ouvertes et identiques : aucun cadre autour du slider. */}
+          <div className="relative h-[500px] w-full overflow-hidden sm:h-[610px] lg:h-[700px]">
             <DiagonalMarqueeCarousel
-              cards={[...HERO_SLIDES]}
               angle={4}
-              baseSpeed={72}
+              baseSpeed={110}
               rowCount={2}
               pauseOnHover={false}
               dimCards={false}
-              rowGap={18}
+              rowGap={16}
+              speedStep={0}
               className="h-full w-full"
-              cardClassName="h-[210px] w-[340px] sm:h-[260px] sm:w-[460px] lg:h-[300px] lg:w-[540px] rounded-[24px] border border-white/20 bg-white shadow-2xl"
+              cardClassName="h-[220px] w-[340px] rounded-[20px] border-0 bg-transparent shadow-none sm:h-[270px] sm:w-[460px] lg:h-[310px] lg:w-[540px]"
               fadeClassName="hidden"
             />
           </div>
