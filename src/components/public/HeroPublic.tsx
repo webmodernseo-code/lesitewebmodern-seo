@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
+import { getCalApi } from '@calcom/embed-react';
 import { BubbleBackground, RotatingWord } from '@/components/public/HeroEffects';
 import { HeroSocialProof } from '@/components/public/HeroSocialProof';
 import { HeroTiltedPortfolio } from '@/components/public/HeroTiltedPortfolio';
@@ -64,13 +65,32 @@ function PartnerLogosTrack({ duplicate = false }: { duplicate?: boolean }) {
 }
 
 export const HeroPublic: React.FC = () => {
+  useEffect(() => {
+    (async function () {
+      try {
+        const cal = await getCalApi({ namespace: '30min' });
+        cal('ui', {
+          theme: 'light',
+          cssVarsPerTheme: {
+            dark: { 'cal-brand': '#c8724a' },
+            light: { 'cal-brand': '#ff4d00' }
+          },
+          hideEventTypeDetails: false,
+          layout: 'month_view'
+        });
+      } catch (err) {
+        console.error('Erreur chargement Cal.com:', err);
+      }
+    })();
+  }, []);
+
   return (
     <section className="w-full overflow-hidden bg-white py-2 sm:py-4">
       <div className="relative mx-2.5 max-w-[1440px] overflow-hidden rounded-[20px] bg-gradient-to-b from-brand-sable/50 via-white to-white sm:mx-6 sm:rounded-[32px] xl:mx-auto border border-black/[0.05] p-4 sm:p-8 lg:p-12">
         <BubbleBackground />
 
         {/* Grille 2 colonnes principale */}
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 xl:gap-14 items-center">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
           {/* Colonne de gauche : Badge, Titre, Sous-titre, 2 Boutons, Images avec étoiles */}
           <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left">
             {/* Badge */}
@@ -93,9 +113,12 @@ export const HeroPublic: React.FC = () => {
 
             {/* Les deux boutons CTA */}
             <div className="mb-7 flex flex-wrap items-center gap-3 sm:gap-4">
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2.5 rounded-full border border-black bg-black py-2.5 pl-2.5 pr-6 text-sm font-semibold text-white shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1a1a20] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 sm:text-base"
+              <button
+                type="button"
+                data-cal-namespace="30min"
+                data-cal-link="jean-prosper-dsljpi/30min"
+                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'
+                className="inline-flex items-center gap-2.5 rounded-full border border-black bg-black py-2.5 pl-2.5 pr-6 text-sm font-semibold text-white shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1a1a20] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 sm:text-base cursor-pointer"
               >
                 <span className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full bg-brand-orange text-white">
                   <svg width="10" height="10" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +127,7 @@ export const HeroPublic: React.FC = () => {
                   </svg>
                 </span>
                 Prendre un RDV offert
-              </a>
+              </button>
 
               <a
                 href="/#creations"
@@ -125,8 +148,8 @@ export const HeroPublic: React.FC = () => {
             </div>
           </div>
 
-          {/* Colonne de droite : Slider 2 colonnes légèrement inclinées (effet premium) */}
-          <div className="lg:col-span-6 xl:col-span-6 relative w-full flex items-center justify-center">
+          {/* Colonne de droite : Slider 2 colonnes légèrement inclinées (effet premium) avec overflow-visible */}
+          <div className="lg:col-span-6 xl:col-span-6 relative w-full flex items-center justify-center overflow-visible">
             <HeroTiltedPortfolio />
           </div>
         </div>

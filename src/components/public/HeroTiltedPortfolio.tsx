@@ -125,12 +125,12 @@ export function HeroTiltedPortfolio({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative w-full h-[480px] sm:h-[560px] lg:h-[620px] xl:h-[660px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] pointer-events-auto",
+        "relative w-full h-[480px] sm:h-[560px] lg:h-[620px] xl:h-[660px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] pointer-events-auto px-4 sm:px-8 lg:px-10",
         className
       )}
     >
-      {/* Conteneur avec inclinaison 3D subtile style premium */}
-      <div className="relative w-full h-full transform -rotate-2 sm:-rotate-3 scale-[1.03] sm:scale-[1.05] origin-center grid grid-cols-2 gap-3 sm:gap-4.5 px-1">
+      {/* Conteneur avec inclinaison 3D subtile style premium, decale avec marge de securite pour que l'extremite gauche soit 100% complete */}
+      <div className="relative w-full h-full transform -rotate-2 sm:-rotate-3 translate-x-2 sm:translate-x-4 scale-[1.01] sm:scale-[1.02] origin-center grid grid-cols-2 gap-3 sm:gap-4.5 px-3 sm:px-4">
         {/* Colonne 1 : Défilement vertical vers le haut */}
         <div className="flex flex-col gap-3.5 sm:gap-4.5 animate-hero-col-up hover:[animation-play-state:paused]">
           {col1Items.map((item, idx) => (
