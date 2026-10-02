@@ -71,6 +71,7 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     galleryImages: [
       "/images/services/fintech-dashboard.png",
       "/images/services/fintech-cards.png",
+      "/images/services/fintech-components.png",
       "/images/services/fintech-login.png"
     ],
     brandName: "Vira",
