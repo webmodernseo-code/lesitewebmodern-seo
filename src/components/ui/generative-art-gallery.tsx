@@ -24,6 +24,64 @@ export interface GalleryProject {
 
 const DEFAULT_PROJECTS: GalleryProject[] = [
   {
+    id: "food-studio",
+    title: "Food Studio — Storefront E-commerce & Click and Collect",
+    category: "Site E-commerce & Restauration",
+    description: "Plateforme e-commerce moderne taillée pour la commande en ligne : menu interactif, sélection d'ingrédients sur-mesure et tunnel de conversion optimisé.",
+    image: "/images/services/food-studio-storefront.png",
+    galleryImages: [
+      "/images/services/food-studio-storefront.png",
+      "/images/services/food-studio-menu.png",
+      "/images/services/food-studio-order.png"
+    ],
+    brandName: "Food Studio",
+    brandIconBg: "bg-red-600",
+    clientName: "Alexandre T.",
+    clientRole: "Fondateur Food Studio",
+    metric: "Commandes +65%",
+    clientAvatar: "/images/avatars/client-portrait-1.jpg",
+    link: "/portfolio"
+  },
+  {
+    id: "arise-growth",
+    title: "Arise — Dashboard SaaS & Analytics Utilisateurs",
+    category: "Cockpit Métier & Analyse Prédictive",
+    description: "Application web SaaS temps réel avec suivi de l'acquisition, sources de trafic détaillées et indicateurs de performance clés.",
+    image: "/images/services/saas-dashboard-dark.png",
+    galleryImages: [
+      "/images/services/saas-dashboard-dark.png",
+      "/images/services/saas-analytics-growth.png",
+      "/images/services/saas-stats-growth.png",
+      "/images/services/saas-world-map.png"
+    ],
+    brandName: "Arise SaaS",
+    brandIconBg: "bg-blue-600",
+    clientName: "David C.",
+    clientRole: "Head of Product",
+    metric: "Rétention 87%",
+    clientAvatar: "/images/avatars/client-portrait-2.jpg",
+    link: "/portfolio"
+  },
+  {
+    id: "vira-fintech",
+    title: "Vira — Dashboard Bancaire & Gestion Multi-Cartes",
+    category: "FinTech & Application Web",
+    description: "Interface bancaire ultra-fluide pour le suivi de trésorerie, la gestion multi-devises et le contrôle instantané des cartes bancaires.",
+    image: "/images/services/fintech-dashboard.png",
+    galleryImages: [
+      "/images/services/fintech-dashboard.png",
+      "/images/services/fintech-cards.png",
+      "/images/services/fintech-login.png"
+    ],
+    brandName: "Vira",
+    brandIconBg: "bg-blue-500",
+    clientName: "John C.",
+    clientRole: "Managing Director",
+    metric: "Flux 86K€",
+    clientAvatar: "/images/avatars/client-portrait-3.jpg",
+    link: "/portfolio"
+  },
+  {
     id: "aniq-ui",
     title: "Aniq-ui — E-commerce & Studio IA",
     category: "Dashboard SaaS & Assistant IA",
@@ -40,7 +98,6 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     clientRole: "Co-Founder & CPO Aniq-ui",
     metric: "Conversion +42%",
     clientAvatar: "/images/avatars/client-portrait-1.jpg",
-    gradient: "from-[#021027] via-[#041d44] to-[#0a316c]",
     link: "/portfolio"
   },
   {

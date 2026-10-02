@@ -20,30 +20,30 @@ const DEFAULT_SERVICES: ServiceItem[] = [
     title: "Création Web & E-commerce Next.js",
     category: "Storefront & Application",
     description: "Sites e-commerce et vitrines ultra-rapides, parcours d'achat fluides et architecture taillée pour convertir.",
-    image: "/images/services/c2k8vbhynwm.jpg",
-    tag: "Next.js 14",
+    image: "/images/services/food-studio-storefront.png",
+    tag: "Next.js 14 & E-commerce",
     href: "/services/creation-web",
-    frameLabel: "Création de Site Internet",
+    frameLabel: "Storefront E-commerce Next.js",
     features: ["Score PageSpeed 98+", "Tunnel d'achat optimisé", "Paiements sécurisés"]
   },
   {
     title: "Référencement SEO & SXO Prédictif",
     category: "Visibilité & Acquisition",
     description: "Stratégie sémantique avancée, structure technique irréprochable et conquête de la 1ère page Google.",
-    image: "/images/services/c_ry4rm1_b4.jpg",
-    tag: "Google Rank #1",
+    image: "/images/services/saas-dashboard-dark.png",
+    tag: "Google Rank #1 & SEO",
     href: "/services/referencement-seo",
-    frameLabel: "Référencement SEO & GÉO",
+    frameLabel: "Cockpit Croissance & Trafic",
     features: ["Audit sémantique profond", "Netlinking qualifié", "Balisage Schema.org"]
   },
   {
     title: "Acquisition Clients & Meta Ads",
     category: "Growth & Automation",
     description: "Campagnes publicitaires rentables, reciblage intelligent et synchronisation automatique avec votre CRM.",
-    image: "/images/services/upsef48wagk.jpg",
-    tag: "Meta Ads & n8n",
+    image: "/images/services/saas-analytics-growth.png",
+    tag: "Meta Ads & Funnels",
     href: "/services/acquisition-clients",
-    frameLabel: "Acquisition de Nouveaux Clients",
+    frameLabel: "Indicateurs de Performance IA",
     features: ["Ciblage ultra-précis", "Flux automatisés n8n", "Génération de leads 24/7"]
   }
 ];
