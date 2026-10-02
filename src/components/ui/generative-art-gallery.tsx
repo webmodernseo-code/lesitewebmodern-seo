@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Eye, ExternalLink, Globe, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Eye, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface GalleryProject {
   id: string | number;
   title: string;
   category: string;
-  categoryFilter: 'ecommerce' | 'saas' | 'fintech';
   description?: string;
   image: string;
   galleryImages: string[];
@@ -22,52 +21,15 @@ export interface GalleryProject {
   clientRole?: string;
   clientAvatar?: string;
   metric?: string;
-  gradient?: string;
 }
 
+// Les 3 réalisations sélectionnées et regroupées selon les directives exactes
 const DEFAULT_PROJECTS: GalleryProject[] = [
   {
-    id: "magasin-aniq",
-    title: "Magasin — Storefront E-commerce & Studio IA Aniq-ui",
-    category: "E-commerce Prêt-à-porter & IA",
-    categoryFilter: "ecommerce",
-    description: "Boutique en ligne nouvelle génération : vitrine éditoriale immersive, catalogue interactif haute fidélité, fiches produits dynamiques et back-office avec studio IA vidéo Kling 2.6.",
-    image: "/images/portfolio/magasin-hero-storefront.png",
-    galleryImages: [
-      "/images/portfolio/magasin-hero-storefront.png",
-      "/images/portfolio/magasin-categories.png",
-      "/images/portfolio/magasin-catalog-grid.png",
-      "/images/portfolio/magasin-product-detail.png",
-      "/images/portfolio/aniq-ui-ai-studio.png"
-    ],
-    slideLabels: [
-      "1. Vitrine d'accueil — Hero Collection 2026",
-      "2. Rayons thématiques & Collections saisonnières",
-      "3. Catalogue interactif & Grille de produits",
-      "4. Fiche produit détaillée — Indigo Denim Shirt",
-      "5. Back-office Aniq-ui — Studio vidéo IA Kling 2.6"
-    ],
-    slideUrls: [
-      "magasin.com",
-      "magasin.com/collections",
-      "magasin.com/catalogue",
-      "magasin.com/produits/indigo-denim",
-      "app.aniq-ui.com/products/ai-studio"
-    ],
-    brandName: "Magasin",
-    brandIconBg: "bg-zinc-800",
-    clientName: "Julien B.",
-    clientRole: "Fondateur & Directeur Artistique",
-    metric: "Conversion +42%",
-    clientAvatar: "/images/avatars/client-portrait-1.jpg",
-    link: "/portfolio"
-  },
-  {
     id: "food-studio",
-    title: "Food Studio — Restauration Digitale & Click and Collect",
-    category: "E-commerce Restauration",
-    categoryFilter: "ecommerce",
-    description: "Plateforme e-commerce moderne taillée pour la restauration : présentation visuelle des formules, personnalisation fine des ingrédients et tunnel de paiement ultra-rapide.",
+    title: "Food Studio — Fast-Food & Click and Collect",
+    category: "Restauration & Commande en Ligne",
+    description: "Storefront e-commerce épuré taillé pour la commande express de burgers artisanaux et formules avec personnalisation fine des ingrédients.",
     image: "/images/services/food-studio-storefront.png",
     galleryImages: [
       "/images/services/food-studio-storefront.png",
@@ -75,29 +37,27 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "/images/services/food-studio-order.png"
     ],
     slideLabels: [
-      "1. Storefront d'accueil & Burgers signatures",
+      "1. Vitrine d'accueil & Burgers signatures",
       "2. Menu interactif & Personnalisation des ingrédients",
-      "3. Panier d'achat & Validation de commande express"
+      "3. Panier & Validation de commande express"
     ],
     slideUrls: [
       "foodstudio.fr",
-      "foodstudio.fr/menu/personnaliser",
-      "foodstudio.fr/panier/retrait"
+      "foodstudio.fr/menu",
+      "foodstudio.fr/commande"
     ],
     brandName: "Food Studio",
     brandIconBg: "bg-red-600",
     clientName: "Alexandre T.",
     clientRole: "Fondateur Food Studio",
     metric: "Commandes +65%",
-    clientAvatar: "/images/avatars/client-portrait-1.jpg",
     link: "/portfolio"
   },
   {
     id: "arise-growth",
-    title: "Arise — Dashboard SaaS & Analytics Croissance",
-    category: "Cockpit Métier & Analytics",
-    categoryFilter: "saas",
-    description: "Cockpit analytique pour plateforme SaaS : suivi de l'acquisition en direct, décomposition des canaux de trafic, indicateurs de croissance clés et cartographie internationale.",
+    title: "Arise — Landing Page & Cockpit SaaS",
+    category: "Application SaaS & Analytics",
+    description: "Landing page haute conversion et cockpit analytique en bleu sombre : monitoring du trafic en direct, indicateurs de croissance (+350%) et carte mondiale.",
     image: "/images/services/saas-dashboard-dark.png",
     galleryImages: [
       "/images/services/saas-dashboard-dark.png",
@@ -106,127 +66,62 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "/images/services/saas-world-map.png"
     ],
     slideLabels: [
-      "1. Cockpit principal dark-mode & Sessions en direct",
-      "2. Analyse granulaire des sources d'acquisition",
-      "3. Tableau des chiffres clés (+350% de croissance)",
+      "1. Cockpit Dark Mode & Sessions en direct",
+      "2. Analyse granulaire des sources de trafic",
+      "3. Métriques clés (+350% de croissance)",
       "4. Carte mondiale d'utilisateurs & Inscription"
     ],
     slideUrls: [
       "app.arise.io/dashboard",
-      "app.arise.io/analytics/sources",
-      "arise.io/tarification/chiffres",
-      "arise.io/commencer/monde"
+      "app.arise.io/analytics",
+      "arise.io/tarification",
+      "arise.io/commencer"
     ],
     brandName: "Arise SaaS",
     brandIconBg: "bg-blue-600",
     clientName: "David C.",
     clientRole: "Head of Product",
     metric: "Rétention 87%",
-    clientAvatar: "/images/avatars/client-portrait-2.jpg",
     link: "/portfolio"
   },
   {
-    id: "vira-fintech",
-    title: "Vira — Dashboard Bancaire & Cartes Connectées",
-    category: "FinTech & Application Web",
-    categoryFilter: "fintech",
-    description: "Solution bancaire d'entreprise haute sécurité : portail de connexion chiffré, suivi en temps réel de la trésorerie, gestion du parc de cartes bancaires et bibliothèque de stat cards modulaires.",
-    image: "/images/services/fintech-dashboard.png",
+    id: "magasin-aniq",
+    title: "Magasin — E-commerce & Dashboard Aniq-ui",
+    category: "Storefront E-commerce & Dashboard Sombre",
+    description: "Boutique vestimentaire haut de gamme avec vitrine, rayons, fiches produits et son dashboard sombre Aniq-ui avec studio IA vidéo Kling 2.6.",
+    image: "/images/portfolio/magasin-hero-storefront.png",
     galleryImages: [
-      "/images/services/fintech-login.png",
-      "/images/services/fintech-dashboard.png",
-      "/images/services/fintech-cards.png",
-      "/images/services/fintech-components.png"
+      "/images/portfolio/magasin-hero-storefront.png",
+      "/images/portfolio/magasin-categories.png",
+      "/images/portfolio/magasin-catalog-grid.png",
+      "/images/portfolio/magasin-product-detail.png",
+      "/images/portfolio/aniq-ui-ai-studio.png",
+      "/images/portfolio/aniq-ui-overview.png"
     ],
     slideLabels: [
-      "1. Portail de connexion sécurisé & Authentification SSO",
-      "2. Dashboard de trésorerie John Carter & Graphique",
-      "3. Gestion du portefeuille multi-cartes (Vira & Mastercard)",
-      "4. Bibliothèque de composants UI & Stat Cards réorganisables"
+      "1. Vitrine d'accueil — Hero Collection 2026",
+      "2. Rayons thématiques & Collections saisonnières",
+      "3. Grille catalogue interactif & Filtres",
+      "4. Fiche produit détaillée — Indigo Denim Shirt",
+      "5. Dashboard sombre Aniq-ui — Studio vidéo IA Kling",
+      "6. Dashboard sombre Aniq-ui — Cockpit de gestion des ventes"
     ],
     slideUrls: [
-      "auth.vira.bank/login",
-      "app.vira.bank/dashboard/overview",
-      "app.vira.bank/cards/management",
-      "app.vira.bank/components/stats"
+      "magasin.com",
+      "magasin.com/collections",
+      "magasin.com/catalogue",
+      "magasin.com/produits/indigo-denim",
+      "app.aniq-ui.com/products/ai-studio",
+      "app.aniq-ui.com/dashboard/overview"
     ],
-    brandName: "Vira",
-    brandIconBg: "bg-blue-500",
-    clientName: "John C.",
-    clientRole: "Managing Director",
-    metric: "Flux 86K€",
-    clientAvatar: "/images/avatars/client-portrait-3.jpg",
-    link: "/portfolio"
-  },
-  {
-    id: "cygnus",
-    title: "Centre Optique Emy Paul — E-commerce & Rendez-vous",
-    category: "Site E-commerce & Santé Visuelle",
-    categoryFilter: "ecommerce",
-    description: "Présence web premium pour opticien indépendant à Grenoble : vitrine de montures créateurs, module de prise de rendez-vous en ligne et référencement local leader.",
-    image: "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
-    galleryImages: [
-      "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
-      "/images/portfolio/he75ojuxofe.jpg",
-      "/images/portfolio/Capture-decran-2026-04-14-120629.png"
-    ],
-    slideLabels: [
-      "1. Vitrine digitale & Univers de la marque",
-      "2. Expérience de choix de montures & Prise de rendez-vous",
-      "3. Catalogue local & Tunnel de confirmation"
-    ],
-    slideUrls: [
-      "emypaul.opticafe.fr",
-      "emypaul.opticafe.fr/reservation",
-      "emypaul.opticafe.fr/catalogue"
-    ],
-    brandName: "Emy Paul",
-    brandIconBg: "bg-emerald-800",
-    clientName: "Emy Paul",
-    clientRole: "Fondatrice Centre Optique",
-    metric: "RDV en ligne x3",
-    clientAvatar: "/images/avatars/client-portrait-2.jpg",
-    link: "/portfolio"
-  },
-  {
-    id: "sinai-happy-care",
-    title: "Sinai Happy Care — Portail Médical & Réservation",
-    category: "Santé Digitale & Prise en Charge",
-    categoryFilter: "fintech",
-    description: "Plateforme de réservation de soins et de coordination médicale : parcours patient rassurant et ergonomique, conformité RGPD et performance SEO sans compromis.",
-    image: "/images/portfolio/Sinaihappycare-sinaihappycare.com_.png",
-    galleryImages: [
-      "/images/portfolio/Sinaihappycare-sinaihappycare.com_.png",
-      "/images/portfolio/Capture-decran-2026-04-14-120629.png",
-      "/images/portfolio/Capture-decran-2026-06-16-163553.png"
-    ],
-    slideLabels: [
-      "1. Portail d'accueil & Présentation des soins",
-      "2. Module de réservation & Choix de prestation",
-      "3. Espace coordination patient & Sécurité"
-    ],
-    slideUrls: [
-      "sinaihappycare.com",
-      "sinaihappycare.com/soins/reservation",
-      "sinaihappycare.com/espace-patient"
-    ],
-    brandName: "Sinai Care",
-    brandIconBg: "bg-cyan-900",
-    clientName: "Dr. K. Sinai",
-    clientRole: "Directeur Médical Fondateur",
-    metric: "Score SEO 100/100",
-    clientAvatar: "/images/avatars/client-portrait-3.jpg",
+    brandName: "Magasin",
+    brandIconBg: "bg-zinc-800",
+    clientName: "Julien B.",
+    clientRole: "Fondateur & Directeur Artistique",
+    metric: "Conversion +42%",
     link: "/portfolio"
   }
 ];
-
-// Filtres de catégories par grand domaine d'expertise
-const FILTER_TABS = [
-  { id: "all", label: "Toutes les réalisations" },
-  { id: "ecommerce", label: "E-commerce & Storefronts" },
-  { id: "saas", label: "SaaS & Cockpits Métier" },
-  { id: "fintech", label: "FinTech & Applications Web" }
-] as const;
 
 // Carte Réalisation au format navigateur épuré (Zéro espace perdu, navigation intégrée)
 const ShowcaseProjectCard = ({
@@ -258,7 +153,7 @@ const ShowcaseProjectCard = ({
     : (item.brandName ? `${item.brandName.toLowerCase().replace(/\s+/g, '')}.com` : "webmodernseo.co");
 
   return (
-    <div className="relative w-full rounded-[20px] sm:rounded-[24px] bg-white border border-gray-200/90 shadow-sm hover:shadow-xl hover:border-gray-300 transition-all duration-300 overflow-hidden flex flex-col group">
+    <div className="relative w-full rounded-[22px] bg-white border border-gray-200/90 shadow-sm hover:shadow-xl hover:border-gray-300 transition-all duration-300 overflow-hidden flex flex-col group">
       {/* 1. Cadre du site : Barre supérieure de navigation type navigateur web */}
       <div className="flex items-center justify-between px-3.5 py-2.5 bg-zinc-900 border-b border-zinc-800 text-zinc-300 select-none">
         {/* Contrôles fenêtre style macOS */}
@@ -269,10 +164,10 @@ const ShowcaseProjectCard = ({
         </div>
 
         {/* Barre d'adresse URL dynamique liée à l'écran actif */}
-        <div className="flex items-center gap-2 text-[11px] text-zinc-300 font-mono bg-black/60 px-3 py-1 rounded-full border border-zinc-800 max-w-[220px] sm:max-w-xs truncate shadow-inner">
+        <div className="flex items-center gap-1.5 text-[11px] text-zinc-300 font-mono bg-black/60 px-2.5 py-0.5 rounded-full border border-zinc-800 max-w-[170px] sm:max-w-[200px] truncate shadow-inner">
           <div
             className={cn(
-              "w-3.5 h-3.5 rounded-full text-white flex items-center justify-center text-[8px] font-bold shrink-0",
+              "w-3 h-3 rounded-full text-white flex items-center justify-center text-[7px] font-bold shrink-0",
               item.brandIconBg || "bg-brand-orange"
             )}
           >
@@ -282,7 +177,7 @@ const ShowcaseProjectCard = ({
         </div>
 
         {/* Compteur d'écrans du projet */}
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex items-center gap-1 shrink-0">
           {images.length > 1 && (
             <span className="text-[10px] font-mono font-semibold text-zinc-400 bg-black/50 px-2 py-0.5 rounded-md border border-zinc-800">
               {currentImgIndex + 1}/{images.length}
@@ -294,21 +189,21 @@ const ShowcaseProjectCard = ({
       {/* 2. Écran du site bord-à-bord (aucun padding ni marge vide autour du visuel) */}
       <div
         onClick={() => onOpenProject(item)}
-        className="relative w-full aspect-[16/10] sm:aspect-[16/9.5] overflow-hidden bg-zinc-950 cursor-pointer group/screen"
+        className="relative w-full aspect-[16/10] overflow-hidden bg-zinc-950 cursor-pointer group/screen"
       >
         <img
           src={images[currentImgIndex]}
           alt={`${item.title} - ${currentLabel}`}
-          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
           loading="lazy"
         />
 
-        {/* Gradient subtil en bas de l'écran pour détacher les textes */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        {/* Gradient subtil en bas de l'écran */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
 
         {/* Label narratif de l'étape affiché discrètement en bas à gauche */}
-        <div className="absolute bottom-3 left-3 pointer-events-none z-10 max-w-[70%]">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-white/95 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 shadow-sm truncate">
+        <div className="absolute bottom-2.5 left-2.5 pointer-events-none z-10 max-w-[65%]">
+          <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium text-white/95 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-lg border border-white/15 shadow-sm truncate">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
             <span className="truncate">{currentLabel}</span>
           </span>
@@ -318,26 +213,26 @@ const ShowcaseProjectCard = ({
         <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 text-gray-900 text-xs font-semibold shadow-lg backdrop-blur-md">
             <Eye className="w-3.5 h-3.5 text-blue-600" />
-            Agrandir la capture
+            Agrandir
           </span>
         </div>
 
         {/* Boutons de navigation incrustés au bas à droite du cadre */}
         {images.length > 1 && (
-          <div className="absolute bottom-3 right-3 flex items-center gap-1.5 z-20">
+          <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 z-20">
             <button
               onClick={handlePrevImage}
-              className="w-8 h-8 rounded-full bg-black/75 hover:bg-black text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/75 hover:bg-black text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
               aria-label="Étape précédente"
             >
-              <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+              <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
             </button>
             <button
               onClick={handleNextImage}
-              className="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
               aria-label="Étape suivante"
             >
-              <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+              <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
             </button>
           </div>
         )}
@@ -347,17 +242,17 @@ const ShowcaseProjectCard = ({
       <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 bg-white border-t border-gray-100">
         <div>
           <div className="flex items-center justify-between gap-2 mb-2">
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
+            <span className="text-[11px] font-semibold text-blue-600 uppercase tracking-wider truncate">
               {item.category}
             </span>
             {item.metric && (
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full">
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full shrink-0">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 {item.metric}
               </span>
             )}
           </div>
-          <h3 className="text-base sm:text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
+          <h3 className="text-base sm:text-[17px] font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
             {item.title}
           </h3>
           <p className="text-xs sm:text-sm text-gray-600 mt-1 line-clamp-2 leading-relaxed">
@@ -368,7 +263,7 @@ const ShowcaseProjectCard = ({
         {/* Pastilles indicatrices pour sauter directement à une étape */}
         {images.length > 1 && (
           <div className="flex items-center gap-1.5 pt-3.5 mt-2 border-t border-gray-100">
-            <span className="text-[11px] text-gray-400 font-medium mr-1">Parcours :</span>
+            <span className="text-[10px] text-gray-400 font-medium mr-0.5">Étapes :</span>
             {images.map((_, idx) => (
               <button
                 key={idx}
@@ -379,8 +274,8 @@ const ShowcaseProjectCard = ({
                 className={cn(
                   "h-1.5 rounded-full transition-all duration-300",
                   currentImgIndex === idx
-                    ? "w-6 bg-blue-600"
-                    : "w-2 bg-gray-200 hover:bg-gray-400"
+                    ? "w-5 bg-blue-600"
+                    : "w-1.5 bg-gray-200 hover:bg-gray-400"
                 )}
                 aria-label={`Aller à l'étape ${idx + 1}`}
               />
@@ -556,21 +451,15 @@ export default function GenerativeArtGallery({
   className = "",
   badge = "Nos Réalisations Récentes",
   title = "Des projets créés pour inspirer et convertir",
-  subtitle = "Parcourez les étapes clés de chaque réalisation directement dans les cadres ou cliquez pour agrandir chaque capture.",
+  subtitle = "Découvrez 3 réalisations complètes taillées sur-mesure. Parcourez chaque étape ou cliquez pour agrandir.",
 }: GenerativeArtGalleryProps) {
   const [selectedProject, setSelectedProject] = useState<GalleryProject | null>(null);
-  const [activeFilter, setActiveFilter] = useState<string>("all");
-
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === "all") return projects;
-    return projects.filter((p) => p.categoryFilter === activeFilter);
-  }, [projects, activeFilter]);
 
   return (
     <section className={cn("relative w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#fafbfc] border-t border-gray-200/70 text-gray-900 font-sans overflow-hidden", className)}>
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
         {/* En-tête de section */}
-        <div className="text-center mb-10 sm:mb-12">
+        <div className="text-center mb-10 sm:mb-14">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-black/[0.03] px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.08em] text-[#5c5c64] mb-4 shadow-2xs">
             <Eye className="w-3.5 h-3.5 text-brand-orange" />
             {badge}
@@ -583,43 +472,9 @@ export default function GenerativeArtGallery({
           </p>
         </div>
 
-        {/* Filtres par domaine d'expertise (Style Apple / Stripe épuré) */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 sm:mb-12">
-          {FILTER_TABS.map((tab) => {
-            const count = tab.id === "all"
-              ? projects.length
-              : projects.filter((p) => p.categoryFilter === tab.id).length;
-
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveFilter(tab.id)}
-                className={cn(
-                  "inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 border",
-                  activeFilter === tab.id
-                    ? "bg-gray-900 text-white border-gray-900 shadow-sm"
-                    : "bg-white text-gray-600 border-gray-200 hover:text-gray-900 hover:border-gray-300 shadow-2xs"
-                )}
-              >
-                <span>{tab.label}</span>
-                <span
-                  className={cn(
-                    "text-[10px] px-1.5 py-0.5 rounded-full font-mono",
-                    activeFilter === tab.id
-                      ? "bg-white/20 text-white"
-                      : "bg-gray-100 text-gray-500"
-                  )}
-                >
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Grille 2 colonnes fidèle aux mockups, avec cadres web épurés sans espace perdu */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {filteredProjects.map((item) => (
+        {/* Grille 3 colonnes sur une même ligne sur desktop (exactement 3 projets côte à côte) */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+          {projects.map((item) => (
             <ShowcaseProjectCard
               key={item.id || item.title}
               item={item}

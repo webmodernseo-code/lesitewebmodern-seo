@@ -20,30 +20,30 @@ const DEFAULT_SERVICES: ServiceItem[] = [
     title: "Création Web & E-commerce Next.js",
     category: "Storefront & Application",
     description: "Sites e-commerce et vitrines ultra-rapides, parcours d'achat fluides et architecture taillée pour convertir.",
-    image: "/images/services/food-studio-storefront.png",
-    tag: "Next.js 14 & E-commerce",
+    image: "/images/services/c2k8vbhynwm.jpg",
+    tag: "Next.js 14",
     href: "/services/creation-web",
-    frameLabel: "Storefront E-commerce Next.js",
+    frameLabel: "Création de Site Internet",
     features: ["Score PageSpeed 98+", "Tunnel d'achat optimisé", "Paiements sécurisés"]
   },
   {
     title: "Référencement SEO & SXO Prédictif",
     category: "Visibilité & Acquisition",
     description: "Stratégie sémantique avancée, structure technique irréprochable et conquête de la 1ère page Google.",
-    image: "/images/services/saas-dashboard-dark.png",
-    tag: "Google Rank #1 & SEO",
+    image: "/images/services/c_ry4rm1_b4.jpg",
+    tag: "Google Rank #1",
     href: "/services/referencement-seo",
-    frameLabel: "Cockpit Croissance & Trafic",
+    frameLabel: "Référencement SEO & GÉO",
     features: ["Audit sémantique profond", "Netlinking qualifié", "Balisage Schema.org"]
   },
   {
     title: "Acquisition Clients & Meta Ads",
     category: "Growth & Automation",
     description: "Campagnes publicitaires rentables, reciblage intelligent et synchronisation automatique avec votre CRM.",
-    image: "/images/services/fintech-dashboard.png",
-    tag: "Funnels & Automatisation",
+    image: "/images/services/upsef48wagk.jpg",
+    tag: "Meta Ads & n8n",
     href: "/services/acquisition-clients",
-    frameLabel: "Cockpit Gestion & Conversion",
+    frameLabel: "Acquisition de Nouveaux Clients",
     features: ["Ciblage ultra-précis", "Flux automatisés n8n", "Génération de leads 24/7"]
   }
 ];
