@@ -20,40 +20,30 @@ const DEFAULT_SERVICES: ServiceItem[] = [
     title: "Création Web & E-commerce Next.js",
     category: "Storefront & Application",
     description: "Sites e-commerce et vitrines ultra-rapides, parcours d'achat fluides et architecture taillée pour convertir.",
-    image: "/images/portfolio/aniq-ui-overview.png",
+    image: "/images/services/c2k8vbhynwm.jpg",
     tag: "Next.js 14",
     href: "/services/creation-web",
-    frameLabel: "Storefront E-commerce Next.js",
+    frameLabel: "Création de Site Internet",
     features: ["Score PageSpeed 98+", "Tunnel d'achat optimisé", "Paiements sécurisés"]
   },
   {
     title: "Référencement SEO & SXO Prédictif",
     category: "Visibilité & Acquisition",
     description: "Stratégie sémantique avancée, structure technique irréprochable et conquête de la 1ère page Google.",
-    image: "/images/portfolio/Capture-decran-2026-06-16-163553.png",
+    image: "/images/services/c_ry4rm1_b4.jpg",
     tag: "Google Rank #1",
     href: "/services/referencement-seo",
-    frameLabel: "Cockpit SEO & Analytics",
-    features: ["+142% Trafic organique", "Netlinking qualifié", "Balisage Schema.org"]
+    frameLabel: "Référencement SEO & GÉO",
+    features: ["Audit sémantique profond", "Netlinking qualifié", "Balisage Schema.org"]
   },
   {
-    title: "Design UI/UX & Identité de Marque",
-    category: "Branding & Design System",
-    description: "Chartes graphiques premium, interfaces intuitives sur-mesure et composants vectoriels élégants.",
-    image: "/images/portfolio/aniq-ui-ai-product.png",
-    tag: "Figma & Design System",
-    href: "/services",
-    frameLabel: "Studio Design UI/UX",
-    features: ["Composants 100% SVG", "Expérience Mobile-first", "Micro-interactions"]
-  },
-  {
-    title: "Publicité Meta Ads & Automatisation IA",
+    title: "Acquisition Clients & Meta Ads",
     category: "Growth & Automation",
     description: "Campagnes publicitaires rentables, reciblage intelligent et synchronisation automatique avec votre CRM.",
-    image: "/images/portfolio/aniq-ui-orders.png",
+    image: "/images/services/upsef48wagk.jpg",
     tag: "Meta Ads & n8n",
     href: "/services/acquisition-clients",
-    frameLabel: "Pipeline d'Acquisition IA",
+    frameLabel: "Acquisition de Nouveaux Clients",
     features: ["Ciblage ultra-précis", "Flux automatisés n8n", "Génération de leads 24/7"]
   }
 ];
@@ -139,7 +129,7 @@ export default function ServicesSection({
 }: ServicesSectionProps) {
   return (
     <section className={cn("w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-white font-sans", className)}>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* En-tête de section */}
         <div className="text-center mb-12 sm:mb-16">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-black/[0.03] px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.08em] text-[#5c5c64] mb-4 shadow-2xs">
@@ -155,7 +145,10 @@ export default function ServicesSection({
         </div>
 
         {/* Grille des services avec cadres écrans stylisés */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <div className={cn(
+          "grid gap-6 sm:gap-8",
+          services.length === 3 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 lg:grid-cols-2"
+        )}>
           {services.map((service, index) => {
             const CardWrapper = service.href ? 'a' : 'div';
             return (
