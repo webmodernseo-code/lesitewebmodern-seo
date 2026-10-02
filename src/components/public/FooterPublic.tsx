@@ -4,6 +4,7 @@ import { ChevronDown, Clock3, Mail, Phone } from 'lucide-react';
 import { useState } from 'react';
 
 import { type FooterSection, getNextFooterSection } from './footer-accordion';
+import { Logo3D } from './Logo3D';
 
 const linkClass = 'text-[0.95rem] text-[#5c5c64] transition hover:translate-x-1 hover:text-brand-orange';
 const sectionClass = 'border-t border-black/10 py-1 lg:border-0 lg:py-0';
@@ -17,14 +18,11 @@ export function FooterPublic() {
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-8 grid grid-cols-1 gap-0 lg:mb-[60px] lg:grid-cols-[2fr_1fr_1.2fr_1.3fr] lg:gap-12">
           <div className="mb-8 flex flex-col gap-5 lg:mb-0">
-            <a href="/" className="inline-flex items-center gap-3" aria-label="Accueil">
-              <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true">
-                <rect x="5" y="5" width="90" height="90" rx="22" fill="#ff4d00" />
-                <polygon points="20,28 42,28 42,76 25,76 21,58 27,58" fill="#fff" />
-                <polygon points="58,28 80,28 70,76 58,76" fill="#fff" />
-                <polygon points="41,66 59,66 50,46" fill="#fff" />
-              </svg>
-              <span className="text-[1.4rem] font-extrabold tracking-[-0.03em] text-black">webmodern<span className="text-brand-orange">seo</span></span>
+            <a href="/" className="group/logo inline-flex items-center gap-3" aria-label="Accueil">
+              <Logo3D size={42} idPrefix="wms-footer-logo3d" />
+              <span className="font-display text-[1.4rem] font-extrabold tracking-[-0.03em] text-black">
+                webmodern<span className="text-brand-orange transition-colors group-hover/logo:text-[#F56B22]">seo</span>
+              </span>
             </a>
             <p className="max-w-xs text-[0.95rem] leading-relaxed">Création de sites internet modernes (Next.js) et sur-mesure, optimisés pour le référencement (SEO) et automatisés pour générer des leads. Basés à Grenoble, intervention à Paris, Lyon, Saint-Étienne et à distance partout en France.</p>
             <div className="mt-2 flex gap-3">
