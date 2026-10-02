@@ -15,9 +15,9 @@ export interface GalleryProject {
   gradient: string;
 }
 
-// Exactement les 3 projets demandés, avec leurs cadres colorés subtils respectifs
+// Les 6 projets avec leurs vraies captures HD, regroupés et ordonnés sans aucun mélange
 const DEFAULT_PROJECTS: GalleryProject[] = [
-  // 1. Le site pour la nourriture (Fast-Food blanc Food Studio) - Cadre chaleureux ambré / orange
+  // 1. Le site pour la nourriture (Fast-Food blanc Food Studio) - Cadre ambré / orange chaleureux
   {
     id: "food-studio",
     title: "Food Studio — Fast-Food",
@@ -72,10 +72,77 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "app.aniq-ui.com/ai-studio"
     ],
     brandName: "Aniq-ui"
+  },
+
+  // 4. Le site de l'église (EPBOMI Europe) - Cadre bleu marine & or
+  {
+    id: "epbomi-europe",
+    title: "EPBOMI Europe — Église & Communauté",
+    gradient: "from-[#082032] via-[#0d344d] to-[#04131e]",
+    image: "/images/portfolio/epbomi-hero.png",
+    galleryImages: [
+      "/images/portfolio/epbomi-hero.png",
+      "/images/portfolio/epbomi-histoire.png",
+      "/images/portfolio/epbomi-rendezvous.png",
+      "/images/portfolio/epbomi-dons.png",
+      "/images/portfolio/epbomi-dons-en-ligne.png",
+      "/images/portfolio/epbomi-plateformes.png"
+    ],
+    slideUrls: [
+      "epbomi-europe.org",
+      "epbomi-europe.org/histoire",
+      "epbomi-europe.org/rendez-vous",
+      "epbomi-europe.org/soutenir",
+      "epbomi-europe.org/don-en-ligne",
+      "epbomi-europe.org/plateformes"
+    ],
+    brandName: "epbomi-europe.org"
+  },
+
+  // 5. Dashboard FinTech Vira - Cadre bleu cobalt & cyan
+  {
+    id: "vira-fintech",
+    title: "Vira — Dashboard Bancaire & Cartes",
+    gradient: "from-[#031d33] via-[#07365c] to-[#011424]",
+    image: "/images/services/fintech-dashboard.png",
+    galleryImages: [
+      "/images/services/fintech-dashboard.png",
+      "/images/services/fintech-cards.png",
+      "/images/services/fintech-components.png",
+      "/images/services/fintech-login.png"
+    ],
+    slideUrls: [
+      "app.vira.bank/dashboard",
+      "app.vira.bank/cards",
+      "app.vira.bank/components",
+      "auth.vira.bank/login"
+    ],
+    brandName: "Vira FinTech"
+  },
+
+  // 6. E-commerce Magasin Mode - Cadre anthracite & gris chaud
+  {
+    id: "magasin-store",
+    title: "Magasin — E-commerce Prêt-à-porter",
+    gradient: "from-[#1f1d1a] via-[#332f29] to-[#12110f]",
+    image: "/images/portfolio/magasin-hero-storefront.png",
+    galleryImages: [
+      "/images/portfolio/magasin-hero-storefront.png",
+      "/images/portfolio/magasin-categories.png",
+      "/images/portfolio/magasin-catalog-grid.png",
+      "/images/portfolio/magasin-product-detail.png"
+    ],
+    slideUrls: [
+      "magasin.com",
+      "magasin.com/collections",
+      "magasin.com/catalogue",
+      "magasin.com/produits/denim-shirt"
+    ],
+    brandName: "Magasin"
   }
 ];
 
-// Carte Réalisation dans son cadre coloré à minime épaisseur (Zéro déformation, que des images brutes avec défilement)
+// Carte Réalisation dans son cadre coloré subtil à minime épaisseur (Zéro déformation, ratio 16:9 natif)
 const ShowcaseProjectCard = ({
   item,
   onOpenProject
@@ -101,7 +168,7 @@ const ShowcaseProjectCard = ({
     : (item.brandName ? `${item.brandName.toLowerCase().replace(/\s+/g, '')}.com` : "webmodernseo.co");
 
   return (
-    // Cadre coloré subtil extérieur (violet, bleu, ambré) à minime épaisseur
+    // Cadre coloré subtil extérieur à minime épaisseur (8 à 10px)
     <div
       className={cn(
         "relative w-full rounded-[22px] p-2 sm:p-2.5 shadow-xl transition-all duration-300 hover:shadow-2xl border border-white/10 group flex flex-col",
@@ -134,10 +201,10 @@ const ShowcaseProjectCard = ({
           </div>
         </div>
 
-        {/* Écran avec image brute sans aucune déformation (ratio 16/9.5 natif) */}
+        {/* Écran avec image brute sans AUCUNE déformation (ratio 16:9 natif 1024x576) */}
         <div
           onClick={() => onOpenProject(item)}
-          className="relative w-full aspect-[16/9.5] overflow-hidden bg-zinc-950 cursor-pointer group/screen flex items-center justify-center"
+          className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-950 cursor-pointer group/screen flex items-center justify-center"
         >
           <img
             src={images[currentImgIndex]}
@@ -149,24 +216,24 @@ const ShowcaseProjectCard = ({
           {/* Survol pour ouvrir en plein écran */}
           <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 text-gray-900 text-xs font-semibold shadow-lg backdrop-blur-md">
-              <Eye className="w-3.5 h-3.5 text-blue-600" />
+              <Eye className="w-3.5 h-3.5 text-brand-orange" />
               Agrandir
             </span>
           </div>
 
-          {/* Boutons de navigation incrustés au bas à droite */}
+          {/* Boutons de navigation incrustés au bas à droite - En orange du site */}
           {images.length > 1 && (
             <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-20">
               <button
                 onClick={handlePrevImage}
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 hover:bg-black text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 hover:bg-brand-orange text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
                 aria-label="Image précédente"
               >
                 <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
               </button>
               <button
                 onClick={handleNextImage}
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-brand-orange hover:bg-brand-orangeLight text-white flex items-center justify-center shadow-lg transition-all border border-brand-orange/40 active:scale-95"
                 aria-label="Image suivante"
               >
                 <ChevronRight className="w-4 h-4 stroke-[2.5]" />
@@ -179,7 +246,7 @@ const ShowcaseProjectCard = ({
   );
 };
 
-// Modale Carrousel Lightbox bien espacée du header
+// Modale Carrousel Lightbox bien espacée du header et affichant l'image en haute qualité non compressée
 const ProjectCarouselModal = ({
   project,
   onClose
@@ -256,22 +323,22 @@ const ProjectCarouselModal = ({
             <img
               src={images[currentIndex]}
               alt={`${project.title} - vue ${currentIndex + 1}`}
-              className="max-h-[62vh] max-w-full object-contain mx-auto select-none rounded-lg"
+              className="max-h-[64vh] max-w-full object-contain mx-auto select-none rounded-lg"
             />
 
-            {/* Navigation flèches */}
+            {/* Navigation flèches - En orange du site */}
             {images.length > 1 && (
               <>
                 <button
                   onClick={handlePrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/70 hover:bg-black text-white backdrop-blur-md border border-white/20 transition-all shadow-lg active:scale-95"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/70 hover:bg-brand-orange text-white backdrop-blur-md border border-white/20 transition-all shadow-lg active:scale-95"
                   aria-label="Image précédente"
                 >
                   <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/70 hover:bg-black text-white backdrop-blur-md border border-white/20 transition-all shadow-lg active:scale-95"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-brand-orange hover:bg-brand-orangeLight text-white backdrop-blur-md border border-brand-orange/40 transition-all shadow-lg active:scale-95"
                   aria-label="Image suivante"
                 >
                   <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -297,7 +364,7 @@ const ProjectCarouselModal = ({
                   className={cn(
                     "relative w-14 h-9 rounded-md overflow-hidden border-2 shrink-0 transition-all duration-200 bg-zinc-800",
                     currentIndex === idx
-                      ? "border-blue-600 scale-105 shadow-sm"
+                      ? "border-brand-orange scale-105 shadow-sm ring-1 ring-brand-orange/40"
                       : "border-zinc-700 opacity-60 hover:opacity-100"
                   )}
                 >
@@ -346,7 +413,7 @@ export default function GenerativeArtGallery({
           </p>
         </div>
 
-        {/* Grille 3 colonnes sur une même ligne sur desktop (exactement 3 projets) */}
+        {/* Grille exactement 3 par ligne sur desktop (lg:grid-cols-3) */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           {projects.map((item) => (
             <ShowcaseProjectCard
