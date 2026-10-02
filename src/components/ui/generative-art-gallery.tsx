@@ -97,48 +97,6 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "epbomi-europe.org/plateformes"
     ],
     brandName: "epbomi-europe.org"
-  },
-
-  // 5. Dashboard FinTech Vira - Cadre bleu cobalt & cyan
-  {
-    id: "vira-fintech",
-    title: "Vira — Dashboard Bancaire & Cartes",
-    gradient: "from-[#031d33] via-[#07365c] to-[#011424]",
-    image: "/images/services/fintech-dashboard.png",
-    galleryImages: [
-      "/images/services/fintech-dashboard.png",
-      "/images/services/fintech-cards.png",
-      "/images/services/fintech-components.png",
-      "/images/services/fintech-login.png"
-    ],
-    slideUrls: [
-      "app.vira.bank/dashboard",
-      "app.vira.bank/cards",
-      "app.vira.bank/components",
-      "auth.vira.bank/login"
-    ],
-    brandName: "Vira FinTech"
-  },
-
-  // 6. E-commerce Magasin Mode - Cadre anthracite & gris chaud
-  {
-    id: "magasin-store",
-    title: "Magasin — E-commerce Prêt-à-porter",
-    gradient: "from-[#1f1d1a] via-[#332f29] to-[#12110f]",
-    image: "/images/portfolio/magasin-hero-storefront.png",
-    galleryImages: [
-      "/images/portfolio/magasin-hero-storefront.png",
-      "/images/portfolio/magasin-categories.png",
-      "/images/portfolio/magasin-catalog-grid.png",
-      "/images/portfolio/magasin-product-detail.png"
-    ],
-    slideUrls: [
-      "magasin.com",
-      "magasin.com/collections",
-      "magasin.com/catalogue",
-      "magasin.com/produits/denim-shirt"
-    ],
-    brandName: "Magasin"
   }
 ];
 
