@@ -2,7 +2,6 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { HeaderPublic } from '@/components/public/HeaderPublic';
 import { HeroPublic } from '@/components/public/HeroPublic';
-import { PartenairesPublic } from '@/components/public/PartenairesPublic';
 import ServicesSection from '@/components/ui/services';
 import GenerativeArtGallery from '@/components/ui/generative-art-gallery';
 import { AboutPublic } from '@/components/public/AboutPublic';
@@ -31,14 +30,9 @@ export default function Home() {
 
       {/* Corps du site vitrine */}
       <main className="w-full relative z-10 pt-16">
-        {/* Section Hero avec Carrousel */}
+        {/* Section Hero avec 2 colonnes et slider logos infini */}
         <section id="hero" className="w-full">
           <HeroPublic />
-        </section>
-
-        {/* Section Partenaires & Confiance */}
-        <section id="partenaires" className="w-full">
-          <PartenairesPublic />
         </section>
 
         {/* Section Services */}

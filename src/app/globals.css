@@ -12,6 +12,45 @@
   }
 }
 
+@keyframes heroColumnUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes heroColumnDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-col-up {
+  animation: heroColumnUp 35s linear infinite;
+}
+
+.animate-hero-col-down {
+  animation: heroColumnDown 38s linear infinite;
+}
+
+.animate-hero-col-up:hover,
+.animate-hero-col-down:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-col-up,
+  .animate-hero-col-down {
+    animation: none;
+    transform: none;
+  }
+}
+
 
 
 @keyframes homePortfolioMarquee {
