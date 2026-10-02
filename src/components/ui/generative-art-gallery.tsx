@@ -2,83 +2,63 @@
 
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Eye } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Eye, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface GalleryProject {
   id: string | number;
   title: string;
+  category: string;
   image: string;
   galleryImages: string[];
-  slideUrls?: string[];
-  brandName?: string;
-  gradient: string;
 }
 
-// Les 6 projets avec leurs vraies captures HD, regroupés et ordonnés sans aucun mélange
+// Les 4 projets réels et authentiques sans AUCUN nom de domaine
 const DEFAULT_PROJECTS: GalleryProject[] = [
-  // 1. Le site pour la nourriture (Fast-Food blanc Food Studio) - Cadre ambré / orange chaleureux
+  // 1. Food Studio (Fast-Food & Commande)
   {
     id: "food-studio",
-    title: "Food Studio — Fast-Food",
-    gradient: "from-[#381e09] via-[#4d280b] to-[#1c0e04]",
+    title: "Food Studio",
+    category: "Restauration & Commande en ligne",
     image: "/images/services/food-studio-storefront.png",
     galleryImages: [
       "/images/services/food-studio-storefront.png",
       "/images/services/food-studio-menu.png",
       "/images/services/food-studio-order.png"
-    ],
-    slideUrls: [
-      "foodstudio.fr",
-      "foodstudio.fr/menu",
-      "foodstudio.fr/commande"
-    ],
-    brandName: "Food Studio"
+    ]
   },
 
-  // 2. Le site sombre avec du bleu (Landing page SaaS) - Cadre bleu sombre profond
+  // 2. SaaS Analytics & Growth (Landing page)
   {
     id: "saas-landing-blue",
     title: "SaaS Analytics & Growth",
-    gradient: "from-[#021027] via-[#041d44] to-[#0a316c]",
+    category: "Plateforme SaaS & Visualisation",
     image: "/images/services/saas-stats-growth.png",
     galleryImages: [
       "/images/services/saas-stats-growth.png",
       "/images/services/saas-world-map.png"
-    ],
-    slideUrls: [
-      "arise.io/chiffres",
-      "arise.io/monde"
-    ],
-    brandName: "Arise SaaS"
+    ]
   },
 
-  // 3. Le dashboard sombre Aniq-ui - Cadre violet / indigo profond
+  // 3. Aniq-ui Dashboard (Dashboard B2B)
   {
     id: "aniq-ui-dashboard",
-    title: "Aniq-ui — Dashboard Sombre",
-    gradient: "from-[#190e2e] via-[#2f1854] to-[#51258d]",
+    title: "Aniq-ui Dashboard",
+    category: "Interface SaaS & Studio IA",
     image: "/images/portfolio/aniq-ui-overview.png",
     galleryImages: [
       "/images/portfolio/aniq-ui-overview.png",
       "/images/portfolio/aniq-ui-orders.png",
       "/images/portfolio/aniq-ui-ai-product.png",
       "/images/portfolio/aniq-ui-ai-studio.png"
-    ],
-    slideUrls: [
-      "app.aniq-ui.com/dashboard",
-      "app.aniq-ui.com/orders",
-      "app.aniq-ui.com/products",
-      "app.aniq-ui.com/ai-studio"
-    ],
-    brandName: "Aniq-ui"
+    ]
   },
 
-  // 4. Le site de l'église (EPBOMI Europe) - Cadre bleu marine & or
+  // 4. EPBOMI Europe (Église & Plateforme de Dons)
   {
     id: "epbomi-europe",
-    title: "EPBOMI Europe — Église & Communauté",
-    gradient: "from-[#082032] via-[#0d344d] to-[#04131e]",
+    title: "EPBOMI Europe",
+    category: "Portail Institutionnel & Dons",
     image: "/images/portfolio/epbomi-hero.png",
     galleryImages: [
       "/images/portfolio/epbomi-hero.png",
@@ -87,20 +67,11 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "/images/portfolio/epbomi-dons.png",
       "/images/portfolio/epbomi-dons-en-ligne.png",
       "/images/portfolio/epbomi-plateformes.png"
-    ],
-    slideUrls: [
-      "epbomi-europe.org",
-      "epbomi-europe.org/histoire",
-      "epbomi-europe.org/rendez-vous",
-      "epbomi-europe.org/soutenir",
-      "epbomi-europe.org/don-en-ligne",
-      "epbomi-europe.org/plateformes"
-    ],
-    brandName: "epbomi-europe.org"
+    ]
   }
 ];
 
-// Carte Réalisation dans son cadre coloré subtil à minime épaisseur (Zéro déformation, ratio 16:9 natif)
+// Carte Réalisation Premium (Zéro déformation, qualité d'image haute fidélité, zéro nom de domaine)
 const ShowcaseProjectCard = ({
   item,
   onOpenProject
@@ -121,90 +92,98 @@ const ShowcaseProjectCard = ({
     setCurrentImgIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
   };
 
-  const currentUrl = item.slideUrls && item.slideUrls[currentImgIndex]
-    ? item.slideUrls[currentImgIndex]
-    : (item.brandName ? `${item.brandName.toLowerCase().replace(/\s+/g, '')}.com` : "webmodernseo.co");
-
   return (
-    // Cadre coloré subtil extérieur à minime épaisseur (8 à 10px)
-    <div
-      className={cn(
-        "relative w-full rounded-[22px] p-2 sm:p-2.5 shadow-xl transition-all duration-300 hover:shadow-2xl border border-white/10 group flex flex-col",
-        `bg-gradient-to-br ${item.gradient}`
-      )}
-    >
-      {/* Fenêtre de navigation intérieure */}
-      <div className="relative w-full rounded-[15px] sm:rounded-[17px] bg-[#0d0e14] border border-zinc-800/90 overflow-hidden flex flex-col shadow-inner">
-        {/* Barre supérieure style macOS */}
-        <div className="flex items-center justify-between px-3 py-2 bg-zinc-900 border-b border-zinc-800 text-zinc-300 select-none">
-          {/* Contrôles fenêtre */}
-          <div className="flex items-center gap-1.5 shrink-0">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f] inline-block" />
-          </div>
-
-          {/* Barre d'adresse URL */}
-          <div className="flex items-center gap-1.5 text-[11px] text-zinc-300 font-mono bg-black/60 px-3 py-0.5 rounded-full border border-zinc-800 max-w-[190px] truncate shadow-inner">
-            <span className="truncate">{currentUrl}</span>
-          </div>
-
-          {/* Compteur d'images si le projet en contient plusieurs */}
-          <div className="flex items-center gap-1 shrink-0">
-            {images.length > 1 && (
-              <span className="text-[10px] font-mono font-semibold text-zinc-400 bg-black/50 px-2 py-0.5 rounded-md border border-zinc-800">
-                {currentImgIndex + 1}/{images.length}
-              </span>
-            )}
-          </div>
+    <div className="relative w-full rounded-2xl bg-white border border-gray-200/90 shadow-soft hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
+      {/* Barre supérieure style navigateur moderne épurée SANS AUCUN nom de domaine */}
+      <div className="flex items-center justify-between px-3.5 py-2.5 bg-gray-50 border-b border-gray-200/70 select-none">
+        {/* Contrôles fenêtre */}
+        <div className="flex items-center gap-1.5 shrink-0">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] inline-block" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] inline-block" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f] inline-block" />
         </div>
 
-        {/* Écran avec image brute sans AUCUNE déformation (ratio 16:9 natif 1024x576) */}
-        <div
-          onClick={() => onOpenProject(item)}
-          className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-950 cursor-pointer group/screen flex items-center justify-center"
-        >
-          <img
-            src={images[currentImgIndex]}
-            alt={`${item.title} - écran ${currentImgIndex + 1}`}
-            className="w-full h-full object-cover object-top transition-transform duration-300 ease-out group-hover:scale-[1.01]"
-            loading="lazy"
-          />
+        {/* Titre du projet épuré au centre */}
+        <span className="text-xs font-semibold text-gray-700 tracking-tight truncate max-w-[170px] sm:max-w-[200px]">
+          {item.title}
+        </span>
 
-          {/* Survol pour ouvrir en plein écran */}
-          <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 text-gray-900 text-xs font-semibold shadow-lg backdrop-blur-md">
-              <Eye className="w-3.5 h-3.5 text-brand-orange" />
-              Agrandir
-            </span>
-          </div>
-
-          {/* Boutons de navigation incrustés au bas à droite - En orange du site */}
+        {/* Compteur d'images si plusieurs captures */}
+        <div className="flex items-center gap-1 shrink-0">
           {images.length > 1 && (
-            <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-20">
-              <button
-                onClick={handlePrevImage}
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 hover:bg-brand-orange text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
-                aria-label="Image précédente"
-              >
-                <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
-              </button>
-              <button
-                onClick={handleNextImage}
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-brand-orange hover:bg-brand-orangeLight text-white flex items-center justify-center shadow-lg transition-all border border-brand-orange/40 active:scale-95"
-                aria-label="Image suivante"
-              >
-                <ChevronRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-            </div>
+            <span className="text-[10px] font-mono font-bold text-gray-500 bg-white px-2 py-0.5 rounded-md border border-gray-200 shadow-2xs">
+              {currentImgIndex + 1}/{images.length}
+            </span>
           )}
         </div>
+      </div>
+
+      {/* Écran avec image brute HD en ratio natif 16:9 sans aucune compression floue */}
+      <div
+        onClick={() => onOpenProject(item)}
+        className="relative w-full aspect-[16/9] overflow-hidden bg-zinc-950 cursor-pointer group/screen flex items-center justify-center"
+      >
+        <img
+          src={images[currentImgIndex]}
+          alt={`${item.title} - écran ${currentImgIndex + 1}`}
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+          style={{ imageRendering: '-webkit-optimize-contrast' }}
+          loading="eager"
+        />
+
+        {/* Bouton d'agrandissement en plein écran au survol */}
+        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/95 text-gray-900 text-xs font-semibold shadow-lg backdrop-blur-md">
+            <Maximize2 className="w-3.5 h-3.5 text-brand-orange" />
+            Agrandir en HD
+          </span>
+        </div>
+
+        {/* Boutons de pagination incrustés au bas à droite - En orange du site */}
+        {images.length > 1 && (
+          <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-20">
+            <button
+              onClick={handlePrevImage}
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 hover:bg-brand-orange text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
+              aria-label="Image précédente"
+            >
+              <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+            </button>
+            <button
+              onClick={handleNextImage}
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-brand-orange hover:bg-brand-orangeLight text-white flex items-center justify-center shadow-lg transition-all border border-brand-orange/40 active:scale-95"
+              aria-label="Image suivante"
+            >
+              <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Pied de carte sobre et élégant */}
+      <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-100">
+        <div className="flex flex-col min-w-0 pr-2">
+          <span className="text-sm font-bold text-gray-900 truncate">
+            {item.title}
+          </span>
+          <span className="text-xs text-gray-500 font-medium truncate">
+            {item.category}
+          </span>
+        </div>
+
+        <button
+          onClick={() => onOpenProject(item)}
+          className="inline-flex items-center gap-1 text-xs font-semibold text-brand-orange hover:text-brand-orangeLight transition-colors shrink-0"
+        >
+          <Eye className="w-3.5 h-3.5" />
+          Voir
+        </button>
       </div>
     </div>
   );
 };
 
-// Modale Carrousel Lightbox bien espacée du header et affichant l'image en haute qualité non compressée
+// Visionneuse HD Plein Écran (Grand format haute fidélité, zéro nom de domaine)
 const ProjectCarouselModal = ({
   project,
   onClose
@@ -251,21 +230,26 @@ const ProjectCarouselModal = ({
   return (
     <AnimatePresence>
       <div
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-md pt-20 sm:pt-28 pb-6 px-4"
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md pt-16 sm:pt-24 pb-4 px-3 sm:px-6"
         onClick={onClose}
         role="dialog"
         aria-modal="true"
         aria-label={`Galerie du projet ${project.title}`}
       >
         <div
-          className="relative w-full max-w-5xl bg-zinc-950 border border-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col my-auto max-h-[85vh]"
+          className="relative w-full max-w-6xl xl:max-w-7xl bg-zinc-950 border border-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col my-auto max-h-[88vh]"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header modal */}
-          <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-800 bg-zinc-900/90 text-white shrink-0">
-            <span className="text-sm font-semibold tracking-wide text-zinc-200">
-              {project.title}
-            </span>
+          {/* Header modal épuré */}
+          <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-800 bg-zinc-900/95 text-white shrink-0">
+            <div className="flex items-center gap-3">
+              <span className="text-sm sm:text-base font-bold tracking-wide text-zinc-100">
+                {project.title}
+              </span>
+              <span className="hidden sm:inline-block text-xs text-zinc-400 font-medium px-2.5 py-0.5 rounded-full bg-zinc-800">
+                {project.category}
+              </span>
+            </div>
 
             <button
               onClick={onClose}
@@ -276,15 +260,16 @@ const ProjectCarouselModal = ({
             </button>
           </div>
 
-          {/* Affichage de l'image brute en taille naturelle avec zéro déformation */}
-          <div className="relative w-full flex-1 bg-black flex items-center justify-center p-2 sm:p-4 overflow-hidden min-h-[280px]">
+          {/* Affichage de l'image en grand format HD avec netteté optimale */}
+          <div className="relative w-full flex-1 bg-black flex items-center justify-center p-2 sm:p-4 overflow-hidden min-h-[300px]">
             <img
               src={images[currentIndex]}
               alt={`${project.title} - vue ${currentIndex + 1}`}
-              className="max-h-[64vh] max-w-full object-contain mx-auto select-none rounded-lg"
+              className="max-h-[72vh] xl:max-h-[76vh] w-auto max-w-full object-contain mx-auto select-none rounded-lg shadow-2xl"
+              style={{ imageRendering: '-webkit-optimize-contrast' }}
             />
 
-            {/* Navigation flèches - En orange du site */}
+            {/* Navigation flèches en orange */}
             {images.length > 1 && (
               <>
                 <button
@@ -320,7 +305,7 @@ const ProjectCarouselModal = ({
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
                   className={cn(
-                    "relative w-14 h-9 rounded-md overflow-hidden border-2 shrink-0 transition-all duration-200 bg-zinc-800",
+                    "relative w-14 h-9 sm:w-16 sm:h-10 rounded-md overflow-hidden border-2 shrink-0 transition-all duration-200 bg-zinc-800",
                     currentIndex === idx
                       ? "border-brand-orange scale-105 shadow-sm ring-1 ring-brand-orange/40"
                       : "border-zinc-700 opacity-60 hover:opacity-100"
@@ -350,7 +335,7 @@ export default function GenerativeArtGallery({
   className = "",
   badge = "Nos Réalisations Récentes",
   title = "Des projets créés pour inspirer et convertir",
-  subtitle = "Parcourez les captures d'écran directement dans chaque cadre ou cliquez pour agrandir.",
+  subtitle = "Parcourez les captures d'écran directement dans chaque interface ou cliquez pour agrandir en haute définition.",
 }: GenerativeArtGalleryProps) {
   const [selectedProject, setSelectedProject] = useState<GalleryProject | null>(null);
 
@@ -371,8 +356,8 @@ export default function GenerativeArtGallery({
           </p>
         </div>
 
-        {/* Grille exactement 3 par ligne sur desktop (lg:grid-cols-3) */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+        {/* Grille 3 par ligne sur grand écran (lg:grid-cols-3) */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((item) => (
             <ShowcaseProjectCard
               key={item.id || item.title}
@@ -383,7 +368,7 @@ export default function GenerativeArtGallery({
         </div>
       </div>
 
-      {/* Modale Lightbox Carrousel au clic */}
+      {/* Visionneuse HD au clic */}
       {selectedProject && (
         <ProjectCarouselModal
           project={selectedProject}
