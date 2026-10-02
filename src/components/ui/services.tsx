@@ -40,10 +40,10 @@ const DEFAULT_SERVICES: ServiceItem[] = [
     title: "Acquisition Clients & Meta Ads",
     category: "Growth & Automation",
     description: "Campagnes publicitaires rentables, reciblage intelligent et synchronisation automatique avec votre CRM.",
-    image: "/images/services/saas-analytics-growth.png",
-    tag: "Meta Ads & Funnels",
+    image: "/images/services/fintech-dashboard.png",
+    tag: "Funnels & Automatisation",
     href: "/services/acquisition-clients",
-    frameLabel: "Indicateurs de Performance IA",
+    frameLabel: "Cockpit Gestion & Conversion",
     features: ["Ciblage ultra-précis", "Flux automatisés n8n", "Génération de leads 24/7"]
   }
 ];
