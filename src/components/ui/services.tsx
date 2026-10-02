@@ -20,37 +20,37 @@ const DEFAULT_SERVICES: ServiceItem[] = [
     title: "Création Web & E-commerce Next.js",
     category: "Storefront & Application",
     description: "Sites e-commerce et vitrines ultra-rapides, parcours d'achat fluides et architecture taillée pour convertir.",
-    image: "https://cdn.21st.dev/assets/mirror/00/0075b65d41fca0904bd9a586c21c5cd4f13205aa4873d58d4b876262b3e5c664.png",
+    image: "/images/portfolio/aniq-ui-overview.png",
     tag: "Next.js 14",
     href: "/services/creation-web",
-    frameLabel: "Storefront E-commerce",
+    frameLabel: "Storefront E-commerce Next.js",
     features: ["Score PageSpeed 98+", "Tunnel d'achat optimisé", "Paiements sécurisés"]
   },
   {
     title: "Référencement SEO & SXO Prédictif",
     category: "Visibilité & Acquisition",
     description: "Stratégie sémantique avancée, structure technique irréprochable et conquête de la 1ère page Google.",
-    image: "https://cdn.21st.dev/assets/mirror/8a/8a05f191e80c3572b29a25abadb94c8c7dafb95eab9560a73252eaefab3b0d67.png",
+    image: "/images/portfolio/Capture-decran-2026-06-16-163553.png",
     tag: "Google Rank #1",
     href: "/services/referencement-seo",
     frameLabel: "Cockpit SEO & Analytics",
-    features: ["Audit sémantique profond", "Netlinking qualifié", "Balisage Schema.org"]
+    features: ["+142% Trafic organique", "Netlinking qualifié", "Balisage Schema.org"]
   },
   {
     title: "Design UI/UX & Identité de Marque",
     category: "Branding & Design System",
     description: "Chartes graphiques premium, interfaces intuitives sur-mesure et composants vectoriels élégants.",
-    image: "https://cdn.21st.dev/assets/mirror/5d/5dc6886ceeb2ef769d3afef85dd576af4cfb6794f59528677823cd88041b7bdf.png",
+    image: "/images/portfolio/aniq-ui-ai-product.png",
     tag: "Figma & Design System",
     href: "/services",
-    frameLabel: "Interface Studio & Brand",
+    frameLabel: "Studio Design UI/UX",
     features: ["Composants 100% SVG", "Expérience Mobile-first", "Micro-interactions"]
   },
   {
     title: "Publicité Meta Ads & Automatisation IA",
     category: "Growth & Automation",
     description: "Campagnes publicitaires rentables, reciblage intelligent et synchronisation automatique avec votre CRM.",
-    image: "https://cdn.21st.dev/assets/mirror/f4/f4ee66d52172030b33772c6099caadec71c79e1b9272a9bae2b1e1ba409c4488.png",
+    image: "/images/portfolio/aniq-ui-orders.png",
     tag: "Meta Ads & n8n",
     href: "/services/acquisition-clients",
     frameLabel: "Pipeline d'Acquisition IA",
@@ -99,7 +99,7 @@ const DeviceMockupFrame = ({
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.onerror = null;
-            target.src = 'https://cdn.21st.dev/assets/mirror/30/30250990bb2d78ef3d4e4c44b952a1b22c78a0a622afaedbe444d7f2143c783e.svg';
+            target.src = '/portfolio/webmodernseo-home-showcase.png';
           }}
         />
 

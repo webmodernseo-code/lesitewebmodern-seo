@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Eye, ExternalLink } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Eye, ExternalLink, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface GalleryProject {
@@ -166,76 +166,91 @@ const ShowcaseProjectCard = ({
   };
 
   return (
-    <div
-      className={cn(
-        "group relative w-full rounded-[26px] sm:rounded-[34px] overflow-hidden p-4 sm:p-6 shadow-xl flex flex-col justify-between transition-all duration-300 hover:shadow-2xl border border-white/15",
-        `bg-gradient-to-br ${item.gradient || "from-[#021027] via-[#041d44] to-[#0a316c]"}`
-      )}
-    >
-      {/* 1. Haut de carte : Badge Pilule Blanche Marque */}
-      <div className="flex items-center justify-between w-full z-10">
-        <div className="inline-flex items-center gap-2.5 rounded-full bg-white px-3.5 py-1.5 shadow-md">
+    <div className="relative w-full rounded-[20px] sm:rounded-[26px] bg-[#0d0e14] border border-zinc-800/90 shadow-2xl shadow-black/25 overflow-hidden group transition-all duration-300 hover:border-zinc-700 hover:shadow-3xl flex flex-col">
+      {/* 1. Cadre du site : Barre supérieure de navigation type navigateur web (aucun espace perdu) */}
+      <div className="flex items-center justify-between px-3.5 py-2.5 bg-zinc-900/95 border-b border-zinc-800/80 backdrop-blur-md">
+        {/* Contrôles fenêtre style macOS */}
+        <div className="flex items-center gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/90 inline-block" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/90 inline-block" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]/90 inline-block" />
+        </div>
+
+        {/* Barre d'adresse URL / Marque au centre */}
+        <div className="flex items-center gap-2 text-[11px] text-zinc-300 font-mono bg-black/50 px-3 py-1 rounded-full border border-zinc-800 max-w-[200px] sm:max-w-xs truncate shadow-inner">
           <div
             className={cn(
-              "w-6 h-6 rounded-full text-white flex items-center justify-center text-[10px] font-bold shrink-0 shadow-2xs",
-              item.brandIconBg || "bg-gray-900"
+              "w-3.5 h-3.5 rounded-full text-white flex items-center justify-center text-[8px] font-bold shrink-0",
+              item.brandIconBg || "bg-brand-orange"
             )}
           >
-            {item.brandName ? item.brandName.slice(0, 2).toUpperCase() : "WM"}
+            {item.brandName ? item.brandName.slice(0, 1).toUpperCase() : "W"}
           </div>
-          <span className="text-xs sm:text-sm font-bold text-gray-900 tracking-tight">
-            {item.brandName || item.title}
-          </span>
+          <span className="truncate">{item.brandName || item.title}</span>
         </div>
 
         {/* Compteur discret de captures */}
-        {images.length > 1 && (
-          <span className="text-[11px] font-semibold text-white/90 bg-black/35 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
-            {currentImgIndex + 1} / {images.length}
-          </span>
-        )}
+        <div className="flex items-center gap-2">
+          {images.length > 1 && (
+            <span className="text-[10px] font-mono font-semibold text-zinc-400 bg-black/40 px-2 py-0.5 rounded-md border border-zinc-800">
+              {currentImgIndex + 1}/{images.length}
+            </span>
+          )}
+        </div>
       </div>
 
-      {/* 2. Centre : Écran Mockup avec capture de réalisation */}
+      {/* 2. Écran du site bord-à-bord (aucun espace ni marge vide autour du cadre) */}
       <div
         onClick={() => onOpenProject(item)}
-        className="relative my-4 sm:my-5 w-full aspect-[16/10] sm:aspect-[16/9.6] rounded-xl sm:rounded-[20px] overflow-hidden bg-black/60 border border-white/20 shadow-2xl backdrop-blur-xs flex items-center justify-center cursor-pointer group/screen transition-transform duration-300 hover:scale-[1.01]"
+        className="relative w-full aspect-[16/10] sm:aspect-[16/9.5] overflow-hidden bg-zinc-950 cursor-pointer group/screen"
       >
         <img
           src={images[currentImgIndex]}
           alt={`${item.title} - capture ${currentImgIndex + 1}`}
-          className="w-full h-full object-cover object-top transition-opacity duration-300"
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
           loading="lazy"
         />
 
-        {/* Effet reflet de verre en biseau */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
+        {/* Reflet de vitre subtil */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-        {/* Indication au survol pour ouvrir en plein écran */}
-        <div className="absolute inset-0 bg-black/35 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+        {/* Badge métrique discret en haut à gauche */}
+        {item.metric && (
+          <div className="absolute top-3 left-3 pointer-events-none">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              {item.metric}
+            </span>
+          </div>
+        )}
+
+        {/* Indication au survol pour agrandir */}
+        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 text-gray-900 text-xs font-semibold shadow-lg backdrop-blur-md">
             <Eye className="w-3.5 h-3.5 text-blue-600" />
             Agrandir la capture
           </span>
         </div>
-      </div>
 
-      {/* 3. Bas de carte : Boutons de navigation (flèches bleues circulaires) */}
-      <div className="flex items-center justify-end gap-2 w-full z-10 pt-1">
-        <button
-          onClick={handlePrevImage}
-          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
-          aria-label="Capture précédente"
-        >
-          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
-        </button>
-        <button
-          onClick={handleNextImage}
-          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-blue-400"
-          aria-label="Capture suivante"
-        >
-          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
-        </button>
+        {/* 3. Boutons de navigation incrustés directement dans le cadre en bas à droite (zéro espace perdu) */}
+        {images.length > 1 && (
+          <div className="absolute bottom-3 right-3 flex items-center gap-2 z-20">
+            <button
+              onClick={handlePrevImage}
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 border border-white/20"
+              aria-label="Capture précédente"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+            </button>
+            <button
+              onClick={handleNextImage}
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 border border-white/20"
+              aria-label="Capture suivante"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5]" />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
