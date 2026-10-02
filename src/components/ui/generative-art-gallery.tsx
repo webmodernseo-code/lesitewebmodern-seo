@@ -12,15 +12,16 @@ export interface GalleryProject {
   galleryImages: string[];
   slideUrls?: string[];
   brandName?: string;
-  brandIconBg?: string;
+  gradient: string;
 }
 
-// Les 6 projets distincts et dissociés, sans mélange
+// Exactement les 3 projets demandés, avec leurs cadres colorés subtils respectifs
 const DEFAULT_PROJECTS: GalleryProject[] = [
-  // 1. Le site pour la nourriture (Fast-Food blanc Food Studio)
+  // 1. Le site pour la nourriture (Fast-Food blanc Food Studio) - Cadre chaleureux ambré / orange
   {
     id: "food-studio",
     title: "Food Studio — Fast-Food",
+    gradient: "from-[#381e09] via-[#4d280b] to-[#1c0e04]",
     image: "/images/services/food-studio-storefront.png",
     galleryImages: [
       "/images/services/food-studio-storefront.png",
@@ -35,50 +36,28 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
     brandName: "Food Studio"
   },
 
-  // 2. Le site sombre avec du bleu (Landing page SaaS)
+  // 2. Le site sombre avec du bleu (Landing page SaaS) - Cadre bleu sombre profond
   {
     id: "saas-landing-blue",
     title: "SaaS Analytics & Growth",
+    gradient: "from-[#021027] via-[#041d44] to-[#0a316c]",
     image: "/images/services/saas-stats-growth.png",
     galleryImages: [
       "/images/services/saas-stats-growth.png",
-      "/images/services/saas-world-map.png",
-      "/images/services/saas-dashboard-dark.png",
-      "/images/services/saas-analytics-growth.png"
+      "/images/services/saas-world-map.png"
     ],
     slideUrls: [
-      "saas-analytics.io",
-      "saas-analytics.io/world",
-      "saas-analytics.io/dashboard",
-      "saas-analytics.io/metrics"
+      "arise.io/chiffres",
+      "arise.io/monde"
     ],
-    brandName: "SaaS Analytics"
+    brandName: "Arise SaaS"
   },
 
-  // 3. Le site e-commerce Magasin
-  {
-    id: "magasin-ecommerce",
-    title: "Magasin — E-commerce Prêt-à-porter",
-    image: "/images/portfolio/magasin-hero-storefront.png",
-    galleryImages: [
-      "/images/portfolio/magasin-hero-storefront.png",
-      "/images/portfolio/magasin-categories.png",
-      "/images/portfolio/magasin-catalog-grid.png",
-      "/images/portfolio/magasin-product-detail.png"
-    ],
-    slideUrls: [
-      "magasin.com",
-      "magasin.com/collections",
-      "magasin.com/catalogue",
-      "magasin.com/produits/denim-shirt"
-    ],
-    brandName: "Magasin"
-  },
-
-  // 4. Le dashboard sombre Aniq-ui (dissocié de l'e-commerce)
+  // 3. Le dashboard sombre Aniq-ui - Cadre violet / indigo profond
   {
     id: "aniq-ui-dashboard",
-    title: "Aniq-ui — Dashboard Sombre & Studio IA",
+    title: "Aniq-ui — Dashboard Sombre",
+    gradient: "from-[#190e2e] via-[#2f1854] to-[#51258d]",
     image: "/images/portfolio/aniq-ui-overview.png",
     galleryImages: [
       "/images/portfolio/aniq-ui-overview.png",
@@ -93,40 +72,10 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "app.aniq-ui.com/ai-studio"
     ],
     brandName: "Aniq-ui"
-  },
-
-  // 5. Le site DigiPro (dissocié d'Emy Paul Opticafé)
-  {
-    id: "digipro-platform",
-    title: "DigiPro — Plateforme de Services Digitaux",
-    image: "/images/portfolio/Capture-decran-2026-04-14-120629.png",
-    galleryImages: [
-      "/images/portfolio/Capture-decran-2026-04-14-120629.png"
-    ],
-    slideUrls: [
-      "digiproo.com"
-    ],
-    brandName: "digiproo.com"
-  },
-
-  // 6. Le site Emy Paul Opticafé (dissocié de DigiPro)
-  {
-    id: "emypaul-opticafe",
-    title: "Centre Optique Emy Paul & Opticafé",
-    image: "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
-    galleryImages: [
-      "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
-      "/images/portfolio/he75ojuxofe.jpg"
-    ],
-    slideUrls: [
-      "emypaul.opticafe.fr",
-      "opticafe.fr"
-    ],
-    brandName: "emypaul.opticafe.fr"
   }
 ];
 
-// Carte Réalisation au format navigateur épuré (Zéro description, que des images brutes avec défilement)
+// Carte Réalisation dans son cadre coloré à minime épaisseur (Zéro déformation, que des images brutes avec défilement)
 const ShowcaseProjectCard = ({
   item,
   onOpenProject
@@ -152,76 +101,85 @@ const ShowcaseProjectCard = ({
     : (item.brandName ? `${item.brandName.toLowerCase().replace(/\s+/g, '')}.com` : "webmodernseo.co");
 
   return (
-    <div className="relative w-full rounded-[20px] bg-[#0d0e14] border border-zinc-800/90 shadow-xl overflow-hidden flex flex-col group transition-all duration-300 hover:border-zinc-700">
-      {/* 1. Cadre du site : Barre supérieure type navigateur web */}
-      <div className="flex items-center justify-between px-3.5 py-2.5 bg-zinc-900 border-b border-zinc-800 text-zinc-300 select-none">
-        {/* Contrôles fenêtre style macOS */}
-        <div className="flex items-center gap-1.5 shrink-0">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] inline-block" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] inline-block" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f] inline-block" />
+    // Cadre coloré subtil extérieur (violet, bleu, ambré) à minime épaisseur
+    <div
+      className={cn(
+        "relative w-full rounded-[22px] p-2 sm:p-2.5 shadow-xl transition-all duration-300 hover:shadow-2xl border border-white/10 group flex flex-col",
+        `bg-gradient-to-br ${item.gradient}`
+      )}
+    >
+      {/* Fenêtre de navigation intérieure */}
+      <div className="relative w-full rounded-[15px] sm:rounded-[17px] bg-[#0d0e14] border border-zinc-800/90 overflow-hidden flex flex-col shadow-inner">
+        {/* Barre supérieure style macOS */}
+        <div className="flex items-center justify-between px-3 py-2 bg-zinc-900 border-b border-zinc-800 text-zinc-300 select-none">
+          {/* Contrôles fenêtre */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f] inline-block" />
+          </div>
+
+          {/* Barre d'adresse URL */}
+          <div className="flex items-center gap-1.5 text-[11px] text-zinc-300 font-mono bg-black/60 px-3 py-0.5 rounded-full border border-zinc-800 max-w-[190px] truncate shadow-inner">
+            <span className="truncate">{currentUrl}</span>
+          </div>
+
+          {/* Compteur d'images si le projet en contient plusieurs */}
+          <div className="flex items-center gap-1 shrink-0">
+            {images.length > 1 && (
+              <span className="text-[10px] font-mono font-semibold text-zinc-400 bg-black/50 px-2 py-0.5 rounded-md border border-zinc-800">
+                {currentImgIndex + 1}/{images.length}
+              </span>
+            )}
+          </div>
         </div>
 
-        {/* Barre d'adresse URL dynamique liée à l'image active */}
-        <div className="flex items-center gap-1.5 text-[11px] text-zinc-300 font-mono bg-black/60 px-3 py-0.5 rounded-full border border-zinc-800 max-w-[200px] truncate shadow-inner">
-          <span className="truncate">{currentUrl}</span>
-        </div>
+        {/* Écran avec image brute sans aucune déformation (ratio 16/9.5 natif) */}
+        <div
+          onClick={() => onOpenProject(item)}
+          className="relative w-full aspect-[16/9.5] overflow-hidden bg-zinc-950 cursor-pointer group/screen flex items-center justify-center"
+        >
+          <img
+            src={images[currentImgIndex]}
+            alt={`${item.title} - écran ${currentImgIndex + 1}`}
+            className="w-full h-full object-cover object-top transition-transform duration-300 ease-out group-hover:scale-[1.01]"
+            loading="lazy"
+          />
 
-        {/* Compteur d'images si le projet en contient plusieurs */}
-        <div className="flex items-center gap-1 shrink-0">
-          {images.length > 1 && (
-            <span className="text-[10px] font-mono font-semibold text-zinc-400 bg-black/50 px-2 py-0.5 rounded-md border border-zinc-800">
-              {currentImgIndex + 1}/{images.length}
+          {/* Survol pour ouvrir en plein écran */}
+          <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 text-gray-900 text-xs font-semibold shadow-lg backdrop-blur-md">
+              <Eye className="w-3.5 h-3.5 text-blue-600" />
+              Agrandir
             </span>
+          </div>
+
+          {/* Boutons de navigation incrustés au bas à droite */}
+          {images.length > 1 && (
+            <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-20">
+              <button
+                onClick={handlePrevImage}
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/80 hover:bg-black text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
+                aria-label="Image précédente"
+              >
+                <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+              </button>
+              <button
+                onClick={handleNextImage}
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
+                aria-label="Image suivante"
+              >
+                <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+              </button>
+            </div>
           )}
         </div>
-      </div>
-
-      {/* 2. Écran du site avec image brute bord-à-bord (sans aucune marge ni description) */}
-      <div
-        onClick={() => onOpenProject(item)}
-        className="relative w-full aspect-[16/10] overflow-hidden bg-zinc-950 cursor-pointer group/screen"
-      >
-        <img
-          src={images[currentImgIndex]}
-          alt={`${item.title} - écran ${currentImgIndex + 1}`}
-          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.015]"
-          loading="lazy"
-        />
-
-        {/* Survol discret pour inciter à agrandir */}
-        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 text-gray-900 text-xs font-semibold shadow-lg backdrop-blur-md">
-            <Eye className="w-3.5 h-3.5 text-blue-600" />
-            Agrandir
-          </span>
-        </div>
-
-        {/* Boutons de navigation incrustés au bas à droite s'il y a plusieurs images */}
-        {images.length > 1 && (
-          <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-20">
-            <button
-              onClick={handlePrevImage}
-              className="w-8 h-8 rounded-full bg-black/80 hover:bg-black text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
-              aria-label="Image précédente"
-            >
-              <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
-            </button>
-            <button
-              onClick={handleNextImage}
-              className="w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg transition-all border border-white/20 active:scale-95"
-              aria-label="Image suivante"
-            >
-              <ChevronRight className="w-4 h-4 stroke-[2.5]" />
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
 };
 
-// Modale Carrousel Lightbox plein écran
+// Modale Carrousel Lightbox bien espacée du header
 const ProjectCarouselModal = ({
   project,
   onClose
@@ -268,37 +226,37 @@ const ProjectCarouselModal = ({
   return (
     <AnimatePresence>
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-3 sm:p-6"
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-md pt-20 sm:pt-28 pb-6 px-4"
         onClick={onClose}
         role="dialog"
         aria-modal="true"
         aria-label={`Galerie du projet ${project.title}`}
       >
         <div
-          className="relative w-full max-w-5xl bg-zinc-950 border border-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[95vh]"
+          className="relative w-full max-w-5xl bg-zinc-950 border border-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col my-auto max-h-[85vh]"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header modal */}
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-zinc-800 bg-zinc-900/90 text-white">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-800 bg-zinc-900/90 text-white shrink-0">
             <span className="text-sm font-semibold tracking-wide text-zinc-200">
               {project.title}
             </span>
 
             <button
               onClick={onClose}
-              className="p-2 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none"
+              className="p-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none"
               aria-label="Fermer la galerie"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Affichage de l'image brute agrandie */}
-          <div className="relative w-full h-[360px] sm:h-[500px] lg:h-[600px] bg-black flex items-center justify-center overflow-hidden">
+          {/* Affichage de l'image brute en taille naturelle avec zéro déformation */}
+          <div className="relative w-full flex-1 bg-black flex items-center justify-center p-2 sm:p-4 overflow-hidden min-h-[280px]">
             <img
               src={images[currentIndex]}
               alt={`${project.title} - vue ${currentIndex + 1}`}
-              className="max-h-full max-w-full object-contain"
+              className="max-h-[62vh] max-w-full object-contain mx-auto select-none rounded-lg"
             />
 
             {/* Navigation flèches */}
@@ -331,7 +289,7 @@ const ProjectCarouselModal = ({
 
           {/* Miniatures simples si plusieurs images */}
           {images.length > 1 && (
-            <div className="px-5 py-3 bg-zinc-900 border-t border-zinc-800 flex items-center gap-2 overflow-x-auto">
+            <div className="px-5 py-2.5 bg-zinc-900 border-t border-zinc-800 flex items-center gap-2 overflow-x-auto shrink-0">
               {images.map((img, idx) => (
                 <button
                   key={idx}
@@ -388,7 +346,7 @@ export default function GenerativeArtGallery({
           </p>
         </div>
 
-        {/* Grille exactement 3 par ligne sur desktop (lg:grid-cols-3) */}
+        {/* Grille 3 colonnes sur une même ligne sur desktop (exactement 3 projets) */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           {projects.map((item) => (
             <ShowcaseProjectCard
