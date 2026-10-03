@@ -43,7 +43,30 @@ interface PortfolioProject {
 
 // Les véritables réalisations avec captures HD
 const REAL_PROJECTS: PortfolioProject[] = [
-  // 1. EPBOMI Europe (Église & Plateforme de Dons)
+  // 1. Les Épices de Sulson (E-Commerce Gastronomique & Épicerie Fine)
+  {
+    id: 'les-epices-de-sulson',
+    type: 'web',
+    title: 'Les Épices de Sulson',
+    category: 'E-Commerce Gastronomique & Épicerie Fine',
+    description:
+      'Boutique en ligne gastronomique dédiée aux mélanges d’épices artisanales, poivres rares et terroirs d’exception du Cameroun. Catalogue interactif en sachets hermétiques 100g, fiches recettes détaillées, panier fluide et paiement sécurisé Stripe & Apple Pay.',
+    image: '/images/portfolio/sulson-storefront.png',
+    galleryImages: [
+      '/images/portfolio/sulson-storefront.png',
+      '/images/portfolio/sulson-catalog.png',
+      '/images/portfolio/sulson-product.png',
+      '/images/portfolio/sulson-avis.png',
+      '/images/portfolio/sulson-pack-4.jpg',
+    ],
+    metrics: [
+      { label: 'Conversion boutique', value: '+35%' },
+      { label: 'Vitesse de chargement', value: '< 0.9s' },
+    ],
+    tags: ['E-Commerce Next.js', 'Stripe & Apple Pay', 'Catalogue 100g', 'SEO Gastronomie'],
+  },
+
+  // 2. EPBOMI Europe (Église & Plateforme de Dons)
   {
     id: 'epbomi-europe',
     type: 'web',

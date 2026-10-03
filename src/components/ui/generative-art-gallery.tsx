@@ -13,9 +13,24 @@ export interface GalleryProject {
   galleryImages: string[];
 }
 
-// Les 4 projets réels et authentiques sans AUCUN nom de domaine
+// Les projets réels et authentiques sans AUCUN nom de domaine
 const DEFAULT_PROJECTS: GalleryProject[] = [
-  // 1. Food Studio (Fast-Food & Commande)
+  // 1. Les Épices de Sulson (E-Commerce Gastronomique)
+  {
+    id: "les-epices-de-sulson",
+    title: "Les Épices de Sulson",
+    category: "E-Commerce Gastronomique & Épicerie Fine",
+    image: "/images/portfolio/sulson-storefront.png",
+    galleryImages: [
+      "/images/portfolio/sulson-storefront.png",
+      "/images/portfolio/sulson-catalog.png",
+      "/images/portfolio/sulson-product.png",
+      "/images/portfolio/sulson-avis.png",
+      "/images/portfolio/sulson-pack-4.jpg",
+    ]
+  },
+
+  // 2. Food Studio (Fast-Food & Commande)
   {
     id: "food-studio",
     title: "Food Studio",
