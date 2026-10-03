@@ -48,7 +48,7 @@ const DEFAULT_SERVICES: ServiceItem[] = [
   }
 ];
 
-// Composant de Cadre Écran / Device Mockup Frame (comme sur la référence)
+// Composant de Cadre Écran / Device Mockup Frame
 const DeviceMockupFrame = ({
   image,
   title,
@@ -75,7 +75,7 @@ const DeviceMockupFrame = ({
         </div>
 
         <div className="flex items-center gap-2 text-[10px] text-zinc-400 font-mono bg-black/40 px-2 py-0.5 rounded-md border border-zinc-800">
-          <Globe className="w-3 h-3 text-brand-orange" />
+          <Globe className="w-3 h-3 text-[#0FAC71]" />
           <span>webmodernseo.co</span>
         </div>
       </div>
@@ -99,7 +99,7 @@ const DeviceMockupFrame = ({
         {/* Bandeau d'information inférieur intégré à l'écran */}
         <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white z-10">
           <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-brand-orange" />
+            <Sparkles className="w-3.5 h-3.5 text-[#0FAC71]" />
             <span>{frameLabel || "Aperçu Réalisation"}</span>
           </div>
 
@@ -132,8 +132,8 @@ export default function ServicesSection({
       <div className="max-w-7xl mx-auto">
         {/* En-tête de section */}
         <div className="text-center mb-12 sm:mb-16">
-          <span className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-black/[0.03] px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.08em] text-[#5c5c64] mb-4 shadow-2xs">
-            <span className="text-brand-orange" aria-hidden="true">✦</span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-50/60 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.08em] text-emerald-800 mb-4 shadow-2xs">
+            <span className="text-[#0FAC71]" aria-hidden="true">✦</span>
             {badge}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-gray-900 mb-3 sm:mb-4 tracking-tight">
@@ -155,16 +155,16 @@ export default function ServicesSection({
               <CardWrapper
                 key={index}
                 href={service.href}
-                className="group relative bg-[#fafbfc] border border-gray-200/90 rounded-3xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:bg-white hover:shadow-2xl hover:border-brand-orange/40 hover:-translate-y-1 cursor-pointer overflow-hidden"
+                className="group relative bg-[#fafbfc] border border-gray-200/90 rounded-3xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:bg-white hover:shadow-2xl hover:border-[#0FAC71]/50 hover:-translate-y-1 cursor-pointer overflow-hidden"
               >
                 {/* En-tête de la carte */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="inline-block text-[11px] font-bold tracking-wide uppercase px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-800 shadow-2xs">
+                  <span className="inline-block text-[11px] font-bold tracking-wide uppercase px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-800 shadow-2xs group-hover:border-emerald-500/40 group-hover:text-emerald-600 transition-colors">
                     {service.tag}
                   </span>
 
-                  <div className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 group-hover:text-white group-hover:bg-brand-orange group-hover:border-brand-orange group-hover:scale-105 transition-all shadow-xs">
-                    <ArrowUpRight className="w-4 h-4" />
+                  <div className="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 group-hover:text-white group-hover:bg-[#0FAC71] group-hover:border-[#0FAC71] group-hover:scale-105 transition-all shadow-xs">
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </div>
 
@@ -179,7 +179,7 @@ export default function ServicesSection({
 
                 {/* Titre & Description du service */}
                 <div className="mt-5 pt-4 border-t border-gray-100">
-                  <h3 className="text-xl sm:text-2xl font-bold font-display text-gray-900 group-hover:text-brand-orange transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold font-display text-gray-900 group-hover:text-[#0FAC71] transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-sm text-gray-600 mt-1.5 leading-relaxed">
@@ -192,9 +192,9 @@ export default function ServicesSection({
                       {service.features.map((feat, fIdx) => (
                         <span
                           key={fIdx}
-                          className="inline-flex items-center gap-1.5 text-xs text-gray-700 bg-gray-100/80 px-2.5 py-1 rounded-lg border border-gray-200/60"
+                          className="inline-flex items-center gap-1.5 text-xs text-gray-700 bg-gray-100/80 px-2.5 py-1 rounded-lg border border-gray-200/60 group-hover:border-emerald-500/30 group-hover:bg-emerald-50/40 transition-colors"
                         >
-                          <ShieldCheck className="w-3.5 h-3.5 text-brand-orange shrink-0" />
+                          <ShieldCheck className="w-3.5 h-3.5 text-[#0FAC71] shrink-0" />
                           {feat}
                         </span>
                       ))}

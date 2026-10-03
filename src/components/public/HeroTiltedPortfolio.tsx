@@ -125,7 +125,7 @@ export function HeroTiltedPortfolio({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative w-full h-[480px] sm:h-[560px] lg:h-[620px] xl:h-[660px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] pointer-events-auto px-4 sm:px-8 lg:px-10",
+        "relative w-full h-[420px] sm:h-[460px] lg:h-[490px] xl:h-[510px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] pointer-events-auto px-4 sm:px-8 lg:px-10 my-auto",
         className
       )}
     >
