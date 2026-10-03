@@ -784,47 +784,54 @@ export const HeaderPublic: React.FC = () => {
             }
 
             .wms-header-actions .wms-cta-button {
-                display: none; /* Cache dans la barre fixe, s'affiche dans le tiroir mobile */
-            }
-
-            .wms-header-whatsapp-btn {
-                display: flex;
+                display: none; /* Cache dans la barre fixe sur mobile, s'affiche dans le tiroir mobile */
             }
 
             .wms-header-actions {
-                display: flex;
-                align-items: center;
-                gap: 8px;
+                display: flex !important;
+                align-items: center !important;
+                gap: 10px !important;
             }
 
             .wms-hamburger-btn {
-                display: flex;
+                display: flex !important;
             }
         }
 
+        /* Bouton WhatsApp Header toujours visible et réactif */
         .wms-header-whatsapp-btn {
-            display: none;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background-color: #25D366;
-            color: #ffffff;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.28);
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            flex-shrink: 0;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 38px !important;
+            height: 38px !important;
+            border-radius: 50% !important;
+            background-color: #25D366 !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.35) !important;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            flex-shrink: 0 !important;
+            cursor: pointer !important;
+            position: relative !important;
+            z-index: 50 !important;
         }
 
         .wms-header-whatsapp-btn:hover {
-            transform: scale(1.08);
-            background-color: #20bd5a;
-            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+            transform: scale(1.08) !important;
+            background-color: #20bd5a !important;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45) !important;
         }
 
         .wms-header-whatsapp-btn:active {
-            transform: scale(0.94);
+            transform: scale(0.94) !important;
+        }
+
+        .wms-header-whatsapp-btn svg {
+            width: 20px !important;
+            height: 20px !important;
+            fill: #ffffff !important;
+            display: block !important;
         }
       ` }} />
       
