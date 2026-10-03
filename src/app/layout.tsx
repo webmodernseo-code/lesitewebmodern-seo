@@ -5,6 +5,7 @@ import { UIFeedbackProvider } from "@/context/UIFeedbackContext";
 import { JsonLd } from "@/components/JsonLd";
 import { buildWebSiteSchema } from "@/lib/schema";
 import { CalInitializer } from "@/components/public/CalInitializer";
+import { FloatingBookingButton } from "@/components/public/FloatingBookingButton";
 import "./globals.css";
 
 const bricolageSans = Bricolage_Grotesque({
@@ -98,6 +99,7 @@ export default function RootLayout({
         <UIFeedbackProvider>
           <AuthProvider>
             {children}
+            <FloatingBookingButton />
           </AuthProvider>
         </UIFeedbackProvider>
       </body>
