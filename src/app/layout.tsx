@@ -4,6 +4,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import { UIFeedbackProvider } from "@/context/UIFeedbackContext";
 import { JsonLd } from "@/components/JsonLd";
 import { buildWebSiteSchema } from "@/lib/schema";
+import { CalInitializer } from "@/components/public/CalInitializer";
 import "./globals.css";
 
 const bricolageSans = Bricolage_Grotesque({
@@ -93,6 +94,7 @@ export default function RootLayout({
     <html lang="fr" className={`${bricolageSans.variable} ${bricolageDisplay.variable}`}>
       <body className="font-sans antialiased min-h-screen selection:bg-amber-500 selection:text-black">
         <JsonLd data={buildWebSiteSchema()} />
+        <CalInitializer />
         <UIFeedbackProvider>
           <AuthProvider>
             {children}

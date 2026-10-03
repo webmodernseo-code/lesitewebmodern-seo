@@ -583,13 +583,16 @@ export default function PortfolioPage() {
                 votre marché, recommandations sur-mesure et plan d'action clair.
               </p>
               <div className="flex flex-col sm:flex-row gap-3.5">
-                <Link
-                  href="/reservation"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-orange hover:bg-brand-orangeLight text-white font-semibold text-sm transition-all duration-200 shadow-lg shadow-brand-orange/30"
+                <button
+                  type="button"
+                  data-cal-namespace="30min"
+                  data-cal-link="jean-prosper-dsljpi/30min"
+                  data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-orange hover:bg-brand-orangeLight text-white font-semibold text-sm transition-all duration-200 shadow-lg shadow-brand-orange/30 cursor-pointer"
                 >
                   <Calendar className="w-4 h-4" />
                   Prendre un RDV offert (30 min)
-                </Link>
+                </button>
                 <a
                   href="tel:+33753887751"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/15 transition-all duration-200"
@@ -888,13 +891,16 @@ function ProjectModal({
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/reservation"
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-orange hover:bg-brand-orangeLight text-white text-xs font-semibold transition-colors"
+          <button
+            type="button"
+            data-cal-namespace="30min"
+            data-cal-link="jean-prosper-dsljpi/30min"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-orange hover:bg-brand-orangeLight text-white text-xs font-semibold transition-colors cursor-pointer"
           >
             Discuter d’un projet similaire
             <ArrowUpRight className="w-3.5 h-3.5" />
-          </Link>
+          </button>
 
           <button
             onClick={onClose}
