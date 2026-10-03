@@ -68,6 +68,29 @@ const DEFAULT_PROJECTS: GalleryProject[] = [
       "/images/portfolio/epbomi-dons-en-ligne.png",
       "/images/portfolio/epbomi-plateformes.png"
     ]
+  },
+
+  // 5. Sinai Happy Care (Services de Soins & Santé à Domicile)
+  {
+    id: "sinai-happy-care",
+    title: "Sinai Happy Care",
+    category: "Santé & Soins à Domicile",
+    image: "/images/portfolio/Sinaihappycare-sinaihappycare.com_.png",
+    galleryImages: [
+      "/images/portfolio/Sinaihappycare-sinaihappycare.com_.png"
+    ]
+  },
+
+  // 6. Centre Optique & Vision (Optométrie & Montures Créateurs)
+  {
+    id: "centre-optique-vision",
+    title: "Centre Optique & Vision",
+    category: "Optométrie & Lunetterie",
+    image: "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
+    galleryImages: [
+      "/images/portfolio/Accueil-emypaul.opticafe.fr-emypaul.opticafe.fr_.png",
+      "/images/portfolio/he75ojuxofe.jpg"
+    ]
   }
 ];
 
